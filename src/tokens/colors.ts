@@ -87,11 +87,11 @@ export interface BrandColorFamily {
 
 export const brandColors: Record<string, BrandColorFamily> = {
   blue:     { fill: '#f9fbff', stroke: '#d8e2f5', primary: '#5c98f7', text: '#07285a' },
-  peach:    { fill: '#fef5ee', stroke: '#eab18d', primary: '#a96133', text: '#5a2d10' }, /* TODO: confirm from Figma */
-  green:    { fill: '#f0faf3', stroke: '#66af83', primary: '#136835', text: '#0a3a1d' }, /* TODO: confirm from Figma */
-  gold:     { fill: '#fdf6db', stroke: '#e5c44a', primary: '#9a6700', text: '#533800' }, /* TODO: confirm from Figma */
-  lavender: { fill: '#f5f0ff', stroke: '#c9b8f8', primary: '#703ff5', text: '#3a1d8e' }, /* TODO: confirm from Figma */
-  red:      { fill: '#fef2f2', stroke: '#f5a8a8', primary: '#c13515', text: '#6e1a08' }, /* TODO: confirm from Figma */
+  peach:    { fill: '#fef5ee', stroke: '#eab18d', primary: '#a96133', text: '#5a2d10' },
+  green:    { fill: '#f0faf3', stroke: '#66af83', primary: '#136835', text: '#0a3a1d' },
+  gold:     { fill: '#fdf6db', stroke: '#e5c44a', primary: '#9a6700', text: '#533800' },
+  lavender: { fill: '#f5f0ff', stroke: '#c9b8f8', primary: '#703ff5', text: '#3a1d8e' },
+  red:      { fill: '#fef2f2', stroke: '#f5a8a8', primary: '#c13515', text: '#6e1a08' },
 } as const;
 
 export type BrandColorKey = keyof typeof brandColors;

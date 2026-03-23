@@ -40,3 +40,74 @@ export const gradients = {
 } as const;
 
 export type GradientKey = keyof typeof gradients;
+
+// ─── Semantic text colors ────────────────────────────────────────────────────
+
+export const textColors = {
+  title: '#0e0e0e',
+  subtext: '#5b5c5d',
+  titleInverse: '#ffffff',
+  subtextInverse: '#a0a1a2',
+} as const;
+
+export type TextColorKey = keyof typeof textColors;
+
+// ─── Background colors ──────────────────────────────────────────────────────
+
+export const backgroundColors = {
+  light: '#ffffff',
+  medium: '#f8f8f9',
+  dark: '#5b5c5d',
+  darkest: '#0e0e0e',
+} as const;
+
+export type BackgroundColorKey = keyof typeof backgroundColors;
+
+// ─── Neutral scale ──────────────────────────────────────────────────────────
+
+export const neutralScale = {
+  20: '#f8f8f9',
+  30: '#e3e3e3',
+  60: '#5b5c5d',
+  100: '#0e0e0e',
+} as const;
+
+export type NeutralStep = keyof typeof neutralScale;
+
+// ─── Brand color families ───────────────────────────────────────────────────
+// Each brand color has 4 semantic aliases: fill (light bg), stroke (border),
+// primary (accent), text (dark text on tinted bg).
+
+export interface BrandColorFamily {
+  readonly fill: string;
+  readonly stroke: string;
+  readonly primary: string;
+  readonly text: string;
+}
+
+export const brandColors: Record<string, BrandColorFamily> = {
+  blue:     { fill: '#f9fbff', stroke: '#d8e2f5', primary: '#5c98f7', text: '#07285a' },
+  peach:    { fill: '#fef5ee', stroke: '#eab18d', primary: '#a96133', text: '#5a2d10' }, /* TODO: confirm from Figma */
+  green:    { fill: '#f0faf3', stroke: '#66af83', primary: '#136835', text: '#0a3a1d' }, /* TODO: confirm from Figma */
+  gold:     { fill: '#fdf6db', stroke: '#e5c44a', primary: '#9a6700', text: '#533800' }, /* TODO: confirm from Figma */
+  lavender: { fill: '#f5f0ff', stroke: '#c9b8f8', primary: '#703ff5', text: '#3a1d8e' }, /* TODO: confirm from Figma */
+  red:      { fill: '#fef2f2', stroke: '#f5a8a8', primary: '#c13515', text: '#6e1a08' }, /* TODO: confirm from Figma */
+} as const;
+
+export type BrandColorKey = keyof typeof brandColors;
+
+// ─── Status colors ──────────────────────────────────────────────────────────
+
+export const statusColors = {
+  yes: '#0d7a3a',
+  partial: '#9a6700',
+  no: '#c13515',
+} as const;
+
+export type StatusColorKey = keyof typeof statusColors;
+
+// ─── Border colors ──────────────────────────────────────────────────────────
+
+export const borderColor = {
+  medium: '#e3e3e3',
+} as const;

@@ -17,6 +17,7 @@
 export const fontFamily = {
   title: "'Fynd Sans', sans-serif",            // Compact style (display / heading XXL–M)
   body: "'Inter Display', 'Inter', sans-serif", // Medium / Regular / SemiBold
+  ui: "'Inter', sans-serif",                    // Buttons, nav links, badges, table headers
 } as const;
 
 // ─── Font weights ─────────────────────────────────────────────────────────────

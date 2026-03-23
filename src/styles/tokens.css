@@ -27,9 +27,14 @@
 /* ── Root tokens ─────────────────────────────────────────── */
 
 :root {
-  /* ── Font families ──────────────────────────────────────── */
-  --font-family-title: 'Fynd Sans', sans-serif;
-  --font-family-body:  'Inter Display', 'Inter', sans-serif;
+  /* ── Font families (spec naming) ─────────────────────────── */
+  --font-family--primary:   'Fynd Sans', sans-serif;
+  --font-family--secondary: 'Inter Display', 'Inter', sans-serif;
+  --font-family--ui:        'Inter', sans-serif;
+
+  /* Legacy aliases */
+  --font-family-title: var(--font-family--primary);
+  --font-family-body:  var(--font-family--secondary);
 
   /* ── Font weights ───────────────────────────────────────── */
   --font-weight-regular:   400;
@@ -71,13 +76,23 @@
   --font-size-body-s:              14px;
   --font-size-body-xs:             12px;
 
-  /* ── Line heights ───────────────────────────────────────── */
-  --line-height-tight:   1.1;
-  --line-height-snug:    1.2;
-  --line-height-normal:  1.3;
-  --line-height-relaxed: 1.4;
-  --line-height-loose:   1.5;
-  --line-height-looser:  1.55;
+  /* ── Line heights (spec naming) ─────────────────────────── */
+  --line-height--110: 1.1;
+  --line-height--120: 1.2;
+  --line-height--130: 1.3;
+  --line-height--135: 1.35;
+  --line-height--140: 1.4;
+  --line-height--145: 1.45;
+  --line-height--150: 1.5;
+  --line-height--155: 1.55;
+
+  /* Legacy aliases */
+  --line-height-tight:   var(--line-height--110);
+  --line-height-snug:    var(--line-height--120);
+  --line-height-normal:  var(--line-height--130);
+  --line-height-relaxed: var(--line-height--140);
+  --line-height-loose:   var(--line-height--150);
+  --line-height-looser:  var(--line-height--155);
 
   /*
    * ── Letter spacing ────────────────────────────────────────
@@ -95,13 +110,22 @@
    * +25%     →  --ls-caps-d:  0.25em  →  +3.00px at 12px
    * +24%     →  --ls-caps-m:  0.24em  →  +2.88px at 12px
    */
-  --ls-n4:     -0.04em;   /* -4%  — Heading XXL desktop/tablet */
-  --ls-n3:     -0.03em;   /* -3%  — Heading XL desktop, Heading L desktop */
-  --ls-n2:     -0.02em;   /* -2%  — Heading M, Heading S desktop/tablet */
-  --ls-n1:     -0.01em;   /* -1%  — Body L desktop regular only */
-  --ls-0:       0em;      /*  0%  — all body styles */
-  --ls-caps-d:  0.25em;   /* +25% — Body XS SemiBold Caps desktop */
-  --ls-caps-m:  0.24em;   /* +24% — Body XS SemiBold Caps mobile */
+  /* Spec naming */
+  --letter-spacing--heading-1: -0.04em;
+  --letter-spacing--heading-2: -0.04em;
+  --letter-spacing--heading-3: -0.03em;
+  --letter-spacing--heading-4: -0.02em;
+  --letter-spacing--heading-5: -0.02em;
+  --letter-spacing--baggy:      0.25em;
+
+  /* Legacy aliases */
+  --ls-n4:     -0.04em;
+  --ls-n3:     -0.03em;
+  --ls-n2:     -0.02em;
+  --ls-n1:     -0.01em;
+  --ls-0:       0em;
+  --ls-caps-d:  0.25em;
+  --ls-caps-m:  0.24em;
 
   /* ── Gradients ──────────────────────────────────────────── */
   --gradient-blue:  linear-gradient(106.18deg, rgba(216, 226, 245, 0.7) 28.66%, rgba(92, 152, 247, 0.7) 74.97%);
@@ -140,4 +164,180 @@
   --color-ai-from: rgb(226, 195, 254);
   --color-ai-mid:  rgb(146, 126, 255);
   --color-ai-to:   rgb(8, 111, 253);
+
+  /* ── Semantic text colors ──────────────────────────────── */
+  --text--title:            #0e0e0e;
+  --text--subtext:          #5b5c5d;
+  --text--title-inverse:    #ffffff;
+  --text--subtext-inverse:  #a0a1a2;
+
+  /* ── Background colors ─────────────────────────────────── */
+  --background--background-light:   #ffffff;
+  --background--background-medium:  #f8f8f9;
+  --background--background-dark:    #5b5c5d;
+  --background--background-darkest: #0e0e0e;
+
+  /* ── Neutral scale ─────────────────────────────────────── */
+  --neutral--neutral-20:  #f8f8f9;
+  --neutral--neutral-30:  #e3e3e3;
+  --neutral--neutral-60:  #5b5c5d;
+  --neutral--neutral-100: #0e0e0e;
+
+  /* ── Brand color families ──────────────────────────────── */
+  /* Blue */
+  --blue--blue-fill:    #f9fbff;
+  --blue--blue-stroke:  #d8e2f5;
+  --blue--blue-primary: #5c98f7;
+  --blue--blue-text:    #07285a;
+
+  /* Peach — TODO: confirm from Figma */
+  --peach--peach-fill:    #fef5ee;
+  --peach--peach-stroke:  #eab18d;
+  --peach--peach-primary: #a96133;
+  --peach--peach-text:    #5a2d10;
+
+  /* Green — TODO: confirm from Figma */
+  --green--green-fill:    #f0faf3;
+  --green--green-stroke:  #66af83;
+  --green--green-primary: #136835;
+  --green--green-text:    #0a3a1d;
+
+  /* Gold — TODO: confirm from Figma */
+  --gold--gold-fill:    #fdf6db;
+  --gold--gold-stroke:  #e5c44a;
+  --gold--gold-primary: #9a6700;
+  --gold--gold-text:    #533800;
+
+  /* Lavender — TODO: confirm from Figma */
+  --lavender--lavender-fill:    #f5f0ff;
+  --lavender--lavender-stroke:  #c9b8f8;
+  --lavender--lavender-primary: #703ff5;
+  --lavender--lavender-text:    #3a1d8e;
+
+  /* Red — TODO: confirm from Figma */
+  --red--red-fill:    #fef2f2;
+  --red--red-stroke:  #f5a8a8;
+  --red--red-primary: #c13515;
+  --red--red-text:    #6e1a08;
+
+  /* ── Status colors ─────────────────────────────────────── */
+  --status--yes:     #0d7a3a;
+  --status--partial: #9a6700;
+  --status--no:      #c13515;
+
+  /* ── Border ────────────────────────────────────────────── */
+  --border--border-medium: #e3e3e3;
+
+  /* ── Spacing scale ─────────────────────────────────────── */
+  --spacing--4:   4px;
+  --spacing--8:   8px;
+  --spacing--12:  12px;
+  --spacing--16:  16px;
+  --spacing--24:  24px;
+  --spacing--32:  32px;
+  --spacing--40:  40px;
+  --spacing--56:  56px;
+  --spacing--64:  64px;
+  --spacing--80:  80px;
+
+  /* Figma shorthands */
+  --4:  4px;
+  --8:  8px;
+  --12: 12px;
+  --16: 16px;
+  --24: 24px;
+  --32: 32px;
+  --40: 40px;
+  --56: 56px;
+  --64: 64px;
+  --80: 80px;
+
+  /* ── Border radius ─────────────────────────────────────── */
+  --border-radius--pill: 250px;
+  --border-radius--tag:  2000px;
+  --border-radius--8:    8px;
+  --border-radius--16:   16px;
+  --border-radius--24:   24px;
+
+  /* ── Layout ────────────────────────────────────────────── */
+  --layout--container-max:            1200px;
+  --layout--container-padding:        2rem;
+  --layout--container-padding-mobile: 1.25rem;
+  --layout--section-header-max:       720px;
+  --layout--cta-content-max:          640px;
+  --layout--page-padding-x:           120px;
+  --layout--content-width:            1272px;
+  --layout--full-width:               1512px;
+  --layout--section-padding-y:        var(--spacing--80);
+  --layout--middle-padding:           var(--spacing--56);
+
+  /* ── Icon sizes ────────────────────────────────────────── */
+  --icon-size-ui:         16px;
+  --icon-size-feature:    20px;
+  --icon-size-decorative: 24px;
+
+  /* ── Button tokens ─────────────────────────────────────── */
+  --btn--font-family:      var(--font-family--ui);
+  --btn--font-size:        14px;
+  --btn--font-weight:      500;
+  --btn--line-height:      20px;
+  --btn--letter-spacing:   0;
+  --btn--border-radius:    var(--border-radius--pill);
+  --btn--padding-y:        10px;
+  --btn--padding-x:        24px;
+  --btn--padding-y-lg:     14px;
+  --btn--padding-x-lg:     32px;
+  --btn--transition:       background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+  --btn--primary--bg:         #0e0e0e;
+  --btn--primary--color:      #ffffff;
+  --btn--primary--bg-hover:   #303030;
+
+  --btn--primary-light--bg:       #ffffff;
+  --btn--primary-light--color:    #0e0e0e;
+  --btn--primary-light--bg-hover: #f8f8f9;
+
+  --btn--secondary--bg:           transparent;
+  --btn--secondary--color:        #0e0e0e;
+  --btn--secondary--border:       #e3e3e3;
+  --btn--secondary--bg-hover:     #f8f8f9;
+  --btn--secondary--border-hover: #5b5c5d;
+
+  --btn--secondary-light--bg:           transparent;
+  --btn--secondary-light--color:        #ffffff;
+  --btn--secondary-light--border:       rgba(255, 255, 255, 0.3);
+  --btn--secondary-light--bg-hover:     rgba(255, 255, 255, 0.1);
+  --btn--secondary-light--border-hover: rgba(255, 255, 255, 0.5);
+
+  /* ── Badge tokens ──────────────────────────────────────── */
+  --badge--padding-y:      8px;
+  --badge--padding-x:      12px;
+  --badge--border-radius:  var(--border-radius--tag);
+  --badge--font-size:      12px;
+  --badge--font-weight:    400;
+
+  /* ── Card tokens ───────────────────────────────────────── */
+  --card--desktop--radius:  16px;
+  --card--desktop--padding: 16px;
+
+  /* ── Shadows (spec naming) ─────────────────────────────── */
+  --shadow--m: var(--shadow-m);
+  --shadow--card-high: var(--shadow-card-high);
+
+  /* ── Font size (spec naming aliases) ───────────────────── */
+  --font-size--h1:      72px;
+  --font-size--h2:      56px;
+  --font-size--h5:      26px;
+  --font-size--body-l:  18px;
+  --font-size--body-m:  16px;
+  --font-size--body-s:  14px;
+  --font-size--body-xs: 12px;
+  --font-size--ui-m:    14px;
+  --font-size--ui-l:    16px;
+
+  /* ── Font weight (spec naming aliases) ─────────────────── */
+  --font-weight--regular:  400;
+  --font-weight--medium:   500;
+  --font-weight--semibold: 600;
+  --font-weight--bold:     700;
 }

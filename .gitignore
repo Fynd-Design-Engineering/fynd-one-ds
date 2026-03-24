@@ -4,4 +4,3 @@ storybook-static/
 *.tsbuildinfo
 .DS_Store
 .claude/mcp.json
-.claude/settings.json

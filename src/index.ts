@@ -18,3 +18,26 @@ export type { TextProps, TextVariant, TextWeight, Breakpoint } from './component
 
 export { GradientSurface } from './components/GradientSurface';
 export type { GradientSurfaceProps } from './components/GradientSurface';
+
+// Atoms
+export { Button } from './components/atoms/Button';
+export type { ButtonProps } from './components/atoms/Button';
+
+export { AnchorChip } from './components/atoms/AnchorChip';
+export type { AnchorChipProps } from './components/atoms/AnchorChip';
+
+export { SectionIndicator } from './components/atoms/SectionIndicator';
+export type { SectionIndicatorProps } from './components/atoms/SectionIndicator';
+
+export { ImageHolder } from './components/atoms/ImageHolder';
+export type { ImageHolderProps } from './components/atoms/ImageHolder';
+
+export { TitleContentPair } from './components/atoms/TitleContentPair';
+export type { TitleContentPairProps } from './components/atoms/TitleContentPair';
+
+// Shared helpers
+export { SectionWrapper } from './components/_shared/SectionWrapper';
+export type { SectionWrapperProps } from './components/_shared/SectionWrapper';
+
+export { SectionHeader } from './components/_shared/SectionHeader';
+export type { SectionHeaderProps } from './components/_shared/SectionHeader';

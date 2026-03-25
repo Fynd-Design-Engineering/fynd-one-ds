@@ -10,17 +10,14 @@
 
 export const buttonTokens = {
   fontFamily: "'Inter', sans-serif",
-  fontSize: '14px',
-  fontSizeLg: '16px',
+  fontSize: '16px',
   fontWeight: 500,
-  lineHeight: '20px',
+  lineHeight: 1.6,
   letterSpacing: '0',
-  borderRadius: '250px',
-  paddingY: '10px',
+  borderRadius: '32px',
+  gap: '8px',
   paddingX: '24px',
-  paddingYLg: '14px',
-  paddingXLg: '32px',
-  transition: 'background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease',
+  transition: 'all 0.3s',
 
   primary: {
     bg: '#0e0e0e',
@@ -35,16 +32,18 @@ export const buttonTokens = {
   secondary: {
     bg: 'transparent',
     color: '#0e0e0e',
-    border: '#e3e3e3',
-    bgHover: '#f8f8f9',
-    borderHover: '#5b5c5d',
+    border: '#0e0e0e',
+    bgHover: '#0e0e0e',
+    borderHover: '#0e0e0e',
+    colorHover: '#ffffff',
   },
   secondaryLight: {
     bg: 'transparent',
     color: '#ffffff',
-    border: 'rgba(255, 255, 255, 0.3)',
-    bgHover: 'rgba(255, 255, 255, 0.1)',
-    borderHover: 'rgba(255, 255, 255, 0.5)',
+    border: '#ffffff',
+    bgHover: '#ffffff',
+    borderHover: '#ffffff',
+    colorHover: '#0e0e0e',
   },
 } as const;
 

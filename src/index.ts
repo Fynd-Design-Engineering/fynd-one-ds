@@ -23,8 +23,8 @@ export type { GradientSurfaceProps } from './components/GradientSurface';
 export { Button } from './components/atoms/Button';
 export type { ButtonProps } from './components/atoms/Button';
 
-export { AnchorChip } from './components/atoms/AnchorChip';
-export type { AnchorChipProps } from './components/atoms/AnchorChip';
+export { Chip } from './components/atoms/Chip';
+export type { ChipProps, ChipDotColor } from './components/atoms/Chip';
 
 export { SectionIndicator } from './components/atoms/SectionIndicator';
 export type { SectionIndicatorProps } from './components/atoms/SectionIndicator';

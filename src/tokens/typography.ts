@@ -93,7 +93,7 @@ export const typeScale = {
 
   // ── Body L ──────────────────────────────────────────────────────────────────
   'body-l-desktop-medium':   { fontSize: 18, lineHeight: 1.5, letterSpacing: letterSpacing.none, fontWeight: fontWeight.medium,  fontFamily: fontFamily.body },
-  'body-l-desktop-regular':  { fontSize: 18, lineHeight: 1.5, letterSpacing: letterSpacing.n1,   fontWeight: fontWeight.regular, fontFamily: fontFamily.body },
+  'body-l-desktop-regular':  { fontSize: 18, lineHeight: 1.5, letterSpacing: letterSpacing.none, fontWeight: fontWeight.regular, fontFamily: fontFamily.body },
   'body-l-tablet-medium':    { fontSize: 16, lineHeight: 1.5, letterSpacing: letterSpacing.none, fontWeight: fontWeight.medium,  fontFamily: fontFamily.body },
   'body-l-tablet-regular':   { fontSize: 16, lineHeight: 1.5, letterSpacing: letterSpacing.none, fontWeight: fontWeight.regular, fontFamily: fontFamily.body },
   'body-l-mobile-medium':    { fontSize: 16, lineHeight: 1.5, letterSpacing: letterSpacing.none, fontWeight: fontWeight.medium,  fontFamily: fontFamily.body },

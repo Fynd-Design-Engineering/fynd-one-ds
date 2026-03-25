@@ -6,7 +6,7 @@ const meta: Meta<typeof SectionIndicator> = {
   title: 'Atoms/SectionIndicator',
   component: SectionIndicator,
   argTypes: {
-    color: { control: 'select', options: ['blue', 'green', 'peach', 'grey'] },
+    color: { control: 'select', options: ['blue', 'green', 'peach', 'yellow', 'lavender', 'violet', 'red', 'gray', 'teal'] },
   },
 };
 
@@ -23,7 +23,12 @@ export const AllColors: Story = {
       <SectionIndicator color="blue" />
       <SectionIndicator color="green" />
       <SectionIndicator color="peach" />
-      <SectionIndicator color="grey" />
+      <SectionIndicator color="yellow" />
+      <SectionIndicator color="lavender" />
+      <SectionIndicator color="violet" />
+      <SectionIndicator color="red" />
+      <SectionIndicator color="gray" />
+      <SectionIndicator color="teal" />
     </div>
   ),
 };

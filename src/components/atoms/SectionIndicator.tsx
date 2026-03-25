@@ -1,17 +1,25 @@
 import React, { CSSProperties } from 'react';
-import { brandColors, neutralScale } from '../../tokens';
+
+export type SectionIndicatorColor =
+  | 'blue' | 'green' | 'peach'
+  | 'yellow' | 'lavender' | 'violet' | 'red' | 'gray' | 'teal';
 
 export interface SectionIndicatorProps {
-  color: 'blue' | 'green' | 'peach' | 'grey';
+  color: SectionIndicatorColor;
   className?: string;
   style?: CSSProperties;
 }
 
-const colorMap: Record<SectionIndicatorProps['color'], string> = {
-  blue: brandColors.blue.primary,
-  green: brandColors.green.primary,
-  peach: brandColors.peach.primary,
-  grey: neutralScale[60],
+const colorMap: Record<SectionIndicatorColor, string> = {
+  blue: '#5c98f7',
+  green: '#80d99f',
+  peach: '#eeb384',
+  yellow: '#fdf6db',
+  lavender: '#e382ff',
+  violet: '#8d61f6',
+  red: '#fddbdb',
+  gray: '#f8f8f9',
+  teal: '#89d0e0',
 };
 
 export const SectionIndicator: React.FC<SectionIndicatorProps> = ({

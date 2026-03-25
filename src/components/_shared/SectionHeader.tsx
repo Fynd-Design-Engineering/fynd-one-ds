@@ -1,11 +1,14 @@
 import React, { CSSProperties } from 'react';
 import { layout } from '../../tokens';
-import { AnchorChip } from '../atoms/AnchorChip';
+import { Chip, ChipDotColor } from '../atoms/Chip';
 import { TitleContentPair } from '../atoms/TitleContentPair';
 
 export interface SectionHeaderProps {
-  anchorLabel?: string;
-  anchorColor?: 'blue' | 'green' | 'peach';
+  chipLabel?: string;
+  chipVariant?: 'anchor' | 'filled' | 'outlined';
+  chipDotColor?: ChipDotColor;
+  chipIcon?: React.ReactNode;
+  showChip?: boolean;
   title: string;
   subtext?: string;
   titleSize?: 'xxl' | 'xl' | 'l' | 'm';
@@ -14,8 +17,11 @@ export interface SectionHeaderProps {
 }
 
 export const SectionHeader: React.FC<SectionHeaderProps> = ({
-  anchorLabel,
-  anchorColor = 'blue',
+  chipLabel,
+  chipVariant = 'outlined',
+  chipDotColor = 'blue',
+  chipIcon,
+  showChip = true,
   title,
   subtext,
   titleSize = 'xl',
@@ -29,11 +35,19 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
     ...(align === 'center' ? { marginLeft: 'auto', marginRight: 'auto' } : {}),
   };
 
+  const renderChip = showChip && chipLabel;
+
   return (
     <div style={wrapper}>
-      {anchorLabel && (
+      {renderChip && (
         <div style={{ marginBottom: '16px' }}>
-          <AnchorChip label={anchorLabel} color={anchorColor} onDarkBg={onDarkBg} />
+          <Chip
+            label={chipLabel}
+            variant={chipVariant}
+            dotColor={chipDotColor}
+            icon={chipIcon}
+            onDarkBg={onDarkBg}
+          />
         </div>
       )}
       <TitleContentPair

@@ -10,8 +10,8 @@ export { fontFamily, fontWeight, letterSpacing, typeScale } from './typography';
 export type { TypeScaleKey } from './typography';
 
 // Colors
-export { colors, gradients, textColors, backgroundColors, neutralScale, brandColors, statusColors, borderColor } from './colors';
-export type { ColorKey, GradientKey, TextColorKey, BackgroundColorKey, NeutralStep, BrandColorKey, BrandColorFamily, StatusColorKey } from './colors';
+export { neutrals, blue, peach, green, gold, lavender, red, colors, gradients, textColors, backgroundColors, iconColors, borderColors, buttonColors, neutralScale, statusColors, borderColor } from './colors';
+export type { ColorKey, GradientKey, TextColorKey, BackgroundColorKey, IconColorKey, BorderColorKey, NeutralStep, StatusColorKey } from './colors';
 
 // Effects
 export { shadows, blur, breakpoints, mq } from './effects';

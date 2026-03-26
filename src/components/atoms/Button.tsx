@@ -1,5 +1,5 @@
 import React, { CSSProperties, useState } from 'react';
-import { buttonTokens } from '../../tokens';
+import { buttonTokens, buttonColors } from '../../tokens';
 
 const ChevronIcon: React.FC<{ color: string }> = ({ color }) => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -9,7 +9,7 @@ const ChevronIcon: React.FC<{ color: string }> = ({ color }) => (
 
 export interface ButtonProps {
   label: string;
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'tertiary';
   onDarkBg?: boolean;
   showChevron?: boolean;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -28,36 +28,43 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   const [hovered, setHovered] = useState(false);
 
+  const isTertiary = variant === 'tertiary';
   const isSecondary = variant === 'secondary';
 
-  const secondaryTokens = onDarkBg ? buttonTokens.secondaryLight : buttonTokens.secondary;
-  const primaryTokens = onDarkBg ? buttonTokens.primaryLight : buttonTokens.primary;
+  const secondaryColors = onDarkBg ? buttonColors.secondaryLight : buttonColors.secondary;
+  const primaryColors = onDarkBg ? buttonColors.primaryLight : buttonColors.primary;
 
-  const borderValue = isSecondary
-    ? `1px solid ${hovered ? secondaryTokens.borderHover : secondaryTokens.border}`
-    : '1px solid transparent';
+  let borderValue: string;
+  let bg: string;
+  let color: string;
 
-  const bg = isSecondary
-    ? (hovered ? secondaryTokens.bgHover : secondaryTokens.bg)
-    : (hovered ? primaryTokens.bgHover : primaryTokens.bg);
-
-  const color = isSecondary
-    ? (hovered ? secondaryTokens.colorHover : secondaryTokens.color)
-    : primaryTokens.color;
+  if (isTertiary) {
+    borderValue = 'none';
+    bg = 'transparent';
+    color = onDarkBg ? buttonColors.tertiary.textLight : buttonColors.tertiary.text;
+  } else if (isSecondary) {
+    borderValue = `1px solid ${hovered ? secondaryColors.borderHover : secondaryColors.border}`;
+    bg = hovered ? secondaryColors.bgHover : secondaryColors.bg;
+    color = hovered ? secondaryColors.textHover : secondaryColors.text;
+  } else {
+    borderValue = '1px solid transparent';
+    bg = hovered ? primaryColors.bgHover : primaryColors.bg;
+    color = primaryColors.text;
+  }
 
   const resolved: CSSProperties = {
     display: 'inline-flex',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: isTertiary ? 'flex-start' : 'center',
     gap: '8px',
-    height: '40px',
-    padding: `0px ${buttonTokens.paddingX}`,
+    height: isTertiary ? 'auto' : '40px',
+    padding: isTertiary ? '0' : `0px ${buttonTokens.paddingX}`,
     fontFamily: buttonTokens.fontFamily,
-    fontSize: buttonTokens.fontSize,
+    fontSize: isTertiary ? '14px' : buttonTokens.fontSize,
     fontWeight: buttonTokens.fontWeight,
     lineHeight: buttonTokens.lineHeight,
     letterSpacing: buttonTokens.letterSpacing,
-    borderRadius: buttonTokens.borderRadius,
+    borderRadius: isTertiary ? '0' : buttonTokens.borderRadius,
     border: borderValue,
     backgroundColor: bg,
     color,
@@ -67,6 +74,8 @@ export const Button: React.FC<ButtonProps> = ({
     ...style,
   };
 
+  const showChevronResolved = isTertiary || showChevron;
+
   return (
     <button
       className={className}
@@ -74,10 +83,9 @@ export const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      data-figma-id={variant === 'primary' ? '961:40865' : '961:40866'}
     >
       {label}
-      {showChevron && <ChevronIcon color={color} />}
+      {showChevronResolved && <ChevronIcon color={color} />}
     </button>
   );
 };

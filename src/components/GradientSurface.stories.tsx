@@ -4,7 +4,7 @@ import { GradientSurface } from './GradientSurface';
 import type { GradientKey } from '../tokens';
 
 const meta: Meta<typeof GradientSurface> = {
-  title: 'Surfaces/GradientSurface',
+  title: 'Atoms/GradientSurface',
   component: GradientSurface,
   argTypes: {
     gradient: {

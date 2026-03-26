@@ -6,7 +6,7 @@ const meta: Meta<typeof Button> = {
   title: 'Atoms/Button',
   component: Button,
   argTypes: {
-    variant: { control: 'select', options: ['primary', 'secondary'] },
+    variant: { control: 'select', options: ['primary', 'secondary', 'tertiary'] },
     onDarkBg: { control: 'boolean' },
     showChevron: { control: 'boolean' },
   },
@@ -26,6 +26,13 @@ export const Secondary: Story = {
   args: {
     label: 'Learn more',
     variant: 'secondary',
+  },
+};
+
+export const Tertiary: Story = {
+  args: {
+    label: 'Button',
+    variant: 'tertiary',
   },
 };
 

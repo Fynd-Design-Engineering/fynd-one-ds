@@ -3,6 +3,11 @@ import '../src/styles/tokens.css';
 
 const preview: Preview = {
   parameters: {
+    options: {
+      storySort: {
+        order: ['Tokens', 'Atoms', 'Shared', 'Molecules'],
+      },
+    },
     controls: { expanded: true },
     viewport: {
       viewports: {

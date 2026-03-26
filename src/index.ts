@@ -26,6 +26,12 @@ export type { ButtonProps } from './components/atoms/Button';
 export { Chip } from './components/atoms/Chip';
 export type { ChipProps, ChipDotColor } from './components/atoms/Chip';
 
+export { Tag } from './components/atoms/Tag';
+export type { TagProps } from './components/atoms/Tag';
+
+export { VisualElement } from './components/atoms/VisualElement';
+export type { VisualElementProps, VisualElementSize } from './components/atoms/VisualElement';
+
 export { SectionIndicator } from './components/atoms/SectionIndicator';
 export type { SectionIndicatorProps } from './components/atoms/SectionIndicator';
 
@@ -41,3 +47,7 @@ export type { SectionWrapperProps } from './components/_shared/SectionWrapper';
 
 export { SectionHeader } from './components/_shared/SectionHeader';
 export type { SectionHeaderProps } from './components/_shared/SectionHeader';
+
+// Molecules
+export { RichIconCard } from './components/molecules/RichIconCard';
+export type { RichIconCardProps } from './components/molecules/RichIconCard';

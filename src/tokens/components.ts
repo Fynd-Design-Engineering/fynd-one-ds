@@ -18,33 +18,6 @@ export const buttonTokens = {
   gap: '8px',
   paddingX: '24px',
   transition: 'all 0.3s',
-
-  primary: {
-    bg: '#0e0e0e',
-    color: '#ffffff',
-    bgHover: '#303030',
-  },
-  primaryLight: {
-    bg: '#ffffff',
-    color: '#0e0e0e',
-    bgHover: '#f8f8f9',
-  },
-  secondary: {
-    bg: 'transparent',
-    color: '#0e0e0e',
-    border: '#0e0e0e',
-    bgHover: '#0e0e0e',
-    borderHover: '#0e0e0e',
-    colorHover: '#ffffff',
-  },
-  secondaryLight: {
-    bg: 'transparent',
-    color: '#ffffff',
-    border: '#ffffff',
-    bgHover: '#ffffff',
-    borderHover: '#ffffff',
-    colorHover: '#0e0e0e',
-  },
 } as const;
 
 // ─── Badge ──────────────────────────────────────────────────────────────────

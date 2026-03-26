@@ -4,7 +4,7 @@ import { Text } from './Text';
 import type { TextVariant, Breakpoint, TextWeight } from './Text';
 
 const meta: Meta<typeof Text> = {
-  title: 'Typography/Text',
+  title: 'Atoms/Text',
   component: Text,
   argTypes: {
     variant: {

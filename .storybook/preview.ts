@@ -5,7 +5,7 @@ const preview: Preview = {
   parameters: {
     options: {
       storySort: {
-        order: ['Tokens', 'Atoms', 'Shared', 'Molecules'],
+        order: ['Tokens', 'Atoms', 'Shared', 'Molecules', 'Layouts', 'Pages'],
       },
     },
     backgrounds: {

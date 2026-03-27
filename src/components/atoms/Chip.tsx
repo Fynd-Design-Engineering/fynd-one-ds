@@ -1,5 +1,6 @@
 import React, { CSSProperties } from 'react';
 import { backgroundColors } from '../../tokens';
+import { IconStar } from '../../icons';
 
 export type ChipDotColor =
   | 'blue' | 'green' | 'peach'
@@ -17,11 +18,6 @@ export interface ChipProps {
   style?: CSSProperties;
 }
 
-const DefaultIcon: React.FC = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M8 1.5L9.79 5.86L14.5 6.41L11 9.47L11.94 14.5L8 12.09L4.06 14.5L5 9.47L1.5 6.41L6.21 5.86L8 1.5Z" fill="currentColor" />
-  </svg>
-);
 
 const dotColorMap: Record<ChipDotColor, string> = {
   blue: '#5c98f7',
@@ -107,7 +103,7 @@ export const Chip: React.FC<ChipProps> = ({
     flexShrink: 0,
   };
 
-  const resolvedIcon = icon ?? (!isAnchor ? <DefaultIcon /> : null);
+  const resolvedIcon = icon ?? (!isAnchor ? <IconStar size={16} /> : null);
 
   return (
     <span className={className} style={chipStyle} data-figma-id="961:34535">

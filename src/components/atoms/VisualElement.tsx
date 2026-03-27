@@ -40,9 +40,15 @@ export const VisualElement: React.FC<VisualElementProps> = ({
     ...style,
   };
 
+  const isHorizontal = size === 'logo-horizontal';
+
+  const contentStyle: CSSProperties = isHorizontal
+    ? {}
+    : { width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' };
+
   return (
     <div className={className} style={container} data-figma-id="3209:14987">
-      {children}
+      {children && <div style={contentStyle}>{children}</div>}
     </div>
   );
 };

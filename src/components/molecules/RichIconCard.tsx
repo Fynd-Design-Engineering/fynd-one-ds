@@ -1,9 +1,11 @@
 import React, { CSSProperties, useState } from 'react';
 import { cardTokens, shadows } from '../../tokens';
 import { Button } from '../atoms/Button';
+import { VisualElement, VisualElementSize } from '../atoms/VisualElement';
 
 export interface RichIconCardProps {
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
+  iconSize?: VisualElementSize;
   title: string;
   subtext?: string;
   buttonLabel?: string;
@@ -16,6 +18,7 @@ export interface RichIconCardProps {
 
 export const RichIconCard: React.FC<RichIconCardProps> = ({
   icon,
+  iconSize = 'icon-32',
   title,
   subtext,
   buttonLabel = 'Button',
@@ -39,13 +42,6 @@ export const RichIconCard: React.FC<RichIconCardProps> = ({
     boxShadow: hovered ? shadows['card-high'] : 'none',
     transition: 'box-shadow 0.3s',
     ...style,
-  };
-
-  const iconSlot: CSSProperties = {
-    width: '32px',
-    height: '32px',
-    borderRadius: '4px',
-    flexShrink: 0,
   };
 
   const titleStyle: CSSProperties = {
@@ -80,7 +76,7 @@ export const RichIconCard: React.FC<RichIconCardProps> = ({
       data-figma-id="879:3878"
     >
       <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-        <div style={iconSlot}>{icon}</div>
+        <VisualElement size={iconSize}>{icon}</VisualElement>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
           <p style={titleStyle}>{title}</p>
           {subtext && <p style={subtextStyle}>{subtext}</p>}

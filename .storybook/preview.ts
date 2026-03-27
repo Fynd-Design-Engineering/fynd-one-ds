@@ -8,6 +8,14 @@ const preview: Preview = {
         order: ['Tokens', 'Atoms', 'Shared', 'Molecules'],
       },
     },
+    backgrounds: {
+      default: 'light-gray',
+      values: [
+        { name: 'light-gray', value: '#f2f2f2' },
+        { name: 'white', value: '#ffffff' },
+        { name: 'dark', value: '#0e0e0e' },
+      ],
+    },
     controls: { expanded: true },
     viewport: {
       viewports: {

@@ -2,14 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { RichIconCard } from './RichIconCard';
 
-const PlaceholderIcon = () => (
-  <div style={{ width: 32, height: 32, backgroundColor: '#d9d9d9', borderRadius: 4 }} />
-);
-
 const StarIcon = () => (
-  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="32" height="32" rx="4" fill="#5c98f7" />
-    <path d="M16 8L18.47 13.86L24.5 14.41L20 17.97L21.18 24.5L16 21.09L10.82 24.5L12 17.97L7.5 14.41L13.53 13.86L16 8Z" fill="white" />
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 2L12.47 7.86L18.5 8.41L14 11.97L15.18 18.5L10 15.09L4.82 18.5L6 11.97L1.5 8.41L7.53 7.86L10 2Z" fill="#5c98f7" />
   </svg>
 );
 
@@ -17,6 +12,7 @@ const meta: Meta<typeof RichIconCard> = {
   title: 'Molecules/RichIconCard',
   component: RichIconCard,
   argTypes: {
+    iconSize: { control: 'select', options: ['icon-32', 'icon-48', 'logo-64', 'logo-80', 'logo-horizontal'] },
     showButton: { control: 'boolean' },
     onDarkBg: { control: 'boolean' },
   },
@@ -27,7 +23,7 @@ type Story = StoryObj<typeof RichIconCard>;
 
 export const Default: Story = {
   args: {
-    icon: <PlaceholderIcon />,
+    icon: <StarIcon />,
     title: 'Title text goes here',
     subtext:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis risus eget urna mollis ornare vel eu leo.',
@@ -46,7 +42,7 @@ export const WithCustomIcon: Story = {
 
 export const WithoutButton: Story = {
   args: {
-    icon: <PlaceholderIcon />,
+    icon: <StarIcon />,
     title: 'No button variant',
     subtext: 'This card has the button hidden via showButton={false}.',
     showButton: false,
@@ -55,7 +51,7 @@ export const WithoutButton: Story = {
 
 export const WithoutSubtext: Story = {
   args: {
-    icon: <PlaceholderIcon />,
+    icon: <StarIcon />,
     title: 'Title only — no subtext',
     buttonLabel: 'Button',
   },

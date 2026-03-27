@@ -1,0 +1,17 @@
+export { default as IcBackgroundAdd } from './ic_background_add.svg?react';
+export { default as IcBackgroundReplace } from './ic_background_replace.svg?react';
+export { default as IcBlurOn } from './ic_blur_on.svg?react';
+export { default as IcBulkEdit } from './ic_bulk_edit.svg?react';
+export { default as IcCapture } from './ic_capture.svg?react';
+export { default as IcColorPicker } from './ic_color_picker.svg?react';
+export { default as IcCompare } from './ic_compare.svg?react';
+export { default as IcCrop } from './ic_crop.svg?react';
+export { default as IcDot } from './ic_dot.svg?react';
+export { default as IcObjectRotate } from './ic_object_rotate.svg?react';
+export { default as IcPhotoRepair } from './ic_photo_repair.svg?react';
+export { default as IcRotate } from './ic_rotate.svg?react';
+export { default as IcShadow } from './ic_shadow.svg?react';
+export { default as IcStackStar } from './ic_stack_star.svg?react';
+export { default as IcTemplate2 } from './ic_template_2.svg?react';
+export { default as IcTemplate } from './ic_template.svg?react';
+export { default as IcWatermarkErase } from './ic_watermark_erase.svg?react';

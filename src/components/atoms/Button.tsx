@@ -36,7 +36,9 @@ export const Button: React.FC<ButtonProps> = ({
   if (isTertiary) {
     borderValue = 'none';
     bg = 'transparent';
-    color = onDarkBg ? buttonColors.tertiary.textLight : buttonColors.tertiary.text;
+    color = onDarkBg
+      ? buttonColors.tertiary.textLight
+      : (hovered ? buttonColors.tertiary.textHover : buttonColors.tertiary.text);
   } else if (isSecondary) {
     borderValue = `1px solid ${hovered ? secondaryColors.borderHover : secondaryColors.border}`;
     bg = hovered ? secondaryColors.bgHover : secondaryColors.bg;

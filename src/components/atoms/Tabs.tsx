@@ -57,8 +57,14 @@ export const Tabs: React.FC<TabsProps> = ({
   const panel: CSSProperties = {
     backgroundColor: neutrals[0],
     borderRadius: '12px',
-    padding: '48px 120px 80px',
     width: '100%',
+    boxSizing: 'border-box',
+  };
+
+  const panelContent: CSSProperties = {
+    padding: '48px 120px 80px',
+    maxWidth: '1272px',
+    margin: '0 auto',
     boxSizing: 'border-box',
   };
 
@@ -76,7 +82,9 @@ export const Tabs: React.FC<TabsProps> = ({
         ))}
       </div>
       <div style={panel}>
-        {tabs[activeIndex]?.content}
+        <div style={panelContent}>
+          {tabs[activeIndex]?.content}
+        </div>
       </div>
     </div>
   );

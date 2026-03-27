@@ -16,7 +16,9 @@
     "./tokens": {
       "import": "./dist/index.es.js",
       "types": "./dist/index.d.ts"
-    }
+    },
+    "./assets/brand-icons/*": "./src/assets/brand-icons/*",
+    "./assets/brand-logos/*": "./src/assets/brand-logos/*"
   },
   "files": [
     "dist",

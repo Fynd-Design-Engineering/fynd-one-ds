@@ -200,7 +200,8 @@ export const buttonColors = {
     textHover: neutrals[100],
   },
   tertiary: {
-    text: blue[60],
+    text: neutrals[60],
+    textHover: neutrals[100],
     textLight: neutrals[0],
   },
 } as const;

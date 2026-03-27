@@ -35,9 +35,9 @@ export const blur = {
 
 export const breakpoints = {
   xlDesktop: 1440,
-  lDesktop: 1280,
+  desktop: 992,
   tablet: 768,
-  mobile: 375,
+  mobile: 480,
 } as const;
 
 export type BreakpointKey = keyof typeof breakpoints;
@@ -46,7 +46,7 @@ export type BreakpointKey = keyof typeof breakpoints;
 /** Raw media query conditions — use in window.matchMedia() or template literals */
 export const mq = {
   xlDesktop: `@media (min-width: ${breakpoints.xlDesktop}px)`,
-  lDesktop:  `@media (min-width: ${breakpoints.lDesktop}px)`,
-  tablet:    `@media (max-width: ${breakpoints.lDesktop - 1}px)`,
+  desktop:   `@media (min-width: ${breakpoints.desktop}px)`,
+  tablet:    `@media (max-width: ${breakpoints.desktop - 1}px)`,
   mobile:    `@media (max-width: ${breakpoints.tablet - 1}px)`,
 } as const;

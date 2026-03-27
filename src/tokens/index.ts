@@ -26,7 +26,7 @@ export { borderRadius } from './borders';
 export type { BorderRadiusKey } from './borders';
 
 // Layout
-export { layout } from './layout';
+export { container, containerMaxWidth, pagePadding, sectionPadding, layout } from './layout';
 export type { LayoutKey } from './layout';
 
 // Component tokens

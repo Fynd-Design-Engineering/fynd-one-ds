@@ -35,6 +35,9 @@ export type { TagProps } from './components/atoms/Tag';
 export { VisualElement } from './components/atoms/VisualElement';
 export type { VisualElementProps, VisualElementSize } from './components/atoms/VisualElement';
 
+export { Tabs } from './components/atoms/Tabs';
+export type { TabsProps, TabItem } from './components/atoms/Tabs';
+
 export { SectionIndicator } from './components/atoms/SectionIndicator';
 export type { SectionIndicatorProps } from './components/atoms/SectionIndicator';
 
@@ -61,5 +64,15 @@ export type { ListingCardProps } from './components/molecules/ListingCard';
 export { MetricCard } from './components/molecules/MetricCard';
 export type { MetricCardProps } from './components/molecules/MetricCard';
 
+export { CTABanner } from './components/molecules/CTABanner';
+export type { CTABannerProps } from './components/molecules/CTABanner';
+
 export { ContentCard } from './components/molecules/ContentCard';
 export type { ContentCardProps } from './components/molecules/ContentCard';
+
+// Layouts
+export { Grid } from './components/layouts/Grid';
+export type { GridProps } from './components/layouts/Grid';
+
+export { BentoGrid } from './components/layouts/BentoGrid';
+export type { BentoGridProps, BentoRatio } from './components/layouts/BentoGrid';

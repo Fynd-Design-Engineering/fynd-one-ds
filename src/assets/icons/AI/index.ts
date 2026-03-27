@@ -1,0 +1,15 @@
+export { default as IcAddBackground } from './ic_add_background.svg?react';
+export { default as IcAiApps } from './ic_ai_apps.svg?react';
+export { default as IcAiStar } from './ic_ai_star.svg?react';
+export { default as IcBackgroundEffect } from './ic_background_effect.svg?react';
+export { default as IcBackground } from './ic_background.svg?react';
+export { default as IcContentExtraction } from './ic_content_extraction.svg?react';
+export { default as IcContentGeneration } from './ic_content_generation.svg?react';
+export { default as IcEraseBackground } from './ic_erase_background.svg?react';
+export { default as IcGenerateBackground } from './ic_generate_background.svg?react';
+export { default as IcHeadshot } from './ic_headshot.svg?react';
+export { default as IcImageEnhance } from './ic_image_enhance.svg?react';
+export { default as IcMagicWand } from './ic_Magic_Wand.svg?react';
+export { default as IcPixelCrown } from './ic_pixel_crown.svg?react';
+export { default as IcTemplate } from './ic_template.svg?react';
+export { default as IcWatermarkRemover } from './ic_watermark_remover.svg?react';

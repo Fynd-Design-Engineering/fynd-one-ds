@@ -1,0 +1,105 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap);
+  height: var(--btn-height);
+  padding: 0 var(--btn-padding-x);
+  font-family: var(--btn-font-family);
+  font-size: var(--btn-font-size);
+  font-weight: var(--btn-font-weight);
+  line-height: var(--btn-line-height);
+  letter-spacing: var(--btn-letter-spacing);
+  border-radius: var(--btn-border-radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: var(--btn-transition);
+  white-space: nowrap;
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+
+/* ── Primary ────────────────────────────── */
+
+.button--primary {
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+}
+
+.button--primary:hover {
+  background-color: var(--btn-primary-bg-hover);
+}
+
+/* ── Primary Light (on dark bg) ─────────── */
+
+.button--primary-light {
+  background-color: var(--btn-primary-light-bg);
+  color: var(--btn-primary-light-text);
+}
+
+.button--primary-light:hover {
+  background-color: var(--btn-primary-light-bg-hover);
+}
+
+/* ── Secondary ──────────────────────────── */
+
+.button--secondary {
+  background-color: var(--btn-secondary-bg);
+  color: var(--btn-secondary-text);
+  border-color: var(--btn-secondary-border);
+}
+
+.button--secondary:hover {
+  background-color: var(--btn-secondary-bg-hover);
+  color: var(--btn-secondary-text-hover);
+  border-color: var(--btn-secondary-border-hover);
+}
+
+/* ── Secondary Light (on dark bg) ───────── */
+
+.button--secondary-light {
+  background-color: var(--btn-secondary-light-bg);
+  color: var(--btn-secondary-light-text);
+  border-color: var(--btn-secondary-light-border);
+}
+
+.button--secondary-light:hover {
+  background-color: var(--btn-secondary-light-bg-hover);
+  color: var(--btn-secondary-light-text-hover);
+  border-color: var(--btn-secondary-light-border-hover);
+}
+
+/* ── Tertiary ───────────────────────────── */
+
+.button--tertiary {
+  height: auto;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  color: var(--btn-tertiary-text);
+  font-size: 14px;
+  justify-content: flex-start;
+}
+
+.button--tertiary:hover {
+  color: var(--btn-tertiary-text-hover);
+  text-decoration: underline;
+}
+
+/* ── Tertiary Light (on dark bg) ────────── */
+
+.button--tertiary-light {
+  height: auto;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  color: var(--btn-tertiary-text-light);
+  font-size: 14px;
+  justify-content: flex-start;
+}
+
+.button--tertiary-light:hover {
+  text-decoration: underline;
+}

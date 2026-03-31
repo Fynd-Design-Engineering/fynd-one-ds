@@ -227,10 +227,68 @@ h1, h2, h3, h4, h5, h6 {
   --red--red-primary: #c13515;
   --red--red-text:    #6e1a08;
 
+  /* ── Primitives — Neutrals ─────────────────────────────── */
+  --neutral-0:   #ffffff;
+  --neutral-10:  #f8f8f9;
+  --neutral-20:  #f2f2f2;
+  --neutral-30:  #e3e3e3;
+  --neutral-40:  #a0a1a2;
+  --neutral-50:  #797a7c;
+  --neutral-60:  #5b5c5d;
+  --neutral-80:  #4a4b4c;
+  --neutral-100: #0e0e0e;
+
+  /* ── Primitives — Blue ──────────────────────────────────── */
+  --blue-10: #f9fbff;
+  --blue-20: #d8e2f5;
+  --blue-40: #5c98f7;
+  --blue-50: #2f7af6;
+  --blue-60: #084bb8;
+  --blue-90: #07285a;
+
+  /* ── Button colors ──────────────────────────────────────── */
+  --btn-primary-bg:         var(--neutral-100);
+  --btn-primary-text:       var(--neutral-0);
+  --btn-primary-bg-hover:   #303030;
+
+  --btn-primary-light-bg:       var(--neutral-0);
+  --btn-primary-light-text:     var(--neutral-100);
+  --btn-primary-light-bg-hover: var(--neutral-10);
+
+  --btn-secondary-bg:           transparent;
+  --btn-secondary-text:         var(--neutral-100);
+  --btn-secondary-border:       var(--neutral-100);
+  --btn-secondary-bg-hover:     var(--neutral-100);
+  --btn-secondary-border-hover: var(--neutral-100);
+  --btn-secondary-text-hover:   var(--neutral-0);
+
+  --btn-secondary-light-bg:           transparent;
+  --btn-secondary-light-text:         var(--neutral-0);
+  --btn-secondary-light-border:       var(--neutral-0);
+  --btn-secondary-light-bg-hover:     var(--neutral-0);
+  --btn-secondary-light-border-hover: var(--neutral-0);
+  --btn-secondary-light-text-hover:   var(--neutral-100);
+
+  --btn-tertiary-text:       var(--neutral-60);
+  --btn-tertiary-text-hover: var(--neutral-100);
+  --btn-tertiary-text-light: var(--neutral-0);
+
+  /* ── Button layout ──────────────────────────────────────── */
+  --btn-font-family:    'Inter', sans-serif;
+  --btn-font-size:      16px;
+  --btn-font-weight:    500;
+  --btn-line-height:    1.6;
+  --btn-letter-spacing: 0;
+  --btn-border-radius:  32px;
+  --btn-gap:            8px;
+  --btn-padding-x:      24px;
+  --btn-height:         40px;
+  --btn-transition:     all 0.3s;
+
   /* ── Status colors ─────────────────────────────────────── */
-  --status--yes:     #0d7a3a;
-  --status--partial: #9a6700;
-  --status--no:      #c13515;
+  --status--yes:     #187b3f;
+  --status--partial: #8b6b20;
+  --status--no:      #a72218;
 
   /* ── Border ────────────────────────────────────────────── */
   --border--border-medium: #e3e3e3;

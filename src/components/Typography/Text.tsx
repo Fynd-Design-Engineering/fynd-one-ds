@@ -11,19 +11,16 @@ type BodyVariant =
 
 export type TextVariant = HeadingVariant | BodyVariant;
 export type TextWeight = 'regular' | 'medium' | 'semibold';
-export type Breakpoint = 'lg' | 'md' | 'sm';
 
 export interface TextProps {
   /** Typography variant from the Fynd One type scale */
   variant: TextVariant;
   /** Font weight override. Headings XXL–M ignore this (always regular). */
   weight?: TextWeight;
-  /** Explicit breakpoint. Defaults to 'lg'. */
-  breakpoint?: Breakpoint;
   /** Whether to render uppercase (only meaningful for body-xs caps styles) */
   caps?: boolean;
   /** Text colour preset */
-  color?: 'default' | 'muted' | 'subtle' | 'white';
+  color?: 'default' | 'secondary' | 'muted' | 'subtle' | 'white';
   /** HTML element to render as */
   as?: keyof JSX.IntrinsicElements;
   className?: string;
@@ -34,36 +31,23 @@ export interface TextProps {
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 /**
- * Resolve the CSS module class name for a given variant + weight + breakpoint + caps.
+ * Resolve the CSS module class name for a given variant + weight + caps.
  */
 function resolveClassName(
   variant: TextVariant,
   weight: TextWeight,
-  breakpoint: Breakpoint,
   caps: boolean,
 ): string {
-  const bp = breakpoint; // lg | md | sm
   const isHeadingTitle = ['heading-xxl', 'heading-xl', 'heading-l', 'heading-m'].includes(variant);
 
-  if (isHeadingTitle) {
-    return `${variant}-${bp}`;
-  }
-
-  if (variant === 'heading-s') {
-    return `heading-s-${bp}`;
-  }
-
-  // Body XS has caps variants
+  if (isHeadingTitle) return variant;
+  if (variant === 'heading-s') return 'heading-s';
   if (variant === 'body-xs') {
-    if (caps && weight === 'semibold') {
-      return `body-xs-${bp}-semibold-caps`;
-    }
+    if (caps && weight === 'semibold') return 'body-xs-semibold-caps';
     const w = weight === 'semibold' ? 'semibold' : weight;
-    return `body-xs-${bp}-${w}`;
+    return `body-xs-${w}`;
   }
-
-  // Body styles: body-xl, body-l, body-m, body-s
-  return `${variant}-${bp}-${weight}`;
+  return `${variant}-${weight}`;
 }
 
 /**
@@ -90,12 +74,14 @@ function defaultElement(variant: TextVariant): keyof JSX.IntrinsicElements {
 /**
  * `<Text>` — Fynd One typography primitive.
  *
+ * All type scales are responsive by default via CSS media queries.
+ *
  * @example
  * // Heading
- * <Text variant="heading-xl" breakpoint="lg">One Commerce Platform</Text>
+ * <Text variant="heading-xl">One Commerce Platform</Text>
  *
  * // Body copy
- * <Text variant="body-l" weight="regular" breakpoint="md">
+ * <Text variant="body-l" weight="regular">
  *   Streamline your entire commerce journey.
  * </Text>
  *
@@ -105,7 +91,6 @@ function defaultElement(variant: TextVariant): keyof JSX.IntrinsicElements {
 export const Text: React.FC<TextProps> = ({
   variant,
   weight = 'regular',
-  breakpoint = 'lg',
   caps = false,
   color,
   as,
@@ -113,7 +98,7 @@ export const Text: React.FC<TextProps> = ({
   style,
   children,
 }) => {
-  const scaleClass = resolveClassName(variant, weight, breakpoint, caps);
+  const scaleClass = resolveClassName(variant, weight, caps);
   const Tag = (as ?? defaultElement(variant)) as React.ElementType;
 
   const classNames = [

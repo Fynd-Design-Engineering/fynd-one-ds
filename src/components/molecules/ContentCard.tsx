@@ -2,6 +2,7 @@ import React, { CSSProperties } from 'react';
 import { neutrals } from '../../tokens';
 import { Chip } from '../atoms/Chip';
 import { Button } from '../atoms/Button';
+import { Text, TextVariant } from '../Typography/Text';
 import { IconArrowDiagonal } from '../../icons';
 import '../../styles/gradient-blur.css';
 import styles from './ContentCard.module.css';
@@ -14,64 +15,73 @@ const GradientBlur: React.FC = () => (
 
 export interface ContentCardProps {
   imageSrc?: string;
+  hoverImageSrc?: string;
   imageAlt?: string;
-  imagePosition?: 'below' | 'behind';
+  imagePosition?: 'below' | 'behind' | 'bottom-right';
   chipLabel?: string;
   showChip?: boolean;
   title: string;
+  titleVariant?: TextVariant;
   subtext?: string;
+  subtextVariant?: TextVariant;
   showSubtext?: boolean;
   buttonLabel?: string;
   buttonVariant?: 'primary' | 'secondary' | 'tertiary';
   showButton?: boolean;
   clickable?: boolean;
+  alwaysShowArrow?: boolean;
   onClick?: () => void;
-  breakpoint?: 'lg' | 'md' | 'sm';
+  /** Card size variant — controls border radius and padding. */
+  size?: 'lg' | 'md' | 'sm';
   className?: string;
   style?: CSSProperties;
 }
 
 export const ContentCard: React.FC<ContentCardProps> = ({
   imageSrc,
+  hoverImageSrc,
   imageAlt = '',
   imagePosition = 'below',
   chipLabel,
   showChip = true,
   title,
+  titleVariant = 'body-xl',
   subtext,
+  subtextVariant = 'body-m',
   showSubtext = true,
   buttonLabel = 'Button',
   buttonVariant = 'tertiary',
   showButton = true,
   clickable = false,
+  alwaysShowArrow = false,
   onClick,
-  breakpoint = 'lg',
+  size = 'lg',
   className,
   style,
 }) => {
   const isBehind = imagePosition === 'behind';
+  const isBottomRight = imagePosition === 'bottom-right';
+  const sizeClass = size;
 
   const cardClass = [
     styles.root,
-    styles[breakpoint],
+    styles[sizeClass],
     (clickable || onClick) && styles.clickable,
+    isBehind && styles['root--behind'],
+    isBottomRight && styles['root--bottom-right'],
     className,
   ].filter(Boolean).join(' ');
 
   const textOverlayClass = [
     styles['text-overlay'],
     isBehind && styles['text-overlay--behind'],
-    styles[`text-overlay--${breakpoint}`],
+    isBottomRight && styles['text-overlay--bottom-right'],
+    styles[`text-overlay--${sizeClass}`],
   ].filter(Boolean).join(' ');
 
-  const titleClass = [
-    styles.title,
-    styles[`title--${breakpoint}`],
-  ].filter(Boolean).join(' ');
-
-  const subtextClass = [
-    styles.subtext,
-    styles[`subtext--${breakpoint}`],
+  const arrowClass = [
+    styles['action-button'],
+    alwaysShowArrow && styles['action-button--visible'],
   ].filter(Boolean).join(' ');
 
   return (
@@ -87,6 +97,15 @@ export const ContentCard: React.FC<ContentCardProps> = ({
 
       {isBehind && <GradientBlur />}
 
+      {isBottomRight && imageSrc && (
+        <div className={styles['image--bottom-right']}>
+          <img src={imageSrc} alt={imageAlt} className={styles['image--bottom-right-default']} />
+          {hoverImageSrc && (
+            <img src={hoverImageSrc} alt={imageAlt} className={styles['image--bottom-right-hover']} />
+          )}
+        </div>
+      )}
+
       <div className={textOverlayClass}>
         <div className={styles['content-left']}>
           {showChip && chipLabel && (
@@ -100,8 +119,8 @@ export const ContentCard: React.FC<ContentCardProps> = ({
               />
             </div>
           )}
-          <p className={titleClass}>{title}</p>
-          {showSubtext && subtext && <p className={subtextClass}>{subtext}</p>}
+          <Text variant={titleVariant} weight="medium">{title}</Text>
+          {showSubtext && subtext && <Text variant={subtextVariant} weight="regular" color="secondary">{subtext}</Text>}
         </div>
 
         {showButton && !clickable && (
@@ -113,13 +132,13 @@ export const ContentCard: React.FC<ContentCardProps> = ({
         )}
 
         {clickable && (
-          <button className={styles['action-button']} tabIndex={-1} aria-hidden>
+          <button className={arrowClass} tabIndex={-1} aria-hidden>
             <IconArrowDiagonal color={neutrals[100]} />
           </button>
         )}
       </div>
 
-      {!isBehind && (
+      {!isBehind && !isBottomRight && (
         <div className={styles['image-container']}>
           {imageSrc && <img src={imageSrc} alt={imageAlt} className={styles['image--below']} />}
         </div>

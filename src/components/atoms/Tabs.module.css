@@ -23,7 +23,7 @@
   justify-content: center;
   gap: 8px;
   padding: 18px 24px;
-  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-family: 'Inter Display', sans-serif;
   font-size: 18px;
   font-weight: 500;
   line-height: 1.5;
@@ -38,7 +38,7 @@
 }
 
 .button--active {
-  color: #0e0e0e;
+  color: #101319;
   background-color: #ffffff;
   border-radius: 12px 12px 0 0;
   box-shadow: none;
@@ -60,7 +60,7 @@
 
 .button--underline-active {
   background-color: #e3e3e3;
-  color: #0e0e0e;
+  color: #101319;
   border-bottom: 1.5px solid #000000;
   border-radius: 8px 8px 0 0;
   box-shadow: none;

@@ -1,8 +1,11 @@
 {
-  "name": "@fynd-one/ds",
+  "name": "@fynd-design-engineering/fynd-one-ds",
   "version": "0.1.0",
   "description": "Fynd One Design System — React + TypeScript component library",
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",
   "types": "./dist/index.d.ts",

@@ -23,7 +23,7 @@ Import the design tokens CSS **once** in your app's entry point (e.g., `main.tsx
 import '@fynd-design-engineering/fynd-one-ds/styles/tokens.css';
 ```
 
-## What's in v0.1.3
+## What's Included
 
 ### Components
 
@@ -32,6 +32,11 @@ import '@fynd-design-engineering/fynd-one-ds/styles/tokens.css';
 - `Chip` — Compact label element
 - `Tag` — Status and category tags
 - `Tabs` — Tabbed navigation with indicator
+- `Accordion` — Expandable FAQ/collapsible items (light/dark)
+- `Pagination` — Page navigation with smart truncation
+- `FilterButton` — Filter trigger with count badge
+- `SearchBar` — Search input with icon and focus state
+- `TextField` — Form input with label, icon, error/helper text, char count
 - `SectionIndicator` — Visual step/section indicator
 - `ImageHolder` — Responsive image container
 - `TitleContentPair` — Title + description block
@@ -44,11 +49,13 @@ import '@fynd-design-engineering/fynd-one-ds/styles/tokens.css';
 - `ListingCard` — Product/feature listing card
 - `MetricCard` — KPI/metric display card
 - `ContentCard` — General-purpose content card
+- `PricingCard` — Pricing tier card with label, amount, features, popular badge
 - `CTABanner` — Call-to-action banner
 
 **Layout**
-- `Grid` — Responsive grid system
+- `Grid` — Responsive grid system (auto-collapses at breakpoints)
 - `BentoGrid` — Asymmetric bento-style grid layout
+- `Rail` — Horizontally draggable scrollable track (edge-to-edge)
 - `Section` — Page section with header, wrapper, and spacing
 - `SectionWrapper` — Raw section container (no header)
 - `GradientSurface` — Gradient background container

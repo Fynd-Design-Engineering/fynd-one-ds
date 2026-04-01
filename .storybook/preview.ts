@@ -12,7 +12,7 @@ const preview: Preview = {
       options: {
         "light-gray": { name: 'light-gray', value: '#f2f2f2' },
         white: { name: 'white', value: '#ffffff' },
-        dark: { name: 'dark', value: '#0e0e0e' }
+        dark: { name: 'dark', value: '#101319' }
       }
     },
     controls: { expanded: true },

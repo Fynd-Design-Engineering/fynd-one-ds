@@ -15,7 +15,7 @@
   border-radius: 10000px;
   background-color: #f8f8f9;
   border: none;
-  color: #0e0e0e;
+  color: #101319;
 }
 
 .anchor.compact {
@@ -36,7 +36,7 @@
   border-radius: 24px;
   background-color: transparent;
   border: 1px solid #d2d2d2;
-  color: #0e0e0e;
+  color: #101319;
 }
 
 .outlined.dark {
@@ -63,7 +63,7 @@
 /* ── Text ──────────────────────────────────── */
 
 .text {
-  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-family: 'Inter Display', sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.4;

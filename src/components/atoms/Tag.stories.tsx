@@ -29,7 +29,7 @@ export const Multiple: Story = {
 
 export const OnDarkBackground: Story = {
   render: () => (
-    <div style={{ background: '#0e0e0e', padding: 32, display: 'flex', gap: 8 }}>
+    <div style={{ background: '#101319', padding: 32, display: 'flex', gap: 8 }}>
       <Tag label="Commerce" onDarkBg />
       <Tag label="Platform" onDarkBg />
       <Tag label="Growth" onDarkBg />

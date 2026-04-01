@@ -4,7 +4,7 @@
  *
  * Font families:
  *   Title  → Fynd Sans (Compact style) — used for Heading XXL → Heading M
- *   Body   → Inter Display              — used for Heading S + all Body styles
+ *   Body   → Inter Variable              — used for Heading S + all Body styles
  *
  * Font loading: Both fonts must be available in your project.
  * Add to your global CSS:
@@ -16,7 +16,7 @@
 
 export const fontFamily = {
   title: "'Fynd Sans', sans-serif",            // Compact style (display / heading XXL–M)
-  body: "'Inter Display', 'Inter', sans-serif", // Medium / Regular / SemiBold
+  body: "'Inter Display', sans-serif", // Medium / Regular / SemiBold
   ui: "'Inter', sans-serif",                    // Buttons, nav links, badges, table headers
 } as const;
 

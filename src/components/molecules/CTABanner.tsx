@@ -37,7 +37,7 @@ export const CTABanner: React.FC<CTABannerProps> = ({
     <div className={wrapperClass} style={style}>
       <Text
         variant="heading-m"
-        breakpoint="lg"
+        as="h2"
         style={{ color: onDarkBg ? neutrals[0] : neutrals[100] }}
       >
         {title}

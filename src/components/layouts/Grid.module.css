@@ -3,9 +3,24 @@
 .root {
   display: grid;
   width: 100%;
-  /* grid-template-columns and gap set inline (dynamic props) */
+  grid-template-columns: repeat(var(--grid-cols, 3), 1fr);
+  gap: var(--grid-gap, 20px);
 }
 
 .root > * {
   min-height: 0;
+}
+
+/* Tablet: 768px – 991px */
+@media (max-width: 991px) {
+  .root {
+    grid-template-columns: repeat(var(--grid-cols-tablet, 2), 1fr);
+  }
+}
+
+/* Mobile: < 768px */
+@media (max-width: 767px) {
+  .root {
+    grid-template-columns: repeat(var(--grid-cols-mobile, 1), 1fr);
+  }
 }

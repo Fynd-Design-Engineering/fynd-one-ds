@@ -3,11 +3,12 @@ import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
 import dts from 'vite-plugin-dts';
 import { resolve, relative, dirname } from 'path';
-import { readdir, readFile, writeFile } from 'fs/promises';
+import { readdir, readFile, writeFile, rename } from 'fs/promises';
 
 /**
- * Custom plugin: injects `import './path/to/Component.module.css'` into
- * each `.module.css.js` file so consumers automatically load component CSS.
+ * Custom plugin: renames .module.css → .css in dist/assets/ to prevent
+ * consumer bundlers from re-processing already-scoped class names,
+ * then injects CSS import statements into each .module.css.js file.
  */
 function injectComponentCss(): Plugin {
   return {
@@ -19,32 +20,46 @@ function injectComponentCss(): Plugin {
         const distDir = resolve(__dirname, 'dist');
         const assetsDir = resolve(distDir, 'assets');
 
-        // Find all .module.css files in dist/assets/
+        // 1. Rename .module.css → .css to prevent consumer re-scoping
         const cssFiles = await findFiles(assetsDir, /\.module\.css$/);
+        const renamedMap = new Map<string, string>();
+        for (const cssFile of cssFiles) {
+          const newPath = cssFile.replace('.module.css', '.css');
+          await rename(cssFile, newPath);
+          const baseName = cssFile.split('/').pop()?.replace('.module.css', '');
+          if (baseName) renamedMap.set(baseName, newPath);
+        }
 
-        // Find all .module.css.js files in dist/
+        // 2. Inject CSS import into each .module.css.js file
         const jsFiles = await findFiles(distDir, /\.module\.css\.js$/);
-
         for (const jsFile of jsFiles) {
-          // Extract component name from path (e.g., Button.module.css.js → Button)
           const baseName = jsFile.split('/').pop()?.replace('.module.css.js', '');
           if (!baseName) continue;
 
-          // Find matching CSS file
-          const matchingCss = cssFiles.find((f) =>
-            f.endsWith(`${baseName}.module.css`)
-          );
+          const matchingCss = renamedMap.get(baseName);
           if (!matchingCss) continue;
 
-          // Calculate relative path from the JS file to the CSS file
           const jsDir = dirname(jsFile);
           let relPath = relative(jsDir, matchingCss);
           if (!relPath.startsWith('.')) relPath = './' + relPath;
 
-          // Prepend CSS import to the JS file
           const content = await readFile(jsFile, 'utf-8');
           await writeFile(jsFile, `import "${relPath}";\n${content}`);
         }
+
+        // 3. Fix stripped global CSS imports (e.g., gradient-blur.css in ContentCard)
+        const contentCardJs = resolve(distDir, 'components/molecules/ContentCard.js');
+        const gradientBlurCss = resolve(assetsDir, 'styles/gradient-blur.css');
+        try {
+          let ccContent = await readFile(contentCardJs, 'utf-8');
+          let gradientRelPath = relative(dirname(contentCardJs), gradientBlurCss);
+          if (!gradientRelPath.startsWith('.')) gradientRelPath = './' + gradientRelPath;
+          ccContent = ccContent.replace(
+            /\/\* empty css\s+\*\//,
+            `import "${gradientRelPath}";`
+          );
+          await writeFile(contentCardJs, ccContent);
+        } catch { /* ContentCard not found, skip */ }
       },
     },
   };

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { Chip } from './Chip';
 
@@ -14,7 +14,7 @@ const meta: Meta<typeof Chip> = {
   argTypes: {
     variant: { control: 'select', options: ['anchor', 'filled', 'outlined'] },
     dotColor: { control: 'select', options: ['blue', 'green', 'peach', 'yellow', 'lavender', 'violet', 'red', 'gray', 'teal'] },
-    breakpoint: { control: 'select', options: ['desktop', 'tablet', 'mobile'] },
+    breakpoint: { control: 'select', options: ['lg', 'md', 'sm'] },
     showDot: { control: 'boolean' },
     onDarkBg: { control: 'boolean' },
   },
@@ -67,9 +67,9 @@ export const AnchorWithoutDot: Story = {
 export const Breakpoints: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-start' }}>
-      <Chip label="Desktop" breakpoint="desktop" />
-      <Chip label="Tablet" breakpoint="tablet" />
-      <Chip label="Mobile" breakpoint="mobile" />
+      <Chip label="Desktop" breakpoint="lg" />
+      <Chip label="Tablet" breakpoint="md" />
+      <Chip label="Mobile" breakpoint="sm" />
     </div>
   ),
 };

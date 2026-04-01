@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { MetricCard } from './MetricCard';
 
@@ -14,7 +14,7 @@ const meta: Meta<typeof MetricCard> = {
   component: MetricCard,
   argTypes: {
     variant: { control: 'select', options: ['icon', 'number'] },
-    breakpoint: { control: 'select', options: ['desktop', 'tablet', 'mobile'] },
+    breakpoint: { control: 'select', options: ['lg', 'md', 'sm'] },
     onDarkBg: { control: 'boolean' },
   },
 };
@@ -72,8 +72,8 @@ export const OnDarkBackground: Story = {
 export const MobileVariants: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: 16 }}>
-      <MetricCard variant="icon" icon={<PlaceholderIcon />} title="Platform" breakpoint="mobile" />
-      <MetricCard variant="number" stat="2M+" title="Orders" breakpoint="mobile" />
+      <MetricCard variant="icon" icon={<PlaceholderIcon />} title="Platform" breakpoint="sm" />
+      <MetricCard variant="number" stat="2M+" title="Orders" breakpoint="sm" />
     </div>
   ),
 };

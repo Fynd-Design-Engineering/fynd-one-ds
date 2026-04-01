@@ -1,13 +1,20 @@
 import React, { CSSProperties, useState } from 'react';
-import { neutrals, shadows } from '../../tokens';
+import styles from './Tabs.module.css';
+import sectionStyles from '../_shared/SectionWrapper.module.css';
 
 export interface TabItem {
   label: string;
   content: React.ReactNode;
+  /** Optional color for the tab dot indicator */
+  dotColor?: string;
 }
+
+export type TabsVariant = 'card' | 'underline';
 
 export interface TabsProps {
   tabs: TabItem[];
+  /** Visual variant. 'card' = filled bg tabs, 'underline' = bottom border tabs */
+  variant?: TabsVariant;
   defaultIndex?: number;
   className?: string;
   style?: CSSProperties;
@@ -15,74 +22,43 @@ export interface TabsProps {
 
 export const Tabs: React.FC<TabsProps> = ({
   tabs,
+  variant = 'card',
   defaultIndex = 0,
   className,
   style,
 }) => {
   const [activeIndex, setActiveIndex] = useState(defaultIndex);
 
-  const wrapper: CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    width: '100%',
-    ...style,
-  };
-
-  const tabBar: CSSProperties = {
-    display: 'flex',
-    alignItems: 'flex-end',
-  };
-
-  const tabButton = (isActive: boolean): CSSProperties => ({
-    flex: '1 1 0',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '18px 24px',
-    fontFamily: "'Inter Display', 'Inter', sans-serif",
-    fontSize: '18px',
-    fontWeight: 500,
-    lineHeight: 1.5,
-    color: isActive ? neutrals[100] : neutrals[60],
-    backgroundColor: isActive ? neutrals[0] : 'transparent',
-    border: 'none',
-    borderRadius: isActive ? '12px 12px 0 0' : '8px 8px 0 0',
-    boxShadow: isActive ? 'none' : shadows.s,
-    cursor: 'pointer',
-    whiteSpace: 'nowrap',
-    transition: 'color 0.2s, background-color 0.2s',
-  });
-
-  const panel: CSSProperties = {
-    backgroundColor: neutrals[0],
-    borderRadius: '12px',
-    width: '100%',
-    boxSizing: 'border-box',
-  };
-
-  const panelContent: CSSProperties = {
-    padding: '48px 120px 80px',
-    maxWidth: '1272px',
-    margin: '0 auto',
-    boxSizing: 'border-box',
-  };
+  const classes = [styles.root, className].filter(Boolean).join(' ');
+  const isUnderline = variant === 'underline';
 
   return (
-    <div className={className} style={wrapper}>
-      <div style={tabBar}>
-        {tabs.map((tab, i) => (
-          <button
-            key={i}
-            style={tabButton(i === activeIndex)}
-            onClick={() => setActiveIndex(i)}
-          >
-            {tab.label}
-          </button>
-        ))}
+    <div className={classes} style={style}>
+      <div className={[styles.bar, isUnderline && styles['bar--underline']].filter(Boolean).join(' ')}>
+        {tabs.map((tab, i) => {
+          const btnClasses = [
+            styles.button,
+            isUnderline && styles['button--underline'],
+            i === activeIndex && (isUnderline ? styles['button--underline-active'] : styles['button--active']),
+          ].filter(Boolean).join(' ');
+          return (
+            <button
+              key={i}
+              className={btnClasses}
+              onClick={() => setActiveIndex(i)}
+            >
+              {tab.dotColor && (
+                <svg className={styles.dot} width="18" height="10" viewBox="0 0 18 10" fill="none">
+                  <rect width="18" height="10" rx="4" fill={tab.dotColor} />
+                </svg>
+              )}
+              {tab.label}
+            </button>
+          );
+        })}
       </div>
-      <div style={panel}>
-        <div style={panelContent}>
+      <div className={styles.panel}>
+        <div className={[styles['panel-content'], sectionStyles.inner].filter(Boolean).join(' ')}>
           {tabs[activeIndex]?.content}
         </div>
       </div>

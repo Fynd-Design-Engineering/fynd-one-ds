@@ -1,4 +1,5 @@
 import React, { CSSProperties } from 'react';
+import styles from './Grid.module.css';
 
 export interface GridProps {
   children: React.ReactNode;
@@ -15,16 +16,16 @@ export const Grid: React.FC<GridProps> = ({
   className,
   style,
 }) => {
-  const grid: CSSProperties = {
-    display: 'grid',
+  const cls = [styles.root, className].filter(Boolean).join(' ');
+
+  const gridStyle: CSSProperties = {
     gridTemplateColumns: `repeat(${columns}, 1fr)`,
     gap,
-    width: '100%',
     ...style,
   };
 
   return (
-    <div className={className} style={grid}>
+    <div className={cls} style={gridStyle}>
       {children}
     </div>
   );

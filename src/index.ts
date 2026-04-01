@@ -54,6 +54,9 @@ export type { SectionWrapperProps } from './components/_shared/SectionWrapper';
 export { SectionHeader } from './components/_shared/SectionHeader';
 export type { SectionHeaderProps } from './components/_shared/SectionHeader';
 
+export { Section } from './components/_shared/Section';
+export type { SectionProps } from './components/_shared/Section';
+
 // Molecules
 export { RichIconCard } from './components/molecules/RichIconCard';
 export type { RichIconCardProps } from './components/molecules/RichIconCard';

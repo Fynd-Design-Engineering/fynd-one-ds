@@ -1,4 +1,4 @@
-.button {
+.root {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -21,35 +21,35 @@
 
 /* ── Primary ────────────────────────────── */
 
-.button--primary {
+.primary {
   background-color: var(--btn-primary-bg);
   color: var(--btn-primary-text);
 }
 
-.button--primary:hover {
+.primary:hover {
   background-color: var(--btn-primary-bg-hover);
 }
 
 /* ── Primary Light (on dark bg) ─────────── */
 
-.button--primary-light {
+.primary-light {
   background-color: var(--btn-primary-light-bg);
   color: var(--btn-primary-light-text);
 }
 
-.button--primary-light:hover {
+.primary-light:hover {
   background-color: var(--btn-primary-light-bg-hover);
 }
 
 /* ── Secondary ──────────────────────────── */
 
-.button--secondary {
+.secondary {
   background-color: var(--btn-secondary-bg);
   color: var(--btn-secondary-text);
   border-color: var(--btn-secondary-border);
 }
 
-.button--secondary:hover {
+.secondary:hover {
   background-color: var(--btn-secondary-bg-hover);
   color: var(--btn-secondary-text-hover);
   border-color: var(--btn-secondary-border-hover);
@@ -57,13 +57,13 @@
 
 /* ── Secondary Light (on dark bg) ───────── */
 
-.button--secondary-light {
+.secondary-light {
   background-color: var(--btn-secondary-light-bg);
   color: var(--btn-secondary-light-text);
   border-color: var(--btn-secondary-light-border);
 }
 
-.button--secondary-light:hover {
+.secondary-light:hover {
   background-color: var(--btn-secondary-light-bg-hover);
   color: var(--btn-secondary-light-text-hover);
   border-color: var(--btn-secondary-light-border-hover);
@@ -71,7 +71,7 @@
 
 /* ── Tertiary ───────────────────────────── */
 
-.button--tertiary {
+.tertiary {
   height: auto;
   padding: 0;
   border: none;
@@ -82,14 +82,14 @@
   justify-content: flex-start;
 }
 
-.button--tertiary:hover {
+.tertiary:hover {
   color: var(--btn-tertiary-text-hover);
   text-decoration: underline;
 }
 
 /* ── Tertiary Light (on dark bg) ────────── */
 
-.button--tertiary-light {
+.tertiary-light {
   height: auto;
   padding: 0;
   border: none;
@@ -100,6 +100,6 @@
   justify-content: flex-start;
 }
 
-.button--tertiary-light:hover {
+.tertiary-light:hover {
   text-decoration: underline;
 }

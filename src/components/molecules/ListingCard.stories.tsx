@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { ListingCard } from './ListingCard';
 
@@ -7,7 +7,7 @@ const meta: Meta<typeof ListingCard> = {
   component: ListingCard,
   argTypes: {
     imageAspectRatio: { control: 'select', options: ['5:4', '1:1', '16:9', 'portrait'] },
-    breakpoint: { control: 'select', options: ['desktop', 'mobile'] },
+    breakpoint: { control: 'select', options: ['lg', 'sm'] },
     showTags: { control: 'boolean' },
     showSubtext: { control: 'boolean' },
     showDate: { control: 'boolean' },
@@ -34,7 +34,7 @@ export const Default: Story = {
 export const Mobile: Story = {
   args: {
     ...Default.args,
-    breakpoint: 'mobile',
+    breakpoint: 'sm',
   },
 };
 

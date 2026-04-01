@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React, { CSSProperties } from 'react';
 import { neutrals, blue, peach, green, gold, lavender, red, textColors, backgroundColors, iconColors, borderColors, buttonColors, statusColors } from './colors';
 

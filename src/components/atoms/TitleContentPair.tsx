@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
-import { textColors, spacing } from '../../tokens';
 import { Text, TextVariant } from '../Typography/Text';
+import styles from './TitleContentPair.module.css';
 
 export interface TitleContentPairProps {
   title: string;
@@ -26,25 +26,24 @@ export const TitleContentPair: React.FC<TitleContentPairProps> = ({
   className,
   style,
 }) => {
-  const wrapper: CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: spacing[12],
-    ...style,
-  };
+  const classes = [
+    styles.root,
+    onDarkBg && styles.dark,
+    className,
+  ].filter(Boolean).join(' ');
 
   return (
-    <div className={className} style={wrapper} data-figma-id="3364:32550">
+    <div className={classes} style={style} data-figma-id="3364:32550">
       <Text
         variant={sizeToVariant[titleSize]}
-        style={{ color: onDarkBg ? textColors.titleInverse : textColors.title }}
+        className={styles.title}
       >
         {title}
       </Text>
       {subtext && (
         <Text
           variant="body-l"
-          style={{ color: onDarkBg ? textColors.subtextInverse : textColors.subtext }}
+          className={styles.subtext}
         >
           {subtext}
         </Text>

@@ -28,6 +28,7 @@
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
+    "./styles/tokens.css": "./src/styles/tokens.css",
     "./styles/fonts/*": "./dist/fonts/*",
     "./assets/brand-icons/*": "./src/assets/brand-icons/*",
     "./assets/brand-logos/*": "./src/assets/brand-logos/*",

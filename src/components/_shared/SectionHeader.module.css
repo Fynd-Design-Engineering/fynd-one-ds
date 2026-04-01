@@ -1,39 +1,74 @@
 /* ── SectionHeader ─────────────────────────────────────────────────────────── */
 
 .root {
-  max-width: 720px;
   margin-bottom: 56px;
 }
 
-/* ── Alignment ────────────────────────────────────────────────────────────── */
-
-.root--center {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
+/* ── Left alignment ──────────────────────────────────────────────────────── */
 
 .root--left {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  gap: 40px;
+  gap: 56px;
 }
 
-/* ── Content (chip + title pair) ──────────────────────────────────────────── */
-
-.content {
+.root--left .content {
   flex: 1;
   min-width: 0;
+  max-width: 836px;
 }
 
-/* ── Chip ──────────────────────────────────────────────────────────────────── */
+.root--left .text-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.root--left .subtext {
+  max-width: 584px;
+}
+
+/* ── Center alignment ────────────────────────────────────────────────────── */
+
+.root--center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+
+.root--center .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  max-width: 626px;
+}
+
+.root--center .text-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── Content ─────────────────────────────────────────────────────────────── */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Chip ────────────────────────────────────────────────────────────────── */
 
 .chip {
-  margin-bottom: 16px;
+  /* no extra margin — gap on parent handles spacing */
 }
 
-/* ── Actions ──────────────────────────────────────────────────────────────── */
+/* ── Actions ─────────────────────────────────────────────────────────────── */
 
 .actions {
   display: flex;
@@ -43,5 +78,64 @@
 
 .actions--center {
   justify-content: center;
-  margin-top: 24px;
+}
+
+/* ── Responsive: Tablet (768–991px) ──────────────────────────────────────── */
+
+@media (max-width: 991px) {
+  .root {
+    margin-bottom: 32px;
+  }
+
+  .root--left {
+    gap: 56px;
+  }
+
+  .root--center .content {
+    max-width: 508px;
+    gap: 24px;
+  }
+
+  .content {
+    gap: 12px;
+  }
+
+  .root--left .text-stack {
+    gap: 4px;
+  }
+}
+
+/* ── Responsive: Mobile (<768px) ─────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .root {
+    margin-bottom: 24px;
+  }
+
+  .root--left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .root--center {
+    gap: 12px;
+  }
+
+  .content {
+    gap: 12px;
+  }
+
+  .root--center .content {
+    max-width: 100%;
+  }
+
+  .root--left .subtext {
+    max-width: 100%;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 12px;
+  }
 }

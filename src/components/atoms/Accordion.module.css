@@ -1,0 +1,99 @@
+/* ── Accordion ───────────────────────────────────────────────────────────────── */
+
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Item ─────────────────────────────────────────────────────────────────── */
+
+.item {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+  border-bottom: 1px solid;
+}
+
+.item--light {
+  border-color: var(--fds-neutral-10, #f8f8f9);
+}
+
+.item--dark {
+  border-color: var(--fds-neutral-80, #4a4b4c);
+}
+
+.item--open {
+  gap: 24px;
+}
+
+/* ── Question (button) ────────────────────────────────────────────────────── */
+
+.question {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 80px;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  text-align: left;
+  appearance: none;
+}
+
+/* ── Chevron ──────────────────────────────────────────────────────────────── */
+
+.chevron {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  transform: rotate(90deg);
+  transition: transform 0.3s;
+}
+
+.chevron--open {
+  transform: rotate(-90deg);
+}
+
+/* ── Answer ───────────────────────────────────────────────────────────────── */
+
+.answer {
+  padding-right: 120px;
+}
+
+/* ── Responsive: Tablet (768–991px) ───────────────────────────────────────── */
+
+@media (max-width: 991px) {
+  .item {
+    padding: 20px 0;
+  }
+
+  .item--open {
+    gap: 20px;
+  }
+}
+
+/* ── Responsive: Mobile (<768px) ─────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .item {
+    padding: 16px 0;
+  }
+
+  .item--open {
+    gap: 16px;
+  }
+
+  .question {
+    gap: 40px;
+  }
+
+  .answer {
+    padding-right: 40px;
+  }
+}

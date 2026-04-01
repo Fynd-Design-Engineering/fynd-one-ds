@@ -1,0 +1,48 @@
+/* ── Rail — horizontally scrollable track ────────────────────────────────────── */
+
+.root {
+  display: flex;
+  gap: var(--rail-gap, 20px);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  cursor: grab;
+  -webkit-overflow-scrolling: touch;
+
+  /* Break out of any parent container to viewport edges */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  padding-left: calc(50vw - 50%);
+
+  /* Breathing room for shadows on hover */
+  margin-top: -40px;
+  margin-bottom: -40px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  /* No scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.root::-webkit-scrollbar {
+  display: none;
+}
+
+.root:active {
+  cursor: grabbing;
+  scroll-behavior: auto;
+}
+
+/* Prevent children from shrinking */
+.root > * {
+  flex-shrink: 0;
+}
+
+/* Right-side end padding so last item doesn't touch viewport edge */
+.root::after {
+  content: '';
+  flex-shrink: 0;
+  width: calc(50vw - 50%);
+  min-width: 1px;
+}

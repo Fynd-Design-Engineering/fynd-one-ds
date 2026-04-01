@@ -1,0 +1,82 @@
+/* ── BentoGrid ────────────────────────────────────────────────────────────── */
+
+.root {
+  --bento-gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--bento-gap);
+  width: 100%;
+}
+
+/* ── Columns container ────────────────────────────────────────────────────── */
+
+.columns {
+  display: flex;
+  gap: var(--bento-gap);
+  align-items: flex-start;
+}
+
+.column {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--bento-gap);
+  min-width: 0;
+}
+
+/* ── Cell ─────────────────────────────────────────────────────────────────── */
+
+.cell {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* ── Ratio variants ──────────────────────────────────────────────────────── */
+
+.cell--5x4 {
+  aspect-ratio: 5 / 4;
+}
+
+.cell--3x2 {
+  aspect-ratio: 3 / 2;
+}
+
+.cell--3x4 {
+  aspect-ratio: 3 / 4;
+}
+
+.cell--wide {
+  aspect-ratio: 1272 / 417;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .cell {
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .columns {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .column {
+    width: 100%;
+  }
+
+  .cell {
+    border-radius: 8px;
+    width: 100%;
+  }
+
+  .cell--5x4,
+  .cell--3x2,
+  .cell--3x4,
+  .cell--wide {
+    aspect-ratio: 1 / 1;
+  }
+}

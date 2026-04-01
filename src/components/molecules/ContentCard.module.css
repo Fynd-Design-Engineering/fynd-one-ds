@@ -1,0 +1,195 @@
+/* ── ContentCard ──────────────────────────────────────────────────────────── */
+
+.root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #e3e3e3;
+  box-shadow: none;
+  transition: box-shadow 0.3s;
+}
+
+.root--bottom-right {
+  background-color: #f5f5f5;
+  min-height: 14rem;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  box-shadow: 1px 5px 10px 0px rgba(41, 41, 41, 0.05),
+              5px 18px 18px 0px rgba(41, 41, 41, 0.04),
+              10px 40px 24px 0px rgba(41, 41, 41, 0.03);
+}
+
+/* ── Breakpoint size variants ─────────────────────────────────────────────── */
+
+.lg {
+  border-radius: 16px;
+}
+
+.md {
+  border-radius: 12px;
+}
+
+.sm {
+  border-radius: 8px;
+}
+
+/* ── Image ────────────────────────────────────────────────────────────────── */
+
+.root--behind {
+  min-height: 14rem;
+}
+
+.image--behind {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.image--below {
+  width: 100%;
+  flex: 1;
+  object-fit: cover;
+  display: block;
+  min-height: 0;
+}
+
+/* ── Bottom-right image ───────────────────────────────────────────────────── */
+
+.image--bottom-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.image--bottom-right-default,
+.image--bottom-right-hover {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom right;
+  transition: opacity 0.3s ease;
+}
+
+.image--bottom-right-hover {
+  opacity: 0;
+}
+
+.clickable:hover .image--bottom-right-default {
+  opacity: 0;
+}
+
+.clickable:hover .image--bottom-right-hover {
+  opacity: 1;
+}
+
+/* ── Text overlay — bottom-right variant ─────────────────────────────────── */
+
+.text-overlay--bottom-right {
+  position: relative;
+  z-index: 2;
+}
+
+.image-container {
+  flex: 1;
+  min-height: 0;
+  background-color: #e3e3e3;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Text overlay ─────────────────────────────────────────────────────────── */
+
+.text-overlay {
+  display: flex;
+  align-items: flex-start;
+  z-index: 10;
+}
+
+.text-overlay--behind {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.text-overlay--lg {
+  gap: 40px;
+  padding: 24px;
+}
+
+.text-overlay--md {
+  gap: 20px;
+  padding: 20px;
+}
+
+.text-overlay--sm {
+  gap: 12px;
+  padding: 16px;
+}
+
+/* ── Content left ─────────────────────────────────────────────────────────── */
+
+.content-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.chip-wrapper {
+  margin-bottom: 4px;
+}
+
+
+/* ── Action button (clickable arrow) ──────────────────────────────────────── */
+
+.action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.action-button--visible {
+  opacity: 1;
+}
+
+.clickable:hover .action-button {
+  opacity: 1;
+}
+
+/* ── Button wrapper ───────────────────────────────────────────────────────── */
+
+.button-wrapper {
+  flex-shrink: 0;
+}

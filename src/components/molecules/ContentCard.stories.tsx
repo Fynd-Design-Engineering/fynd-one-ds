@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { ContentCard } from './ContentCard';
 
@@ -6,8 +6,8 @@ const meta: Meta<typeof ContentCard> = {
   title: 'Molecules/ContentCard',
   component: ContentCard,
   argTypes: {
-    imagePosition: { control: 'select', options: ['below', 'behind'] },
-    breakpoint: { control: 'select', options: ['desktop', 'tablet', 'mobile'] },
+    imagePosition: { control: 'select', options: ['below', 'behind', 'bottom-right'] },
+    size: { control: 'select', options: ['lg', 'md', 'sm'] },
     showChip: { control: 'boolean' },
     showSubtext: { control: 'boolean' },
     showButton: { control: 'boolean' },
@@ -38,7 +38,7 @@ export const ImageBehind: Story = {
     imagePosition: 'behind',
     imageSrc: 'https://placehold.co/626x626/a0a1a2/ffffff?text=Background',
   },
-  decorators: [(Story) => <div style={{ width: 626 }}><Story /></div>],
+  decorators: [(Story) => <div style={{ width: 626, height: 500 }}><Story /></div>],
 };
 
 export const Clickable: Story = {
@@ -51,6 +51,20 @@ export const Clickable: Story = {
     clickable: true,
     showButton: false,
   },
+  decorators: [(Story) => <div style={{ width: 626, height: 500 }}><Story /></div>],
+};
+
+export const ImageBottomRight: Story = {
+  args: {
+    chipLabel: 'Label Text',
+    title: 'Text goes here',
+    subtext: 'Subtext goes here',
+    imagePosition: 'bottom-right',
+    imageSrc: 'https://placehold.co/300x300/a0a1a2/ffffff?text=Product',
+    hoverImageSrc: 'https://placehold.co/300x300/797a7c/ffffff?text=Hover',
+    clickable: true,
+    alwaysShowArrow: true,
+  },
   decorators: [(Story) => <div style={{ width: 626 }}><Story /></div>],
 };
 
@@ -60,7 +74,7 @@ export const Tablet: Story = {
     title: 'Text goes here',
     subtext: 'Subtext goes here',
     buttonLabel: 'Button',
-    breakpoint: 'tablet',
+    size: 'md',
     imagePosition: 'below',
   },
   decorators: [(Story) => <div style={{ width: 377 }}><Story /></div>],
@@ -71,12 +85,12 @@ export const Mobile: Story = {
     chipLabel: 'Label Text',
     title: 'Text goes here',
     subtext: 'Subtext goes here',
-    breakpoint: 'mobile',
+    size: 'sm',
     imagePosition: 'behind',
     clickable: true,
     imageSrc: 'https://placehold.co/272x362/a0a1a2/ffffff?text=BG',
   },
-  decorators: [(Story) => <div style={{ width: 272 }}><Story /></div>],
+  decorators: [(Story) => <div style={{ width: 272, height: 362 }}><Story /></div>],
 };
 
 export const AllBreakpoints: Story = {
@@ -97,16 +111,16 @@ export const AllBreakpoints: Story = {
           title="Text goes here"
           subtext="Subtext goes here"
           buttonLabel="Button"
-          breakpoint="tablet"
+          size="md"
           imagePosition="below"
         />
       </div>
-      <div style={{ width: 272 }}>
+      <div style={{ width: 272, height: 362 }}>
         <ContentCard
           chipLabel="Mobile"
           title="Text goes here"
           subtext="Subtext goes here"
-          breakpoint="mobile"
+          size="sm"
           imagePosition="behind"
           clickable
           imageSrc="https://placehold.co/272x362/a0a1a2/ffffff?text=BG"

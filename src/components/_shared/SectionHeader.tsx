@@ -1,7 +1,7 @@
-import React, { CSSProperties } from 'react';
-import { layout } from '../../tokens';
+import React from 'react';
 import { Chip, ChipDotColor } from '../atoms/Chip';
 import { TitleContentPair } from '../atoms/TitleContentPair';
+import styles from './SectionHeader.module.css';
 
 export interface SectionHeaderProps {
   chipLabel?: string;
@@ -14,6 +14,9 @@ export interface SectionHeaderProps {
   titleSize?: 'xxl' | 'xl' | 'l' | 'm';
   onDarkBg?: boolean;
   align?: 'left' | 'center';
+  /** Optional action buttons. Left-aligned: rendered to the right. Center-aligned: rendered below. */
+  actions?: React.ReactNode;
+  className?: string;
 }
 
 export const SectionHeader: React.FC<SectionHeaderProps> = ({
@@ -27,20 +30,22 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
   titleSize = 'xl',
   onDarkBg = false,
   align = 'left',
+  actions,
+  className,
 }) => {
-  const wrapper: CSSProperties = {
-    maxWidth: layout.sectionHeaderMax,
-    marginBottom: layout.middlePadding,
-    textAlign: align,
-    ...(align === 'center' ? { marginLeft: 'auto', marginRight: 'auto' } : {}),
-  };
-
   const renderChip = showChip && chipLabel;
+  const isCenter = align === 'center';
 
-  return (
-    <div style={wrapper}>
+  const rootClass = [
+    styles.root,
+    isCenter ? styles['root--center'] : styles['root--left'],
+    className,
+  ].filter(Boolean).join(' ');
+
+  const headerContent = (
+    <div className={styles.content}>
       {renderChip && (
-        <div style={{ marginBottom: '16px' }}>
+        <div className={styles.chip}>
           <Chip
             label={chipLabel}
             variant={chipVariant}
@@ -56,6 +61,22 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
         titleSize={titleSize}
         onDarkBg={onDarkBg}
       />
+      {isCenter && actions && (
+        <div className={[styles.actions, styles['actions--center']].join(' ')}>
+          {actions}
+        </div>
+      )}
+    </div>
+  );
+
+  return (
+    <div className={rootClass}>
+      {headerContent}
+      {!isCenter && actions && (
+        <div className={styles.actions}>
+          {actions}
+        </div>
+      )}
     </div>
   );
 };

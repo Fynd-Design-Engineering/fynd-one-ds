@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { Tabs } from './Tabs';
 import { RichIconCard } from '../molecules/RichIconCard';
@@ -21,7 +21,7 @@ const CardGrid = ({ items }: { items: { title: string; subtext: string }[] }) =>
 const meta: Meta<typeof Tabs> = {
   title: 'Atoms/Tabs',
   component: Tabs,
-  decorators: [(Story) => <div style={{ maxWidth: 1272, backgroundColor: '#f2f2f2', padding: 40 }}><Story /></div>],
+  decorators: [(Story) => <div style={{ backgroundColor: '#f2f2f2', padding: 40 }}><Story /></div>],
 };
 
 export default meta;

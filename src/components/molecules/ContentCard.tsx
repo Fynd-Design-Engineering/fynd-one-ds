@@ -1,9 +1,11 @@
-import React, { CSSProperties, useState } from 'react';
-import { neutrals, shadows } from '../../tokens';
+import React, { CSSProperties } from 'react';
+import { neutrals } from '../../tokens';
 import { Chip } from '../atoms/Chip';
 import { Button } from '../atoms/Button';
+import { Text, TextVariant } from '../Typography/Text';
 import { IconArrowDiagonal } from '../../icons';
 import '../../styles/gradient-blur.css';
+import styles from './ContentCard.module.css';
 
 const GradientBlur: React.FC = () => (
   <div className="gradient-blur">
@@ -13,181 +15,101 @@ const GradientBlur: React.FC = () => (
 
 export interface ContentCardProps {
   imageSrc?: string;
+  hoverImageSrc?: string;
   imageAlt?: string;
-  imagePosition?: 'below' | 'behind';
+  imagePosition?: 'below' | 'behind' | 'bottom-right';
   chipLabel?: string;
   showChip?: boolean;
   title: string;
+  titleVariant?: TextVariant;
   subtext?: string;
+  subtextVariant?: TextVariant;
   showSubtext?: boolean;
   buttonLabel?: string;
   buttonVariant?: 'primary' | 'secondary' | 'tertiary';
   showButton?: boolean;
   clickable?: boolean;
+  alwaysShowArrow?: boolean;
   onClick?: () => void;
-  breakpoint?: 'desktop' | 'tablet' | 'mobile';
+  /** Card size variant — controls border radius and padding. */
+  size?: 'lg' | 'md' | 'sm';
   className?: string;
   style?: CSSProperties;
 }
 
-const breakpointConfig = {
-  desktop: {
-    borderRadius: 16,
-    padding: 24,
-    gap: 40,
-    titleSize: 26,
-    titleLineHeight: '34px',
-    titleTracking: '-0.52px',
-    subtextSize: 20,
-    subtextLineHeight: 1.4,
-    aspectRatio: '1 / 1',
-  },
-  tablet: {
-    borderRadius: 12,
-    padding: 20,
-    gap: 20,
-    titleSize: 16,
-    titleLineHeight: '1.55',
-    titleTracking: '0',
-    subtextSize: 12,
-    subtextLineHeight: 1.3,
-    aspectRatio: '1 / 1',
-  },
-  mobile: {
-    borderRadius: 8,
-    padding: 16,
-    gap: 12,
-    titleSize: 14,
-    titleLineHeight: '1.4',
-    titleTracking: '0',
-    subtextSize: 12,
-    subtextLineHeight: 1.3,
-    aspectRatio: '3 / 4',
-  },
-} as const;
-
 export const ContentCard: React.FC<ContentCardProps> = ({
   imageSrc,
+  hoverImageSrc,
   imageAlt = '',
   imagePosition = 'below',
   chipLabel,
   showChip = true,
   title,
+  titleVariant = 'body-xl',
   subtext,
+  subtextVariant = 'body-m',
   showSubtext = true,
   buttonLabel = 'Button',
   buttonVariant = 'tertiary',
   showButton = true,
   clickable = false,
+  alwaysShowArrow = false,
   onClick,
-  breakpoint = 'desktop',
+  size = 'lg',
   className,
   style,
 }) => {
-  const [hovered, setHovered] = useState(false);
-  const config = breakpointConfig[breakpoint];
   const isBehind = imagePosition === 'behind';
+  const isBottomRight = imagePosition === 'bottom-right';
+  const sizeClass = size;
 
-  const card: CSSProperties = {
-    position: 'relative',
-    display: 'flex',
-    flexDirection: 'column',
-    width: '100%',
-    height: '100%',
-    borderRadius: config.borderRadius,
-    overflow: 'hidden',
-    backgroundColor: neutrals[30],
-    cursor: clickable || onClick ? 'pointer' : undefined,
-    boxShadow: clickable && hovered ? shadows['card-high'] : 'none',
-    transition: 'box-shadow 0.3s',
-    ...style,
-  };
+  const cardClass = [
+    styles.root,
+    styles[sizeClass],
+    (clickable || onClick) && styles.clickable,
+    isBehind && styles['root--behind'],
+    isBottomRight && styles['root--bottom-right'],
+    className,
+  ].filter(Boolean).join(' ');
 
-  const imageStyle: CSSProperties = isBehind
-    ? {
-        position: 'absolute',
-        inset: 0,
-        width: '100%',
-        height: '100%',
-        objectFit: 'cover',
-      }
-    : {
-        width: '100%',
-        flex: 1,
-        objectFit: 'cover',
-        display: 'block',
-        minHeight: 0,
-      };
+  const textOverlayClass = [
+    styles['text-overlay'],
+    isBehind && styles['text-overlay--behind'],
+    isBottomRight && styles['text-overlay--bottom-right'],
+    styles[`text-overlay--${sizeClass}`],
+  ].filter(Boolean).join(' ');
 
-  const textOverlay: CSSProperties = {
-    position: isBehind ? 'absolute' : 'relative',
-    top: 0,
-    left: 0,
-    right: 0,
-    zIndex: 10,
-    display: 'flex',
-    alignItems: 'flex-start',
-    gap: config.gap,
-    padding: config.padding,
-  };
-
-  const contentLeft: CSSProperties = {
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '8px',
-    minWidth: 0,
-  };
-
-  const titleStyle: CSSProperties = {
-    fontFamily: "'Inter Display', 'Inter', sans-serif",
-    fontSize: `${config.titleSize}px`,
-    fontWeight: 500,
-    lineHeight: config.titleLineHeight,
-    letterSpacing: config.titleTracking,
-    color: neutrals[100],
-    margin: 0,
-  };
-
-  const subtextStyle: CSSProperties = {
-    fontFamily: "'Inter Display', 'Inter', sans-serif",
-    fontSize: `${config.subtextSize}px`,
-    fontWeight: 400,
-    lineHeight: config.subtextLineHeight,
-    color: neutrals[60],
-    margin: 0,
-  };
-
-  const actionButton: CSSProperties = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    background: 'none',
-    border: 'none',
-    padding: 0,
-    cursor: 'pointer',
-    flexShrink: 0,
-    opacity: hovered ? 1 : 0,
-    transition: 'opacity 0.2s',
-  };
+  const arrowClass = [
+    styles['action-button'],
+    alwaysShowArrow && styles['action-button--visible'],
+  ].filter(Boolean).join(' ');
 
   return (
     <div
-      className={className}
-      style={card}
+      className={cardClass}
+      style={style}
       onClick={onClick}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
       data-figma-id="3262:20928"
     >
-      {isBehind && imageSrc && <img src={imageSrc} alt={imageAlt} style={imageStyle} />}
+      {isBehind && imageSrc && (
+        <img src={imageSrc} alt={imageAlt} className={styles['image--behind']} />
+      )}
 
       {isBehind && <GradientBlur />}
 
-      <div style={textOverlay}>
-        <div style={contentLeft}>
+      {isBottomRight && imageSrc && (
+        <div className={styles['image--bottom-right']}>
+          <img src={imageSrc} alt={imageAlt} className={styles['image--bottom-right-default']} />
+          {hoverImageSrc && (
+            <img src={hoverImageSrc} alt={imageAlt} className={styles['image--bottom-right-hover']} />
+          )}
+        </div>
+      )}
+
+      <div className={textOverlayClass}>
+        <div className={styles['content-left']}>
           {showChip && chipLabel && (
-            <div style={{ marginBottom: '4px' }}>
+            <div className={styles['chip-wrapper']}>
               <Chip label={chipLabel} variant="filled" showDot={false}
                 style={{
                   backgroundColor: neutrals[0],
@@ -197,12 +119,12 @@ export const ContentCard: React.FC<ContentCardProps> = ({
               />
             </div>
           )}
-          <p style={titleStyle}>{title}</p>
-          {showSubtext && subtext && <p style={subtextStyle}>{subtext}</p>}
+          <Text variant={titleVariant} weight="medium">{title}</Text>
+          {showSubtext && subtext && <Text variant={subtextVariant} weight="regular" color="secondary">{subtext}</Text>}
         </div>
 
         {showButton && !clickable && (
-          <div style={{ flexShrink: 0 }}>
+          <div className={styles['button-wrapper']}>
             <Button label={buttonLabel} variant={buttonVariant}
               showChevron={buttonVariant === 'tertiary'}
             />
@@ -210,15 +132,15 @@ export const ContentCard: React.FC<ContentCardProps> = ({
         )}
 
         {clickable && (
-          <button style={actionButton} tabIndex={-1} aria-hidden>
+          <button className={arrowClass} tabIndex={-1} aria-hidden>
             <IconArrowDiagonal color={neutrals[100]} />
           </button>
         )}
       </div>
 
-      {!isBehind && (
-        <div style={{ flex: 1, minHeight: 0, backgroundColor: neutrals[30] }}>
-          {imageSrc && <img src={imageSrc} alt={imageAlt} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />}
+      {!isBehind && !isBottomRight && (
+        <div className={styles['image-container']}>
+          {imageSrc && <img src={imageSrc} alt={imageAlt} className={styles['image--below']} />}
         </div>
       )}
     </div>

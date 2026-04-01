@@ -1,8 +1,8 @@
 import React, { CSSProperties } from 'react';
-import { neutrals } from '../../tokens';
 import { ImageHolder, ImageHolderProps } from '../atoms/ImageHolder';
 import { Tag } from '../atoms/Tag';
 import { Button } from '../atoms/Button';
+import styles from './ListingCard.module.css';
 
 export interface ListingCardProps {
   imageSrc?: string;
@@ -19,7 +19,7 @@ export interface ListingCardProps {
   showReadTime?: boolean;
   buttonLabel?: string;
   showButton?: boolean;
-  breakpoint?: 'desktop' | 'mobile';
+  breakpoint?: 'lg' | 'sm';
   onClick?: () => void;
   className?: string;
   style?: CSSProperties;
@@ -40,106 +40,62 @@ export const ListingCard: React.FC<ListingCardProps> = ({
   showReadTime = true,
   buttonLabel = 'Read story',
   showButton = true,
-  breakpoint = 'desktop',
+  breakpoint = 'lg',
   onClick,
   className,
   style,
 }) => {
-  const isMobile = breakpoint === 'mobile';
+  const isMobile = breakpoint === 'sm';
 
-  const card: CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    borderRadius: '16px',
-    overflow: 'hidden',
-    boxShadow: '1px 2px 15px 0px rgba(0, 0, 0, 0.02)',
-    backgroundColor: neutrals[0],
-    cursor: onClick ? 'pointer' : undefined,
-    ...style,
-  };
+  const cardClass = [
+    styles.root,
+    onClick && styles.clickable,
+    className,
+  ].filter(Boolean).join(' ');
 
-  const content: CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '32px',
-    padding: isMobile ? '16px' : '20px 24px',
-  };
+  const contentClass = [
+    styles.content,
+    isMobile && styles['content--sm'],
+  ].filter(Boolean).join(' ');
 
-  const contentPair: CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '16px',
-  };
+  const titleClass = [
+    styles.title,
+    isMobile && styles['title--sm'],
+  ].filter(Boolean).join(' ');
 
-  const titleStyle: CSSProperties = {
-    fontFamily: "'Inter Display', 'Inter', sans-serif",
-    fontSize: isMobile ? '16px' : '20px',
-    fontWeight: 500,
-    lineHeight: isMobile ? 1.55 : 1.4,
-    color: neutrals[100],
-    margin: 0,
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    display: '-webkit-box',
-    WebkitLineClamp: 2,
-    WebkitBoxOrient: 'vertical',
-  };
-
-  const subtextStyle: CSSProperties = {
-    fontFamily: "'Inter Display', 'Inter', sans-serif",
-    fontSize: isMobile ? '12px' : '16px',
-    fontWeight: 400,
-    lineHeight: isMobile ? 1.3 : 1.5,
-    color: neutrals[60],
-    margin: 0,
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    display: '-webkit-box',
-    WebkitLineClamp: 3,
-    WebkitBoxOrient: 'vertical',
-  };
-
-  const metaRow: CSSProperties = {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  };
-
-  const metaText: CSSProperties = {
-    fontFamily: "'Inter Display', 'Inter', sans-serif",
-    fontSize: '14px',
-    fontWeight: 400,
-    lineHeight: 1.4,
-    color: neutrals[60],
-    margin: 0,
-  };
+  const subtextClass = [
+    styles.subtext,
+    isMobile && styles['subtext--sm'],
+  ].filter(Boolean).join(' ');
 
   const hasMeta = (showDate && date) || (showReadTime && readTime);
 
   return (
-    <div className={className} style={card} onClick={onClick} data-figma-id="3204:14895">
+    <div className={cardClass} style={style} onClick={onClick} data-figma-id="3204:14895">
       <ImageHolder
         aspectRatio={imageAspectRatio}
         src={imageSrc}
         alt={imageAlt}
         style={{ borderRadius: 0 }}
       />
-      <div style={content}>
-        <div style={contentPair}>
+      <div className={contentClass}>
+        <div className={styles['content-pair']}>
           {showTags && tags && tags.length > 0 && (
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+            <div className={styles['tags-row']}>
               {tags.map((t) => (
                 <Tag key={t} label={t} />
               ))}
             </div>
           )}
-          <p style={titleStyle}>{title}</p>
-          {showSubtext && subtext && <p style={subtextStyle}>{subtext}</p>}
+          <p className={titleClass}>{title}</p>
+          {showSubtext && subtext && <p className={subtextClass}>{subtext}</p>}
         </div>
         {hasMeta && (
-          <div style={metaRow}>
-            {showDate && date && <p style={metaText}>{date}</p>}
-            {showReadTime && readTime && <p style={{ ...metaText, textAlign: 'right' }}>{readTime}</p>}
+          <div className={styles['meta-row']}>
+            {showDate && date && <p className={styles['meta-text']}>{date}</p>}
+            {showReadTime && readTime && (
+              <p className={[styles['meta-text'], styles['meta-text--right']].join(' ')}>{readTime}</p>
+            )}
           </div>
         )}
         {showButton && (

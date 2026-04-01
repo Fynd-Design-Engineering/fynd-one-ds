@@ -1,0 +1,267 @@
+/* ─── Base ─────────────────────────────────────────────────────────────────── */
+
+.root {
+  margin: 0;
+}
+
+/* ─── Type Scale (responsive via media queries) ─────────────────────────── */
+
+/* Heading XXL: 40 → 56 → 72 */
+.heading-xxl {
+  font-family: 'Fynd Sans', sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+@media (min-width: 768px) {
+  .heading-xxl {
+    font-size: 56px;
+    letter-spacing: -0.04em;
+  }
+}
+@media (min-width: 992px) {
+  .heading-xxl {
+    font-size: 72px;
+  }
+}
+
+/* Heading XL: 32 → 40 → 56 */
+.heading-xl {
+  font-family: 'Fynd Sans', sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+@media (min-width: 768px) {
+  .heading-xl {
+    font-size: 40px;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+}
+@media (min-width: 992px) {
+  .heading-xl {
+    font-size: 56px;
+    letter-spacing: -0.04em;
+  }
+}
+
+/* Heading L: 24 → 32 → 40 */
+.heading-l {
+  font-family: 'Fynd Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+@media (min-width: 768px) {
+  .heading-l {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+}
+@media (min-width: 992px) {
+  .heading-l {
+    font-size: 40px;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+}
+
+/* Heading M: 20 → 24 → 32 */
+.heading-m {
+  font-family: 'Fynd Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+@media (min-width: 768px) {
+  .heading-m {
+    font-size: 24px;
+    line-height: 1.3;
+  }
+}
+@media (min-width: 992px) {
+  .heading-m {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+}
+
+/* Heading S: 18 → 22 → 26 */
+.heading-s {
+  font-family: 'Inter Display', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+}
+@media (min-width: 768px) {
+  .heading-s {
+    font-size: 22px;
+    line-height: 28px;
+    letter-spacing: -0.02em;
+  }
+}
+@media (min-width: 992px) {
+  .heading-s {
+    font-size: 26px;
+    line-height: 34px;
+  }
+}
+
+/* Body XL medium: 16 → 16 → 20 */
+.body-xl-medium {
+  font-family: 'Inter Display', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+@media (min-width: 992px) {
+  .body-xl-medium {
+    font-size: 20px;
+  }
+}
+
+/* Body XL regular: 16 → 16 → 20 */
+.body-xl-regular {
+  font-family: 'Inter Display', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+@media (min-width: 992px) {
+  .body-xl-regular {
+    font-size: 20px;
+  }
+}
+
+/* Body L medium: 16 → 16 → 18 */
+.body-l-medium {
+  font-family: 'Inter Display', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+@media (min-width: 992px) {
+  .body-l-medium {
+    font-size: 18px;
+  }
+}
+
+/* Body L regular: 16 → 16 → 18 */
+.body-l-regular {
+  font-family: 'Inter Display', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+@media (min-width: 992px) {
+  .body-l-regular {
+    font-size: 18px;
+  }
+}
+
+/* Body M medium: 14 → 14 → 16 */
+.body-m-medium {
+  font-family: 'Inter Display', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+@media (min-width: 992px) {
+  .body-m-medium {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+}
+
+/* Body M regular: 14 → 14 → 16 */
+.body-m-regular {
+  font-family: 'Inter Display', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.45;
+}
+@media (min-width: 992px) {
+  .body-m-regular {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
+/* Body S medium: 14 (all breakpoints) */
+.body-s-medium {
+  font-family: 'Inter Display', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* Body S regular: 14 (all breakpoints) */
+.body-s-regular {
+  font-family: 'Inter Display', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* Body XS semibold: 12 (all breakpoints) */
+.body-xs-semibold {
+  font-family: 'Inter Display', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* Body XS medium: 12 (all breakpoints) */
+.body-xs-medium {
+  font-family: 'Inter Display', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* Body XS regular: 12 (all breakpoints) */
+.body-xs-regular {
+  font-family: 'Inter Display', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+/* Body XS semibold caps: 12 (all breakpoints) */
+.body-xs-semibold-caps {
+  font-family: 'Inter Display', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+/* ─── Color variants ──────────────────────────────────────────────────────── */
+
+.color--secondary {
+  color: #5b5c5d;
+}
+
+.color--muted {
+  color: #a0a1a2;
+}
+
+.color--subtle {
+  color: #797a7c;
+}
+
+.color--white {
+  color: #ffffff;
+}
+
+/* ─── Caps modifier (for programmatic caps prop) ───────────────────────────── */
+
+.caps {
+  text-transform: uppercase;
+}

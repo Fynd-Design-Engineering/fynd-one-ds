@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { SectionWrapper } from '../components/_shared/SectionWrapper';
-import { SectionHeader } from '../components/_shared/SectionHeader';
+import { Section } from '../components/_shared/Section';
 import { Text } from '../components/Typography/Text';
 import { Button } from '../components/atoms/Button';
 import { Chip } from '../components/atoms/Chip';
@@ -14,6 +14,8 @@ import { ContentCard } from '../components/molecules/ContentCard';
 import { CTABanner } from '../components/molecules/CTABanner';
 import { BentoGrid } from '../components/layouts/BentoGrid';
 import { Grid } from '../components/layouts/Grid';
+import { LogoMarquee } from '../components/atoms/LogoMarquee';
+import s from './SampleLanding.module.css';
 
 const StarIcon = () => (
   <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -25,20 +27,20 @@ const StarIcon = () => (
 const SampleLanding = () => (
   <div>
     {/* ────── 1. Hero ────── */}
-    <SectionWrapper style={{ paddingTop: '80px', paddingBottom: '40px' }}>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '24px' }}>
+    <SectionWrapper>
+      <div className={s.hero}>
         <Chip label="AI-Powered Commerce" variant="outlined" />
-        <Text variant="heading-xxl" breakpoint="desktop" as="h1">
+        <Text variant="heading-xxl" as="h1">
           AI-driven commerce for modern businesses
         </Text>
-        <Text variant="body-xl" weight="regular" breakpoint="desktop" style={{ maxWidth: '560px' }}>
+        <Text variant="body-xl" weight="regular" className={s['hero__subtitle']}>
           Build, manage, and scale your online business with intelligent tools designed for speed, accuracy, and growth.
         </Text>
-        <div style={{ display: 'flex', gap: '16px', marginTop: '8px' }}>
+        <div className={s['hero__actions']}>
           <Button label="Get started" variant="primary" showChevron />
           <Button label="Book a demo" variant="secondary" />
         </div>
-        <Grid columns={3} gap={24} style={{ marginTop: '24px', maxWidth: '780px' }}>
+        <Grid columns={3} gap={24} className={s['hero__chips']}>
           <MetricCard variant="number" stat="300M+" title="Orders processed" />
           <MetricCard variant="number" stat="$2.1B" title="GMV processed" />
           <MetricCard variant="number" stat="200+" title="Integrations" />
@@ -46,62 +48,69 @@ const SampleLanding = () => (
       </div>
     </SectionWrapper>
 
+    {/* ────── Client Logos ────── */}
+    <SectionWrapper>
+      <LogoMarquee hoverEffect={false} />
+    </SectionWrapper>
+
     {/* ────── 2. Tabs — Products ────── */}
-    <SectionWrapper style={{ backgroundColor: '#f2f2f2' }}>
-      <SectionHeader
-        chipLabel="Platform"
-        title="Power every step of your commerce journey"
-        subtext="From storefront to fulfillment, our modular platform gives you complete control."
-        align="center"
-      />
+    <Section
+      bg="muted"
+      chipLabel="Platform"
+      title="Power every step of your commerce journey"
+      subtext="From storefront to fulfillment, our modular platform gives you complete control."
+      align="center"
+      fullWidthContent
+    >
       <Tabs tabs={[
         {
           label: 'Online commerce',
+          dotColor: '#5C98F7',
           content: (
-            <Grid columns={3} gap={20}>
-              <RichIconCard icon={<StarIcon />} title="D2C website" subtext="Customized, high-performance websites with built-in SEO, order management, payments & logistics" buttonLabel="Learn more" />
-              <RichIconCard icon={<StarIcon />} title="B2B website" subtext="Digital wholesale selling with custom pricing, buyer workflows and order approvals" buttonLabel="Learn more" />
-              <RichIconCard icon={<StarIcon />} title="Quick commerce" subtext="Storefronts + OMS + Logistics optimized for 10–30 minute deliveries" buttonLabel="Learn more" />
-              <RichIconCard icon={<StarIcon />} title="Marketplace selling" subtext="Sell on Amazon, Flipkart, Myntra & more with real-time sync" buttonLabel="Learn more" />
-              <RichIconCard icon={<StarIcon />} title="AI cataloging" subtext="AI-powered bulk uploads, attribute content generation & tagging" buttonLabel="Learn more" />
+            <Grid columns={3} gap={20} style={{ gridAutoRows: '14rem' }}>
+              <ContentCard title="D2C website" subtext="Customized, high-performance websites with built-in SEO, order management, payments & logistics" imagePosition="bottom-right" imageSrc="https://cdn.prod.website-files.com/67a9c8e5f2c74ac8c2c9b88b/69495f848f7681a898f9ea03_3fd75715b69c2bef5cc3be605e9d59a2_online-default-01.avif" hoverImageSrc="https://cdn.prod.website-files.com/67a9c8e5f2c74ac8c2c9b88b/69495f8418dfec973aadf107_c4f88192a2e726550d0130b19276369f_online-hover-01.avif" clickable alwaysShowArrow />
+              <ContentCard title="B2B website" subtext="Digital wholesale selling with custom pricing, buyer workflows and order approvals" imagePosition="bottom-right" imageSrc="https://placehold.co/400x300/f0f0f0/ccc?text=B2B" clickable alwaysShowArrow />
+              <ContentCard title="Quick commerce" subtext="Storefronts + OMS + Logistics optimized for 10–30 minute deliveries" imagePosition="bottom-right" imageSrc="https://placehold.co/400x300/f0f0f0/ccc?text=Quick" clickable alwaysShowArrow />
+              <ContentCard title="Marketplace selling" subtext="Sell on Amazon, Flipkart, Myntra & more with real-time sync" imagePosition="bottom-right" imageSrc="https://placehold.co/400x300/f0f0f0/ccc?text=Marketplace" clickable alwaysShowArrow />
+              <ContentCard title="AI cataloging" subtext="AI-powered bulk uploads, attribute content generation & tagging" imagePosition="bottom-right" imageSrc="https://placehold.co/400x300/f0f0f0/ccc?text=AI" clickable alwaysShowArrow />
             </Grid>
           ),
         },
         {
           label: 'Supply chain & logistics',
+          dotColor: '#80D99F',
           content: (
-            <Grid columns={3} gap={20}>
-              <RichIconCard icon={<StarIcon />} title="Order management" subtext="End-to-end order orchestration across all channels" buttonLabel="Learn more" />
-              <RichIconCard icon={<StarIcon />} title="Warehouse management" subtext="Inventory tracking, picking, packing, and shipping automation" buttonLabel="Learn more" />
-              <RichIconCard icon={<StarIcon />} title="Last mile delivery" subtext="Route optimization and real-time delivery tracking" buttonLabel="Learn more" />
+            <Grid columns={3} gap={20} style={{ gridAutoRows: '14rem' }}>
+              <ContentCard title="Order management" subtext="End-to-end order orchestration across all channels" imagePosition="bottom-right" imageSrc="https://placehold.co/400x300/f0f0f0/ccc?text=OMS" clickable alwaysShowArrow />
+              <ContentCard title="Warehouse management" subtext="Inventory tracking, picking, packing, and shipping automation" imagePosition="bottom-right" imageSrc="https://placehold.co/400x300/f0f0f0/ccc?text=WMS" clickable alwaysShowArrow />
+              <ContentCard title="Last mile delivery" subtext="Route optimization and real-time delivery tracking" imagePosition="bottom-right" imageSrc="https://placehold.co/400x300/f0f0f0/ccc?text=Delivery" clickable alwaysShowArrow />
             </Grid>
           ),
         },
         {
           label: 'In-store tech',
+          dotColor: '#EEB384',
           content: (
-            <Grid columns={3} gap={20}>
-              <RichIconCard icon={<StarIcon />} title="Point of sale" subtext="Modern POS with unified inventory and customer data" buttonLabel="Learn more" />
-              <RichIconCard icon={<StarIcon />} title="Endless aisle" subtext="Never lose a sale — access full catalog from any store" buttonLabel="Learn more" />
-              <RichIconCard icon={<StarIcon />} title="Clienteling" subtext="Personalized in-store experiences powered by customer data" buttonLabel="Learn more" />
+            <Grid columns={3} gap={20} style={{ gridAutoRows: '14rem' }}>
+              <ContentCard title="Point of sale" subtext="Modern POS with unified inventory and customer data" imagePosition="bottom-right" imageSrc="https://placehold.co/400x300/f0f0f0/ccc?text=POS" clickable alwaysShowArrow />
+              <ContentCard title="Endless aisle" subtext="Never lose a sale — access full catalog from any store" imagePosition="bottom-right" imageSrc="https://placehold.co/400x300/f0f0f0/ccc?text=Aisle" clickable alwaysShowArrow />
+              <ContentCard title="Clienteling" subtext="Personalized in-store experiences powered by customer data" imagePosition="bottom-right" imageSrc="https://placehold.co/400x300/f0f0f0/ccc?text=Clienteling" clickable alwaysShowArrow />
             </Grid>
           ),
         },
       ]} />
-    </SectionWrapper>
+    </Section>
 
     {/* ────── 3. Success Stories ────── */}
-    <SectionWrapper>
-      <SectionHeader
-        chipLabel="Customer Stories"
-        chipDotColor="green"
-        chipVariant="anchor"
-        title="Success stories with real impact"
-        subtext="See how leading brands are transforming their commerce with Fynd."
-      />
-      <div style={{ display: 'flex', gap: '20px', alignItems: 'stretch' }}>
-        {/* Large featured story */}
-        <div style={{ flex: '1 1 50%' }}>
+    <Section
+      chipLabel="Customer Stories"
+      chipDotColor="green"
+      chipVariant="anchor"
+      title="Success stories with real impact"
+      subtext="See how leading brands are transforming their commerce with Fynd."
+    >
+      <div className={s.testimonials}>
+        <div className={s['testimonials__featured']}>
           <ContentCard
             chipLabel="Featured"
             title="Fynd helps a major fashion brand go omnichannel"
@@ -109,11 +118,10 @@ const SampleLanding = () => (
             imagePosition="behind"
             imageSrc="https://placehold.co/626x626/1a1a2e/ffffff?text=Featured+Story"
             clickable
-            breakpoint="desktop"
+          showButton={false}
           />
         </div>
-        {/* Listing cards column */}
-        <div style={{ flex: '1 1 50%', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        <div className={s['testimonials__stack']}>
           <ListingCard
             tags={['Retail', 'Fashion']}
             title="How Brand X scaled to 10M orders with Fynd"
@@ -133,18 +141,18 @@ const SampleLanding = () => (
           />
         </div>
       </div>
-    </SectionWrapper>
+    </Section>
 
     {/* ────── 4. AI Tools ────── */}
-    <SectionWrapper style={{ backgroundColor: '#f8f8f9' }}>
-      <SectionHeader
-        chipLabel="AI Suite"
-        chipDotColor="lavender"
-        chipVariant="anchor"
-        title="Intelligent AI tools designed for speed, accuracy, and scale"
-        subtext="Automate the repetitive, focus on the creative."
-        align="center"
-      />
+    <Section
+      bg="subtle"
+      chipLabel="AI Suite"
+      chipDotColor="lavender"
+      chipVariant="anchor"
+      title="Intelligent AI tools designed for speed, accuracy, and scale"
+      subtext="Automate the repetitive, focus on the creative."
+      align="center"
+    >
       <Grid columns={3} gap={24}>
         <RichIconCard icon={<StarIcon />} title="AI-Powered PIM" subtext="Auto-generate product descriptions, tags, and attributes from images." buttonLabel="Learn more" />
         <RichIconCard icon={<StarIcon />} title="Smart Search" subtext="Natural language search that understands shopper intent." buttonLabel="Learn more" />
@@ -153,15 +161,14 @@ const SampleLanding = () => (
         <RichIconCard icon={<StarIcon />} title="Fraud Detection" subtext="ML-powered fraud prevention that adapts to new patterns." buttonLabel="Learn more" />
         <RichIconCard icon={<StarIcon />} title="Personalization" subtext="1:1 product recommendations across every touchpoint." buttonLabel="Learn more" />
       </Grid>
-    </SectionWrapper>
+    </Section>
 
     {/* ────── 5. Built for demands — Bento ────── */}
-    <SectionWrapper>
-      <SectionHeader
-        chipLabel="Infrastructure"
-        title="Built for the demands of modern commerce"
-        subtext="Enterprise-grade reliability with startup-speed iteration."
-      />
+    <Section
+      chipLabel="Infrastructure"
+      title="Built for the demands of modern commerce"
+      subtext="Enterprise-grade reliability with startup-speed iteration."
+    >
       <BentoGrid ratios={['5:4', '3:2', '3:2', '5:4']}>
         <ContentCard
           chipLabel="Scalability"
@@ -170,7 +177,7 @@ const SampleLanding = () => (
           imagePosition="behind"
           imageSrc="https://placehold.co/626x500/e3e3e3/5b5c5d?text=Scalability"
           clickable
-          breakpoint="desktop"
+          showButton={false}
         />
         <ContentCard
           chipLabel="Security"
@@ -179,7 +186,7 @@ const SampleLanding = () => (
           imagePosition="behind"
           imageSrc="https://placehold.co/626x417/d8e2f5/07285a?text=Security"
           clickable
-          breakpoint="desktop"
+          showButton={false}
         />
         <ContentCard
           chipLabel="APIs"
@@ -188,7 +195,7 @@ const SampleLanding = () => (
           imagePosition="behind"
           imageSrc="https://placehold.co/626x417/c4d9cd/124f2a?text=APIs"
           clickable
-          breakpoint="desktop"
+          showButton={false}
         />
         <ContentCard
           chipLabel="Integrations"
@@ -197,10 +204,10 @@ const SampleLanding = () => (
           imagePosition="behind"
           imageSrc="https://placehold.co/626x500/e7cdbc/793c16?text=Integrations"
           clickable
-          breakpoint="desktop"
+          showButton={false}
         />
       </BentoGrid>
-    </SectionWrapper>
+    </Section>
 
     {/* ────── 6. CTA Banner ────── */}
     <SectionWrapper onDarkBg>
@@ -214,37 +221,30 @@ const SampleLanding = () => (
     </SectionWrapper>
 
     {/* ────── 7. FAQ (placeholder) ────── */}
-    <SectionWrapper>
-      <SectionHeader
-        chipLabel="Support"
-        title="Frequently asked questions"
-        subtext="Everything you need to know about Fynd's commerce platform."
-        align="center"
-      />
-      <div style={{ maxWidth: '720px', margin: '0 auto' }}>
+    <Section
+      chipLabel="Support"
+      title="Frequently asked questions"
+      subtext="Everything you need to know about Fynd's commerce platform."
+      align="center"
+    >
+      <div className={s.faq}>
         {['What is Fynd Commerce?', 'How does pricing work?', 'Can I migrate from my existing platform?', 'What support options are available?', 'Is there a free trial?'].map((q, i) => (
-          <div key={i} style={{
-            padding: '20px 0',
-            borderBottom: '1px solid #e3e3e3',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}>
-            <Text variant="body-l" weight="medium" breakpoint="desktop">{q}</Text>
-            <span style={{ fontSize: '20px', color: '#5b5c5d' }}>+</span>
+          <div key={i} className={s['faq__item']}>
+            <Text variant="body-l" weight="medium">{q}</Text>
+            <span className={s['faq__icon']}>+</span>
           </div>
         ))}
       </div>
-    </SectionWrapper>
+    </Section>
 
     {/* ────── 8. Footer ────── */}
-    <SectionWrapper onDarkBg as="footer" style={{ paddingTop: '64px', paddingBottom: '40px' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', gap: '40px', marginBottom: '48px' }}>
-        <div style={{ maxWidth: '280px' }}>
-          <Text variant="heading-m" breakpoint="desktop" style={{ color: 'white', marginBottom: '16px' }}>
+    <SectionWrapper bg="dark" as="footer">
+      <div className={s['footer__columns']}>
+        <div className={s['footer__brand']}>
+          <Text variant="heading-m" color="white">
             Fynd
           </Text>
-          <Text variant="body-m" weight="regular" breakpoint="desktop" style={{ color: '#a0a1a2' }}>
+          <Text variant="body-m" weight="regular" color="muted">
             AI-driven commerce for modern businesses. Build, manage, scale.
           </Text>
         </div>
@@ -254,12 +254,12 @@ const SampleLanding = () => (
           { title: 'Resources', links: ['Documentation', 'API Reference', 'Status', 'Community', 'Partners'] },
         ].map((col) => (
           <div key={col.title}>
-            <Text variant="body-s" weight="medium" breakpoint="desktop" style={{ color: 'white', marginBottom: '16px' }}>
+            <Text variant="body-s" weight="medium" color="white">
               {col.title}
             </Text>
             {col.links.map((link) => (
-              <div key={link} style={{ marginBottom: '8px' }}>
-                <Text variant="body-s" weight="regular" breakpoint="desktop" style={{ color: '#a0a1a2' }}>
+              <div key={link} className={s['footer__link-group']}>
+                <Text variant="body-s" weight="regular" color="muted">
                   {link}
                 </Text>
               </div>
@@ -267,8 +267,8 @@ const SampleLanding = () => (
           </div>
         ))}
       </div>
-      <div style={{ borderTop: '1px solid #4a4b4c', paddingTop: '24px' }}>
-        <Text variant="body-xs" weight="regular" breakpoint="desktop" style={{ color: '#797a7c' }}>
+      <div className={s['footer__divider']}>
+        <Text variant="body-xs" weight="regular" color="subtle">
           © 2025 Fynd. All rights reserved.
         </Text>
       </div>

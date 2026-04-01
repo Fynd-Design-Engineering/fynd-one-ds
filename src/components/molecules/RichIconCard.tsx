@@ -1,7 +1,7 @@
-import React, { CSSProperties, useState } from 'react';
-import { cardTokens, shadows } from '../../tokens';
+import React, { CSSProperties } from 'react';
 import { Button } from '../atoms/Button';
 import { VisualElement, VisualElementSize } from '../atoms/VisualElement';
+import styles from './RichIconCard.module.css';
 
 export interface RichIconCardProps {
   icon?: React.ReactNode;
@@ -28,58 +28,33 @@ export const RichIconCard: React.FC<RichIconCardProps> = ({
   className,
   style,
 }) => {
-  const [hovered, setHovered] = useState(false);
+  const cardClass = [
+    styles.root,
+    onDarkBg && styles.dark,
+    className,
+  ].filter(Boolean).join(' ');
 
-  const card: CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '32px',
-    padding: '32px',
-    borderRadius: cardTokens.borderRadius,
-    border: `1px solid ${cardTokens.borderColor}`,
-    backgroundColor: onDarkBg ? '#1a1a1a' : '#ffffff',
-    overflow: 'hidden',
-    boxShadow: hovered ? shadows['card-high'] : 'none',
-    transition: 'box-shadow 0.3s',
-    ...style,
-  };
+  const titleClass = [
+    styles.title,
+    onDarkBg && styles['title--dark'],
+  ].filter(Boolean).join(' ');
 
-  const titleStyle: CSSProperties = {
-    fontFamily: "'Inter Display', 'Inter', sans-serif",
-    fontSize: '20px',
-    fontWeight: 500,
-    lineHeight: 1.4,
-    color: onDarkBg ? '#ffffff' : '#0e0e0e',
-    margin: 0,
-  };
-
-  const subtextStyle: CSSProperties = {
-    fontFamily: "'Inter Display', 'Inter', sans-serif",
-    fontSize: '16px',
-    fontWeight: 400,
-    lineHeight: 1.5,
-    color: onDarkBg ? '#a0a0a0' : '#5b5c5d',
-    margin: 0,
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    display: '-webkit-box',
-    WebkitLineClamp: 3,
-    WebkitBoxOrient: 'vertical',
-  };
+  const subtextClass = [
+    styles.subtext,
+    onDarkBg && styles['subtext--dark'],
+  ].filter(Boolean).join(' ');
 
   return (
     <div
-      className={className}
-      style={card}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      className={cardClass}
+      style={style}
       data-figma-id="879:3878"
     >
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+      <div className={styles.content}>
         <VisualElement size={iconSize}>{icon}</VisualElement>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          <p style={titleStyle}>{title}</p>
-          {subtext && <p style={subtextStyle}>{subtext}</p>}
+        <div className={styles['text-group']}>
+          <p className={titleClass}>{title}</p>
+          {subtext && <p className={subtextClass}>{subtext}</p>}
         </div>
       </div>
       {showButton && (

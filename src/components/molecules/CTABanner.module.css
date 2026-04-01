@@ -1,0 +1,40 @@
+/* ── CTABanner ────────────────────────────────────────────────────────────── */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 40px 0;
+}
+
+.center {
+  align-items: center;
+  text-align: center;
+}
+
+.left {
+  align-items: flex-start;
+  text-align: left;
+}
+
+/* ── Subtext ──────────────────────────────────────────────────────────────── */
+
+.subtext {
+  font-family: 'Inter Display', sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  color: #5b5c5d;
+  max-width: 480px;
+  margin: 0;
+}
+
+.subtext--dark {
+  color: #a0a1a2;
+}
+
+/* ── Actions row ──────────────────────────────────────────────────────────── */
+
+.actions {
+  display: flex;
+  gap: 16px;
+}

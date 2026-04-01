@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React, { CSSProperties, useState } from 'react';
 import { IconChevronRight, IconArrowDiagonal, IconStar } from '../icons';
 
@@ -45,7 +45,7 @@ const CopyCard = ({ name, url, importStr, isDark }: { name: string; url: string;
     padding: 12,
     borderRadius: 8,
     border: '1px solid #e3e3e3',
-    backgroundColor: isDark ? '#0e0e0e' : '#fff',
+    backgroundColor: isDark ? '#101319' : '#fff',
     cursor: 'pointer',
     position: 'relative',
     minWidth: 0,
@@ -64,7 +64,7 @@ const CopyCard = ({ name, url, importStr, isDark }: { name: string; url: string;
         <span style={{
           position: 'absolute', bottom: -24, left: '50%', transform: 'translateX(-50%)',
           fontFamily: "'Inter', sans-serif", fontSize: 10, color: '#fff',
-          backgroundColor: '#0e0e0e', padding: '4px 8px', borderRadius: 4, whiteSpace: 'nowrap', zIndex: 10,
+          backgroundColor: '#101319', padding: '4px 8px', borderRadius: 4, whiteSpace: 'nowrap', zIndex: 10,
         }}>
           Copied!
         </span>
@@ -93,13 +93,13 @@ const ReactIconCard = ({ name, Component }: { name: string; Component: React.FC<
         cursor: 'pointer', position: 'relative', minWidth: 0,
       }}
     >
-      <Component size={24} color="#0e0e0e" />
+      <Component size={24} color="#101319" />
       <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 9, color: '#5b5c5d', textAlign: 'center' }}>{name}</span>
       {copied && (
         <span style={{
           position: 'absolute', bottom: -24, left: '50%', transform: 'translateX(-50%)',
           fontFamily: "'Inter', sans-serif", fontSize: 10, color: '#fff',
-          backgroundColor: '#0e0e0e', padding: '4px 8px', borderRadius: 4, whiteSpace: 'nowrap', zIndex: 10,
+          backgroundColor: '#101319', padding: '4px 8px', borderRadius: 4, whiteSpace: 'nowrap', zIndex: 10,
         }}>
           Copied!
         </span>
@@ -128,7 +128,7 @@ export const AllIcons: Story = {
         </p>
 
         <div style={{ marginBottom: 40 }}>
-          <h4 style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, fontWeight: 600, color: '#0e0e0e', marginBottom: 8 }}>
+          <h4 style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, fontWeight: 600, color: '#101319', marginBottom: 8 }}>
             React Components ({reactIcons.length})
           </h4>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))', gap: 8, paddingBottom: 16 }}>
@@ -142,7 +142,7 @@ export const AllIcons: Story = {
           <div key={cat} style={{ marginBottom: 40 }}>
             <h4 style={{
               fontFamily: "'Inter', sans-serif", fontSize: 14, fontWeight: 600,
-              color: '#0e0e0e', marginBottom: 8, textTransform: 'capitalize',
+              color: '#101319', marginBottom: 8, textTransform: 'capitalize',
             }}>
               {cat} ({categories[cat].length})
             </h4>

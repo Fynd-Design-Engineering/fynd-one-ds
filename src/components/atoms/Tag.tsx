@@ -20,7 +20,7 @@ export const Tag: React.FC<TagProps> = ({
     padding: '4px 12px',
     borderRadius: '2000px',
     backgroundColor: onDarkBg ? '#262626' : neutrals[10],
-    fontFamily: "'Inter Display', 'Inter', sans-serif",
+    fontFamily: "'Inter Display', sans-serif",
     fontSize: '12px',
     fontWeight: 500,
     lineHeight: 1.3,

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React, { CSSProperties, useState } from 'react';
 
 const brandIcons = import.meta.glob('./brand-icons/*.svg', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
@@ -30,7 +30,7 @@ const CopyCard = ({
     padding: 16,
     borderRadius: 8,
     border: '1px solid #e3e3e3',
-    backgroundColor: isDark ? '#0e0e0e' : '#fff',
+    backgroundColor: isDark ? '#101319' : '#fff',
     cursor: 'pointer',
     position: 'relative',
     transition: 'border-color 0.2s',
@@ -52,7 +52,7 @@ const CopyCard = ({
     fontFamily: "'Inter', sans-serif",
     fontSize: 10,
     color: '#fff',
-    backgroundColor: '#0e0e0e',
+    backgroundColor: '#101319',
     padding: '4px 8px',
     borderRadius: 4,
     whiteSpace: 'nowrap',
@@ -89,7 +89,7 @@ const AssetGrid = ({ assets, assetType, height }: { assets: Record<string, strin
         Click any asset to copy its import statement
       </p>
 
-      <h4 style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: '#0e0e0e', marginBottom: 12 }}>
+      <h4 style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: '#101319', marginBottom: 12 }}>
         Light variants ({lightEntries.length})
       </h4>
       <div style={grid}>
@@ -99,7 +99,7 @@ const AssetGrid = ({ assets, assetType, height }: { assets: Record<string, strin
         })}
       </div>
 
-      <h4 style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: '#0e0e0e', margin: '24px 0 12px' }}>
+      <h4 style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: '#101319', margin: '24px 0 12px' }}>
         Dark variants ({darkEntries.length})
       </h4>
       <div style={grid}>

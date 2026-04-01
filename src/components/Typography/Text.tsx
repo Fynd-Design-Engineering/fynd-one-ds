@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import { typeScale, TypeScaleKey } from '../../tokens';
+import styles from './Text.module.css';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -11,17 +11,16 @@ type BodyVariant =
 
 export type TextVariant = HeadingVariant | BodyVariant;
 export type TextWeight = 'regular' | 'medium' | 'semibold';
-export type Breakpoint = 'desktop' | 'tablet' | 'mobile';
 
 export interface TextProps {
   /** Typography variant from the Fynd One type scale */
   variant: TextVariant;
   /** Font weight override. Headings XXL–M ignore this (always regular). */
   weight?: TextWeight;
-  /** Explicit breakpoint. Defaults to 'desktop'. */
-  breakpoint?: Breakpoint;
   /** Whether to render uppercase (only meaningful for body-xs caps styles) */
   caps?: boolean;
+  /** Text colour preset */
+  color?: 'default' | 'secondary' | 'muted' | 'subtle' | 'white';
   /** HTML element to render as */
   as?: keyof JSX.IntrinsicElements;
   className?: string;
@@ -32,35 +31,23 @@ export interface TextProps {
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 /**
- * Map a variant + weight + breakpoint + caps to a typeScale key.
+ * Resolve the CSS module class name for a given variant + weight + caps.
  */
-function resolveKey(
+function resolveClassName(
   variant: TextVariant,
   weight: TextWeight,
-  breakpoint: Breakpoint,
   caps: boolean,
-): TypeScaleKey {
+): string {
   const isHeadingTitle = ['heading-xxl', 'heading-xl', 'heading-l', 'heading-m'].includes(variant);
 
-  if (isHeadingTitle) {
-    return `${variant}-${breakpoint}` as TypeScaleKey;
-  }
-
-  if (variant === 'heading-s') {
-    return `heading-s-${breakpoint}` as TypeScaleKey;
-  }
-
-  // Body XS has caps variants
+  if (isHeadingTitle) return variant;
+  if (variant === 'heading-s') return 'heading-s';
   if (variant === 'body-xs') {
+    if (caps && weight === 'semibold') return 'body-xs-semibold-caps';
     const w = weight === 'semibold' ? 'semibold' : weight;
-    if (caps && weight === 'semibold') {
-      return `body-xs-${breakpoint}-semibold-caps` as TypeScaleKey;
-    }
-    return `body-xs-${breakpoint}-${w}` as TypeScaleKey;
+    return `body-xs-${w}`;
   }
-
-  // Body styles: body-xl, body-l, body-m, body-s
-  return `${variant}-${breakpoint}-${weight}` as TypeScaleKey;
+  return `${variant}-${weight}`;
 }
 
 /**
@@ -87,12 +74,14 @@ function defaultElement(variant: TextVariant): keyof JSX.IntrinsicElements {
 /**
  * `<Text>` — Fynd One typography primitive.
  *
+ * All type scales are responsive by default via CSS media queries.
+ *
  * @example
  * // Heading
- * <Text variant="heading-xl" breakpoint="desktop">One Commerce Platform</Text>
+ * <Text variant="heading-xl">One Commerce Platform</Text>
  *
  * // Body copy
- * <Text variant="body-l" weight="regular" breakpoint="tablet">
+ * <Text variant="body-l" weight="regular">
  *   Streamline your entire commerce journey.
  * </Text>
  *
@@ -102,35 +91,26 @@ function defaultElement(variant: TextVariant): keyof JSX.IntrinsicElements {
 export const Text: React.FC<TextProps> = ({
   variant,
   weight = 'regular',
-  breakpoint = 'desktop',
   caps = false,
+  color,
   as,
   className,
   style,
   children,
 }) => {
-  const key = resolveKey(variant, weight, breakpoint, caps);
-  const scale = typeScale[key] ?? typeScale['body-m-desktop-regular'];
-
+  const scaleClass = resolveClassName(variant, weight, caps);
   const Tag = (as ?? defaultElement(variant)) as React.ElementType;
 
-  const resolved: CSSProperties = {
-    fontFamily: scale.fontFamily,
-    fontSize: scale.fontSize,
-    fontWeight: scale.fontWeight,
-    lineHeight: typeof scale.lineHeight === 'number' && scale.lineHeight > 4
-      ? `${scale.lineHeight}px`   // fixed px value (e.g. 34px from heading-s)
-      : scale.lineHeight,          // ratio (e.g. 1.1)
-    letterSpacing: scale.letterSpacing !== '0em' ? scale.letterSpacing : undefined,
-    textTransform: caps || ('textTransform' in scale && scale.textTransform === 'uppercase')
-      ? 'uppercase'
-      : undefined,
-    margin: 0,
-    ...style,
-  };
+  const classNames = [
+    styles.root,
+    styles[scaleClass],
+    caps && !scaleClass.includes('caps') ? styles.caps : undefined,
+    color && color !== 'default' ? styles[`color--${color}`] : undefined,
+    className,
+  ].filter(Boolean).join(' ');
 
   return (
-    <Tag className={className} style={resolved}>
+    <Tag className={classNames} style={style}>
       {children}
     </Tag>
   );

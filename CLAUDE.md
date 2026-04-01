@@ -1137,3 +1137,169 @@ Not every page needs all sections. A focused landing page should have 4-6 sectio
 | Filters + Search | SearchBar + FilterButton | inline |
 | Form fields | TextField in Grid | 1-2 |
 | Pagination | Pagination | 1 |
+
+---
+
+## 15 · Battle-Tested Patterns (Lessons from Real Builds)
+
+### Golden Rule: No Inline Styles for Layout
+
+If you're reaching for `style={{ }}` for layout, spacing, or typography — stop. There's a component for it.
+
+| "I want…" | Use this, NOT inline styles |
+|---|---|
+| Page section with padding | `<Section>` or `<SectionWrapper>` |
+| Centered text with chip + title + subtext | `<Section align="center" chipLabel="..." title="..." subtext="...">` |
+| Grid of cards | `<Grid columns={3}>` |
+| Horizontal spacing between items | `gap` prop on Grid/BentoGrid/Rail |
+| Text styling | `<Text variant="..." color="...">` |
+| Buttons side by side | `actions` prop on Section, or a `<div>` with `display: flex; gap: 12px` |
+| Full-width container | `<SectionWrapper>` — never `max-width` manually |
+
+### Hero Section — The Right Way
+
+```jsx
+// ✅ DO — Use Section with center alignment and actions
+<Section
+  align="center"
+  chipLabel="AI-Powered Commerce"
+  title="AI-driven commerce for modern businesses"
+  subtext="Build, manage, and scale your online business."
+  titleSize="xxl"
+  actions={
+    <>
+      <Button label="Get started" variant="primary" showChevron />
+      <Button label="Book a demo" variant="secondary" />
+    </>
+  }
+>
+  <Grid columns={3}>
+    <MetricCard variant="number" stat="300M+" title="Orders processed" />
+    <MetricCard variant="number" stat="$2.1B" title="GMV processed" />
+    <MetricCard variant="number" stat="200+" title="Integrations" />
+  </Grid>
+</Section>
+```
+
+```jsx
+// ❌ DON'T — Raw components in SectionWrapper with manual spacing
+<SectionWrapper>
+  <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', gap: 24 }}>
+    <Chip label="AI-Powered Commerce" />
+    <Text variant="heading-xxl">Title</Text>
+    <Text variant="body-xl">Subtitle</Text>
+    <div style={{ display: 'flex', gap: 16 }}>
+      <Button label="Get started" />
+      <Button label="Book a demo" />
+    </div>
+  </div>
+</SectionWrapper>
+```
+
+Why: Section handles chip + title + subtext + actions with proper spacing, alignment, and responsive behavior automatically. Manual assembly misses the 56px margin-bottom, responsive gap changes, and text width constraints.
+
+### SectionWrapper vs Section — When to Use Which
+
+| Scenario | Use | Why |
+|---|---|---|
+| Section with chip + title + subtext header | `<Section>` | Built-in SectionHeader with proper spacing |
+| Hero (custom layout, no standard header) | `<SectionWrapper>` | You control the content entirely |
+| CTA banner | `<SectionWrapper bg="dark">` + `<CTABanner>` | CTABanner IS the content |
+| Footer | `<SectionWrapper bg="dark" as="footer">` | No section header needed |
+| Content with standard header + actions | `<Section actions={<Button .../>}>` | Actions position handled automatically |
+| Full-width content (tabs, rail) | `<Section fullWidthContent>` | Content breaks out of inner container |
+
+### Dark Backgrounds — onDarkBg Must Cascade
+
+When you use `bg="dark"` on Section or SectionWrapper, you MUST pass `onDarkBg` to **every** child component. Section passes it to its SectionHeader automatically, but NOT to children.
+
+```jsx
+// ✅ DO — Pass onDarkBg to every child
+<Section bg="dark" title="Stats" chipLabel="Impact" onDarkBg>
+  <Grid columns={4}>
+    <MetricCard variant="number" stat="500+" title="Brands" onDarkBg />
+    <MetricCard variant="number" stat="10M+" title="Orders" onDarkBg />
+    <MetricCard variant="number" stat="99.9%" title="Uptime" onDarkBg />
+    <MetricCard variant="number" stat="50+" title="Countries" onDarkBg />
+  </Grid>
+</Section>
+
+// ❌ DON'T — Forget onDarkBg on children (text will be invisible)
+<Section bg="dark" title="Stats" onDarkBg>
+  <Grid columns={4}>
+    <MetricCard variant="number" stat="500+" title="Brands" />  {/* WRONG — dark text on dark bg */}
+  </Grid>
+</Section>
+```
+
+Components that accept `onDarkBg`: Button, Chip, Tag, Text (`color="white"`), MetricCard, RichIconCard, ContentCard, ListingCard, PricingCard, CTABanner, TitleContentPair, Accordion, SectionHeader.
+
+### Footer Pattern
+
+```jsx
+// ✅ DO — Use Grid for footer columns
+<SectionWrapper bg="dark" as="footer">
+  <Grid columns={4} gap={40}>
+    <div>
+      <Text variant="heading-m" color="white">Fynd</Text>
+      <Text variant="body-m" color="muted">AI-driven commerce.</Text>
+    </div>
+    <div>
+      <Text variant="body-s" weight="medium" color="white">Products</Text>
+      <Text variant="body-s" color="muted">Commerce</Text>
+      <Text variant="body-s" color="muted">OMS</Text>
+    </div>
+    <div>
+      <Text variant="body-s" weight="medium" color="white">Company</Text>
+      <Text variant="body-s" color="muted">About</Text>
+      <Text variant="body-s" color="muted">Careers</Text>
+    </div>
+    <div>
+      <Text variant="body-s" weight="medium" color="white">Resources</Text>
+      <Text variant="body-s" color="muted">Docs</Text>
+      <Text variant="body-s" color="muted">API</Text>
+    </div>
+  </Grid>
+</SectionWrapper>
+
+// ❌ DON'T — Inline flex for footer columns
+<div style={{ display: 'flex', justifyContent: 'space-between', gap: 40 }}>
+```
+
+### Section Rhythm — Background Alternation
+
+Follow this pattern for visual rhythm on a full landing page:
+
+```
+Section 1 (Hero):       bg="default"  (white)
+Section 2 (Logos):      bg="default"  (white)
+Section 3 (Features):   bg="muted"    (light gray)
+Section 4 (Stories):    bg="default"  (white)
+Section 5 (AI Tools):   bg="subtle"   (very light gray)
+Section 6 (Bento):      bg="default"  (white)
+Section 7 (CTA):        bg="dark"     (dark — contrast break)
+Section 8 (FAQ):        bg="default"  (white)
+Section 9 (Footer):     bg="dark"     (dark)
+```
+
+Rules:
+- **Never 3+ consecutive same-background sections**
+- **Dark sections: max 2 per page** (CTA + footer is the standard)
+- **GradientSurface: max 1 per page** — use for the most important feature section
+- **Muted/subtle alternate with default** to create gentle rhythm without jarring transitions
+
+### Pre-Flight Checklist
+
+Before considering a page done, verify:
+
+1. [ ] **No inline styles for layout** — all spacing/padding via Section/SectionWrapper/Grid
+2. [ ] **Every text element uses `<Text>`** — no raw `<h1>`, `<p>`, `<span>`
+3. [ ] **Heading hierarchy is sequential** — h1 → h2 → h3, no skips
+4. [ ] **`onDarkBg` cascaded to ALL children** on dark/gradient sections
+5. [ ] **One primary Button per viewport** — secondary/tertiary for other actions
+6. [ ] **Section backgrounds alternate** — no 3+ consecutive same-bg
+7. [ ] **Card descriptions under 120 characters** — no walls of text in cards
+8. [ ] **Grid columns responsive** — verified at desktop, tablet, mobile
+9. [ ] **No hardcoded hex colors** — all from tokens
+10. [ ] **Images have `alt` text** — meaningful for content, empty for decorative
+11. [ ] **Primary CTA in first viewport** — hero section has the main action

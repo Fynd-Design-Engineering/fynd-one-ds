@@ -1,0 +1,27 @@
+/* ── TitleContentPair ──────────────────────── */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Theme modifiers for title ─────────────── */
+
+.title {
+  color: #101319;
+}
+
+.dark .title {
+  color: #ffffff;
+}
+
+/* ── Theme modifiers for subtext ───────────── */
+
+.subtext {
+  color: #5b5c5d;
+}
+
+.dark .subtext {
+  color: #a0a1a2;
+}

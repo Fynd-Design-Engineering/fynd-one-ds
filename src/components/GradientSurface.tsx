@@ -1,5 +1,6 @@
 import React, { CSSProperties } from 'react';
 import { gradients, GradientKey } from '../tokens';
+import styles from './GradientSurface.module.css';
 
 export interface GradientSurfaceProps {
   /** Which named gradient to apply */
@@ -27,13 +28,15 @@ export const GradientSurface: React.FC<GradientSurfaceProps> = ({
 }) => {
   const Tag = Component as React.ElementType;
 
+  const cls = [styles.root, className].filter(Boolean).join(' ');
+
   const resolved: CSSProperties = {
     background: gradients[gradient],
     ...style,
   };
 
   return (
-    <Tag className={className} style={resolved}>
+    <Tag className={cls} style={resolved}>
       {children}
     </Tag>
   );

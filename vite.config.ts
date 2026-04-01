@@ -8,24 +8,55 @@ export default defineConfig({
   plugins: [
     react(),
     svgr(),
-    dts({ rollupTypes: true }),
+    dts({ rollupTypes: false, outDir: 'dist' }),
   ],
-  build: {
-    lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
-      name: 'FyndOneDS',
-      formats: ['es', 'cjs'],
-      fileName: (format) => `index.${format}.js`,
-    },
-    rollupOptions: {
-      external: ['react', 'react-dom', 'react/jsx-runtime'],
-      output: {
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
-        },
+  css: {
+    modules: {
+      generateScopedName(name, filename) {
+        const file = filename.split('/').pop()?.replace('.module.css', '') ?? '';
+        const prefixMap: Record<string, string> = {
+          Button: 'button',
+          Text: 'text',
+          Chip: 'chip',
+          Tabs: 'tabs',
+          TitleContentPair: 'title-pair',
+          ImageHolder: 'image',
+          VisualElement: 'visual',
+          BentoGrid: 'bento',
+          Grid: 'grid',
+          RichIconCard: 'rich-icon',
+          ListingCard: 'listing',
+          MetricCard: 'metric',
+          ContentCard: 'content-card',
+          CTABanner: 'cta',
+          LogoMarquee: 'marquee',
+          SectionWrapper: 'section',
+          SectionHeader: 'section-header',
+          Section: 'section-full',
+          GradientSurface: 'gradient',
+        };
+        const prefix = prefixMap[file] ?? file.toLowerCase();
+        if (name === 'root') return `fds-${prefix}`;
+        return `fds-${prefix}__${name}`;
       },
     },
-    cssCodeSplit: false,
+  },
+  build: {
+    cssCodeSplit: true,
+    copyPublicDir: false,
+    assetsInlineLimit: 0,
+    rollupOptions: {
+      input: resolve(__dirname, 'src/index.ts'),
+      external: ['react', 'react-dom', 'react/jsx-runtime'],
+      preserveEntrySignatures: 'strict',
+      output: {
+        format: 'es',
+        dir: 'dist',
+        preserveModules: true,
+        preserveModulesRoot: 'src',
+        entryFileNames: '[name].js',
+        assetFileNames: 'assets/[name][extname]',
+      },
+    },
   },
 });

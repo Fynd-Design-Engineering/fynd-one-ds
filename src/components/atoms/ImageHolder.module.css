@@ -1,0 +1,50 @@
+/* ── ImageHolder container ─────────────────── */
+
+.root {
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #e3e3e3;
+}
+
+/* ── Aspect ratio modifiers ────────────────── */
+
+.ratio-5x4 {
+  aspect-ratio: 5 / 4;
+}
+
+.ratio-1x1 {
+  aspect-ratio: 1 / 1;
+}
+
+.ratio-16x9 {
+  aspect-ratio: 16 / 9;
+}
+
+.ratio-portrait {
+  aspect-ratio: 3 / 4;
+}
+
+/* ── Image ─────────────────────────────────── */
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Placeholder ───────────────────────────── */
+
+.placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #5b5c5d;
+}

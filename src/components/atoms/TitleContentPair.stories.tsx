@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { TitleContentPair } from './TitleContentPair';
 
@@ -51,7 +51,7 @@ export const AllSizes: Story = {
 
 export const OnDarkBackground: Story = {
   render: () => (
-    <div style={{ background: '#0e0e0e', padding: 40 }}>
+    <div style={{ background: '#101319', padding: 40 }}>
       <TitleContentPair
         title="Dark mode heading"
         subtext="Inverted color scheme for dark backgrounds"

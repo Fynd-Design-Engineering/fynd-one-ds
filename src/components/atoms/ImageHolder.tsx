@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import { neutralScale, borderRadius } from '../../tokens';
+import styles from './ImageHolder.module.css';
 
 export interface ImageHolderProps {
   aspectRatio: '5:4' | '1:1' | '16:9' | 'portrait';
@@ -9,11 +9,11 @@ export interface ImageHolderProps {
   style?: CSSProperties;
 }
 
-const ratioMap: Record<ImageHolderProps['aspectRatio'], number> = {
-  '5:4': 5 / 4,
-  '1:1': 1,
-  '16:9': 16 / 9,
-  portrait: 3 / 4,
+const ratioClassMap: Record<ImageHolderProps['aspectRatio'], string> = {
+  '5:4': 'ratio-5x4',
+  '1:1': 'ratio-1x1',
+  '16:9': 'ratio-16x9',
+  portrait: 'ratio-portrait',
 };
 
 export const ImageHolder: React.FC<ImageHolderProps> = ({
@@ -23,50 +23,27 @@ export const ImageHolder: React.FC<ImageHolderProps> = ({
   className,
   style,
 }) => {
-  const ratio = ratioMap[aspectRatio];
-
-  const container: CSSProperties = {
-    position: 'relative',
-    width: '100%',
-    aspectRatio: String(ratio),
-    borderRadius: borderRadius[16],
-    overflow: 'hidden',
-    backgroundColor: neutralScale[30],
-    ...style,
-  };
+  const classes = [
+    styles.root,
+    styles[ratioClassMap[aspectRatio] as keyof typeof styles],
+    className,
+  ].filter(Boolean).join(' ');
 
   if (src) {
     return (
-      <div className={className} style={container} data-figma-id="3364:34221">
+      <div className={classes} style={style} data-figma-id="3364:34221">
         <img
           src={src}
           alt={alt}
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            display: 'block',
-          }}
+          className={styles.img}
         />
       </div>
     );
   }
 
-  const placeholder: CSSProperties = {
-    position: 'absolute',
-    inset: 0,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontFamily: "'Inter', sans-serif",
-    fontSize: '14px',
-    fontWeight: 500,
-    color: neutralScale[60],
-  };
-
   return (
-    <div className={className} style={container} data-figma-id="3364:34221">
-      <div style={placeholder}>{aspectRatio}</div>
+    <div className={classes} style={style} data-figma-id="3364:34221">
+      <div className={styles.placeholder}>{aspectRatio}</div>
     </div>
   );
 };

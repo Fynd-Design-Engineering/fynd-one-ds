@@ -1,0 +1,86 @@
+/* ── Tabs wrapper ──────────────────────────── */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* ── Tab bar ───────────────────────────────── */
+
+.bar {
+  display: flex;
+  align-items: flex-end;
+}
+
+/* ── Tab button ────────────────────────────── */
+
+.button {
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 18px 24px;
+  font-family: 'Inter Display', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #5b5c5d;
+  background-color: transparent;
+  border: none;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 1px 2px 15px 0px rgba(0, 0, 0, 0.02);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.button--active {
+  color: #101319;
+  background-color: #ffffff;
+  border-radius: 12px 12px 0 0;
+  box-shadow: none;
+}
+
+/* ── Underline variant ─────────────────────── */
+
+.bar--underline {
+  width: 100%;
+}
+
+.button--underline {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1.5px solid transparent;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.button--underline-active {
+  background-color: #e3e3e3;
+  color: #101319;
+  border-bottom: 1.5px solid #000000;
+  border-radius: 8px 8px 0 0;
+  box-shadow: none;
+}
+
+/* ── Panel ─────────────────────────────────── */
+
+.panel {
+  background-color: #ffffff;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.panel-content {
+  padding-top: 48px;
+  padding-bottom: 80px;
+}
+
+/* ── Tab dot indicator ────────────────────────── */
+
+.dot {
+  flex-shrink: 0;
+}

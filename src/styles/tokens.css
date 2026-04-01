@@ -13,7 +13,21 @@
 /* ── Font loading ────────────────────────────────────────── */
 /* @import must come first per CSS spec */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600&display=swap');
+@font-face {
+  font-family: 'Inter Display';
+  src: url('../assets/fonts/InterDisplay-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter Display';
+  src: url('../assets/fonts/InterDisplay-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
 
 @font-face {
   font-family: 'Fynd Sans';
@@ -22,6 +36,14 @@
   font-weight: 400;
   font-style: normal;
   font-display: swap;
+}
+
+/* ── Global text rendering ─────────────────────────────── */
+
+*, *::before, *::after {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* ── Heading reset ──────────────────────────────────────── */
@@ -36,7 +58,7 @@ h1, h2, h3, h4, h5, h6 {
 :root {
   /* ── Font families (spec naming) ─────────────────────────── */
   --font-family--primary:   'Fynd Sans', sans-serif;
-  --font-family--secondary: 'Inter Display', 'Inter', sans-serif;
+  --font-family--secondary: 'Inter Display', sans-serif;
   --font-family--ui:        'Inter', sans-serif;
 
   /* Legacy aliases */
@@ -173,7 +195,7 @@ h1, h2, h3, h4, h5, h6 {
   --color-ai-to:   rgb(8, 111, 253);
 
   /* ── Semantic text colors ──────────────────────────────── */
-  --text--title:            #0e0e0e;
+  --text--title:            #101319;
   --text--subtext:          #5b5c5d;
   --text--title-inverse:    #ffffff;
   --text--subtext-inverse:  #a0a1a2;
@@ -182,13 +204,13 @@ h1, h2, h3, h4, h5, h6 {
   --background--background-light:   #ffffff;
   --background--background-medium:  #f8f8f9;
   --background--background-dark:    #5b5c5d;
-  --background--background-darkest: #0e0e0e;
+  --background--background-darkest: #101319;
 
   /* ── Neutral scale ─────────────────────────────────────── */
   --neutral--neutral-20:  #f8f8f9;
   --neutral--neutral-30:  #e3e3e3;
   --neutral--neutral-60:  #5b5c5d;
-  --neutral--neutral-100: #0e0e0e;
+  --neutral--neutral-100: #101319;
 
   /* ── Brand color families ──────────────────────────────── */
   /* Blue */
@@ -236,7 +258,7 @@ h1, h2, h3, h4, h5, h6 {
   --neutral-50:  #797a7c;
   --neutral-60:  #5b5c5d;
   --neutral-80:  #4a4b4c;
-  --neutral-100: #0e0e0e;
+  --neutral-100: #101319;
 
   /* ── Primitives — Blue ──────────────────────────────────── */
   --blue-10: #f9fbff;
@@ -354,16 +376,16 @@ h1, h2, h3, h4, h5, h6 {
   --btn--padding-x-lg:     32px;
   --btn--transition:       background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 
-  --btn--primary--bg:         #0e0e0e;
+  --btn--primary--bg:         #101319;
   --btn--primary--color:      #ffffff;
   --btn--primary--bg-hover:   #303030;
 
   --btn--primary-light--bg:       #ffffff;
-  --btn--primary-light--color:    #0e0e0e;
+  --btn--primary-light--color:    #101319;
   --btn--primary-light--bg-hover: #f8f8f9;
 
   --btn--secondary--bg:           transparent;
-  --btn--secondary--color:        #0e0e0e;
+  --btn--secondary--color:        #101319;
   --btn--secondary--border:       #e3e3e3;
   --btn--secondary--bg-hover:     #f8f8f9;
   --btn--secondary--border-hover: #5b5c5d;

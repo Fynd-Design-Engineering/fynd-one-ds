@@ -1,0 +1,73 @@
+/* ── RichIconCard ─────────────────────────────────────────────────────────── */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 32px;
+  border-radius: 16px;
+  border: 1px solid #e3e3e3;
+  background-color: #ffffff;
+  overflow: hidden;
+  box-shadow: none;
+  transition: box-shadow 0.3s;
+}
+
+.root:hover {
+  box-shadow: 1px 5px 10px 0px rgba(41, 41, 41, 0.05),
+              5px 18px 18px 0px rgba(41, 41, 41, 0.04),
+              10px 40px 24px 0px rgba(41, 41, 41, 0.03);
+}
+
+.dark {
+  background-color: #1a1a1a;
+}
+
+/* ── Content ──────────────────────────────────────────────────────────────── */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ── Title ────────────────────────────────────────────────────────────────── */
+
+.title {
+  font-family: 'Inter Display', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #101319;
+  margin: 0;
+}
+
+.title--dark {
+  color: #ffffff;
+}
+
+/* ── Subtext ──────────────────────────────────────────────────────────────── */
+
+.subtext {
+  font-family: 'Inter Display', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #5b5c5d;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.subtext--dark {
+  color: #a0a0a0;
+}

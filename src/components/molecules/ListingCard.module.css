@@ -1,0 +1,106 @@
+/* ── ListingCard ──────────────────────────────────────────────────────────── */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 1px 2px 15px 0px rgba(0, 0, 0, 0.02);
+  background-color: #ffffff;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+/* ── Content area ─────────────────────────────────────────────────────────── */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 20px 24px;
+}
+
+.content--sm {
+  padding: 16px;
+}
+
+/* ── Content pair ─────────────────────────────────────────────────────────── */
+
+.content-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Tags row ─────────────────────────────────────────────────────────────── */
+
+.tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ── Title ────────────────────────────────────────────────────────────────── */
+
+.title {
+  font-family: 'Inter Display', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #101319;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.title--sm {
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+/* ── Subtext ──────────────────────────────────────────────────────────────── */
+
+.subtext {
+  font-family: 'Inter Display', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #5b5c5d;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.subtext--sm {
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+/* ── Meta row ─────────────────────────────────────────────────────────────── */
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.meta-text {
+  font-family: 'Inter Display', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #5b5c5d;
+  margin: 0;
+}
+
+.meta-text--right {
+  text-align: right;
+}

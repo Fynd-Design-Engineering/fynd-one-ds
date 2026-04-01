@@ -17,7 +17,7 @@ export * from './icons';
 
 // Components
 export { Text } from './components/Typography/Text';
-export type { TextProps, TextVariant, TextWeight, Breakpoint } from './components/Typography/Text';
+export type { TextProps, TextVariant, TextWeight } from './components/Typography/Text';
 
 export { GradientSurface } from './components/GradientSurface';
 export type { GradientSurfaceProps } from './components/GradientSurface';
@@ -47,12 +47,18 @@ export type { ImageHolderProps } from './components/atoms/ImageHolder';
 export { TitleContentPair } from './components/atoms/TitleContentPair';
 export type { TitleContentPairProps } from './components/atoms/TitleContentPair';
 
+export { LogoMarquee } from './components/atoms/LogoMarquee';
+export type { LogoMarqueeProps, LogoItem } from './components/atoms/LogoMarquee';
+
 // Shared helpers
 export { SectionWrapper } from './components/_shared/SectionWrapper';
 export type { SectionWrapperProps } from './components/_shared/SectionWrapper';
 
 export { SectionHeader } from './components/_shared/SectionHeader';
 export type { SectionHeaderProps } from './components/_shared/SectionHeader';
+
+export { Section } from './components/_shared/Section';
+export type { SectionProps } from './components/_shared/Section';
 
 // Molecules
 export { RichIconCard } from './components/molecules/RichIconCard';

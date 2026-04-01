@@ -1,6 +1,7 @@
 import React, { CSSProperties } from 'react';
 import { neutrals } from '../../tokens';
 import { Text } from '../Typography/Text';
+import styles from './CTABanner.module.css';
 
 export interface CTABannerProps {
   title: string;
@@ -21,37 +22,29 @@ export const CTABanner: React.FC<CTABannerProps> = ({
   className,
   style,
 }) => {
-  const wrapper: CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: align === 'center' ? 'center' : 'flex-start',
-    textAlign: align,
-    gap: '24px',
-    padding: '40px 0',
-    ...style,
-  };
+  const wrapperClass = [
+    styles.root,
+    styles[align],
+    className,
+  ].filter(Boolean).join(' ');
 
-  const subtextStyle: CSSProperties = {
-    fontFamily: "'Inter Display', 'Inter', sans-serif",
-    fontSize: '18px',
-    lineHeight: 1.5,
-    color: onDarkBg ? neutrals[40] : neutrals[60],
-    maxWidth: '480px',
-    margin: 0,
-  };
+  const subtextClass = [
+    styles.subtext,
+    onDarkBg && styles['subtext--dark'],
+  ].filter(Boolean).join(' ');
 
   return (
-    <div className={className} style={wrapper}>
+    <div className={wrapperClass} style={style}>
       <Text
         variant="heading-m"
-        breakpoint="desktop"
+        as="h2"
         style={{ color: onDarkBg ? neutrals[0] : neutrals[100] }}
       >
         {title}
       </Text>
-      {subtext && <p style={subtextStyle}>{subtext}</p>}
+      {subtext && <p className={subtextClass}>{subtext}</p>}
       {children && (
-        <div style={{ display: 'flex', gap: '16px' }}>
+        <div className={styles.actions}>
           {children}
         </div>
       )}

@@ -1,0 +1,47 @@
+/* ── SectionHeader ─────────────────────────────────────────────────────────── */
+
+.root {
+  max-width: 720px;
+  margin-bottom: 56px;
+}
+
+/* ── Alignment ────────────────────────────────────────────────────────────── */
+
+.root--center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.root--left {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+}
+
+/* ── Content (chip + title pair) ──────────────────────────────────────────── */
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Chip ──────────────────────────────────────────────────────────────────── */
+
+.chip {
+  margin-bottom: 16px;
+}
+
+/* ── Actions ──────────────────────────────────────────────────────────────── */
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.actions--center {
+  justify-content: center;
+  margin-top: 24px;
+}

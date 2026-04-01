@@ -1,0 +1,11 @@
+/* ── Grid ───────────────────────────────────────────────────────────────────── */
+
+.root {
+  display: grid;
+  width: 100%;
+  /* grid-template-columns and gap set inline (dynamic props) */
+}
+
+.root > * {
+  min-height: 0;
+}

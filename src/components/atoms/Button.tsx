@@ -13,9 +13,9 @@ export interface ButtonProps {
 }
 
 const variantClass = (variant: string, onDarkBg: boolean): string => {
-  if (variant === 'tertiary') return onDarkBg ? styles['button--tertiary-light'] : styles['button--tertiary'];
-  if (variant === 'secondary') return onDarkBg ? styles['button--secondary-light'] : styles['button--secondary'];
-  return onDarkBg ? styles['button--primary-light'] : styles['button--primary'];
+  if (variant === 'tertiary') return onDarkBg ? styles['tertiary-light'] : styles.tertiary;
+  if (variant === 'secondary') return onDarkBg ? styles['secondary-light'] : styles.secondary;
+  return onDarkBg ? styles['primary-light'] : styles.primary;
 };
 
 export const Button: React.FC<ButtonProps> = ({
@@ -28,7 +28,7 @@ export const Button: React.FC<ButtonProps> = ({
   style,
 }) => {
   const showChevronResolved = variant === 'tertiary' || showChevron;
-  const classes = [styles.button, variantClass(variant, onDarkBg), className].filter(Boolean).join(' ');
+  const classes = [styles.root, variantClass(variant, onDarkBg), className].filter(Boolean).join(' ');
 
   return (
     <button

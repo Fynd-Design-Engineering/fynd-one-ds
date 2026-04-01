@@ -1,4 +1,5 @@
 import React, { CSSProperties } from 'react';
+import s from './BentoGrid.module.css';
 
 export type BentoRatio = '5:4' | '3:2' | '3:4' | 'wide';
 
@@ -11,11 +12,11 @@ export interface BentoGridProps {
   style?: CSSProperties;
 }
 
-const ratioMap: Record<BentoRatio, string> = {
-  '5:4': '5 / 4',
-  '3:2': '3 / 2',
-  '3:4': '3 / 4',
-  'wide': '1272 / 417',
+const ratioClassMap: Record<BentoRatio, string> = {
+  '5:4': 'cell--5x4',
+  '3:2': 'cell--3x2',
+  '3:4': 'cell--3x4',
+  'wide': 'cell--wide',
 };
 
 /** Default alternating pattern: 5:4, 3:2, 3:2, 5:4 */
@@ -26,6 +27,7 @@ const defaultRatios: BentoRatio[] = ['5:4', '3:2', '3:2', '5:4'];
  *
  * Cards are distributed into two columns in order (odd index → col1, even → col2).
  * 'wide' ratio cards span full width below the columns.
+ * Stacks to single column on screens ≤768px.
  */
 export const BentoGrid: React.FC<BentoGridProps> = ({
   children,
@@ -37,15 +39,16 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
   const childArray = React.Children.toArray(children);
 
   // Separate wide cards (full-width) from column cards
-  const columnItems: { child: React.ReactNode; ratio: string }[] = [];
-  const wideItems: { child: React.ReactNode; ratio: string }[] = [];
+  const columnItems: { child: React.ReactNode; ratioClass: string }[] = [];
+  const wideItems: { child: React.ReactNode; ratioClass: string }[] = [];
 
   childArray.forEach((child, i) => {
     const r = ratios[i] || '3:2';
+    const ratioClass = ratioClassMap[r];
     if (r === 'wide') {
-      wideItems.push({ child, ratio: ratioMap[r] });
+      wideItems.push({ child, ratioClass });
     } else {
-      columnItems.push({ child, ratio: ratioMap[r] });
+      columnItems.push({ child, ratioClass });
     }
   });
 
@@ -53,55 +56,29 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
   const col1 = columnItems.filter((_, i) => i % 2 === 0);
   const col2 = columnItems.filter((_, i) => i % 2 === 1);
 
-  const wrapper: CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    gap,
-    width: '100%',
-    ...style,
-  };
-
-  const columns: CSSProperties = {
-    display: 'flex',
-    gap,
-    alignItems: 'flex-start',
-  };
-
-  const column: CSSProperties = {
-    flex: '1 1 0',
-    display: 'flex',
-    flexDirection: 'column',
-    gap,
-    minWidth: 0,
-  };
-
-  const cell = (ratio: string): CSSProperties => ({
-    width: '100%',
-    aspectRatio: ratio,
-    borderRadius: '16px',
-    overflow: 'hidden',
-  });
+  const wrapperClass = [s.root, className].filter(Boolean).join(' ');
+  const cellClass = (ratioClass: string) => [s.cell, s[ratioClass]].filter(Boolean).join(' ');
 
   return (
-    <div className={className} style={wrapper}>
+    <div className={wrapperClass} style={{ '--bento-gap': `${gap}px`, ...style } as CSSProperties}>
       {columnItems.length > 0 && (
-        <div style={columns}>
-          <div style={column}>
+        <div className={s.columns}>
+          <div className={s.column}>
             {col1.map((item, i) => (
-              <div key={`c1-${i}`} style={cell(item.ratio)}>{item.child}</div>
+              <div key={`c1-${i}`} className={cellClass(item.ratioClass)}>{item.child}</div>
             ))}
           </div>
           {col2.length > 0 && (
-            <div style={column}>
+            <div className={s.column}>
               {col2.map((item, i) => (
-                <div key={`c2-${i}`} style={cell(item.ratio)}>{item.child}</div>
+                <div key={`c2-${i}`} className={cellClass(item.ratioClass)}>{item.child}</div>
               ))}
             </div>
           )}
         </div>
       )}
       {wideItems.map((item, i) => (
-        <div key={`wide-${i}`} style={cell(item.ratio)}>{item.child}</div>
+        <div key={`wide-${i}`} className={cellClass(item.ratioClass)}>{item.child}</div>
       ))}
     </div>
   );

@@ -27,15 +27,31 @@ import '@fynd-design-engineering/fynd-one-ds/styles/tokens.css';
 → **Never** use raw `<div>` with padding/margin for sections.
 
 ### Laying out cards or content?
-→ Equal columns? → `<Grid columns={N}>`
+→ Equal columns? → `<Grid columns={N}>` (auto-collapses: 4→2→1 at breakpoints)
 → Asymmetric/magazine layout? → `<BentoGrid ratios={[...]}>`
+→ Horizontally scrollable? → `<Rail gap={20}>` (edge-to-edge, draggable)
 → **Never** use raw CSS Grid or Flexbox for page-level layouts.
 
 ### Building a card?
 → See the **Card Selection Matrix** in Section 6.
 
+### Need a pricing table?
+→ Use `<PricingCard>` with label, amount, features, optional popular badge.
+
 ### Need a colored surface?
 → Use `<GradientSurface gradient="blue|peach|green|grey|ai">`
+
+### Need FAQ/collapsible content?
+→ Use `<Accordion items={[{question, answer}]}>`
+
+### Need pagination?
+→ Use `<Pagination totalPages={10} currentPage={page} onPageChange={setPage}>`
+
+### Need a search input?
+→ Use `<SearchBar>` for search. Use `<TextField>` for form fields.
+
+### Need a filter trigger?
+→ Use `<FilterButton filterCount={3}>` — icon-only on mobile, label on desktop.
 
 ### On a dark background?
 → Pass `onDarkBg` to every component that supports it (Button, Chip, Tag, Text, Section, MetricCard, RichIconCard, CTABanner, TitleContentPair).
@@ -307,6 +323,62 @@ When placing components on dark or gradient backgrounds, pass `onDarkBg={true}` 
 | `logoHeight` | `number` | `50` |
 | `hoverEffect` | `boolean` | `true` |
 
+#### Accordion
+| Prop | Type | Default |
+|------|------|---------|
+| `items` | `AccordionItem[]` | required |
+| `multiple` | `boolean` | `false` |
+| `onDarkBg` | `boolean` | `false` |
+
+`AccordionItem` shape: `{ question: string, answer: string }`
+
+Responsive: Desktop padding 24px/gap 24px → Tablet 20px/20px → Mobile 16px/16px. Question gap 80px desktop → 40px mobile. Answer padding-right 120px desktop → 40px mobile.
+
+#### Pagination
+| Prop | Type | Default |
+|------|------|---------|
+| `totalPages` | `number` | required |
+| `currentPage` | `number` | required |
+| `onPageChange` | `(page: number) => void` | — |
+| `onDarkBg` | `boolean` | `false` |
+
+Smart truncation: desktop shows 7 page numbers, mobile shows 4. Uses ellipsis for hidden ranges.
+
+#### FilterButton
+| Prop | Type | Default |
+|------|------|---------|
+| `label` | `string` | `'Filter'` |
+| `filterCount` | `number` | `0` |
+| `onClick` | `() => void` | — |
+
+Desktop: icon + label. Mobile: icon-only (40px circle). Count badge appears top-right when `filterCount > 0`.
+
+#### SearchBar
+| Prop | Type | Default |
+|------|------|---------|
+| `placeholder` | `string` | `'Search'` |
+| `value` | `string` | — |
+| `onChange` | `(value: string) => void` | — |
+| `onSubmit` | `(value: string) => void` | — |
+| `onDarkBg` | `boolean` | `false` |
+
+#### TextField
+| Prop | Type | Default |
+|------|------|---------|
+| `label` | `string` | — |
+| `required` | `boolean` | `false` |
+| `placeholder` | `string` | `'Placeholder Text'` |
+| `value` | `string` | — |
+| `onChange` | `(value: string) => void` | — |
+| `type` | `'text' \| 'email' \| 'password' \| 'number' \| 'tel' \| 'url'` | `'text'` |
+| `helperText` | `string` | — |
+| `error` | `string` | — |
+| `disabled` | `boolean` | `false` |
+| `maxLength` | `number` | — |
+| `showCharCount` | `boolean` | `false` |
+| `icon` | `ReactNode` | — |
+| `showHelpIcon` | `boolean` | `false` |
+
 ### Molecules
 
 #### ContentCard
@@ -382,6 +454,24 @@ When placing components on dark or gradient backgrounds, pass `onDarkBg={true}` 
 | `onDarkBg` | `boolean` | `true` |
 | `children` | `ReactNode` | — |
 
+#### PricingCard
+| Prop | Type | Default |
+|------|------|---------|
+| `label` | `string` | required |
+| `popularText` | `string` | — |
+| `title` | `string` | required |
+| `titleBold` | `string` | — |
+| `currency` | `string` | `'₹'` |
+| `amount` | `string` | required |
+| `period` | `string` | `'/year + GST'` |
+| `buttonLabel` | `string` | `'Get Started'` |
+| `buttonVariant` | `'primary' \| 'secondary' \| 'tertiary'` | `'primary'` |
+| `features` | `PricingFeature[]` | `[]` |
+| `onDarkBg` | `boolean` | `false` |
+| `onButtonClick` | `(e: MouseEvent) => void` | — |
+
+`PricingFeature` shape: `{ text: string }`
+
 ### Layout
 
 #### Grid
@@ -390,6 +480,16 @@ When placing components on dark or gradient backgrounds, pass `onDarkBg={true}` 
 | `columns` | `number` | `3` |
 | `gap` | `number` | `20` |
 | `children` | `ReactNode` | required |
+
+Auto-collapses responsively: 4→2→1, 3→2→1, 2→2→1 at tablet/mobile breakpoints.
+
+#### Rail
+| Prop | Type | Default |
+|------|------|---------|
+| `gap` | `number` | `20` |
+| `children` | `ReactNode` | required |
+
+Horizontally draggable track. Breaks out of parent container to viewport edges. First item aligns with container left edge. Hidden scrollbar, touch-friendly. Use for pricing cards, content cards, or any horizontally scrollable content.
 
 #### BentoGrid
 | Prop | Type | Default |
@@ -462,6 +562,7 @@ When building a card-like element, choose from existing molecules before creatin
 | Image + tags + title + date + read time | `ListingCard` | `tags`, `date`, `readTime`, `imageAspectRatio` |
 | Stat number or icon + label | `MetricCard` | `variant="number"` or `variant="icon"`, `stat` |
 | Full-width CTA with buttons | `CTABanner` | Pass `<Button>` components as `children` |
+| Pricing tier with features | `PricingCard` | `label`, `amount`, `features`, `popularText`, `onDarkBg` |
 
 **ContentCard defaults**: title renders as `body-xl` / `medium`, subtext as `body-m` / `regular` / `secondary`. Use `titleVariant` and `subtextVariant` to override per instance.
 
@@ -603,6 +704,99 @@ Only use `breakpoint` when the component is placed in a constrained container (e
     <ContentCard title="Extensions" subtext="Add functionality" imagePosition="below" imageSrc="/ext.png" />
     <ContentCard title="Analytics" subtext="Data insights" imagePosition="bottom-right" imageSrc="/analytics.png" />
   </BentoGrid>
+</Section>
+```
+
+### Rail with Cards
+```jsx
+<Section title="Explore our solutions" chipLabel="Solutions">
+  <Rail gap={20}>
+    <div style={{ width: 340 }}>
+      <ContentCard title="D2C Storefront" subtext="Launch your brand" imagePosition="below" imageSrc="/d2c.png" />
+    </div>
+    <div style={{ width: 340 }}>
+      <ContentCard title="Marketplace" subtext="Multi-channel selling" imagePosition="below" imageSrc="/mp.png" />
+    </div>
+    <div style={{ width: 340 }}>
+      <ContentCard title="OMS" subtext="Order management" imagePosition="below" imageSrc="/oms.png" />
+    </div>
+  </Rail>
+</Section>
+```
+
+### Pricing Section
+```jsx
+<Section title="Pricing" chipLabel="Plans" align="center">
+  <Grid columns={3}>
+    <PricingCard
+      label="Starter"
+      title="Ideal for"
+      titleBold="new businesses"
+      amount="4,999"
+      buttonLabel="Get Started"
+      buttonVariant="tertiary"
+      features={[{ text: 'Feature one' }, { text: 'Feature two' }]}
+    />
+    <PricingCard
+      label="Pro"
+      popularText="Most popular"
+      title="Ideal for"
+      titleBold="growing brands"
+      amount="11,111"
+      buttonLabel="Get Started"
+      features={[{ text: 'Feature one' }, { text: 'Feature two' }, { text: 'Feature three' }]}
+    />
+    <PricingCard
+      label="Enterprise"
+      title="Built for"
+      titleBold="scale"
+      amount="49,999"
+      buttonLabel="Contact Sales"
+      buttonVariant="secondary"
+      features={[{ text: 'Feature one' }, { text: 'Feature two' }]}
+    />
+  </Grid>
+</Section>
+```
+
+### FAQ Section
+```jsx
+<Section title="Frequently asked questions" chipLabel="Support" align="center">
+  <Accordion items={[
+    { question: 'What is Fynd Commerce?', answer: 'An AI-driven commerce platform.' },
+    { question: 'How does pricing work?', answer: 'Flexible plans starting from ₹4,999/year.' },
+    { question: 'Is there a free trial?', answer: 'Yes, 14 days with full access.' },
+  ]} />
+</Section>
+```
+
+### Search + Filter Bar
+```jsx
+<div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+  <SearchBar placeholder="Search products..." value={query} onChange={setQuery} />
+  <FilterButton filterCount={activeFilters} onClick={openFilters} />
+</div>
+```
+
+### Form with TextFields
+```jsx
+<Grid columns={2} gap={16}>
+  <TextField label="First Name" required placeholder="John" />
+  <TextField label="Last Name" required placeholder="Doe" />
+  <TextField label="Email" required type="email" placeholder="john@example.com" icon={<IcMail />} />
+  <TextField label="Phone" type="tel" placeholder="+91 98765 43210" />
+</Grid>
+```
+
+### Paginated List
+```jsx
+<Section title="Blog" chipLabel="Stories">
+  <Grid columns={3}>
+    {posts.map(post => (
+      <ListingCard key={post.id} title={post.title} tags={post.tags} date={post.date} />
+    ))}
+  </Grid>
+  <Pagination totalPages={totalPages} currentPage={page} onPageChange={setPage} />
 </Section>
 ```
 

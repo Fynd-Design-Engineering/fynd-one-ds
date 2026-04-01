@@ -36,7 +36,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "CLAUDE.md",
+    "README.md"
   ],
   "sideEffects": [
     "*.css"

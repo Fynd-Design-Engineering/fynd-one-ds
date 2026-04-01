@@ -8,6 +8,7 @@ const meta: Meta<typeof ListingCard> = {
   argTypes: {
     imageAspectRatio: { control: 'select', options: ['5:4', '1:1', '16:9', 'portrait'] },
     breakpoint: { control: 'select', options: ['lg', 'sm'] },
+    onDarkBg: { control: 'boolean' },
     showTags: { control: 'boolean' },
     showSubtext: { control: 'boolean' },
     showDate: { control: 'boolean' },
@@ -51,6 +52,20 @@ export const MultipleTags: Story = {
     ...Default.args,
     tags: ['Engineering', 'API', 'Platform'],
   },
+};
+
+export const Dark: Story = {
+  args: {
+    ...Default.args,
+    onDarkBg: true,
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ background: '#101319', padding: 40 }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export const TitleOnly: Story = {

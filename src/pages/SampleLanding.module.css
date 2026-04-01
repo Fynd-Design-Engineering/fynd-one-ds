@@ -1,0 +1,85 @@
+/* ── Hero ──────────────────────────────────── */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+}
+
+.hero__subtitle {
+  max-width: 560px;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.hero__chips {
+  margin-top: 24px;
+  max-width: 780px;
+}
+
+/* ── Testimonials ─────────────────────────── */
+
+.testimonials {
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+}
+
+.testimonials__featured {
+  flex: 1 1 50%;
+}
+
+.testimonials__stack {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── FAQ ───────────────────────────────────── */
+
+.faq {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.faq__item {
+  padding: 20px 0;
+  border-bottom: 1px solid #e3e3e3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq__icon {
+  font-size: 20px;
+  color: #5b5c5d;
+}
+
+/* ── Footer ────────────────────────────────── */
+
+.footer__columns {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+
+.footer__brand {
+  max-width: 280px;
+}
+
+.footer__link-group {
+  margin-bottom: 8px;
+}
+
+.footer__divider {
+  border-top: 1px solid #4a4b4c;
+  padding-top: 24px;
+}

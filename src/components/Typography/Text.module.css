@@ -1,0 +1,422 @@
+/* ─── Base ─────────────────────────────────────────────────────────────────── */
+
+.root {
+  margin: 0;
+}
+
+/* ─── Heading XXL ──────────────────────────────────────────────────────────── */
+
+.heading-xxl-lg {
+  font-family: 'Fynd Sans', sans-serif;
+  font-size: 72px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.heading-xxl-md {
+  font-family: 'Fynd Sans', sans-serif;
+  font-size: 56px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.heading-xxl-sm {
+  font-family: 'Fynd Sans', sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+/* ─── Heading XL ───────────────────────────────────────────────────────────── */
+
+.heading-xl-lg {
+  font-family: 'Fynd Sans', sans-serif;
+  font-size: 56px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.heading-xl-md {
+  font-family: 'Fynd Sans', sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.heading-xl-sm {
+  font-family: 'Fynd Sans', sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* ─── Heading L ────────────────────────────────────────────────────────────── */
+
+.heading-l-lg {
+  font-family: 'Fynd Sans', sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.heading-l-md {
+  font-family: 'Fynd Sans', sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.heading-l-sm {
+  font-family: 'Fynd Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+/* ─── Heading M ────────────────────────────────────────────────────────────── */
+
+.heading-m-lg {
+  font-family: 'Fynd Sans', sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.heading-m-md {
+  font-family: 'Fynd Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.heading-m-sm {
+  font-family: 'Fynd Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+/* ─── Heading S ────────────────────────────────────────────────────────────── */
+
+.heading-s-lg {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 34px;
+  letter-spacing: -0.02em;
+}
+
+.heading-s-md {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -0.02em;
+}
+
+.heading-s-sm {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+/* ─── Body XL ──────────────────────────────────────────────────────────────── */
+
+.body-xl-lg-medium {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.body-xl-lg-regular {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.body-xl-md-medium {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.body-xl-md-regular {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.body-xl-sm-medium {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.body-xl-sm-regular {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* ─── Body L ───────────────────────────────────────────────────────────────── */
+
+.body-l-lg-medium {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.body-l-lg-regular {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.body-l-md-medium {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.body-l-md-regular {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.body-l-sm-medium {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.body-l-sm-regular {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* ─── Body M ───────────────────────────────────────────────────────────────── */
+
+.body-m-lg-medium {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.body-m-lg-regular {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.body-m-md-medium {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.body-m-md-regular {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.body-m-sm-medium {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.body-m-sm-regular {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+/* ─── Body S ───────────────────────────────────────────────────────────────── */
+
+.body-s-lg-medium {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.body-s-lg-regular {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.body-s-md-medium {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.body-s-md-regular {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.body-s-sm-medium {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.body-s-sm-regular {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* ─── Body XS ──────────────────────────────────────────────────────────────── */
+
+.body-xs-lg-semibold {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.body-xs-lg-medium {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.body-xs-lg-regular {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.body-xs-lg-semibold-caps {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.body-xs-md-semibold {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.body-xs-md-medium {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.body-xs-md-regular {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.body-xs-md-semibold-caps {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.body-xs-sm-semibold {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.body-xs-sm-medium {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.body-xs-sm-regular {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.body-xs-sm-semibold-caps {
+  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+/* ─── Color variants ──────────────────────────────────────────────────────── */
+
+.color--muted {
+  color: #a0a1a2;
+}
+
+.color--subtle {
+  color: #797a7c;
+}
+
+.color--white {
+  color: #ffffff;
+}
+
+/* ─── Caps modifier (for programmatic caps prop) ───────────────────────────── */
+
+.caps {
+  text-transform: uppercase;
+}

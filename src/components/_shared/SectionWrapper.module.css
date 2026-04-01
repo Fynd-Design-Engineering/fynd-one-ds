@@ -1,0 +1,48 @@
+/* ── Section ───────────────────────────────────────────────────────────────── */
+
+.root {
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+
+.dark {
+  background-color: #0e0e0e;
+}
+
+.muted {
+  background-color: #f2f2f2;
+}
+
+.subtle {
+  background-color: #f8f8f9;
+}
+
+.no-padding-bottom {
+  padding-bottom: 0;
+}
+
+/* ── Container ─────────────────────────────────────────────────────────────── */
+
+.inner {
+  max-width: 80rem;
+  margin: 0 auto;
+  width: 100%;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  box-sizing: border-box;
+}
+
+/* ── Responsive ────────────────────────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .root {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .inner {
+    max-width: 100%;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}

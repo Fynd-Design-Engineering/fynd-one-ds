@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { ContentCard } from './ContentCard';
 
@@ -7,7 +7,7 @@ const meta: Meta<typeof ContentCard> = {
   component: ContentCard,
   argTypes: {
     imagePosition: { control: 'select', options: ['below', 'behind'] },
-    breakpoint: { control: 'select', options: ['desktop', 'tablet', 'mobile'] },
+    breakpoint: { control: 'select', options: ['lg', 'md', 'sm'] },
     showChip: { control: 'boolean' },
     showSubtext: { control: 'boolean' },
     showButton: { control: 'boolean' },
@@ -60,7 +60,7 @@ export const Tablet: Story = {
     title: 'Text goes here',
     subtext: 'Subtext goes here',
     buttonLabel: 'Button',
-    breakpoint: 'tablet',
+    breakpoint: 'md',
     imagePosition: 'below',
   },
   decorators: [(Story) => <div style={{ width: 377 }}><Story /></div>],
@@ -71,7 +71,7 @@ export const Mobile: Story = {
     chipLabel: 'Label Text',
     title: 'Text goes here',
     subtext: 'Subtext goes here',
-    breakpoint: 'mobile',
+    breakpoint: 'sm',
     imagePosition: 'behind',
     clickable: true,
     imageSrc: 'https://placehold.co/272x362/a0a1a2/ffffff?text=BG',
@@ -97,7 +97,7 @@ export const AllBreakpoints: Story = {
           title="Text goes here"
           subtext="Subtext goes here"
           buttonLabel="Button"
-          breakpoint="tablet"
+          breakpoint="md"
           imagePosition="below"
         />
       </div>
@@ -106,7 +106,7 @@ export const AllBreakpoints: Story = {
           chipLabel="Mobile"
           title="Text goes here"
           subtext="Subtext goes here"
-          breakpoint="mobile"
+          breakpoint="sm"
           imagePosition="behind"
           clickable
           imageSrc="https://placehold.co/272x362/a0a1a2/ffffff?text=BG"

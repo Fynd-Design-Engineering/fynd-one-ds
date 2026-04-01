@@ -1,6 +1,6 @@
 {
   "name": "@fynd-design-engineering/fynd-one-ds",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Fynd One Design System — React + TypeScript component library",
   "license": "UNLICENSED",
   "repository": {
@@ -12,7 +12,13 @@
     "access": "public",
     "registry": "https://registry.npmjs.org"
   },
-  "keywords": ["fynd", "design-system", "react", "components", "ui"],
+  "keywords": [
+    "fynd",
+    "design-system",
+    "react",
+    "components",
+    "ui"
+  ],
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

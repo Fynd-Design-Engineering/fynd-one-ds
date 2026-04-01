@@ -24,6 +24,7 @@
 
 .root--dark {
   background: var(--fds-bg-darkest, #0e0e0e);
+  border-color: var(--fds-neutral-80, #4a4b4c);
 }
 
 /* Amount section — inner card */

@@ -33,6 +33,8 @@ export interface ContentCardProps {
   onClick?: () => void;
   /** Card size variant — controls border radius and padding. */
   size?: 'lg' | 'md' | 'sm';
+  /** Dark background variant */
+  onDarkBg?: boolean;
   className?: string;
   style?: CSSProperties;
 }
@@ -56,6 +58,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
   alwaysShowArrow = false,
   onClick,
   size = 'lg',
+  onDarkBg = false,
   className,
   style,
 }) => {
@@ -69,6 +72,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
     (clickable || onClick) && styles.clickable,
     isBehind && styles['root--behind'],
     isBottomRight && styles['root--bottom-right'],
+    onDarkBg && styles['root--dark'],
     className,
   ].filter(Boolean).join(' ');
 
@@ -119,21 +123,22 @@ export const ContentCard: React.FC<ContentCardProps> = ({
               />
             </div>
           )}
-          <Text variant={titleVariant} weight="medium">{title}</Text>
-          {showSubtext && subtext && <Text variant={subtextVariant} weight="regular" color="secondary">{subtext}</Text>}
+          <Text variant={titleVariant} weight="medium" color={onDarkBg ? 'white' : 'default'}>{title}</Text>
+          {showSubtext && subtext && <Text variant={subtextVariant} weight="regular" color={onDarkBg ? 'muted' : 'secondary'}>{subtext}</Text>}
         </div>
 
         {showButton && !clickable && (
           <div className={styles['button-wrapper']}>
             <Button label={buttonLabel} variant={buttonVariant}
               showChevron={buttonVariant === 'tertiary'}
+              onDarkBg={onDarkBg}
             />
           </div>
         )}
 
         {clickable && (
           <button className={arrowClass} tabIndex={-1} aria-hidden>
-            <IconArrowDiagonal color={neutrals[100]} />
+            <IconArrowDiagonal color={onDarkBg ? neutrals[0] : neutrals[100]} />
           </button>
         )}
       </div>

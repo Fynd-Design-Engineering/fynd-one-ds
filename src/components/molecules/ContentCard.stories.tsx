@@ -8,6 +8,7 @@ const meta: Meta<typeof ContentCard> = {
   argTypes: {
     imagePosition: { control: 'select', options: ['below', 'behind', 'bottom-right'] },
     size: { control: 'select', options: ['lg', 'md', 'sm'] },
+    onDarkBg: { control: 'boolean' },
     showChip: { control: 'boolean' },
     showSubtext: { control: 'boolean' },
     showButton: { control: 'boolean' },
@@ -39,6 +40,42 @@ export const ImageBehind: Story = {
     imageSrc: 'https://placehold.co/626x626/a0a1a2/ffffff?text=Background',
   },
   decorators: [(Story) => <div style={{ width: 626, height: 500 }}><Story /></div>],
+};
+
+export const Dark: Story = {
+  args: {
+    title: 'Text goes here',
+    subtext: 'Subtext goes here',
+    buttonLabel: 'Button',
+    imagePosition: 'below',
+    onDarkBg: true,
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ background: '#101319', padding: 40, width: 626 }}>
+        <Story />
+      </div>
+    ),
+  ],
+};
+
+export const DarkBottomRight: Story = {
+  args: {
+    title: 'Text goes here',
+    subtext: 'Subtext goes here',
+    imagePosition: 'bottom-right',
+    imageSrc: 'https://placehold.co/300x300/a0a1a2/ffffff?text=Product',
+    clickable: true,
+    alwaysShowArrow: true,
+    onDarkBg: true,
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ background: '#101319', padding: 40, width: 626 }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export const Clickable: Story = {

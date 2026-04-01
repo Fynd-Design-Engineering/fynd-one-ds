@@ -1004,3 +1004,136 @@ import { IcCommerce } from '@fynd-design-engineering/fynd-one-ds';
 5. **Creating custom pills/badges** — Use `<Chip>` or `<Tag>` instead of styled spans.
 6. **Mixing Text with raw HTML** — Don't use `<Text>` for some text and `<p>` for others on the same page.
 7. **Adding new colors without tokens** — Every color must exist in `colors.ts` + `tokens.css` before use.
+
+---
+
+## 14 · Design Principles — Making Pages Look Great
+
+These rules help you make strong visual design decisions when building pages with this DS.
+
+### Visual Hierarchy
+- **One dominant element per viewport.** Every screen fold needs exactly one focal point — a Heading XXL/XL or a hero image. Everything else is subordinate.
+- **Size jumps create hierarchy.** Skip at least one type scale level between heading and body (e.g., heading-xl for title, body-l for description). Adjacent sizes (heading-m + heading-s) feel muddy.
+- **Use `textColors.title` for primary content, `textColors.subtext` for secondary.** Never use more than these two text colors on light backgrounds.
+- **Weight reinforces, never replaces, size.** Use font size first, then weight as a secondary signal.
+- **Limit heading levels per section to two.** A SectionHeader title + card titles is enough. A third heading level makes the section cluttered.
+
+### Whitespace & Breathing Room
+- **Section padding is sacred.** Always use `sectionPadding.y` (56px desktop / 32px mobile). Never reduce it to "fit more in."
+- **The larger the text, the more space around it.** Heading XXL needs `spacing[64]` or `spacing[80]` below. Body text needs `spacing[16]` or `spacing[24]`.
+- **Card internal padding: `spacing[24]` minimum desktop, `spacing[16]` mobile.** Tighter makes content feel trapped.
+- **Empty space is a feature.** A section with a heading, one sentence, and 3 cards beats one with 5 paragraphs and 6 cards.
+- **Gap between grid items: `spacing[24]` desktop, `spacing[16]` mobile.**
+
+### Typography Pairing
+- **Hero pattern:** heading-xxl (72px) + body-xl (16px). The size contrast is dramatic — ideal for heroes.
+- **Section header pattern:** heading-xl (56px) + body-l (18px).
+- **Card title pattern:** heading-s (26px) or body-xl-medium + body-m-regular (16px).
+- **Maximum line length: 720px.** Beyond this, reading comprehension drops.
+- **Never center-align body text longer than 3 lines.** Center alignment is for headings and short descriptions only.
+
+### Color Usage
+- **60-30-10 rule:** 60% white/light backgrounds, 30% text/borders (neutrals), 10% one accent color.
+- **Pick ONE accent color per page.** Use its 40/50 shade for emphasis, 10 shade for tinted backgrounds. Never use two accent families on the same page.
+- **Gradients are decorative, not structural.** Use `GradientSurface` on 1-2 sections max.
+- **Status colors (green, gold, red) are ONLY for status indicators.** Never use red as decorative accent.
+- **Muted > Bold for most content.** Use accent-10 and accent-20 shades for card backgrounds. Reserve accent-50/60 for CTAs only.
+
+### Layout Rhythm
+- **Grid column counts:** 3 or 4 columns desktop, 2 tablet, 1 mobile. Avoid 5+ columns.
+- **BentoGrid is for feature showcases with mixed content types.** Don't use bento for uniform card lists — use Grid.
+- **Alignment is non-negotiable.** Every element must sit on the container grid.
+- **Asymmetry that works:** A 2:1 split (large image left, text right) is intentional. Random sizing is not.
+
+### Card Design
+- **Shadow depth:** No shadow for flat cards on colored backgrounds. Subtle shadow on white. Shadow increase on hover only.
+- **Hover states: one property change only.** Either lift OR background shift. Never animate multiple properties.
+- **Content density per card:**
+  - MetricCard: one number + one label. Nothing else.
+  - RichIconCard: icon + title + 2-line description. No images.
+  - ContentCard: image + title + description (3 lines max) + optional CTA.
+  - PricingCard: price + plan name + 5-7 features max.
+- **Cards in a row must be equal height.** Grid handles this automatically.
+
+### Section Composition — Page Flow
+Follow this proven order:
+1. **Hero** — Heading XXL + subtitle + primary CTA
+2. **Logo bar** — LogoMarquee for social proof
+3. **Key metrics** — 3-4 MetricCards in a Grid
+4. **Feature showcase** — BentoGrid or Rail with ContentCards
+5. **Detailed features** — RichIconCard grid (3 or 4 col)
+6. **Testimonials** — ContentCards or quote blocks
+7. **Pricing** — PricingCard grid (2-3 options)
+8. **Final CTA** — CTABanner (dark background)
+9. **FAQ** — Accordion
+
+Not every page needs all sections. A focused landing page should have 4-6 sections. More than 8 is almost always too many.
+
+- **Alternate section backgrounds.** Light → muted → light → dark creates visual rhythm. Never use 3+ consecutive same-background sections.
+- **Every section needs a clear job.** If you can't describe the section's purpose in 5 words, it shouldn't exist.
+- **CTA placement: top and bottom.** Primary CTA in the hero, repeat in CTABanner near the footer.
+
+### Responsive Design Thinking
+- **Mobile is not "desktop but smaller."** Re-evaluate content priority per breakpoint.
+- **Stacking order on mobile:** Heading → Description → Image → CTA. Never put image above heading.
+- **Touch targets: 44px minimum height.** Buttons already handle this.
+- **Mobile typography floor: 14px.** Never go below 12px for any text.
+- **Reduce grid columns, not content.** 4→2→1. Don't hide cards — reflow them.
+- **Horizontal scrolling is forbidden** except for intentional Rail/LogoMarquee.
+
+### Modern Web Trends (2024-2026)
+- **Bento grids:** 4-6 cells max, each cell a self-contained card.
+- **Gradient surfaces:** Subtle, low-opacity. Section backgrounds, not on small elements.
+- **Editorial layouts:** Large type (heading-xxl), generous whitespace, minimal UI chrome.
+- **Dark sections as punctuation.** 1-2 per page for dramatic contrast breaks.
+- **Reduced UI density.** Show less per viewport, let users scroll. 3 cards with breathing room beats 6 crammed cards.
+- **Oversized section headings.** heading-xxl (72px) for hero, heading-xl (56px) for key sections. Big text works with ample whitespace.
+
+### Common AI Design Mistakes
+- **Too many colors.** Pick one accent family, use it sparingly.
+- **Inconsistent spacing.** Only use the spacing scale: 4, 8, 12, 16, 24, 32, 40, 56, 64, 80.
+- **Over-decorating.** Borders + shadows + gradients + rounded corners all on one element. Use one decorative treatment per element.
+- **Every section looks the same.** Vary patterns — BentoGrid, then metrics, then full-width, then card grid.
+- **Cramming content.** Card descriptions: 1-3 sentences max (under 120 characters ideal).
+- **CTA below the fold.** Primary CTA must be in the first viewport.
+- **Center-aligning everything.** Center section headers, but left-align card content and long text.
+- **Making all buttons primary.** One primary Button per viewport. Use secondary/tertiary for other actions.
+- **Ignoring text hierarchy.** Maintain at least 2 scale steps between section headings and card headings.
+
+### Dark Mode Design
+- **Use `backgroundColors.darkest` (#101319), not pure black.** The slight warmth reduces eye strain.
+- **Dark text: white for titles, `neutrals.40` (#a0a1a2) for subtext.**
+- **Shadows are invisible on dark.** Replace with subtle border (`neutrals.80` / #4a4b4c) for card elevation.
+- **Buttons on dark:** Use `onDarkBg` — primary inverts to white bg, secondary gets white border.
+- **Dark sections: 1-2 per page.** A fully dark page needs careful elevation hierarchy.
+- **Images on dark:** Consider slightly reducing brightness to prevent "blow out" against dark backgrounds.
+
+### Quick Reference: Spacing
+
+| Context | Desktop | Mobile |
+|---|---|---|
+| Between sections | 56px | 32px |
+| Section header → content | 40px | 32px |
+| Grid gap | 24px | 16px |
+| Card internal padding | 24-32px | 16-24px |
+| Heading → body text | 16px | 12px |
+| Body text → CTA button | 24px | 24px |
+| Page horizontal padding | 120px | 20px |
+
+### Quick Reference: Component Selection
+
+| Need | Component | Columns |
+|---|---|---|
+| Page hero with CTA | SectionWrapper + heading-xxl + Button | 1 |
+| Trust logos | LogoMarquee | scroll |
+| Key numbers | MetricCard in Grid | 3-4 |
+| Feature overview | BentoGrid with ContentCard | 2-3 |
+| Feature list | RichIconCard in Grid | 3-4 |
+| Blog/content cards | ContentCard in Grid | 3 |
+| Pricing comparison | PricingCard in Grid | 2-3 |
+| Horizontally scrollable | Rail with cards | scroll |
+| Final CTA | CTABanner (dark bg) | 1 |
+| FAQ | Accordion | 1 |
+| Filters + Search | SearchBar + FilterButton | inline |
+| Form fields | TextField in Grid | 1-2 |
+| Pagination | Pagination | 1 |

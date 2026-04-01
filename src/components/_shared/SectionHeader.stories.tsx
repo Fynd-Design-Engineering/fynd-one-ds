@@ -80,7 +80,7 @@ export const CenterAligned: Story = {
 
 export const OnDarkBackground: Story = {
   render: () => (
-    <div style={{ background: '#0e0e0e', padding: 32 }}>
+    <div style={{ background: '#101319', padding: 32 }}>
       <SectionHeader
         chipLabel="Platform"
         chipDotColor="blue"

@@ -45,11 +45,11 @@
 /* ── Title ────────────────────────────────────────────────────────────────── */
 
 .title {
-  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-family: 'Inter Display', sans-serif;
   font-size: 20px;
   font-weight: 500;
   line-height: 1.4;
-  color: #0e0e0e;
+  color: #101319;
   margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -66,7 +66,7 @@
 /* ── Subtext ──────────────────────────────────────────────────────────────── */
 
 .subtext {
-  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-family: 'Inter Display', sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
@@ -93,7 +93,7 @@
 }
 
 .meta-text {
-  font-family: 'Inter Display', 'Inter', sans-serif;
+  font-family: 'Inter Display', sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.4;

@@ -24,7 +24,7 @@ const Swatch = ({ color, label }: { color: string; label: string }) => {
     fontFamily: "'Inter', sans-serif",
     fontSize: 12,
     fontWeight: 500,
-    color: '#0e0e0e',
+    color: '#101319',
     textAlign: 'center',
     maxWidth: 64,
   };
@@ -39,7 +39,7 @@ const Swatch = ({ color, label }: { color: string; label: string }) => {
 
 const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
   <div style={{ marginBottom: 40 }}>
-    <h3 style={{ fontFamily: "'Inter', sans-serif", fontSize: 16, fontWeight: 600, marginBottom: 16, color: '#0e0e0e' }}>{title}</h3>
+    <h3 style={{ fontFamily: "'Inter', sans-serif", fontSize: 16, fontWeight: 600, marginBottom: 16, color: '#101319' }}>{title}</h3>
     <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>{children}</div>
   </div>
 );

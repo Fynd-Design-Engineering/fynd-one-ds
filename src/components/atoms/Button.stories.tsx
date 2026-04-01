@@ -47,7 +47,7 @@ export const WithChevron: Story = {
 
 export const OnDarkBackground: Story = {
   render: () => (
-    <div style={{ background: '#0e0e0e', padding: 32, display: 'flex', gap: 16 }}>
+    <div style={{ background: '#101319', padding: 32, display: 'flex', gap: 16 }}>
       <Button label="Get started" variant="primary" onDarkBg />
       <Button label="Learn more" variant="secondary" onDarkBg />
     </div>
@@ -56,7 +56,7 @@ export const OnDarkBackground: Story = {
 
 export const OnDarkWithChevron: Story = {
   render: () => (
-    <div style={{ background: '#0e0e0e', padding: 32, display: 'flex', gap: 16 }}>
+    <div style={{ background: '#101319', padding: 32, display: 'flex', gap: 16 }}>
       <Button label="Get started" variant="primary" onDarkBg showChevron />
       <Button label="Learn more" variant="secondary" onDarkBg showChevron />
     </div>

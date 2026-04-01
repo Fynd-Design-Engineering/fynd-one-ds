@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [
     react(),
     svgr(),
-    dts({ rollupTypes: true }),
+    dts({ rollupTypes: false, outDir: 'dist' }),
   ],
   css: {
     modules: {
@@ -29,7 +29,10 @@ export default defineConfig({
           MetricCard: 'metric',
           ContentCard: 'content-card',
           CTABanner: 'cta',
+          LogoMarquee: 'marquee',
           SectionWrapper: 'section',
+          SectionHeader: 'section-header',
+          Section: 'section-full',
           GradientSurface: 'gradient',
         };
         const prefix = prefixMap[file] ?? file.toLowerCase();
@@ -39,21 +42,21 @@ export default defineConfig({
     },
   },
   build: {
-    lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
-      name: 'FyndOneDS',
-      formats: ['es', 'cjs'],
-      fileName: (format) => `index.${format}.js`,
-    },
+    cssCodeSplit: true,
+    copyPublicDir: false,
+    assetsInlineLimit: 0,
     rollupOptions: {
+      input: resolve(__dirname, 'src/index.ts'),
       external: ['react', 'react-dom', 'react/jsx-runtime'],
+      preserveEntrySignatures: 'strict',
       output: {
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
-        },
+        format: 'es',
+        dir: 'dist',
+        preserveModules: true,
+        preserveModulesRoot: 'src',
+        entryFileNames: '[name].js',
+        assetFileNames: 'assets/[name][extname]',
       },
     },
-    cssCodeSplit: false,
   },
 });

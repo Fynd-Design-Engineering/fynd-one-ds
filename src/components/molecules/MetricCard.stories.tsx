@@ -62,7 +62,7 @@ export const NumberGrid: Story = {
 
 export const OnDarkBackground: Story = {
   render: () => (
-    <div style={{ background: '#0e0e0e', padding: 32, display: 'flex', gap: 24 }}>
+    <div style={{ background: '#101319', padding: 32, display: 'flex', gap: 24 }}>
       <MetricCard variant="icon" icon={<PlaceholderIcon />} title="Platform" onDarkBg />
       <MetricCard variant="number" stat="2M+" title="Orders processed" onDarkBg />
     </div>

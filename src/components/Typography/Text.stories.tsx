@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { Text } from './Text';
-import type { TextVariant, Breakpoint, TextWeight } from './Text';
+import type { TextVariant, TextWeight } from './Text';
 
 const meta: Meta<typeof Text> = {
   title: 'Atoms/Text',
@@ -13,10 +13,6 @@ const meta: Meta<typeof Text> = {
         'heading-xxl', 'heading-xl', 'heading-l', 'heading-m', 'heading-s',
         'body-xl', 'body-l', 'body-m', 'body-s', 'body-xs',
       ],
-    },
-    breakpoint: {
-      control: 'select',
-      options: ['lg', 'md', 'sm'],
     },
     weight: {
       control: 'select',
@@ -34,7 +30,6 @@ type Story = StoryObj<typeof Text>;
 export const Playground: Story = {
   args: {
     variant: 'heading-xl',
-    breakpoint: 'lg',
     weight: 'regular',
     caps: false,
     children: 'One Commerce Platform',
@@ -51,18 +46,16 @@ const bodyVariants: TextVariant[] = [
   'body-xl', 'body-l', 'body-m', 'body-s', 'body-xs',
 ];
 
-const breakpoints: Breakpoint[] = ['lg', 'md', 'sm'];
-
 export const TypeScale: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
       <section>
         <h6 style={{ color: '#888', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 16 }}>
-          Headings — Desktop
+          Headings (responsive — resize viewport to see scaling)
         </h6>
         {headingVariants.map((v) => (
           <div key={v} style={{ marginBottom: 12 }}>
-            <Text variant={v} breakpoint="lg">
+            <Text variant={v}>
               {v}
             </Text>
             <span style={{ fontSize: 11, color: '#999', marginLeft: 12 }}>{v}</span>
@@ -72,15 +65,15 @@ export const TypeScale: Story = {
 
       <section>
         <h6 style={{ color: '#888', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 16 }}>
-          Body — Desktop
+          Body (responsive — resize viewport to see scaling)
         </h6>
         {bodyVariants.map((v) => (
           <div key={v} style={{ marginBottom: 8 }}>
-            <Text variant={v} weight="regular" breakpoint="lg">
+            <Text variant={v} weight="regular">
               {v} — Regular
             </Text>
             <br />
-            <Text variant={v} weight="medium" breakpoint="lg">
+            <Text variant={v} weight="medium">
               {v} — Medium
             </Text>
           </div>
@@ -91,33 +84,10 @@ export const TypeScale: Story = {
         <h6 style={{ color: '#888', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 16 }}>
           Body XS — Caps
         </h6>
-        <Text variant="body-xs" weight="semibold" caps breakpoint="lg">
-          Caps label desktop
-        </Text>
-        <br />
-        <Text variant="body-xs" weight="semibold" caps breakpoint="sm">
-          Caps label mobile
+        <Text variant="body-xs" weight="semibold" caps>
+          Caps label
         </Text>
       </section>
-    </div>
-  ),
-};
-
-// ── Responsive Comparison ─────────────────────────────────────────────────────
-
-export const ResponsiveComparison: Story = {
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-      <h6 style={{ color: '#888', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-        heading-xxl across breakpoints
-      </h6>
-      {breakpoints.map((bp) => (
-        <div key={bp}>
-          <Text variant="heading-xxl" breakpoint={bp}>
-            {bp}: One Commerce
-          </Text>
-        </div>
-      ))}
     </div>
   ),
 };

@@ -1,6 +1,6 @@
 {
-  "name": "@fynd-one/ds",
-  "version": "0.1.0",
+  "name": "@fynd-design-engineering/fynd-one-ds",
+  "version": "0.1.2",
   "description": "Fynd One Design System — React + TypeScript component library",
   "license": "UNLICENSED",
   "repository": {
@@ -9,9 +9,16 @@
     "directory": "workspaces/fynd-one-ds/lahore"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   },
-  "keywords": ["fynd", "design-system", "react", "components", "ui"],
+  "keywords": [
+    "fynd",
+    "design-system",
+    "react",
+    "components",
+    "ui"
+  ],
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -29,7 +36,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "CLAUDE.md",
+    "README.md"
   ],
   "sideEffects": [
     "*.css"

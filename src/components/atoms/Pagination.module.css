@@ -1,0 +1,142 @@
+/* ── Pagination ──────────────────────────────────────────────────────────────── */
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px 0;
+}
+
+/* ── Page number buttons ─────────────────────────────────────────────────── */
+
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 56px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: 'Inter Display', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.55;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  background: none;
+}
+
+/* Light mode */
+.page--default {
+  color: var(--fds-neutral-60, #5b5c5d);
+}
+
+.page--default:hover {
+  background-color: var(--fds-neutral-10, #f8f8f9);
+}
+
+.page--selected {
+  background-color: var(--fds-neutral-100, #0e0e0e);
+  color: var(--fds-neutral-0, #ffffff);
+}
+
+/* Dark mode */
+.page--default-dark {
+  color: var(--fds-neutral-40, #a0a1a2);
+}
+
+.page--default-dark:hover {
+  background-color: var(--fds-neutral-80, #4a4b4c);
+}
+
+.page--selected-dark {
+  background-color: var(--fds-neutral-0, #ffffff);
+  color: var(--fds-neutral-100, #0e0e0e);
+}
+
+/* ── Ellipsis ────────────────────────────────────────────────────────────── */
+
+.ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  font-family: 'Inter Display', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--fds-neutral-60, #5b5c5d);
+  user-select: none;
+}
+
+.ellipsis--dark {
+  color: var(--fds-neutral-40, #a0a1a2);
+}
+
+/* ── Arrow buttons ───────────────────────────────────────────────────────── */
+
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 56px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+}
+
+.arrow--light:hover:not(:disabled) {
+  background-color: var(--fds-neutral-10, #f8f8f9);
+}
+
+.arrow--dark:hover:not(:disabled) {
+  background-color: var(--fds-neutral-80, #4a4b4c);
+}
+
+.arrow--disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.arrow-icon-left {
+  display: flex;
+  transform: rotate(180deg);
+}
+
+/* ── Responsive pages visibility ─────────────────────────────────────────── */
+
+.pages-desktop {
+  display: flex;
+  align-items: center;
+  /* Fixed width prevents layout shift when page numbers change */
+  min-width: calc(7 * 48px);
+  justify-content: center;
+}
+
+.pages-mobile {
+  display: none;
+  align-items: center;
+  min-width: calc(4 * 48px);
+  justify-content: center;
+}
+
+/* Mobile: show compact set, hide full set */
+@media (max-width: 767px) {
+  .root {
+    gap: 8px;
+  }
+
+  .pages-desktop {
+    display: none;
+  }
+
+  .pages-mobile {
+    display: flex;
+  }
+}

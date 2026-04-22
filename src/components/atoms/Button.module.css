@@ -72,13 +72,12 @@
 /* ── Tertiary ───────────────────────────── */
 
 .tertiary {
-  height: auto;
+  height: 40px;
   padding: 0;
   border: none;
   border-radius: 0;
   background-color: transparent;
   color: var(--btn-tertiary-text);
-  font-size: 14px;
   justify-content: flex-start;
 }
 
@@ -90,13 +89,12 @@
 /* ── Tertiary Light (on dark bg) ────────── */
 
 .tertiary-light {
-  height: auto;
+  height: 40px;
   padding: 0;
   border: none;
   border-radius: 0;
   background-color: transparent;
   color: var(--btn-tertiary-text-light);
-  font-size: 14px;
   justify-content: flex-start;
 }
 

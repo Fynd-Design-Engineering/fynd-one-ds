@@ -15,6 +15,7 @@ export { default as IcCablePlug } from './ic_cable_plug.svg?react';
 export { default as IcCameraDome } from './ic_camera_dome.svg?react';
 export { default as IcCameraVarifocalBullet } from './ic_camera_varifocal_bullet.svg?react';
 export { default as IcCameraVarifocalDome } from './ic_camera_varifocal_dome.svg?react';
+export { default as IcCareer } from './ic_career.svg?react';
 export { default as IcChip } from './ic_chip.svg?react';
 export { default as IcCinchCable } from './ic_cinch_cable.svg?react';
 export { default as IcCinch } from './ic_cinch.svg?react';

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { SectionHeader } from './SectionHeader';
+import { Button } from '../atoms/Button';
 
 const meta: Meta<typeof SectionHeader> = {
   title: 'Shared/SectionHeader',
@@ -12,6 +13,7 @@ const meta: Meta<typeof SectionHeader> = {
     align: { control: 'select', options: ['left', 'center'] },
     showChip: { control: 'boolean' },
     onDarkBg: { control: 'boolean' },
+    actions: { control: false },
   },
 };
 
@@ -76,6 +78,42 @@ export const CenterAligned: Story = {
     subtext: 'This header is centered within its container.',
     align: 'center',
   },
+};
+
+export const LeftWithActions: Story = {
+  render: () => (
+    <SectionHeader
+      chipLabel="Platform"
+      chipDotColor="blue"
+      title="Build your commerce experience"
+      subtext="Everything you need to launch, manage, and scale your online business."
+      align="left"
+      actions={
+        <>
+          <Button label="Get started" variant="primary" />
+          <Button label="Learn more" variant="secondary" />
+        </>
+      }
+    />
+  ),
+};
+
+export const CenterWithActions: Story = {
+  render: () => (
+    <SectionHeader
+      chipLabel="Platform"
+      chipDotColor="green"
+      title="Center-aligned with actions"
+      subtext="Buttons appear below the text stack in center mode."
+      align="center"
+      actions={
+        <>
+          <Button label="Get started" variant="primary" />
+          <Button label="Learn more" variant="secondary" />
+        </>
+      }
+    />
+  ),
 };
 
 export const OnDarkBackground: Story = {

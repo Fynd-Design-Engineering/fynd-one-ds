@@ -35,6 +35,7 @@ export { default as IcPhoto } from './ic_photo.svg?react';
 export { default as IcPlayCircle } from './ic_play_circle.svg?react';
 export { default as IcPlayPause } from './ic_play_pause.svg?react';
 export { default as IcPlay } from './ic_play.svg?react';
+export { default as IcPodcasts } from './ic_podcasts.svg?react';
 export { default as IcPreviousTitle } from './ic_previous_title.svg?react';
 export { default as IcRadioSignal } from './ic_radio_signal.svg?react';
 export { default as IcRadioStation } from './ic_radio_station.svg?react';

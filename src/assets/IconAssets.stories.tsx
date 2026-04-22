@@ -117,41 +117,91 @@ type Story = StoryObj;
 
 export const AllIcons: Story = {
   render: () => {
-    const totalAssets = Object.values(categories).reduce((sum, arr) => sum + arr.length, 0);
+    const [query, setQuery] = useState('');
+    const q = query.trim().toLowerCase();
+
+    const filteredReactIcons = q
+      ? reactIcons.filter(({ name }) => name.toLowerCase().includes(q))
+      : reactIcons;
+
+    const filteredCategories = sortedCategories
+      .map((cat) => ({
+        cat,
+        items: q
+          ? categories[cat].filter(({ name }) => name.toLowerCase().includes(q))
+          : categories[cat],
+      }))
+      .filter(({ items }) => items.length > 0);
+
+    const totalShown =
+      filteredReactIcons.length +
+      filteredCategories.reduce((sum, { items }) => sum + items.length, 0);
+    const totalAll =
+      reactIcons.length +
+      Object.values(categories).reduce((sum, arr) => sum + arr.length, 0);
+
     return (
       <div style={{ padding: 24 }}>
         <h3 style={{ fontFamily: "'Inter', sans-serif", fontSize: 16, fontWeight: 600, marginBottom: 4 }}>
-          Icon Library ({totalAssets + reactIcons.length} icons)
+          Icon Library ({q ? `${totalShown} of ${totalAll}` : totalAll} icons)
         </h3>
-        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: '#797a7c', marginBottom: 24 }}>
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: '#797a7c', marginBottom: 16 }}>
           Click any icon to copy its import statement.
         </p>
 
-        <div style={{ marginBottom: 40 }}>
-          <h4 style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, fontWeight: 600, color: '#101319', marginBottom: 8 }}>
-            React Components ({reactIcons.length})
-          </h4>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))', gap: 8, paddingBottom: 16 }}>
-            {reactIcons.map(({ name, Component }) => (
-              <ReactIconCard key={name} name={name} Component={Component} />
-            ))}
-          </div>
+        <div style={{ position: 'sticky', top: 0, zIndex: 20, background: '#fff', paddingBottom: 16, marginBottom: 8 }}>
+          <input
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search icons by name..."
+            style={{
+              width: '100%',
+              boxSizing: 'border-box',
+              padding: '10px 14px',
+              borderRadius: 8,
+              border: '1px solid #e3e3e3',
+              fontFamily: "'Inter', sans-serif",
+              fontSize: 13,
+              color: '#101319',
+              outline: 'none',
+            }}
+          />
         </div>
 
-        {sortedCategories.map((cat) => (
+        {filteredReactIcons.length === 0 && filteredCategories.length === 0 && (
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: '#797a7c', marginTop: 24 }}>
+            No icons match "{query}".
+          </p>
+        )}
+
+        {filteredReactIcons.length > 0 && (
+          <div style={{ marginBottom: 40 }}>
+            <h4 style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, fontWeight: 600, color: '#101319', marginBottom: 8 }}>
+              React Components ({filteredReactIcons.length})
+            </h4>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))', gap: 8, paddingBottom: 16 }}>
+              {filteredReactIcons.map(({ name, Component }) => (
+                <ReactIconCard key={name} name={name} Component={Component} />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {filteredCategories.map(({ cat, items }) => (
           <div key={cat} style={{ marginBottom: 40 }}>
             <h4 style={{
               fontFamily: "'Inter', sans-serif", fontSize: 14, fontWeight: 600,
               color: '#101319', marginBottom: 8, textTransform: 'capitalize',
             }}>
-              {cat} ({categories[cat].length})
+              {cat} ({items.length})
             </h4>
             <div style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))',
               gap: 8, paddingBottom: 16,
             }}>
-              {categories[cat].map(({ name, url }) => (
+              {items.map(({ name, url }) => (
                 <CopyCard
                   key={name}
                   name={name}

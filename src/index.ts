@@ -94,6 +94,27 @@ export type { ContentCardProps } from './components/molecules/ContentCard';
 export { PricingCard } from './components/molecules/PricingCard';
 export type { PricingCardProps, PricingFeature } from './components/molecules/PricingCard';
 
+export { Navbar } from './components/molecules/Navbar';
+export type {
+  NavbarProps,
+  NavItem,
+  NavDirectItem,
+  NavMegaDropdownItem,
+  NavSimpleDropdownItem,
+  NavCategory,
+  NavDropdownLink,
+} from './components/molecules/Navbar';
+
+export { Footer } from './components/molecules/Footer';
+export type {
+  FooterProps,
+  FooterLink,
+  FooterLinkSection,
+  FooterContentPair,
+  FooterSocialLink,
+  FooterSocialPlatform,
+} from './components/molecules/Footer';
+
 // Layouts
 export { Grid } from './components/layouts/Grid';
 export type { GridProps } from './components/layouts/Grid';

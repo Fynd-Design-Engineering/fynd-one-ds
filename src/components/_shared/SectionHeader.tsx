@@ -1,6 +1,6 @@
 import React from 'react';
+import { Text } from '../Typography/Text';
 import { Chip, ChipDotColor } from '../atoms/Chip';
-import { TitleContentPair } from '../atoms/TitleContentPair';
 import styles from './SectionHeader.module.css';
 
 export interface SectionHeaderProps {
@@ -18,6 +18,13 @@ export interface SectionHeaderProps {
   actions?: React.ReactNode;
   className?: string;
 }
+
+const titleVariantMap = {
+  xxl: 'heading-xxl',
+  xl: 'heading-xl',
+  l: 'heading-l',
+  m: 'heading-m',
+} as const;
 
 export const SectionHeader: React.FC<SectionHeaderProps> = ({
   chipLabel,
@@ -42,36 +49,45 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
     className,
   ].filter(Boolean).join(' ');
 
-  const headerContent = (
-    <div className={styles.content}>
-      {renderChip && (
-        <div className={styles.chip}>
-          <Chip
-            label={chipLabel}
-            variant={chipVariant}
-            dotColor={chipDotColor}
-            icon={chipIcon}
-            onDarkBg={onDarkBg}
-          />
-        </div>
-      )}
-      <TitleContentPair
-        title={title}
-        subtext={subtext}
-        titleSize={titleSize}
-        onDarkBg={onDarkBg}
-      />
-      {isCenter && actions && (
-        <div className={[styles.actions, styles['actions--center']].join(' ')}>
-          {actions}
-        </div>
-      )}
-    </div>
-  );
-
   return (
     <div className={rootClass}>
-      {headerContent}
+      <div className={styles.content}>
+        {renderChip && (
+          <div className={styles.chip}>
+            <Chip
+              label={chipLabel}
+              variant={chipVariant}
+              dotColor={chipDotColor}
+              icon={chipIcon}
+              onDarkBg={onDarkBg}
+            />
+          </div>
+        )}
+        <div className={styles['text-stack']}>
+          <Text
+            variant={titleVariantMap[titleSize]}
+            as="h2"
+            color={onDarkBg ? 'white' : 'default'}
+          >
+            {title}
+          </Text>
+          {subtext && (
+            <div className={styles.subtext}>
+              <Text
+                variant="body-l"
+                color={onDarkBg ? 'muted' : 'secondary'}
+              >
+                {subtext}
+              </Text>
+            </div>
+          )}
+        </div>
+        {isCenter && actions && (
+          <div className={[styles.actions, styles['actions--center']].join(' ')}>
+            {actions}
+          </div>
+        )}
+      </div>
       {!isCenter && actions && (
         <div className={styles.actions}>
           {actions}

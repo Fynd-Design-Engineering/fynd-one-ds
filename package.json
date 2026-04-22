@@ -1,6 +1,6 @@
 {
   "name": "@fynd-design-engineering/fynd-one-ds",
-  "version": "0.1.2",
+  "version": "0.1.8",
   "description": "Fynd One Design System — React + TypeScript component library",
   "license": "UNLICENSED",
   "repository": {
@@ -28,6 +28,7 @@
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
+    "./styles/tokens.css": "./src/styles/tokens.css",
     "./styles/fonts/*": "./dist/fonts/*",
     "./assets/brand-icons/*": "./src/assets/brand-icons/*",
     "./assets/brand-logos/*": "./src/assets/brand-logos/*",
@@ -62,6 +63,7 @@
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.0",
+    "lottie-react": "^2.4.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "storybook": "^10.3.3",
@@ -69,5 +71,8 @@
     "vite": "^5.4.0",
     "vite-plugin-dts": "^4.0.0",
     "vite-plugin-svgr": "^4.5.0"
+  },
+  "dependencies": {
+    "motion": "^12.38.0"
   }
 }

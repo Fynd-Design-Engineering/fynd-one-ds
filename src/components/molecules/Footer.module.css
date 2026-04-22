@@ -1,0 +1,237 @@
+.root {
+  background-color: var(--fds-background-darkest, #0e0e0e);
+  padding: 80px 120px;
+  color: var(--fds-neutral-0, #ffffff);
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1272px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Top: Logo + Heading ───────────────────────────────────────────────── */
+
+.topBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Content pairs ─────────────────────────────────────────────────────── */
+
+.contentPairs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 40px;
+  row-gap: 40px;
+  align-items: start;
+}
+
+.contentPair {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.trailing {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+/* ── Link columns ──────────────────────────────────────────────────────── */
+
+.linkRow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.linkSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.linkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.link {
+  display: inline-block;
+  background: none;
+  border: none;
+  padding: 4px 0;
+  color: var(--fds-neutral-40, #a0a1a2);
+  text-decoration: none;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.link:hover {
+  color: var(--fds-neutral-0, #ffffff);
+}
+
+/* ── Divider ───────────────────────────────────────────────────────────── */
+
+.divider {
+  height: 1px;
+  background-color: var(--fds-neutral-80, #4a4b4c);
+  width: 100%;
+}
+
+/* ── Bottom row: legal + social ────────────────────────────────────────── */
+
+.bottomRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.legalLinks {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.legalLink {
+  background: none;
+  border: none;
+  padding: 0;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.legalLink:hover {
+  color: var(--fds-neutral-0, #ffffff);
+}
+
+.socialLinks {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fds-neutral-0, #ffffff);
+  transition: opacity 0.2s;
+  opacity: 0.85;
+}
+
+.socialLink:hover {
+  opacity: 1;
+}
+
+/* ── Wordmark (decorative) ─────────────────────────────────────────────── */
+
+.wordmark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  user-select: none;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.wordmark--text {
+  font-family: 'Fynd Sans Compact', 'Fynd Sans Test', sans-serif;
+  font-weight: 400;
+  font-size: clamp(200px, 40vw, 560px);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  text-align: center;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.08);
+  text-stroke: 1px rgba(255, 255, 255, 0.08);
+  margin: 0;
+}
+
+/* ── Copyright ─────────────────────────────────────────────────────────── */
+
+.copyright {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 991px) {
+  .root {
+    padding: 64px 40px;
+  }
+
+  .container {
+    gap: 48px;
+  }
+
+  .linkRow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+  }
+}
+
+@media (max-width: 767px) {
+  .root {
+    padding: 48px 20px;
+  }
+
+  .container {
+    gap: 40px;
+  }
+
+  .contentPairs {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 24px;
+  }
+
+  .trailing {
+    justify-content: flex-start;
+  }
+
+  .linkRow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .bottomRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}

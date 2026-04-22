@@ -15,6 +15,8 @@ import { CTABanner } from '../components/molecules/CTABanner';
 import { BentoGrid } from '../components/layouts/BentoGrid';
 import { Grid } from '../components/layouts/Grid';
 import { LogoMarquee } from '../components/atoms/LogoMarquee';
+import { Accordion } from '../components/atoms/Accordion';
+import { Rail } from '../components/layouts/Rail';
 import s from './SampleLanding.module.css';
 
 const StarIcon = () => (
@@ -163,6 +165,38 @@ const SampleLanding = () => (
       </Grid>
     </Section>
 
+    {/* ────── 4b. Rail — Featured Solutions ────── */}
+    <Section
+      chipLabel="Solutions"
+      chipDotColor="peach"
+      chipVariant="anchor"
+      title="Explore our solutions"
+      subtext="Drag to browse our complete product suite."
+    >
+      <Rail gap={20}>
+        {[
+          { title: 'D2C Storefront', subtext: 'Launch your direct-to-consumer brand with a fully customizable storefront' },
+          { title: 'Marketplace Hub', subtext: 'Manage listings across Amazon, Flipkart, Myntra and 20+ channels' },
+          { title: 'Order Management', subtext: 'End-to-end order orchestration from click to delivery' },
+          { title: 'Warehouse Ops', subtext: 'Smart inventory tracking, picking, packing and dispatch' },
+          { title: 'In-Store POS', subtext: 'Modern point of sale with unified inventory and CRM' },
+          { title: 'AI Cataloging', subtext: 'Auto-generate product descriptions, tags and attributes' },
+        ].map((item) => (
+          <div key={item.title} style={{ width: 340 }}>
+            <ContentCard
+              title={item.title}
+              subtext={item.subtext}
+              imagePosition="below"
+              imageSrc={`https://placehold.co/400x240/f0f0f0/ccc?text=${encodeURIComponent(item.title)}`}
+              clickable
+              showButton
+              buttonLabel="Learn more"
+            />
+          </div>
+        ))}
+      </Rail>
+    </Section>
+
     {/* ────── 5. Built for demands — Bento ────── */}
     <Section
       chipLabel="Infrastructure"
@@ -227,14 +261,13 @@ const SampleLanding = () => (
       subtext="Everything you need to know about Fynd's commerce platform."
       align="center"
     >
-      <div className={s.faq}>
-        {['What is Fynd Commerce?', 'How does pricing work?', 'Can I migrate from my existing platform?', 'What support options are available?', 'Is there a free trial?'].map((q, i) => (
-          <div key={i} className={s['faq__item']}>
-            <Text variant="body-l" weight="medium">{q}</Text>
-            <span className={s['faq__icon']}>+</span>
-          </div>
-        ))}
-      </div>
+      <Accordion items={[
+        { question: 'What is Fynd Commerce?', answer: 'Fynd Commerce is an AI-driven commerce platform that helps businesses build, manage, and scale their online and offline retail operations.' },
+        { question: 'How does pricing work?', answer: 'We offer flexible pricing plans starting from ₹4,999/year. Each plan includes different features and transaction fee structures to match your business needs.' },
+        { question: 'Can I migrate from my existing platform?', answer: 'Yes, we provide a dedicated migration team and automated tools to help you move your catalog, orders, and customer data from any existing platform.' },
+        { question: 'What support options are available?', answer: 'All plans include email support. Pro and Enterprise plans include 24/7 priority support, dedicated account managers, and onboarding assistance.' },
+        { question: 'Is there a free trial?', answer: 'Yes, we offer a 14-day free trial with full access to all features. No credit card required to get started.' },
+      ]} />
     </Section>
 
     {/* ────── 8. Footer ────── */}

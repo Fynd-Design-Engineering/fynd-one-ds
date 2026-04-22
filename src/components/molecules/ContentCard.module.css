@@ -7,14 +7,23 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: #e3e3e3;
+  background-color: var(--fds-neutral-0, #ffffff);
   box-shadow: none;
   transition: box-shadow 0.3s;
 }
 
+.root--dark {
+  background-color: var(--fds-neutral-80, #4a4b4c);
+  border: 1px solid var(--fds-neutral-80, #4a4b4c);
+}
+
 .root--bottom-right {
-  background-color: #f5f5f5;
+  background-color: var(--fds-neutral-0, #ffffff);
   min-height: 14rem;
+}
+
+.root--dark.root--bottom-right {
+  background-color: var(--fds-neutral-80, #4a4b4c);
 }
 
 .clickable {

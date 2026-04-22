@@ -1,14 +1,88 @@
-import { defineConfig } from 'vite';
+import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
 import dts from 'vite-plugin-dts';
-import { resolve } from 'path';
+import { resolve, relative, dirname } from 'path';
+import { readdir, readFile, writeFile, rename } from 'fs/promises';
+
+/**
+ * Custom plugin: renames .module.css → .css in dist/assets/ to prevent
+ * consumer bundlers from re-processing already-scoped class names,
+ * then injects CSS import statements into each .module.css.js file.
+ */
+function injectComponentCss(): Plugin {
+  return {
+    name: 'inject-component-css',
+    apply: 'build',
+    closeBundle: {
+      sequential: true,
+      async handler() {
+        const distDir = resolve(__dirname, 'dist');
+        const assetsDir = resolve(distDir, 'assets');
+
+        // 1. Rename .module.css → .css to prevent consumer re-scoping
+        const cssFiles = await findFiles(assetsDir, /\.module\.css$/);
+        const renamedMap = new Map<string, string>();
+        for (const cssFile of cssFiles) {
+          const newPath = cssFile.replace('.module.css', '.css');
+          await rename(cssFile, newPath);
+          const baseName = cssFile.split('/').pop()?.replace('.module.css', '');
+          if (baseName) renamedMap.set(baseName, newPath);
+        }
+
+        // 2. Inject CSS import into each .module.css.js file
+        const jsFiles = await findFiles(distDir, /\.module\.css\.js$/);
+        for (const jsFile of jsFiles) {
+          const baseName = jsFile.split('/').pop()?.replace('.module.css.js', '');
+          if (!baseName) continue;
+
+          const matchingCss = renamedMap.get(baseName);
+          if (!matchingCss) continue;
+
+          const jsDir = dirname(jsFile);
+          let relPath = relative(jsDir, matchingCss);
+          if (!relPath.startsWith('.')) relPath = './' + relPath;
+
+          const content = await readFile(jsFile, 'utf-8');
+          await writeFile(jsFile, `import "${relPath}";\n${content}`);
+        }
+
+        // 3. Fix stripped global CSS imports (e.g., gradient-blur.css in ContentCard)
+        const contentCardJs = resolve(distDir, 'components/molecules/ContentCard.js');
+        const gradientBlurCss = resolve(assetsDir, 'styles/gradient-blur.css');
+        try {
+          let ccContent = await readFile(contentCardJs, 'utf-8');
+          let gradientRelPath = relative(dirname(contentCardJs), gradientBlurCss);
+          if (!gradientRelPath.startsWith('.')) gradientRelPath = './' + gradientRelPath;
+          ccContent = ccContent.replace(
+            /\/\* empty css\s+\*\//,
+            `import "${gradientRelPath}";`
+          );
+          await writeFile(contentCardJs, ccContent);
+        } catch { /* ContentCard not found, skip */ }
+      },
+    },
+  };
+}
+
+async function findFiles(dir: string, pattern: RegExp): Promise<string[]> {
+  const results: string[] = [];
+  const entries = await readdir(dir, { withFileTypes: true, recursive: true });
+  for (const entry of entries) {
+    if (entry.isFile() && pattern.test(entry.name)) {
+      const fullPath = resolve(entry.parentPath ?? entry.path, entry.name);
+      results.push(fullPath);
+    }
+  }
+  return results;
+}
 
 export default defineConfig({
   plugins: [
     react(),
     svgr(),
     dts({ rollupTypes: false, outDir: 'dist' }),
+    injectComponentCss(),
   ],
   css: {
     modules: {
@@ -24,12 +98,19 @@ export default defineConfig({
           VisualElement: 'visual',
           BentoGrid: 'bento',
           Grid: 'grid',
+          Rail: 'rail',
           RichIconCard: 'rich-icon',
           ListingCard: 'listing',
           MetricCard: 'metric',
           ContentCard: 'content-card',
+          PricingCard: 'pricing-card',
           CTABanner: 'cta',
           LogoMarquee: 'marquee',
+          Accordion: 'accordion',
+          Pagination: 'pagination',
+          FilterButton: 'filter-btn',
+          SearchBar: 'search-bar',
+          TextField: 'text-field',
           SectionWrapper: 'section',
           SectionHeader: 'section-header',
           Section: 'section-full',

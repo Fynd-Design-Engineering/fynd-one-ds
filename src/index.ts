@@ -50,6 +50,21 @@ export type { TitleContentPairProps } from './components/atoms/TitleContentPair'
 export { LogoMarquee } from './components/atoms/LogoMarquee';
 export type { LogoMarqueeProps, LogoItem } from './components/atoms/LogoMarquee';
 
+export { Accordion } from './components/atoms/Accordion';
+export type { AccordionProps, AccordionItem } from './components/atoms/Accordion';
+
+export { Pagination } from './components/atoms/Pagination';
+export type { PaginationProps } from './components/atoms/Pagination';
+
+export { FilterButton } from './components/atoms/FilterButton';
+export type { FilterButtonProps } from './components/atoms/FilterButton';
+
+export { SearchBar } from './components/atoms/SearchBar';
+export type { SearchBarProps } from './components/atoms/SearchBar';
+
+export { TextField } from './components/atoms/TextField';
+export type { TextFieldProps } from './components/atoms/TextField';
+
 // Shared helpers
 export { SectionWrapper } from './components/_shared/SectionWrapper';
 export type { SectionWrapperProps } from './components/_shared/SectionWrapper';
@@ -76,9 +91,36 @@ export type { CTABannerProps } from './components/molecules/CTABanner';
 export { ContentCard } from './components/molecules/ContentCard';
 export type { ContentCardProps } from './components/molecules/ContentCard';
 
+export { PricingCard } from './components/molecules/PricingCard';
+export type { PricingCardProps, PricingFeature } from './components/molecules/PricingCard';
+
+export { Navbar } from './components/molecules/Navbar';
+export type {
+  NavbarProps,
+  NavItem,
+  NavDirectItem,
+  NavMegaDropdownItem,
+  NavSimpleDropdownItem,
+  NavCategory,
+  NavDropdownLink,
+} from './components/molecules/Navbar';
+
+export { Footer } from './components/molecules/Footer';
+export type {
+  FooterProps,
+  FooterLink,
+  FooterLinkSection,
+  FooterContentPair,
+  FooterSocialLink,
+  FooterSocialPlatform,
+} from './components/molecules/Footer';
+
 // Layouts
 export { Grid } from './components/layouts/Grid';
 export type { GridProps } from './components/layouts/Grid';
 
 export { BentoGrid } from './components/layouts/BentoGrid';
 export type { BentoGridProps, BentoRatio } from './components/layouts/BentoGrid';
+
+export { Rail } from './components/layouts/Rail';
+export type { RailProps } from './components/layouts/Rail';

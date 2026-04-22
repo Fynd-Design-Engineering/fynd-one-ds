@@ -1,0 +1,88 @@
+/* ── SearchBar ───────────────────────────────────────────────────────────────── */
+
+.root {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border: 1px solid;
+  border-radius: 8px;
+}
+
+.root--light {
+  background: var(--fds-neutral-0, #ffffff);
+  border-color: var(--fds-neutral-30, #e3e3e3);
+}
+
+.root--dark {
+  background: var(--fds-neutral-80, #4a4b4c);
+  border-color: var(--fds-neutral-80, #4a4b4c);
+}
+
+.root:focus-within {
+  border-color: var(--fds-neutral-100, #0e0e0e);
+}
+
+.root--dark:focus-within {
+  border-color: var(--fds-neutral-0, #ffffff);
+}
+
+/* ── Input ───────────────────────────────────────────────────────────────── */
+
+.input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font-family: 'Inter Display', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  appearance: none;
+}
+
+.input--light {
+  color: var(--fds-neutral-100, #0e0e0e);
+}
+
+.input--light::placeholder {
+  color: var(--fds-neutral-40, #a0a1a2);
+}
+
+.input--dark {
+  color: var(--fds-neutral-0, #ffffff);
+}
+
+.input--dark::placeholder {
+  color: var(--fds-neutral-50, #797a7c);
+}
+
+/* ── Icon ────────────────────────────────────────────────────────────────── */
+
+.icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.icon--light {
+  color: var(--fds-neutral-40, #a0a1a2);
+}
+
+.icon--dark {
+  color: var(--fds-neutral-50, #797a7c);
+}
+
+/* ── Responsive: Mobile ──────────────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .root {
+    padding: 10px 12px;
+  }
+
+  .input {
+    font-size: 14px;
+  }
+}

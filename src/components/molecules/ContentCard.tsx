@@ -15,6 +15,11 @@ const GradientBlur: React.FC = () => (
 
 export interface ContentCardProps {
   imageSrc?: string;
+  /** Image shown on hover/focus-within. Cross-fades from imageSrc. */
+  imageHoverSrc?: string;
+  /** Alt text for the hover image. Falls back to imageAlt. */
+  imageHoverAlt?: string;
+  /** @deprecated Use imageHoverSrc instead. */
   hoverImageSrc?: string;
   imageAlt?: string;
   imagePosition?: 'below' | 'behind' | 'bottom-right';
@@ -41,6 +46,8 @@ export interface ContentCardProps {
 
 export const ContentCard: React.FC<ContentCardProps> = ({
   imageSrc,
+  imageHoverSrc,
+  imageHoverAlt,
   hoverImageSrc,
   imageAlt = '',
   imagePosition = 'below',
@@ -65,6 +72,8 @@ export const ContentCard: React.FC<ContentCardProps> = ({
   const isBehind = imagePosition === 'behind';
   const isBottomRight = imagePosition === 'bottom-right';
   const sizeClass = size;
+  const resolvedHoverSrc = imageHoverSrc ?? hoverImageSrc;
+  const resolvedHoverAlt = imageHoverAlt ?? imageAlt;
 
   const cardClass = [
     styles.root,
@@ -96,16 +105,47 @@ export const ContentCard: React.FC<ContentCardProps> = ({
       data-figma-id="3262:20928"
     >
       {isBehind && imageSrc && (
-        <img src={imageSrc} alt={imageAlt} className={styles['image--behind']} />
+        <>
+          <img
+            src={imageSrc}
+            alt={imageAlt}
+            className={[styles['image--behind'], styles['image-default']]
+              .filter(Boolean)
+              .join(' ')}
+          />
+          {resolvedHoverSrc && (
+            <img
+              src={resolvedHoverSrc}
+              alt={resolvedHoverAlt}
+              aria-hidden="true"
+              className={[styles['image--behind'], styles['image-hover']]
+                .filter(Boolean)
+                .join(' ')}
+            />
+          )}
+        </>
       )}
 
       {isBehind && <GradientBlur />}
 
       {isBottomRight && imageSrc && (
         <div className={styles['image--bottom-right']}>
-          <img src={imageSrc} alt={imageAlt} className={styles['image--bottom-right-default']} />
-          {hoverImageSrc && (
-            <img src={hoverImageSrc} alt={imageAlt} className={styles['image--bottom-right-hover']} />
+          <img
+            src={imageSrc}
+            alt={imageAlt}
+            className={[styles['image--bottom-right-default'], styles['image-default']]
+              .filter(Boolean)
+              .join(' ')}
+          />
+          {resolvedHoverSrc && (
+            <img
+              src={resolvedHoverSrc}
+              alt={resolvedHoverAlt}
+              aria-hidden="true"
+              className={[styles['image--bottom-right-hover'], styles['image-hover']]
+                .filter(Boolean)
+                .join(' ')}
+            />
           )}
         </div>
       )}
@@ -145,7 +185,25 @@ export const ContentCard: React.FC<ContentCardProps> = ({
 
       {!isBehind && !isBottomRight && (
         <div className={styles['image-container']}>
-          {imageSrc && <img src={imageSrc} alt={imageAlt} className={styles['image--below']} />}
+          {imageSrc && (
+            <img
+              src={imageSrc}
+              alt={imageAlt}
+              className={[styles['image--below'], styles['image-default']]
+                .filter(Boolean)
+                .join(' ')}
+            />
+          )}
+          {imageSrc && resolvedHoverSrc && (
+            <img
+              src={resolvedHoverSrc}
+              alt={resolvedHoverAlt}
+              aria-hidden="true"
+              className={[styles['image--below'], styles['image-hover']]
+                .filter(Boolean)
+                .join(' ')}
+            />
+          )}
         </div>
       )}
     </div>

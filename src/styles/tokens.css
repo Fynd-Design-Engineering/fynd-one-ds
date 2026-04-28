@@ -10,8 +10,12 @@
  *   box-shadow: var(--shadow-m);
  */
 
+/* ── Reset ───────────────────────────────────────────────── */
+/* Bundled CSS reset. @import must come first per CSS spec. */
+
+@import './reset.css';
+
 /* ── Font loading ────────────────────────────────────────── */
-/* @import must come first per CSS spec */
 
 @font-face {
   font-family: 'Inter Display';

@@ -16,6 +16,7 @@ export { default as IcLadderPricing } from './ic_ladder_pricing.svg?react';
 export { default as IcLooksCreator } from './ic_looks_creator.svg?react';
 export { default as IcMinimumOrderValue } from './ic_minimum_order_value.svg?react';
 export { default as IcOverview } from './ic_overview.svg?react';
+export { default as IcPopularGradient } from './ic_popular_gradient.svg?react';
 export { default as IcPricing } from './ic_pricing.svg?react';
 export { default as IcProductInventory } from './ic_product_inventory.svg?react';
 export { default as IcStorage } from './ic_storage.svg?react';

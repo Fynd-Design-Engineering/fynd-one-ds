@@ -14,6 +14,49 @@ Every consuming app MUST import the token stylesheet at its entry point:
 import '@fynd-design-engineering/fynd-one-ds/styles/tokens.css';
 ```
 
+`tokens.css` bundles the DS CSS reset (via `@import './reset.css'`), so a single import gives you tokens + a sanitized browser baseline. **Consumers no longer need Tailwind preflight (or any third-party reset) for that purpose.**
+
+The reset is opinionated. Decisions made:
+
+- `box-sizing: border-box` on every element (predictable sizing math).
+- `html`, `body`, headings, and `<p>` have margins zeroed; body gets a `1.5` line-height and a system-font fallback.
+- Block-level media (`img`, `video`, `picture`, `svg`, `canvas`) is `display: block; max-width: 100%`.
+- Form controls inherit `font` and `color` from their parent.
+- Raw `<button>` elements lose UA chrome (transparent background, no border, pointer cursor) so they can be used as click targets without re-styling. The `Button` component re-applies its own styles on top.
+- Lists with a class (`<ul class="...">`) lose default bullets; bare `<ul>` / `<ol>` keep them so prose markup stays readable.
+- `<a>` colors and `<table>` defaults are **not** touched — those belong to component/page concerns.
+- Focus rings are preserved.
+- `prefers-reduced-motion` is honoured.
+
+If you need to opt out, import only the reset standalone, or skip it entirely and bring your own:
+
+```tsx
+// Reset on its own (bring your own tokens):
+import '@fynd-design-engineering/fynd-one-ds/styles/reset.css';
+```
+
+---
+
+## Server vs Client Components
+
+This package ships modules with the `'use client'` directive where it's required for React Server Components (Next.js App Router 15+, etc). Consumer server pages can import any DS component directly — interactive ones are client-bundled automatically; pure-render ones stay server-rendered (no extra hydration cost).
+
+**Components that ship with `'use client'`** (use hooks or own internal interaction state):
+
+- `Accordion`, `Tabs`, `TextField`, `SearchBar`, `Pagination`, `FilterButton`
+- `Rail` (layout)
+- `Navbar`, `Popover` (molecules)
+
+Everything else is a pure-render server component:
+
+- `Text`, `Chip`, `Tag`, `Button`, `ImageHolder`, `VisualElement`, `TitleContentPair`, `SectionIndicator`, `LogoMarquee`
+- `MetricCard`, `RichIconCard`, `ContentCard`, `ListingCard`, `PricingCard`, `CTABanner`, `Footer`
+- `Section`, `SectionWrapper`, `SectionHeader`, `Grid`, `BentoGrid`, `GradientSurface`
+
+If you pass an event handler (e.g., `onClick`) to a pure-render component from a server component, that's still a server-component error per RSC rules — wrap your call site in a client component, or use a DS component that already ships with `'use client'`.
+
+The `'use client'` directive is preserved in the built `dist/**` modules via `rollup-plugin-preserve-directives`, so consumer bundlers see it without the DS having to mark every file.
+
 ---
 
 ## 1 · Decision Tree — "What Should I Use?"
@@ -52,6 +95,9 @@ import '@fynd-design-engineering/fynd-one-ds/styles/tokens.css';
 
 ### Need a filter trigger?
 → Use `<FilterButton filterCount={3}>` — icon-only on mobile, label on desktop.
+
+### Need a dropdown / floating menu / region switcher?
+→ Use `<Popover trigger={...} placement="bottom-end" role="menu">` — handles positioning, click-outside, Esc, focus trap, ARIA, arrow-key navigation. Pass any DS Button/Chip as the trigger; consumer composes the panel content.
 
 ### On a dark background?
 → Pass `onDarkBg` to every component that supports it (Button, Chip, Tag, Text, Section, MetricCard, RichIconCard, CTABanner, TitleContentPair).
@@ -387,7 +433,8 @@ Desktop: icon + label. Mobile: icon-only (40px circle). Count badge appears top-
 | `title` | `string` | required |
 | `subtext` | `string` | — |
 | `imageSrc` | `string` | — |
-| `hoverImageSrc` | `string` | — |
+| `imageHoverSrc` | `string` | — |
+| `imageHoverAlt` | `string` | — (falls back to `imageAlt`) |
 | `imageAlt` | `string` | — |
 | `imagePosition` | `'below' \| 'behind' \| 'bottom-right'` | — |
 | `chipLabel` | `string` | — |
@@ -422,6 +469,8 @@ Desktop: icon + label. Mobile: icon-only (40px circle). Count badge appears top-
 | `subtext` | `string` | — |
 | `showSubtext` | `boolean` | `true` |
 | `imageSrc` | `string` | — |
+| `imageHoverSrc` | `string` | — |
+| `imageHoverAlt` | `string` | — (falls back to `imageAlt`) |
 | `imageAlt` | `string` | `''` |
 | `imageAspectRatio` | `'5:4' \| '1:1' \| '16:9' \| 'portrait'` | `'16:9'` |
 | `tags` | `string[]` | — |
@@ -471,6 +520,48 @@ Desktop: icon + label. Mobile: icon-only (40px circle). Count badge appears top-
 | `onButtonClick` | `(e: MouseEvent) => void` | — |
 
 `PricingFeature` shape: `{ text: string }`
+
+#### Popover
+Generic positioned panel anchored to a trigger element. Use for region switchers, action menus, "more info" disclosures, custom dropdowns. Built on Floating UI — handles auto-flip, click-outside, Esc, focus trap, keyboard nav, ARIA.
+
+| Prop | Type | Default |
+|------|------|---------|
+| `trigger` | `ReactElement` | required — must forward ref to its DOM element |
+| `children` | `ReactNode` | required — panel content (consumer composes) |
+| `placement` | `'top' \| 'top-start' \| 'top-end' \| 'right' \| 'right-start' \| 'right-end' \| 'bottom' \| 'bottom-start' \| 'bottom-end' \| 'left' \| 'left-start' \| 'left-end'` | `'bottom-start'` |
+| `offset` | `number` | `8` (pixels between trigger and panel) |
+| `role` | `'menu' \| 'listbox' \| 'dialog'` | `'dialog'` |
+| `onDarkBg` | `boolean` | `false` |
+| `open` | `boolean` | — (controlled) |
+| `onOpenChange` | `(open: boolean) => void` | — |
+| `defaultOpen` | `boolean` | `false` |
+| `matchTriggerWidth` | `boolean` | `false` |
+| `width` | `number \| string` | — |
+| `disableFocusTrap` | `boolean` | `false` |
+| `modal` | `boolean` | `false` |
+
+Behavior:
+- Opens on trigger click, closes on outside-click, Esc, or trigger re-click.
+- Focus is trapped inside the panel while open and returns to the trigger on close (unless `disableFocusTrap`).
+- When `role="menu"` or `role="listbox"`, child elements with `role="menuitem"` (menu) or `role="option"` (listbox) gain arrow-key navigation automatically. Authors just put `role` on each item — no extra wiring needed.
+- Trigger receives `aria-expanded`, `aria-haspopup`, `aria-controls` via `cloneElement`. **The trigger component must forward refs and accept HTML attrs.** DS `Button`, `Chip`, etc. already do.
+- SSR-safe: panel is portaled client-side only.
+
+```jsx
+<Popover
+  role="menu"
+  placement="bottom-end"
+  trigger={<Button label="India" variant="tertiary" showChevron />}
+>
+  <ul style={{ listStyle: 'none', margin: 0, padding: 8 }}>
+    <li><button role="menuitem">India</button></li>
+    <li><button role="menuitem">United Kingdom</button></li>
+    <li><button role="menuitem">United States</button></li>
+  </ul>
+</Popover>
+```
+
+For controlled mode, pass `open` + `onOpenChange`. To dismiss the popover from inside a menu item, call the `onOpenChange(false)` setter (or use the uncontrolled mode and rely on outside-click).
 
 ### Layout
 
@@ -878,12 +969,18 @@ import { neutrals, textColors, backgroundColors, gradients, spacing } from '@fyn
 // CSS variables (global stylesheet)
 import '@fynd-design-engineering/fynd-one-ds/styles/tokens.css';
 
-// Icons (barrel)
-import { IcAdd, IcCommerce } from '@fynd-design-engineering/fynd-one-ds';
+// Icons (barrel) — ergonomic; 1400+ Ic* names autocomplete
+import { IcAdd, IcCart, IcTruckDelivery } from '@fynd-design-engineering/fynd-one-ds';
 
-// Icons (by category)
+// Icons (by category) — smaller import surface for older bundlers
 import { IcAdd } from '@fynd-design-engineering/fynd-one-ds/icons/actions';
 import { IcAiStar } from '@fynd-design-engineering/fynd-one-ds/icons/AI';
+
+// Trade-off: the barrel bundles every icon definition into one module so
+// modern bundlers (Vite, Next.js 13+, Webpack 5) can tree-shake them.
+// On older toolchains that don't tree-shake re-exports cleanly, the
+// per-category subpath keeps the imported chunk small (only that
+// category's icons are pulled in).
 
 // Brand assets
 import logo from '@fynd-design-engineering/fynd-one-ds/assets/brand-logos/fynd-horizontal-dark.svg';

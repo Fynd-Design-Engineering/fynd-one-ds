@@ -1,3 +1,5 @@
+'use client';
+
 import React, { CSSProperties } from 'react';
 import { IcFilter } from '../../assets/icons/actions';
 import styles from './FilterButton.module.css';

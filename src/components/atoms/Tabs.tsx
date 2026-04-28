@@ -1,3 +1,5 @@
+'use client';
+
 import React, { CSSProperties, useState } from 'react';
 import styles from './Tabs.module.css';
 import sectionStyles from '../_shared/SectionWrapper.module.css';

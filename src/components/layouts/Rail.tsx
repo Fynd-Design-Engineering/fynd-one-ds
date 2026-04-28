@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useRef, useState, useCallback, useEffect, CSSProperties } from 'react';
 import styles from './Rail.module.css';
 

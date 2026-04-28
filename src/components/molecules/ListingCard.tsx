@@ -6,6 +6,10 @@ import styles from './ListingCard.module.css';
 
 export interface ListingCardProps {
   imageSrc?: string;
+  /** Image shown on hover/focus-within. Cross-fades from imageSrc. */
+  imageHoverSrc?: string;
+  /** Alt text for the hover image. Falls back to imageAlt. */
+  imageHoverAlt?: string;
   imageAlt?: string;
   imageAspectRatio?: ImageHolderProps['aspectRatio'];
   tags?: string[];
@@ -28,6 +32,8 @@ export interface ListingCardProps {
 
 export const ListingCard: React.FC<ListingCardProps> = ({
   imageSrc,
+  imageHoverSrc,
+  imageHoverAlt,
   imageAlt = '',
   imageAspectRatio = '16:9',
   tags,
@@ -75,12 +81,23 @@ export const ListingCard: React.FC<ListingCardProps> = ({
 
   return (
     <div className={cardClass} style={style} onClick={onClick} data-figma-id="3204:14895">
-      <ImageHolder
-        aspectRatio={imageAspectRatio}
-        src={imageSrc}
-        alt={imageAlt}
-        style={{ borderRadius: 0 }}
-      />
+      <div className={styles['image-wrap']}>
+        <ImageHolder
+          aspectRatio={imageAspectRatio}
+          src={imageSrc}
+          alt={imageAlt}
+          style={{ borderRadius: 0 }}
+          className={styles['image-default']}
+        />
+        {imageSrc && imageHoverSrc && (
+          <img
+            src={imageHoverSrc}
+            alt={imageHoverAlt ?? imageAlt}
+            aria-hidden="true"
+            className={styles['image-hover']}
+          />
+        )}
+      </div>
       <div className={contentClass}>
         <div className={styles['content-pair']}>
           {showTags && tags && tags.length > 0 && (

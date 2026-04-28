@@ -2,8 +2,10 @@ import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
 import dts from 'vite-plugin-dts';
+import preserveDirectives from 'rollup-plugin-preserve-directives';
 import { resolve, relative, dirname } from 'path';
 import { readdir, readFile, writeFile, rename } from 'fs/promises';
+import { readdirSync, statSync, existsSync } from 'fs';
 
 /**
  * Custom plugin: renames .module.css → .css in dist/assets/ to prevent
@@ -127,9 +129,12 @@ export default defineConfig({
     copyPublicDir: false,
     assetsInlineLimit: 0,
     rollupOptions: {
-      input: resolve(__dirname, 'src/index.ts'),
+      input: buildEntries(),
       external: ['react', 'react-dom', 'react/jsx-runtime'],
       preserveEntrySignatures: 'strict',
+      // Preserve top-of-file directives ('use client', 'use server') so RSC
+      // consumers (Next.js App Router 15+) see them on the built modules.
+      plugins: [preserveDirectives()],
       output: {
         format: 'es',
         dir: 'dist',
@@ -141,3 +146,27 @@ export default defineConfig({
     },
   },
 });
+
+/**
+ * Build entry points: the main barrel + every icon category index.
+ * Adding the category indices as named entries keeps rollup from
+ * inlining their pure re-exports, so consumers can do
+ *   import { IcCart } from '.../icons/commerce'
+ * at runtime against an actual emitted dist/assets/icons/commerce/index.js.
+ */
+function buildEntries(): Record<string, string> {
+  const entries: Record<string, string> = {
+    index: resolve(__dirname, 'src/index.ts'),
+    'icons/index': resolve(__dirname, 'src/icons/index.ts'),
+  };
+  const iconsDir = resolve(__dirname, 'src/assets/icons');
+  if (existsSync(iconsDir)) {
+    for (const cat of readdirSync(iconsDir)) {
+      const catIndex = resolve(iconsDir, cat, 'index.ts');
+      if (statSync(resolve(iconsDir, cat)).isDirectory() && existsSync(catIndex)) {
+        entries[`assets/icons/${cat}/index`] = catIndex;
+      }
+    }
+  }
+  return entries;
+}

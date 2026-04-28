@@ -1,3 +1,5 @@
+'use client';
+
 import React, { CSSProperties } from 'react';
 import { IconChevronRight } from '../../icons';
 import styles from './Pagination.module.css';

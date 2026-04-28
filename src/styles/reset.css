@@ -1,0 +1,143 @@
+/**
+ * Fynd One Design System — CSS Reset
+ *
+ * Modern minimal reset bundled with tokens.css. Imported automatically
+ * when consumers import '@fynd-design-engineering/fynd-one-ds/styles/tokens.css'.
+ *
+ * Inspired by Josh Comeau's modern reset (joshwcomeau.com/css/custom-css-reset)
+ * and normalize.css. Opinions taken:
+ *
+ *   • box-sizing: border-box on every element (predictable sizing math).
+ *   • Page chrome only (html, body, headings, media, form controls). DS
+ *     components own their own typography/colors and are not reset here.
+ *   • Lists with a class (e.g. `<ul class="nav">`) lose default bullets;
+ *     bare semantic lists keep them so prose markup stays readable.
+ *   • Focus rings are preserved — never strip outlines without replacement.
+ *   • <a> colors and <table> defaults are intentionally untouched.
+ */
+
+/* Use border-box everywhere so width/padding/border math is predictable. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Strip default user-agent margins and prevent surprise horizontal scroll. */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Improve text rendering and set a sensible baseline body type. The DS
+   overrides font-family via tokens; this is the fallback if a consumer
+   forgets to apply a DS font class. */
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Headings inherit weight/size from author styles (DS Text component drives
+   this); only normalize margins so layout doesn't get accidental whitespace. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+/* Headings with long words shouldn't overflow narrow containers. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* Block-level media keeps layouts predictable; max-width prevents overflow. */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Form controls inherit typography from their container instead of defaulting
+   to the browser's UI font. Color is left to the DS components. */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* Buttons get a pointer cursor and lose the gray UA background; DS Button
+   re-styles fully. Keeping border:0 here removes the chrome on raw <button>
+   elements used as click targets (icon-only buttons, etc). */
+button {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+}
+
+/* Textareas without an explicit rows attribute should at least be tall enough
+   to type into without a scrollbar appearing immediately. */
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+/* Bullet stripping: opt-in pattern. Bare <ul>/<ol> in prose keep markers; any
+   list authored with a class (typical for navs, menus, card grids) loses them.
+   Same for default padding-inline-start. */
+ul[class],
+ol[class] {
+  list-style: none;
+  padding-inline-start: 0;
+}
+
+/* Anchor scroll target landing under sticky headers reads better. */
+:target {
+  scroll-margin-block: 5ex;
+}
+
+/* Respect users who request reduced motion: short, near-instant animations. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

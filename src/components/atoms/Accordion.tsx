@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, CSSProperties } from 'react';
 import { Text } from '../Typography/Text';
 import { IconChevronRight } from '../../icons';

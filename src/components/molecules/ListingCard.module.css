@@ -18,6 +18,45 @@
   border: 1px solid var(--fds-neutral-80, #4a4b4c);
 }
 
+/* ── Image wrap & hover swap ───────────────────────────────────────────── */
+
+.image-wrap {
+  position: relative;
+}
+
+.image-default,
+.image-hover {
+  transition: opacity 0.2s ease;
+}
+
+.image-hover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+}
+
+@media (hover: hover) {
+  .root:hover .image-default,
+  .root:focus-within .image-default {
+    opacity: 0;
+  }
+  .root:hover .image-hover,
+  .root:focus-within .image-hover {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image-default,
+  .image-hover {
+    transition: none;
+  }
+}
+
 /* ── Content area ─────────────────────────────────────────────────────────── */
 
 .content {

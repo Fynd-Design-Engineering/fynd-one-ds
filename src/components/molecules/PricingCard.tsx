@@ -2,7 +2,7 @@ import React, { CSSProperties } from 'react';
 import { Text } from '../Typography/Text';
 import { Button } from '../atoms/Button';
 import { IcConfirm } from '../../assets/icons/actions';
-import PopularGradientBg from '../../assets/icons/misc/ic_popular_gradient.svg?react';
+import PopularGradientBg from '../../assets/icons/miscellaneous/ic_popular_gradient.svg?react';
 import styles from './PricingCard.module.css';
 
 export interface PricingFeature {

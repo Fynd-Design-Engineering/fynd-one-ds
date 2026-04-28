@@ -47,6 +47,16 @@ export const WithImage: Story = {
   },
 };
 
+export const WithImageHover: Story = {
+  name: 'With hover-swap image',
+  args: {
+    ...Default.args,
+    imageSrc: 'https://placehold.co/411x200/a0a1a2/ffffff?text=Default',
+    imageHoverSrc: 'https://placehold.co/411x200/3b82f6/ffffff?text=Hover',
+    imageHoverAlt: 'Animated cover preview',
+  },
+};
+
 export const MultipleTags: Story = {
   args: {
     ...Default.args,

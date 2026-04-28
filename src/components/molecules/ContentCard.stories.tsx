@@ -98,11 +98,50 @@ export const ImageBottomRight: Story = {
     subtext: 'Subtext goes here',
     imagePosition: 'bottom-right',
     imageSrc: 'https://placehold.co/300x300/a0a1a2/ffffff?text=Product',
-    hoverImageSrc: 'https://placehold.co/300x300/797a7c/ffffff?text=Hover',
+    imageHoverSrc: 'https://placehold.co/300x300/797a7c/ffffff?text=Hover',
     clickable: true,
     alwaysShowArrow: true,
   },
   decorators: [(Story) => <div style={{ width: 626 }}><Story /></div>],
+};
+
+export const ImageBelowWithHover: Story = {
+  name: 'Image Below — with hover swap',
+  args: {
+    chipLabel: 'Solutions',
+    title: 'D2C website',
+    subtext: 'Customized, high-performance websites for modern brands.',
+    imagePosition: 'below',
+    imageSrc: 'https://placehold.co/600x400/a0a1a2/ffffff?text=Default',
+    imageHoverSrc: 'https://placehold.co/600x400/3b82f6/ffffff?text=Hover',
+    imageHoverAlt: 'Animated preview of the D2C website',
+  },
+  decorators: [(Story) => <div style={{ width: 400, height: 500 }}><Story /></div>],
+};
+
+export const ImageBelowWithoutHover: Story = {
+  name: 'Image Below — single image (control)',
+  args: {
+    chipLabel: 'Solutions',
+    title: 'D2C website',
+    subtext: 'Customized, high-performance websites for modern brands.',
+    imagePosition: 'below',
+    imageSrc: 'https://placehold.co/600x400/a0a1a2/ffffff?text=Default',
+  },
+  decorators: [(Story) => <div style={{ width: 400, height: 500 }}><Story /></div>],
+};
+
+export const ImageBehindWithHover: Story = {
+  name: 'Image Behind — with hover swap',
+  args: {
+    chipLabel: 'Hero',
+    title: 'Sold worldwide',
+    subtext: 'Reach customers across 50+ countries.',
+    imagePosition: 'behind',
+    imageSrc: 'https://placehold.co/600x400/606060/ffffff?text=Default',
+    imageHoverSrc: 'https://placehold.co/600x400/0e7490/ffffff?text=Hover',
+  },
+  decorators: [(Story) => <div style={{ width: 400, height: 320 }}><Story /></div>],
 };
 
 export const Tablet: Story = {

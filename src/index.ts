@@ -115,6 +115,13 @@ export type {
   FooterSocialPlatform,
 } from './components/molecules/Footer';
 
+export { Popover, usePopoverItemProps } from './components/molecules/Popover';
+export type {
+  PopoverProps,
+  PopoverPlacement,
+  PopoverRole,
+} from './components/molecules/Popover';
+
 // Layouts
 export { Grid } from './components/layouts/Grid';
 export type { GridProps } from './components/layouts/Grid';

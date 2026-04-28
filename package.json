@@ -1,6 +1,6 @@
 {
   "name": "@fynd-design-engineering/fynd-one-ds",
-  "version": "0.2.0",
+  "version": "0.7.0",
   "description": "Fynd One Design System — React + TypeScript component library",
   "license": "UNLICENSED",
   "repository": {
@@ -29,11 +29,15 @@
       "types": "./dist/index.d.ts"
     },
     "./styles/tokens.css": "./src/styles/tokens.css",
+    "./styles/reset.css": "./src/styles/reset.css",
     "./styles/fonts/*": "./dist/fonts/*",
     "./assets/brand-icons/*": "./src/assets/brand-icons/*",
     "./assets/brand-logos/*": "./src/assets/brand-logos/*",
     "./assets/icons/*": "./src/assets/icons/*",
-    "./icons/*": "./src/assets/icons/*/index.ts"
+    "./icons/*": {
+      "types": "./dist/assets/icons/*/index.d.ts",
+      "import": "./dist/assets/icons/*/index.js"
+    }
   },
   "files": [
     "dist",
@@ -66,6 +70,7 @@
     "lottie-react": "^2.4.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "rollup-plugin-preserve-directives": "^0.4.0",
     "storybook": "^10.3.3",
     "typescript": "^5.5.0",
     "vite": "^5.4.0",
@@ -73,6 +78,7 @@
     "vite-plugin-svgr": "^4.5.0"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.27.19",
     "motion": "^12.38.0"
   }
 }

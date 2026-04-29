@@ -168,5 +168,14 @@ function buildEntries(): Record<string, string> {
       }
     }
   }
+  const presetsDir = resolve(__dirname, 'src/presets');
+  if (existsSync(presetsDir)) {
+    for (const file of readdirSync(presetsDir)) {
+      if (file.endsWith('.ts') || file.endsWith('.tsx')) {
+        const name = file.replace(/\.tsx?$/, '');
+        entries[`presets/${name}`] = resolve(presetsDir, file);
+      }
+    }
+  }
   return entries;
 }

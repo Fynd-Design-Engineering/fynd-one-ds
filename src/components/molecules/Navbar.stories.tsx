@@ -1,278 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Navbar, NavbarProps, NavItem } from './Navbar';
+import { Navbar, NavbarProps } from './Navbar';
 import { Button } from '../atoms/Button';
 import { Text } from '../Typography/Text';
-import { IcCall, IcMail } from '../../assets/icons/communication';
-import { IcInternet, IcEditPen, IcTextbook } from '../../assets/icons/actions';
-import { IcAiStar, IcMagicWand, IcTemplate } from '../../assets/icons/AI';
-import { IcGroup, IcUser, IcProfile } from '../../assets/icons/user';
 import {
-  IcLaptopMobile,
-  IcKeyboard,
-  IcCodeDocument,
-  IcNetworkDish,
-  IcServer,
-  IcCareer,
-} from '../../assets/icons/hardware';
-import { IcKiranaStore } from '../../assets/icons/location';
-import { IcTruckDelivery, IcDesignTools, IcDevelopment, IcRocket } from '../../assets/icons/features';
-import { IcSecured } from '../../assets/icons/device';
-import { IcPodcasts } from '../../assets/icons/media';
-import { IcHome } from '../../assets/icons/navigation';
+  fyndMarketingNavItems,
+  fyndSolutionsItem,
+  fyndResourcesItem,
+  fyndCompanyItem,
+} from '../../presets/fyndMarketingNav';
 import fyndLogoDark from '../../assets/brand-logos/fynd-horizontal-dark.svg';
 import fyndLogoLight from '../../assets/brand-logos/fynd-horizontal-light.svg';
-import faDark from '../../assets/brand-icons/fa-dark.svg';
-
-const solutionsItem: NavItem = {
-  label: 'Solutions',
-  type: 'mega',
-  categories: [
-    {
-      key: 'build',
-      label: 'Build your website',
-      icon: <IcLaptopMobile />,
-      links: [
-        {
-          title: 'Create e-commerce website',
-          description: 'Create your online D2C website',
-          href: '/solutions/storefront',
-        },
-        {
-          title: 'Create B2B website',
-          description: 'Create a wholesale business website',
-          href: '/solutions/b2b-commerce',
-        },
-        {
-          title: 'Create quick commerce website',
-          description: 'Build a hyperlocal website',
-          href: '/solutions/quick',
-        },
-      ],
-    },
-    {
-      key: 'sell',
-      label: 'Sell on marketplaces',
-      icon: <IcKiranaStore />,
-      links: [
-        {
-          title: 'Connect to marketplaces - Konnect',
-          description: 'Sell on Amazon and other marketplaces',
-          href: '/solutions/konnect',
-        },
-        {
-          title: 'Marketplace catalog builder - AI PIM',
-          description: 'Create enriched listings for marketplaces',
-          href: '/solutions/ai-pim',
-        },
-      ],
-    },
-    {
-      key: 'supply',
-      label: 'Supply chain',
-      icon: <IcTruckDelivery />,
-      links: [
-        {
-          title: 'Order management system - OMS',
-          description: 'Centralize orders from all sales channel',
-          href: '/solutions/order-management-system',
-        },
-        {
-          title: 'Warehouse management system - WMS',
-          description: 'Streamline warehouse operations from receiving to dispatch',
-          href: '/solutions/warehouse-management-system',
-        },
-        {
-          title: 'Transport management system - TMS',
-          description: 'Automate first to last mile deliveries',
-          href: '/solutions/transport-management-system',
-        },
-        {
-          title: 'Logistics & delivery partners',
-          description: 'Integrate with carriers or use our managed service',
-          href: '/solutions/logistics',
-        },
-      ],
-    },
-    {
-      key: 'retail',
-      label: 'Retail store solutions',
-      icon: <IcTruckDelivery />,
-      links: [
-        {
-          title: 'Point of sale system - POS',
-          description: 'Process transactions on mobile and terminal POS',
-          href: '/solutions/pos',
-        },
-        {
-          title: 'Self-checkout kiosks - Kio',
-          description: 'Reduce wait times with automated checkout stations',
-          href: '/solutions/self-checkout-kiosk',
-        },
-        {
-          title: 'Customer loyalty program - Engage',
-          description: 'Reward customers with points, referrals and gamification',
-          href: '/solutions/engage',
-        },
-        {
-          title: 'Autonomous Store Audits - Onshelf',
-          description: 'Detect OOS, pricing gaps, and planogram issues',
-          href: '/solutions/onshelf',
-        },
-        {
-          title: 'Mobile self-checkout - Scan & go',
-          description: 'Allow customers to scan and checkout on their phones',
-          href: '/solutions/self-checkout',
-        },
-        {
-          title: 'Endless aisle',
-          description: 'Get complete visibility of inventory',
-          href: '/solutions/endless-aisle',
-        },
-        {
-          title: 'Clienteling',
-          description: 'Offer personalized shopping experience',
-          href: '/solutions/clienteling',
-        },
-      ],
-    },
-    {
-      key: 'fsp',
-      label: 'Manufacturing solutions',
-      icon: <IcKeyboard />,
-      links: [
-        {
-          title: 'Fashion design service - Create',
-          description: 'AI-powered design to manufacturing service',
-          href: '/solutions/create',
-        },
-        {
-          title: 'Manufacturing OS - Forge',
-          description: 'Manufacture faster using AI',
-          href: '/solutions/forge',
-        },
-      ],
-    },
-    {
-      key: 'ai',
-      label: 'AI for business',
-      icon: <IcDesignTools />,
-      links: [
-        {
-          title: 'AI product catalog management - AI PIM',
-          description: 'Auto-generate product titles, descriptions and tags',
-          href: '/solutions/ai-pim',
-        },
-        {
-          title: 'AI product photography - AI Snap',
-          description: 'Generate studio-quality product photos with AI models',
-          href: '/solutions/snap',
-        },
-        {
-          title: 'AI image transformation - Pixelbin',
-          description: 'Edit, optimize, compress and deliver images at scale',
-          href: '/solutions/ai-editing-for-commerce',
-        },
-        {
-          title: 'Data workflow automation - Boltic',
-          description: 'Connect tools and automate data operations',
-          href: '/solutions/workflow-automation',
-        },
-        {
-          title: 'AR & VR shopping experiences - GlamAR',
-          description: 'Enable virtual try-ons and 3D product views',
-          href: '/solutions/3d-ar-vr-try-ons',
-        },
-        {
-          title: 'AI agent automation - Kaily',
-          description: 'Automate sales, support and workflows with AI',
-          href: '/solutions/ai-agent-builder',
-        },
-      ],
-    },
-    {
-      key: 'dev',
-      label: 'For developers',
-      icon: <IcDevelopment />,
-      links: [
-        {
-          title: 'Build with APIs',
-          description: 'Build custom solutions with Fynd APIs',
-          href: '/solutions/commerce-apis',
-        },
-        {
-          title: 'Automate software testing - Ratl',
-          description: 'Automated API testing, web testing and quality assurance',
-          href: '/solutions/ai-software-testing',
-        },
-        {
-          title: 'Partner program',
-          description: 'Build extensions and earn revenue share',
-          href: 'https://partners.fynd.com/',
-          external: true,
-        },
-      ],
-    },
-  ],
-  bottomLinks: [
-    {
-      title: 'Extensions store',
-      description: 'Add powerful apps to your commerce business',
-      href: 'https://extensions.fynd.com/extensions/',
-      external: true,
-    },
-    {
-      title: 'Hands-on support',
-      description: 'Get hands-on support from our commerce experts',
-      href: '/contact-us',
-    },
-    {
-      title: 'Partners',
-      description: 'Explore global partners to scale your business',
-      href: '/partner-listing',
-    },
-    {
-      title: 'Fynd academy',
-      description: 'Empower talent and organizations with AI upskilling',
-      href: 'https://www.fynd.academy/',
-      external: true,
-    },
-  ],
-};
-
-const resourcesItem: NavItem = {
-  label: 'Resources',
-  type: 'simple',
-  links: [
-    { title: 'Blogs', icon: <IcEditPen />, href: '#' },
-    { title: 'Seller documentation', icon: <IcCodeDocument />, href: '#' },
-    { title: 'Partners', icon: <IcGroup />, href: '#' },
-    { title: 'Releases', icon: <IcRocket />, href: '#' },
-    { title: 'Academy', icon: <img src={faDark} alt="" width={24} height={24} />, href: '#' },
-    { title: 'Ebooks', icon: <IcTextbook />, href: '#' },
-  ],
-};
-
-const companyItem: NavItem = {
-  label: 'Company',
-  type: 'simple',
-  width: 450,
-  links: [
-    { title: 'About us', icon: <IcHome />, href: '/about-us' },
-    { title: 'Security', icon: <IcSecured />, href: '/security' },
-    { title: 'Infrastructure', icon: <IcServer />, href: '/infrastructure' },
-    { title: 'Newsroom', icon: <IcNetworkDish />, href: '/newsroom' },
-    { title: 'Careers', icon: <IcCareer />, href: '/careers' },
-    { title: 'Contact us', icon: <IcCall />, href: '/contact-us' },
-    { title: 'Podcast', icon: <IcPodcasts />, href: '/podcast' },
-  ],
-};
-
-const fyndNavItems: NavItem[] = [
-  solutionsItem,
-  resourcesItem,
-  companyItem,
-  { label: 'Customer stories', href: '#' },
-];
 
 const meta: Meta<NavbarProps> = {
   title: 'Molecules/Navbar',
@@ -300,14 +37,10 @@ type Story = StoryObj<NavbarProps>;
 export const Default: Story = {
   args: {
     logo: <img src={fyndLogoDark} alt="Fynd" />,
-    navItems: fyndNavItems,
+    navItems: fyndMarketingNavItems,
     actions: (
       <>
-        <Button
-          label="+91 74001 56169"
-          variant="tertiary"
-          onClick={() => {}}
-        />
+        <Button label="+91 74001 56169" variant="tertiary" onClick={() => {}} />
         <Button label="Book a demo" variant="secondary" onClick={() => {}} />
         <Button label="Sign in" variant="primary" onClick={() => {}} />
       </>
@@ -325,24 +58,16 @@ export const Default: Story = {
 export const MegaOnly: Story = {
   args: {
     logo: <img src={fyndLogoDark} alt="Fynd" />,
-    navItems: [solutionsItem, { label: 'Pricing', href: '#' }],
-    actions: (
-      <>
-        <Button label="Sign in" variant="primary" onClick={() => {}} />
-      </>
-    ),
+    navItems: [fyndSolutionsItem, { label: 'Pricing', href: '#' }],
+    actions: <Button label="Sign in" variant="primary" onClick={() => {}} />,
   },
 };
 
 export const SimpleDropdownOnly: Story = {
   args: {
     logo: <img src={fyndLogoDark} alt="Fynd" />,
-    navItems: [resourcesItem, companyItem, { label: 'Customer stories', href: '#' }],
-    actions: (
-      <>
-        <Button label="Get started" variant="primary" onClick={() => {}} />
-      </>
-    ),
+    navItems: [fyndResourcesItem, fyndCompanyItem, { label: 'Customer stories', href: '#' }],
+    actions: <Button label="Get started" variant="primary" onClick={() => {}} />,
   },
 };
 
@@ -355,18 +80,14 @@ export const DirectLinksOnly: Story = {
       { label: 'Docs', href: '#' },
       { label: 'Blog', href: '#' },
     ],
-    actions: (
-      <>
-        <Button label="Sign in" variant="primary" onClick={() => {}} />
-      </>
-    ),
+    actions: <Button label="Sign in" variant="primary" onClick={() => {}} />,
   },
 };
 
 export const DarkBackground: Story = {
   args: {
     logo: <img src={fyndLogoLight} alt="Fynd" />,
-    navItems: fyndNavItems,
+    navItems: fyndMarketingNavItems,
     onDarkBg: true,
     actions: (
       <>

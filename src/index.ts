@@ -131,3 +131,22 @@ export type { BentoGridProps, BentoRatio } from './components/layouts/BentoGrid'
 
 export { Rail } from './components/layouts/Rail';
 export type { RailProps } from './components/layouts/Rail';
+
+// Marketing presets — drop-in default content for fynd.com
+export {
+  fyndMarketingNavItems,
+  fyndSolutionsItem,
+  fyndResourcesItem,
+  fyndCompanyItem,
+  fyndCustomerStoriesItem,
+} from './presets/fyndMarketingNav';
+
+export {
+  fyndMarketingFooterPreset,
+  fyndFooterLinkSections,
+  fyndFooterContentPairs,
+  fyndFooterLegalLinks,
+  fyndFooterSocialLinks,
+  FyndFooterLottieWordmark,
+  FyndFooterTrailingBadges,
+} from './presets/fyndMarketingFooter';

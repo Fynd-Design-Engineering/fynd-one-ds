@@ -1,6 +1,6 @@
 {
   "name": "@fynd-design-engineering/fynd-one-ds",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "description": "Fynd One Design System — React + TypeScript component library",
   "license": "UNLICENSED",
   "repository": {
@@ -37,6 +37,10 @@
     "./icons/*": {
       "types": "./dist/assets/icons/*/index.d.ts",
       "import": "./dist/assets/icons/*/index.js"
+    },
+    "./presets/*": {
+      "types": "./dist/presets/*.d.ts",
+      "import": "./dist/presets/*.js"
     }
   },
   "files": [
@@ -67,7 +71,6 @@
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.0",
-    "lottie-react": "^2.4.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "rollup-plugin-preserve-directives": "^0.4.0",
@@ -79,6 +82,7 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.27.19",
+    "lottie-react": "^2.4.1",
     "motion": "^12.38.0"
   }
 }

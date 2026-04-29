@@ -59,6 +59,59 @@ The `'use client'` directive is preserved in the built `dist/**` modules via `ro
 
 ---
 
+## Marketing Presets
+
+`Navbar` and `Footer` ship with empty slots by default. The full fynd.com marketing nav + footer content (mega Solutions dropdown with 7 categories, Resources / Company simple dropdowns, all 10 footer link sections, mission copy, certification badges, social icons, animated Lottie wordmark) is exported as **opt-in presets** so any consuming app can drop the marketing chrome in with a single import — and override or trim any piece.
+
+```tsx
+import {
+  Navbar,
+  Footer,
+  fyndMarketingNavItems,
+  fyndMarketingFooterPreset,
+} from '@fynd-design-engineering/fynd-one-ds';
+
+// Marketing site, drop-in
+<Navbar logo={<Logo />} navItems={fyndMarketingNavItems} actions={<CTAs />} />
+<Footer {...fyndMarketingFooterPreset} />
+```
+
+Override patterns:
+
+```tsx
+// Trim items
+import { fyndSolutionsItem, fyndCompanyItem } from '@fynd-design-engineering/fynd-one-ds';
+<Navbar navItems={[fyndSolutionsItem, fyndCompanyItem]} />
+
+// Edit a category in-place
+const customSolutions = {
+  ...fyndSolutionsItem,
+  categories: fyndSolutionsItem.categories.filter((c) => c.key !== 'fsp'),
+};
+
+// Spread + override one Footer field
+<Footer {...fyndMarketingFooterPreset} legalLinks={[{ label: 'Privacy', href: '/privacy' }]} />
+```
+
+Subpath imports keep the bundle small if you only need part of the preset:
+
+```tsx
+import { fyndFooterLinkSections } from '@fynd-design-engineering/fynd-one-ds/presets/fyndMarketingFooter';
+```
+
+Available exports:
+
+- `fyndMarketingNavItems` — array, full top-nav (Solutions, Resources, Company, Customer stories).
+- `fyndSolutionsItem`, `fyndResourcesItem`, `fyndCompanyItem`, `fyndCustomerStoriesItem` — individual `NavItem`s for composition.
+- `fyndMarketingFooterPreset` — partial `FooterProps` ready to spread.
+- `fyndFooterLinkSections`, `fyndFooterContentPairs`, `fyndFooterLegalLinks`, `fyndFooterSocialLinks` — discrete pieces.
+- `FyndFooterLottieWordmark` — animated Fynd wordmark (uses `lottie-react`, runtime dep).
+- `FyndFooterTrailingBadges` — AICPA / GDPR / BSI cert images.
+
+The DS components themselves stay generic — no preset coupling. Use the preset, replace it, or build your own.
+
+---
+
 ## 1 · Decision Tree — "What Should I Use?"
 
 ### Rendering text?

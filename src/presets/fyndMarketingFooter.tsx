@@ -19,8 +19,6 @@
  *   import { fyndFooterLinkSections, FyndFooterLottieWordmark } from '@fynd-design-engineering/fynd-one-ds';
  */
 
-import { useEffect, useState } from 'react';
-import Lottie from 'lottie-react';
 import type {
   FooterContentPair,
   FooterLink,
@@ -30,42 +28,13 @@ import type {
   FooterSocialLink,
 } from '../components/molecules/Footer';
 import FyndBrandmark from '../assets/brand-logos/fynd-brandmark-light.svg?react';
+import { FyndFooterLottieWordmark } from './FyndFooterLottieWordmark';
 
-// ── Lottie wordmark ────────────────────────────────────────────────────
-
-const FYND_LOTTIE_URL =
-  'https://cdn.prod.website-files.com/679bafa26833d70c32fc1199/67ac285f22ce0e236bb2084d_Fynd%20Logo%20Bottom.json';
-
-interface LottieWordmarkProps {
-  /** Override the Lottie JSON source. Defaults to the Fynd marketing wordmark. */
-  src?: string;
-}
-
-export const FyndFooterLottieWordmark = ({ src = FYND_LOTTIE_URL }: LottieWordmarkProps) => {
-  const [data, setData] = useState<object | null>(null);
-  useEffect(() => {
-    let cancelled = false;
-    fetch(src)
-      .then((r) => r.json())
-      .then((json) => {
-        if (!cancelled) setData(json);
-      })
-      .catch(() => {});
-    return () => {
-      cancelled = true;
-    };
-  }, [src]);
-
-  if (!data) return null;
-  return (
-    <Lottie
-      animationData={data}
-      loop
-      autoplay
-      style={{ width: '100%', maxWidth: 1272, height: 'auto' }}
-    />
-  );
-};
+// Re-export the Lottie wordmark so consumers can keep importing it
+// from this barrel. The component lives in its own 'use client'
+// module so this preset (plain data) stays RSC-server-importable.
+export { FyndFooterLottieWordmark };
+export type { FyndFooterLottieWordmarkProps } from './FyndFooterLottieWordmark';
 
 // ── Trailing certification badges ──────────────────────────────────────
 

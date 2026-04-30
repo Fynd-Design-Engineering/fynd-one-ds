@@ -880,7 +880,7 @@
    `.mobileCategoryLinks` directly under `.mobileSubContent` without an
    accordion header, so they stay flush. */
 .mobileCategory .mobileCategoryLinks {
-  padding-left: 2rem;
+  padding-left: 1.3rem;
 }
 
 /* Mobile: match the simple-dropdown link padding to the mega-dropdown

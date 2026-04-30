@@ -1,0 +1,34 @@
+.root {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  /* Visually align the 22px icon's optical center with the first
+     line of text (body-m has line-height ~24px → icon top: 1px). */
+  margin-top: 1px;
+  color: var(--fds-neutral-100, #101319);
+}
+
+.label {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Dark variant — invert the tick circle to white-on-dark via the icon
+   color. Text colour follows the consumer's `Text` color prop. */
+.root--dark .icon {
+  color: var(--fds-neutral-0, #ffffff);
+}

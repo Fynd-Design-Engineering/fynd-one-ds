@@ -63,6 +63,8 @@ The `'use client'` directive is preserved in the built `dist/**` modules via `ro
 
 `Navbar` and `Footer` ship with empty slots by default. The full fynd.com marketing nav + footer content (mega Solutions dropdown with 7 categories, Resources / Company simple dropdowns, all 10 footer link sections, mission copy, certification badges, social icons, animated Lottie wordmark) is exported as **opt-in presets** so any consuming app can drop the marketing chrome in with a single import — and override or trim any piece.
 
+**Drop-in: no asset setup needed.** Every preset icon and brand mark is bundled as a React SVG component (via SVGR), so the bundler inlines the markup at consumer build time. There are no `/assets/...` paths to mirror in `public/` and nothing for consumers to wire up. Trailing certification badges (AICPA / GDPR / BSI) load from external CDN URLs and are safe to render as-is.
+
 ```tsx
 import {
   Navbar,

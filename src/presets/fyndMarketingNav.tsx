@@ -24,7 +24,7 @@
 
 import type { NavItem, NavMegaDropdownItem, NavSimpleDropdownItem, NavDirectItem } from '../components/molecules/Navbar';
 import { IcCall } from '../assets/icons/communication';
-import { IcEditPen, IcTextbook } from '../assets/icons/actions';
+import { IcEditPen, IcTextbook, IcPlaylistSuccessful } from '../assets/icons/actions';
 import { IcGroup } from '../assets/icons/user';
 import {
   IcLaptopMobile,
@@ -119,7 +119,7 @@ export const fyndSolutionsItem: NavMegaDropdownItem = {
     {
       key: 'retail',
       label: 'Retail store solutions',
-      icon: <IcTruckDelivery />,
+      icon: <IcKeyboard />,
       links: [
         {
           title: 'Point of sale system - POS',
@@ -161,7 +161,7 @@ export const fyndSolutionsItem: NavMegaDropdownItem = {
     {
       key: 'fsp',
       label: 'Manufacturing solutions',
-      icon: <IcKeyboard />,
+      icon: <IcPlaylistSuccessful />,
       links: [
         {
           title: 'Fashion design service - Create',

@@ -28,6 +28,10 @@ export interface FilterPanelProps {
   onChange: (next: Record<string, string[]>) => void;
   /** Optional footer (Clear / Apply etc.). Rendered above the panel border. */
   footer?: ReactNode;
+  /** Hide the built-in "Clear all" button rendered next to the first group heading. */
+  hideClearAll?: boolean;
+  /** Label for the built-in clear button. Default "Clear all". */
+  clearAllLabel?: string;
   className?: string;
 }
 
@@ -43,6 +47,8 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
   selected,
   onChange,
   footer,
+  hideClearAll = false,
+  clearAllLabel = 'Clear all',
   className,
 }) => {
   const handleToggle = (groupKey: string, value: string) => {
@@ -52,13 +58,28 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
     });
   };
 
+  const totalSelected = Object.values(selected).reduce((n, arr) => n + arr.length, 0);
+  const showClearAll = !hideClearAll && totalSelected > 0;
+  const handleClearAll = () => onChange({});
+
   return (
     <div className={[styles.root, className].filter(Boolean).join(' ')}>
-      {groups.map((group) => {
+      {groups.map((group, idx) => {
         const checkedSet = new Set(selected[group.key] ?? []);
         return (
           <div key={group.key} className={styles.group}>
-            <h4 className={styles.heading}>{group.heading}</h4>
+            <div className={styles.headingRow}>
+              <h4 className={styles.heading}>{group.heading}</h4>
+              {idx === 0 && showClearAll && (
+                <button
+                  type="button"
+                  className={styles.clearAll}
+                  onClick={handleClearAll}
+                >
+                  {clearAllLabel}
+                </button>
+              )}
+            </div>
             <div className={styles.options} role="group" aria-label={group.heading}>
               {group.options.map((opt) => (
                 <FilterChip

@@ -17,7 +17,18 @@ export interface HeroSplitProps {
   actions?: ReactNode;
   image: HeroSplitImage;
   imagePriority?: boolean;
+  /**
+   * Section background color. Any CSS color string (token var, hex, rgb,
+   * etc). Paints the entire hero region — both columns and the gutters
+   * outside the inner content container.
+   */
   bg?: string;
+  /**
+   * Visual cell background color (the rounded image container). Any CSS
+   * color string. Useful when the image has transparency and you want a
+   * different tint behind it than the surrounding section.
+   */
+  visualBg?: string;
   onDarkBg?: boolean;
   className?: string;
   style?: CSSProperties;
@@ -31,6 +42,7 @@ export const HeroSplit: React.FC<HeroSplitProps> = ({
   image,
   imagePriority = true,
   bg,
+  visualBg,
   onDarkBg = false,
   className,
   style,
@@ -40,7 +52,11 @@ export const HeroSplit: React.FC<HeroSplitProps> = ({
     .join(' ');
 
   return (
-    <SectionWrapper as="section" onDarkBg={onDarkBg}>
+    <SectionWrapper
+      as="section"
+      onDarkBg={onDarkBg}
+      style={bg ? { background: bg } : undefined}
+    >
       <div className={rootClass} style={style}>
         <div className={styles.content}>
           <Text variant="heading-xl" as="h1" color={onDarkBg ? 'white' : 'default'}>
@@ -75,7 +91,7 @@ export const HeroSplit: React.FC<HeroSplitProps> = ({
         </div>
         <div
           className={styles.visual}
-          style={bg ? { background: bg } : undefined}
+          style={visualBg ? { background: visualBg } : undefined}
         >
           <img
             src={image.src}

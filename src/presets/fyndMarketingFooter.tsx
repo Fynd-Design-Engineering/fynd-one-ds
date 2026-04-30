@@ -29,7 +29,7 @@ import type {
   FooterProps,
   FooterSocialLink,
 } from '../components/molecules/Footer';
-import fyndBrandmark from '../assets/brand-logos/fynd-brandmark-light.svg';
+import FyndBrandmark from '../assets/brand-logos/fynd-brandmark-light.svg?react';
 
 // ── Lottie wordmark ────────────────────────────────────────────────────
 
@@ -239,7 +239,7 @@ export const fyndFooterLinkGroups: FooterLinkGroup[] = [
 ];
 
 export const fyndMarketingFooterPreset: Partial<FooterProps> = {
-  logo: <img src={fyndBrandmark} alt="Fynd" width={80} height={77} />,
+  logo: <FyndBrandmark width={80} height={77} role="img" aria-label="Fynd" />,
   contentPairs: fyndFooterContentPairs,
   trailingContent: <FyndFooterTrailingBadges />,
   linkGroups: fyndFooterLinkGroups,

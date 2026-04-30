@@ -39,7 +39,7 @@ import { IcTruckDelivery, IcDesignTools, IcDevelopment, IcRocket } from '../asse
 import { IcSecured } from '../assets/icons/device';
 import { IcPodcasts } from '../assets/icons/media';
 import { IcHome } from '../assets/icons/navigation';
-import faDark from '../assets/brand-icons/fa-dark.svg';
+import FaDark from '../assets/brand-icons/fa-dark.svg?react';
 
 export const fyndSolutionsItem: NavMegaDropdownItem = {
   label: 'Solutions',
@@ -276,7 +276,7 @@ export const fyndResourcesItem: NavSimpleDropdownItem = {
     { title: 'Seller documentation', icon: <IcCodeDocument />, href: 'https://docs.fynd.com/' },
     { title: 'Partners', icon: <IcGroup />, href: '/partners' },
     { title: 'Releases', icon: <IcRocket />, href: '/releases' },
-    { title: 'Academy', icon: <img src={faDark} alt="" width={24} height={24} />, href: '/academy' },
+    { title: 'Academy', icon: <FaDark width={24} height={24} />, href: '/academy' },
     { title: 'Knowledge centre', icon: <IcTextbook />, href: '/knowledge-centre' },
   ],
 };

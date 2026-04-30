@@ -180,3 +180,5 @@ export type {
   FyndMarketingNavActionsProps,
   FyndMarketingNavMobileActionsProps,
 } from './presets/fyndMarketingNavActions';
+
+export { fyndMarketingProductOptions } from './presets/fyndMarketingProductOptions';

@@ -191,32 +191,23 @@ export const Modal: React.FC<ModalProps> = ({
               >
                 {/* Scrollable region — children render first so the natural
                     tab order starts at the first focusable inside the user's
-                    content (e.g. the first form field). */}
-                <div className={styles.scroll}>{children}</div>
-                {/* Desktop close — anchored top-right INSIDE the card. */}
-                {showClose && !isMobile && (
-                  <button
-                    type="button"
-                    onClick={() => setOpen(false)}
-                    className={styles.close}
-                    aria-label="Close"
-                  >
-                    <CloseGlyph />
-                  </button>
-                )}
+                    content (e.g. the first form field). The close button
+                    lives INSIDE the scroll region (top-right of the content)
+                    so it scrolls along with the form content. */}
+                <div className={styles.scroll}>
+                  {children}
+                  {showClose && (
+                    <button
+                      type="button"
+                      onClick={() => setOpen(false)}
+                      className={styles.close}
+                      aria-label="Close"
+                    >
+                      <CloseGlyph />
+                    </button>
+                  )}
+                </div>
               </motion.div>
-              {/* Mobile close — sibling of the card, centered above the
-                  bottom sheet so it floats in the visible page sliver. */}
-              {showClose && isMobile && (
-                <button
-                  type="button"
-                  onClick={() => setOpen(false)}
-                  className={styles.closeMobile}
-                  aria-label="Close"
-                >
-                  <CloseGlyph />
-                </button>
-              )}
             </motion.div>
           </FloatingPortal>
         )}

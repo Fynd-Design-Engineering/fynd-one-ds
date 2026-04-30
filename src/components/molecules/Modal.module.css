@@ -27,6 +27,7 @@
 }
 
 .scroll {
+  position: relative;
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
@@ -75,36 +76,6 @@
 
 .close:active {
   transform: scale(0.95);
-}
-
-/* Mobile-only close button — floats above the bottom sheet, centered
-   horizontally, so it's reachable in the small page sliver above. */
-.closeMobile {
-  position: absolute;
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.95);
-  color: var(--fds-neutral-100, #101319);
-  border: none;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 12px rgba(16, 19, 25, 0.18);
-  transition: background-color 0.2s ease, transform 0.15s ease;
-  z-index: 2;
-}
-
-.closeMobile:hover {
-  background-color: #ffffff;
-}
-
-.closeMobile:active {
-  transform: translateX(-50%) scale(0.95);
 }
 
 @media (prefers-reduced-motion: reduce) {

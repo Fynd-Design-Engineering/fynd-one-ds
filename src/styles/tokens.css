@@ -444,3 +444,25 @@ h1, h2, h3, h4, h5, h6 {
   --font-weight--semibold: 600;
   --font-weight--bold:     700;
 }
+
+/* ── Layout chrome heights ────────────────────────────────────────────── */
+/* When SiteBanner / Navbar are mounted, their root elements carry a
+   data-fds-component attribute. We use :has() to publish their pixel
+   height as a CSS variable on <body>, so HeroSplit (and any other
+   top-of-page section) can compute a `topOffset` automatically:
+
+     <HeroSplit topOffset="auto" ... />
+
+   The hero section pulls itself up by
+   `calc(var(--fds-banner-h, 0px) + var(--fds-nav-h, 0px))`, so its
+   background paints from y=0 and the floating chrome sits over it.
+
+   Heights below match the components' own CSS — keep in sync if the
+   chrome's intrinsic height changes. */
+body:has([data-fds-component="site-banner"]) {
+  --fds-banner-h: 44px;
+}
+
+body:has([data-fds-component="navbar"]) {
+  --fds-nav-h: 4rem;
+}

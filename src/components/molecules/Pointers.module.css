@@ -27,8 +27,14 @@
   min-width: 0;
 }
 
-/* Dark variant — invert the tick circle to white-on-dark via the icon
-   color. Text colour follows the consumer's `Text` color prop. */
+/* Dark variant — flip the circle to white (via currentColor) AND the
+   inner check to dark so it stays visible on the white circle. The
+   second path in the SVG ships with a literal fill="white" which we
+   override via attribute selector. */
 .root--dark .icon {
   color: var(--fds-neutral-0, #ffffff);
+}
+
+.root--dark .icon svg path[fill="white"] {
+  fill: var(--fds-neutral-100, #101319);
 }

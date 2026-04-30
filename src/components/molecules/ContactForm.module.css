@@ -1,0 +1,220 @@
+.root {
+  background-color: var(--fds-neutral-0, #ffffff);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 575px) {
+  .fieldRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Label styles come from the global `form label` rule in reset.css —
+   no overrides needed here. */
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'Inter Display', sans-serif;
+  font-size: 14px;
+  color: var(--fds-neutral-100, #101319);
+  background-color: var(--fds-neutral-0, #ffffff);
+  border: 1px solid var(--fds-neutral-30, #e3e3e3);
+  border-radius: 8px;
+  padding: 10px 12px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--fds-neutral-40, #a0a1a2);
+}
+
+.input:hover,
+.select:hover,
+.textarea:hover {
+  border-color: var(--fds-neutral-50, #797a7c);
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  border-color: var(--fds-neutral-100, #101319);
+  box-shadow: 0 0 0 3px rgba(16, 19, 25, 0.08);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 96px;
+  font-family: inherit;
+}
+
+.select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none'><path d='M6 9l6 6 6-6' stroke='%23797a7c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+.submitRow {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.agreement {
+  text-align: center;
+}
+
+.agreementLink {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.15s ease;
+}
+
+.agreementLink:hover {
+  color: var(--fds-neutral-100, #101319);
+}
+
+.success {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 32px;
+}
+
+.errorText {
+  display: block;
+  margin-top: 6px;
+  font-family: 'Inter Display', sans-serif;
+  font-size: 12px;
+  line-height: 1.3;
+  color: #d11f2d;
+}
+
+.inputError,
+.inputError:hover,
+.inputError:focus {
+  border-color: #d11f2d;
+  box-shadow: none;
+}
+
+.inputError:focus {
+  box-shadow: 0 0 0 3px rgba(209, 31, 45, 0.12);
+}
+
+.phoneRow {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: stretch;
+  border: 1px solid var(--fds-neutral-30, #e3e3e3);
+  border-radius: 8px;
+  background-color: var(--fds-neutral-0, #ffffff);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.phoneCountryWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 28px 0 12px;
+  border-right: 1px solid var(--fds-neutral-30, #e3e3e3);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none'><path d='M6 9l6 6 6-6' stroke='%23797a7c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+}
+
+.phoneFlag {
+  font-size: 18px;
+  line-height: 1;
+  /* Apple Color Emoji on macOS/iOS — fall back to system on Windows. */
+  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+}
+
+.phoneDial {
+  font-family: 'Inter Display', sans-serif;
+  font-size: 14px;
+  color: var(--fds-neutral-100, #101319);
+}
+
+.phoneCountrySelect {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.phoneRow:hover {
+  border-color: var(--fds-neutral-50, #797a7c);
+}
+
+.phoneRow:focus-within {
+  border-color: var(--fds-neutral-100, #101319);
+  box-shadow: 0 0 0 3px rgba(16, 19, 25, 0.08);
+}
+
+.phoneRowError,
+.phoneRowError:hover {
+  border-color: #d11f2d;
+  box-shadow: none;
+}
+
+.phoneRowError:focus-within {
+  border-color: #d11f2d;
+  box-shadow: 0 0 0 3px rgba(209, 31, 45, 0.12);
+}
+
+.phoneInput {
+  border: none;
+  background: transparent;
+  font-family: 'Inter Display', sans-serif;
+  font-size: 14px;
+  color: var(--fds-neutral-100, #101319);
+  padding: 10px 12px 10px 8px;
+  outline: none;
+  width: 100%;
+  min-width: 0;
+}
+
+.phoneInput::placeholder {
+  color: var(--fds-neutral-40, #a0a1a2);
+}

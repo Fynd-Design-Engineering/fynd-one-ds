@@ -1,0 +1,63 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 80px 20px;
+  overflow: auto;
+  background-color: rgba(16, 19, 25, 0.55);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+@media (min-width: 1440px) {
+  .overlay {
+    align-items: center;
+  }
+}
+
+.card {
+  position: relative;
+  background-color: var(--fds-neutral-0, #ffffff);
+  border-radius: 12px;
+  box-shadow:
+    0 24px 48px -12px rgba(16, 19, 25, 0.18),
+    0 8px 16px -8px rgba(16, 19, 25, 0.1);
+  outline: none;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(16, 19, 25, 0.6);
+  color: var(--fds-neutral-0, #ffffff);
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  z-index: 2;
+}
+
+.close:hover {
+  background-color: rgba(16, 19, 25, 0.85);
+}
+
+.close:active {
+  transform: scale(0.95);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .close {
+    transition: none;
+  }
+}

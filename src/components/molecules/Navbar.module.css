@@ -3,6 +3,7 @@
 .root {
   position: relative;
   width: 100%;
+  padding: 0 1.5rem;
   background-color: var(--fds-neutral-0, #ffffff);
   border-bottom: 1px solid var(--fds-neutral-20, #f2f2f2);
   box-shadow:
@@ -10,6 +11,7 @@
     0px 3px 3px 0px rgba(48, 48, 48, 0.02),
     0px 7px 4px 0px rgba(48, 48, 48, 0.01);
   z-index: 1000;
+  box-sizing: border-box;
 }
 
 .root--dark {
@@ -29,21 +31,12 @@
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  max-width: 1320px;
+  max-width: 80rem;
   margin: 0 auto;
-  padding: 16px 120px;
-}
-
-@media (max-width: 991px) {
-  .container {
-    padding: 16px 40px;
-  }
-}
-
-@media (max-width: 767px) {
-  .container {
-    padding: 12px 20px;
-  }
+  padding: 0;
+  height: 4rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* ── Logo ────────────────────────────────────────────────────────────────── */
@@ -52,6 +45,13 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
+}
+
+.logoLink {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
 }
 
 .logo img {
@@ -103,6 +103,42 @@
   font-family: inherit;
 }
 
+/* Default text color = secondary button text (dark). The inner span is
+   the <Text> render; we override its color via the parent rule. */
+.navLink,
+.navLink > span {
+  color: var(--btn-secondary-text);
+}
+
+/* When the user hovers any nav link, fade siblings to the tertiary
+   gray so the hovered one reads as the "active" focus. */
+.navLinks:hover .navLink,
+.navLinks:hover .navLink > span {
+  color: var(--btn-tertiary-text);
+}
+
+/* The actually-hovered link stays dark. */
+.navLinks .navLink:hover,
+.navLinks .navLink:hover > span {
+  color: var(--btn-secondary-text);
+}
+
+/* Dark variant — inverse mapping. */
+.root--dark .navLink,
+.root--dark .navLink > span {
+  color: var(--btn-secondary-light-text);
+}
+
+.root--dark .navLinks:hover .navLink,
+.root--dark .navLinks:hover .navLink > span {
+  color: var(--btn-tertiary-text-light);
+}
+
+.root--dark .navLinks .navLink:hover,
+.root--dark .navLinks .navLink:hover > span {
+  color: var(--btn-secondary-light-text);
+}
+
 .navLink:hover,
 .navLink--active {
   background-color: var(--fds-neutral-10, #f8f8f9);
@@ -122,40 +158,83 @@
   flex-shrink: 0;
 }
 
+/* Consumers can mark individual action children as desktop-only by giving
+   them this class (e.g. the marketing `Book a demo` button which is only
+   shown beside the navlinks at >=992px). The phone CTA + Sign in stay
+   visible at every breakpoint. */
+.actions :global(.fds-actions__desktop-only) {
+  display: inline-flex;
+}
+
 @media (max-width: 991px) {
-  .actions {
+  .actions :global(.fds-actions__desktop-only) {
     display: none;
+  }
+
+  /* Below 992px the navlinks list is hidden, so `space-between` would
+     spread logo / actions / hamburger across the bar (actions ends up
+     centered). Push the actions group to the right so phone + Sign in
+     sit flush with the hamburger. */
+  .container {
+    justify-content: flex-start;
+    gap: 8px;
+  }
+  .actions {
+    margin-left: auto;
+    gap: 8px;
+  }
+  .root {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 
-/* ── Hamburger (mobile only) ─────────────────────────────────────────────── */
+/* ── Menu / close trigger ──────────────────────────────────────────────── */
 
 .hamburger {
+  position: relative;
   display: none;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 32px;
+  height: 32px;
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
-  border-radius: 8px;
-  transition: background-color 0.3s;
   flex-shrink: 0;
+  color: var(--fds-neutral-100, #101319);
 }
 
-.hamburger:hover {
-  background-color: var(--fds-neutral-10, #f8f8f9);
-}
-
-.root--dark .hamburger:hover {
-  background-color: var(--fds-neutral-80, #4a4b4c);
+.root--dark .hamburger {
+  color: var(--fds-neutral-0, #ffffff);
 }
 
 @media (max-width: 991px) {
   .hamburger {
-    display: flex;
+    display: inline-flex;
+  }
+}
+
+.menu-icon {
+  position: absolute;
+  inset: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.menu-icon--visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-icon {
+    transition: none;
   }
 }
 
@@ -392,7 +471,7 @@
   column-gap: 8px;
   row-gap: 8px;
   border-radius: 8px;
-  padding: 20px 24px;
+  padding: 0.75rem;
   font-size: 1rem;
   overflow: hidden;
   transition: all 0.3s;
@@ -492,11 +571,10 @@
 
 .mobileOverlay {
   position: fixed;
-  top: 64px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 999;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
   background-color: var(--fds-neutral-0, #ffffff);
   overflow: hidden;
 }
@@ -505,10 +583,94 @@
   background-color: var(--fds-neutral-100, #101319);
 }
 
+.mobileHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 1.5rem;
+  height: 4rem;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  background-color: var(--fds-neutral-0, #ffffff);
+  border-bottom: 1px solid #ebebeb;
+  box-shadow:
+    0 1px 2px rgba(48, 48, 48, 0.03),
+    0 3px 3px rgba(48, 48, 48, 0.02),
+    0 7px 4px rgba(48, 48, 48, 0.01),
+    0 13px 5px rgba(48, 48, 48, 0),
+    0 21px 6px rgba(48, 48, 48, 0);
+}
+
+.mobileOverlay--dark .mobileHeader {
+  background-color: var(--fds-neutral-100, #101319);
+  border-bottom-color: var(--fds-neutral-80, #4a4b4c);
+}
+
+.mobileClose {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--fds-neutral-100, #101319);
+  flex-shrink: 0;
+}
+
+.mobileOverlay--dark .mobileClose {
+  color: var(--fds-neutral-0, #ffffff);
+}
+
 .mobilePanels {
   position: relative;
-  height: 100%;
+  flex: 1;
+  min-height: 0;
   overflow: hidden;
+}
+
+.mobileFoot {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.mobileFootLogo {
+  display: inline-flex;
+  opacity: 0.35;
+}
+
+.mobileFootLogo > img {
+  height: 24px;
+  width: auto;
+  display: block;
+}
+
+.mobileFootVersion {
+  font-family: 'Inter Display', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--fds-neutral-40, #a0a1a2);
+}
+
+.mobileOverlay--dark .mobileFootLogo {
+  opacity: 0.45;
+  /* horizontal-dark logo is dark; on a dark drawer flip it via brightness. */
+  filter: invert(1);
+}
+
+.mobileOverlay--dark .mobileFootVersion {
+  color: var(--fds-neutral-60, #5b5c5d);
 }
 
 .mobilePanel {
@@ -529,7 +691,6 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  flex: 1;
 }
 
 .mobileNavLink,
@@ -548,6 +709,28 @@
   border-radius: 8px;
   transition: background-color 0.2s;
   font-family: inherit;
+  /* Override the browser's default <a> link color so the inner Text(span)
+     can inherit (Text emits no color class when color="default"). */
+  color: var(--fds-neutral-100, #101319);
+}
+
+.mobileOverlay--dark .mobileNavLink,
+.mobileOverlay--dark .mobileNavLinkButton {
+  color: var(--fds-neutral-0, #ffffff);
+}
+
+.mobileNavLinkButton {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.mobileNavLinkButton > span:first-child {
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  justify-content: space-between;
+  font-weight: 500;
+  display: flex;
 }
 
 .mobileNavLink:hover,
@@ -577,14 +760,12 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 12px;
-  margin-bottom: 12px;
+  padding: 8px 0;
   background: none;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   color: inherit;
-  align-self: flex-start;
   transition: background-color 0.2s;
   font-family: inherit;
 }
@@ -600,20 +781,54 @@
 .mobileSubContent {
   display: flex;
   flex-direction: column;
-  gap: 24px;
 }
 
 .mobileCategory {
   display: flex;
   flex-direction: column;
-  gap: 8px;
 }
 
 .mobileCategoryHeader {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 4px 12px;
+  gap: 12px;
+  padding: 12px;
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+  font-family: inherit;
+  color: inherit;
+}
+
+.mobileCategoryHeader:hover {
+  background-color: var(--fds-neutral-10, #f8f8f9);
+}
+
+.mobileOverlay--dark .mobileCategoryHeader:hover {
+  background-color: var(--fds-neutral-80, #4a4b4c);
+}
+
+.mobileCategoryChevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  transition: transform 0.2s ease;
+  color: var(--fds-neutral-60, #5b5c5d);
+}
+
+.mobileCategory--open .mobileCategoryChevron {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobileCategoryChevron {
+    transition: none;
+  }
 }
 
 .mobileCategoryIcon {
@@ -635,6 +850,21 @@
   gap: 2px;
 }
 
+/* Indentation only applies when the link list is nested inside a category
+   accordion (Solutions). Resources / Company simple dropdowns render
+   `.mobileCategoryLinks` directly under `.mobileSubContent` without an
+   accordion header, so they stay flush. */
+.mobileCategory .mobileCategoryLinks {
+  padding-left: 2rem;
+}
+
+/* Mobile: match the simple-dropdown link padding to the mega-dropdown
+   link padding so Resources / Company items render with the same
+   compactness as the Solutions sub-section links. */
+.mobileCategoryLinks .dropdownLink--simple {
+  padding: 0.75rem;
+}
+
 .mobileBottomLinks {
   display: flex;
   flex-direction: column;
@@ -651,13 +881,10 @@
 
 .mobileActions {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
   gap: 12px;
-  padding-top: 24px;
-  margin-top: 24px;
-  border-top: 1px solid var(--fds-neutral-20, #f2f2f2);
-}
-
-.mobileOverlay--dark .mobileActions {
-  border-top-color: var(--fds-neutral-80, #4a4b4c);
+  margin-top: 12px;
+  padding: 0 12px;
 }

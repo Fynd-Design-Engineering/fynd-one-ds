@@ -110,6 +110,7 @@ export type {
   FooterProps,
   FooterLink,
   FooterLinkSection,
+  FooterLinkGroup,
   FooterContentPair,
   FooterSocialLink,
   FooterSocialPlatform,
@@ -121,6 +122,15 @@ export type {
   PopoverPlacement,
   PopoverRole,
 } from './components/molecules/Popover';
+
+export { Modal } from './components/molecules/Modal';
+export type { ModalProps } from './components/molecules/Modal';
+
+export { ContactForm } from './components/molecules/ContactForm';
+export type {
+  ContactFormProps,
+  ContactFormValues,
+} from './components/molecules/ContactForm';
 
 // Layouts
 export { Grid } from './components/layouts/Grid';
@@ -144,6 +154,7 @@ export {
 export {
   fyndMarketingFooterPreset,
   fyndFooterLinkSections,
+  fyndFooterLinkGroups,
   fyndFooterContentPairs,
   fyndFooterLegalLinks,
   fyndFooterSocialLinks,

@@ -105,6 +105,19 @@ export interface NavbarProps {
   onDarkBg?: boolean;
   /** Sticky positioning at top of viewport */
   sticky?: boolean;
+  /**
+   * Default `false`. By default the nav renders transparent (no blur,
+   * no fill) while the page is at the top of its scroll, then fades
+   * to the solid background once the user scrolls past
+   * `scrollThreshold` pixels. Set to `true` to disable the
+   * transparency behavior and always render with the solid bg.
+   *
+   * Pair the default scroll-aware behavior with `onDarkBg` if the
+   * hero behind the nav is dark, so link colors stay readable.
+   */
+  alwaysSolidBg?: boolean;
+  /** Pixels of scroll past which the nav fades to its solid bg. Default 8. */
+  scrollThreshold?: number;
   /** Open this dropdown by default (label match). Useful for previews / Storybook. */
   defaultOpenDropdown?: string;
   className?: string;
@@ -126,6 +139,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   mobileActions,
   onDarkBg = false,
   sticky = false,
+  alwaysSolidBg = false,
+  scrollThreshold = 8,
   defaultOpenDropdown,
   className,
   style,
@@ -246,10 +261,25 @@ export const Navbar: React.FC<NavbarProps> = ({
     };
   }, [mobileOpen]);
 
+  // Scroll-aware transparent variant. By default the nav reads as
+  // transparent until the page scrolls past the threshold, then fades
+  // back to its solid fill. Pass `alwaysSolidBg` to opt out. Listener
+  // is passive + cleaned up on unmount.
+  const scrollAware = !alwaysSolidBg;
+  const [pastTopThreshold, setPastTopThreshold] = useState(false);
+  useEffect(() => {
+    if (!scrollAware || typeof window === 'undefined') return;
+    const update = () => setPastTopThreshold(window.scrollY > scrollThreshold);
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    return () => window.removeEventListener('scroll', update);
+  }, [scrollAware, scrollThreshold]);
+
   const rootClasses = [
     styles.root,
     onDarkBg && styles['root--dark'],
     sticky && styles['root--sticky'],
+    scrollAware && !pastTopThreshold && !activeDropdown && styles['root--transparent'],
     className,
   ]
     .filter(Boolean)
@@ -433,6 +463,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   ) as NavMegaDropdownItem | NavSimpleDropdownItem | undefined;
 
   return (
+    <>
     <nav className={rootClasses} style={style} ref={rootRef}>
       <div className={styles.container}>
         {logo && (
@@ -547,8 +578,11 @@ export const Navbar: React.FC<NavbarProps> = ({
           );
         })()}
       </AnimatePresence>
+    </nav>
 
-      {/* Mobile menu */}
+      {/* Mobile menu — rendered as a sibling of <nav> so its
+          position:fixed escapes the navbar root's containing block
+          (backdrop-filter on .root creates one). */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -614,26 +648,23 @@ export const Navbar: React.FC<NavbarProps> = ({
                 animate={{ x: mobileSubMenu ? '-100%' : '0%' }}
                 transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
               >
-                <motion.ul
-                  className={styles.mobileNavLinks}
-                  initial="hidden"
-                  animate="show"
-                  variants={{
-                    hidden: {},
-                    show: {
-                      transition: { staggerChildren: 0.045, delayChildren: 0.1 },
-                    },
-                  }}
-                >
-                  {navItems.map((item) => {
+                <ul className={styles.mobileNavLinks}>
+                  {navItems.map((item, idx) => {
+                    // Index-based delay replaces motion's `staggerChildren`
+                    // variant inheritance, which doesn't propagate reliably
+                    // through nested motion parents — left items invisible.
+                    const itemTransition = {
+                      duration: 0.28,
+                      ease: [0.16, 1, 0.3, 1] as const,
+                      delay: 0.1 + idx * 0.045,
+                    };
                     if (!isDropdown(item)) {
                       return (
                         <motion.li
                           key={item.label}
-                          variants={{
-                            hidden: { opacity: 0, y: 12 },
-                            show: { opacity: 1, y: 0, transition: { duration: 0.28, ease: [0.16, 1, 0.3, 1] } },
-                          }}
+                          initial={{ opacity: 0, y: 12 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={itemTransition}
                         >
                           <a
                             className={styles.mobileNavLink}
@@ -661,10 +692,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                     return (
                       <motion.li
                         key={item.label}
-                        variants={{
-                          hidden: { opacity: 0, y: 12 },
-                          show: { opacity: 1, y: 0, transition: { duration: 0.28, ease: [0.16, 1, 0.3, 1] } },
-                        }}
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={itemTransition}
                       >
                         <button
                           type="button"
@@ -686,7 +716,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       </motion.li>
                     );
                   })}
-                </motion.ul>
+                </ul>
                 {(mobileActions || actions) && (
                   <motion.div
                     className={styles.mobileActions}
@@ -787,7 +817,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 };
 

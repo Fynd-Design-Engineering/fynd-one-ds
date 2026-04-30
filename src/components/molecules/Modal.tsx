@@ -191,21 +191,23 @@ export const Modal: React.FC<ModalProps> = ({
               >
                 {/* Scrollable region — children render first so the natural
                     tab order starts at the first focusable inside the user's
-                    content (e.g. the first form field). The close button is
-                    rendered last in the DOM and visually pinned top-right via
-                    CSS so it stays anchored as the inner content scrolls. */}
+                    content (e.g. the first form field). */}
                 <div className={styles.scroll}>{children}</div>
-                {showClose && (
-                  <button
-                    type="button"
-                    onClick={() => setOpen(false)}
-                    className={styles.close}
-                    aria-label="Close"
-                  >
-                    <CloseGlyph />
-                  </button>
-                )}
               </motion.div>
+              {/* Close button is rendered as a sibling of the card so it
+                  sits OUTSIDE the modal — top-right corner of the overlay
+                  on desktop, centered above the bottom-sheet on mobile.
+                  Order keeps it last in tab sequence. */}
+              {showClose && (
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  className={styles.close}
+                  aria-label="Close"
+                >
+                  <CloseGlyph />
+                </button>
+              )}
             </motion.div>
           </FloatingPortal>
         )}

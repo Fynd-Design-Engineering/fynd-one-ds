@@ -48,28 +48,41 @@
     max-height: calc(100vh - 56px);
     border-radius: 16px 16px 0 0;
   }
+
+  /* Close moves to the gap above the sheet, centered horizontally. */
+  .close {
+    top: 10px;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .close:active {
+    transform: translateX(-50%) scale(0.95);
+  }
 }
 
 .close {
   position: absolute;
   top: 16px;
   right: 16px;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background-color: rgba(16, 19, 25, 0.6);
-  color: var(--fds-neutral-0, #ffffff);
+  background-color: rgba(255, 255, 255, 0.95);
+  color: var(--fds-neutral-100, #101319);
   border: none;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 12px rgba(16, 19, 25, 0.18);
   transition: background-color 0.2s ease, transform 0.15s ease;
   z-index: 2;
 }
 
 .close:hover {
-  background-color: rgba(16, 19, 25, 0.85);
+  background-color: #ffffff;
 }
 
 .close:active {

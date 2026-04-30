@@ -6,6 +6,35 @@
 
 ---
 
+## 0 · Build Requirements (every component, every PR)
+
+Two checks are non-negotiable on every new component, feature, or layout/CSS change. Apply them inside this DS *and* inside any consumer (e.g. fynd-web).
+
+### 0.1 — Surface responsive decisions before shipping
+
+Components ship with mobile, tablet, and desktop behavior — not desktop-only. Before considering anything done:
+
+- Decide and apply behavior at **mobile (< 768px), tablet (768–991px), desktop (≥ 992px)** and inside constrained containers (sidebars, columns).
+- If the responsive behavior isn't obvious from the spec, **prompt the user** with the specific question (e.g. "On mobile, do the action buttons stack or stay inline?") and a proposed default. Don't guess silently.
+- Verify Section / Grid / Rail / page-padding tokens are doing the responsive work; only add custom breakpoint CSS where the tokens aren't enough.
+- If the change touches typography or spacing on mobile, double-check the change against the type-scale floor in §2 and the spacing scale in §5.
+
+### 0.2 — Flag accessibility concerns proactively
+
+Surface these to the user as soon as you notice them, even if they're outside the immediate request:
+
+- Icon-only buttons / image-only links missing `aria-label` (or non-empty `alt`).
+- Focus traps that never release (Modal, drawer, dropdown) — confirm Esc + outside-click + return-focus-on-close.
+- Tab order that skips visible interactive content, or lands on the close button before the form fields.
+- Click handlers on `<div>` / `<span>` without keyboard support — promote to a button or anchor.
+- Color contrast that won't meet WCAG AA on the target background (especially on dark / gradient sections).
+- Animations without a `prefers-reduced-motion` fallback.
+- Form fields without labels (visible or `aria-label`), or error states without `aria-invalid` + `aria-describedby` linkage.
+
+Phrase the flag as a brief, redirectable note ("Heads-up: the chevron button has no aria-label — adding `aria-label='Toggle menu'`. OK?") rather than a blocking gate. The DS exists to remove a11y guesswork, not push it onto consumers.
+
+---
+
 ## Setup
 
 Every consuming app MUST import the token stylesheet at its entry point:

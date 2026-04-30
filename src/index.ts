@@ -171,3 +171,12 @@ export {
   FyndFooterLottieWordmark,
   FyndFooterTrailingBadges,
 } from './presets/fyndMarketingFooter';
+
+export {
+  FyndMarketingNavActions,
+  FyndMarketingNavMobileActions,
+} from './presets/fyndMarketingNavActions';
+export type {
+  FyndMarketingNavActionsProps,
+  FyndMarketingNavMobileActionsProps,
+} from './presets/fyndMarketingNavActions';

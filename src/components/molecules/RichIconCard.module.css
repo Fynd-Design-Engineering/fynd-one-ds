@@ -72,3 +72,14 @@
 .subtext--dark {
   color: #a0a0a0;
 }
+
+/* ── Actions slot ─────────────────────────────────────────────────────────── */
+
+/* Flex row for one-or-more buttons in the card footer. Wraps onto a
+   second line on narrow viewports so the buttons never overflow. */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}

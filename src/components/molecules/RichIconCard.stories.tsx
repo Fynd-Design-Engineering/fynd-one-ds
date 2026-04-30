@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { RichIconCard } from './RichIconCard';
+import { Button } from '../atoms/Button';
 
 const StarIcon = () => (
   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -91,6 +92,44 @@ export const OnDarkBackground: Story = {
         subtext="Card adapts for dark surfaces with inverted colors."
         buttonLabel="Button"
         onDarkBg
+      />
+    </div>
+  ),
+};
+
+export const NoIconWithActions: Story = {
+  name: 'No icon + actions slot (two buttons)',
+  render: () => (
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, maxWidth: 1200 }}>
+      <RichIconCard
+        title="Store OS"
+        subtext="The ultimate retail store management platform"
+        actions={
+          <>
+            <Button label="Button" variant="secondary" />
+            <Button label="Learn more" variant="primary" />
+          </>
+        }
+      />
+      <RichIconCard
+        title="Commerce APIs"
+        subtext="Fully headless and composable API suite for seamless integrations"
+        actions={
+          <>
+            <Button label="Button" variant="secondary" />
+            <Button label="Learn more" variant="primary" />
+          </>
+        }
+      />
+      <RichIconCard
+        title="Storefronts"
+        subtext="Build your own digital storefronts"
+        actions={
+          <>
+            <Button label="Button" variant="secondary" />
+            <Button label="Learn more" variant="primary" />
+          </>
+        }
       />
     </div>
   ),

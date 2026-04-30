@@ -74,6 +74,14 @@
   min-height: 0;
 }
 
+/* `imagePosition="above"` reuses the same DOM (text-overlay then
+   image-container) but visually flips the order via flex-reverse, so
+   the image renders at the top while the heading stays first in the
+   accessibility tree. */
+.root--above {
+  flex-direction: column-reverse;
+}
+
 /* ── Bottom-right image ───────────────────────────────────────────────────── */
 
 .image--bottom-right {

@@ -175,6 +175,9 @@ The DS components themselves stay generic — no preset coupling. Use the preset
 ### Building a card?
 → See the **Card Selection Matrix** in Section 6.
 
+### Building an asymmetric split hero (text left + image right, 40/60)?
+→ Use `<HeroSplit>` — handles the SectionWrapper, grid, bullets, actions, and visual cell automatically.
+
 ### Need a pricing table?
 → Use `<PricingCard>` with label, amount, features, optional popular badge.
 
@@ -618,6 +621,38 @@ Desktop: icon + label. Mobile: icon-only (40px circle). Count badge appears top-
 
 `PricingFeature` shape: `{ text: string }`
 
+#### HeroSplit
+Asymmetric split hero: text-left + visual-right (40/60 desktop, stacked on mobile). Internally wraps `SectionWrapper`, so vertical/horizontal page padding is handled — drop it directly into a page, no outer Section needed.
+
+| Prop | Type | Default |
+|------|------|---------|
+| `title` | `ReactNode` | required — rendered as `<h1>` with `heading-xl` |
+| `description` | `ReactNode` | — |
+| `bullets` | `string[]` | — |
+| `actions` | `ReactNode` | — (1–2 `<Button>`s) |
+| `image` | `{ src, alt, width?, height? }` | required |
+| `imagePriority` | `boolean` | `true` (eager loading + sync decode for above-the-fold hero) |
+| `bg` | `string` | — (any CSS color for the visual cell background, e.g. `'var(--fds-blue-20)'`) |
+| `onDarkBg` | `boolean` | `false` |
+
+Layout: 2-col `minmax(0, 40fr) minmax(0, 60fr)` grid with 60px gap on desktop, single column with 40px gap below 992px. Visual cell: max-width 45rem, border-radius 24px, `margin-left: auto`. Content cell: max-width 560px, flex-column gap 28px.
+
+```jsx
+<HeroSplit
+  title={<>Launch a hyperlocal website in 30 minutes</>}
+  description="Delight your customers with same-day deliveries"
+  bullets={['Build a website', 'Automate orders', 'Run promotions']}
+  image={{ src: '/hero.png', alt: 'Hyperlocal storefront', width: 1200, height: 900 }}
+  bg="var(--fds-blue-20)"
+  actions={
+    <>
+      <Button label="Get started" variant="primary" showChevron />
+      <Button label="Book a demo" variant="secondary" />
+    </>
+  }
+/>
+```
+
 #### Popover
 Generic positioned panel anchored to a trigger element. Use for region switchers, action menus, "more info" disclosures, custom dropdowns. Built on Floating UI — handles auto-flip, click-outside, Esc, focus trap, keyboard nav, ARIA.
 
@@ -751,6 +786,7 @@ When building a card-like element, choose from existing molecules before creatin
 | Stat number or icon + label | `MetricCard` | `variant="number"` or `variant="icon"`, `stat` |
 | Full-width CTA with buttons | `CTABanner` | Pass `<Button>` components as `children` |
 | Pricing tier with features | `PricingCard` | `label`, `amount`, `features`, `popularText`, `onDarkBg` |
+| Asymmetric split hero (text left, image right) | `HeroSplit` | `title`, `image`, `bullets`, `actions`, `bg` |
 
 **ContentCard defaults**: title renders as `body-xl` / `medium`, subtext as `body-m` / `regular` / `secondary`. Use `titleVariant` and `subtextVariant` to override per instance.
 

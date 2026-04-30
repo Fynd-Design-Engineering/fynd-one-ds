@@ -644,26 +644,23 @@ export const Navbar: React.FC<NavbarProps> = ({
                 animate={{ x: mobileSubMenu ? '-100%' : '0%' }}
                 transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
               >
-                <motion.ul
-                  className={styles.mobileNavLinks}
-                  initial="hidden"
-                  animate="show"
-                  variants={{
-                    hidden: {},
-                    show: {
-                      transition: { staggerChildren: 0.045, delayChildren: 0.1 },
-                    },
-                  }}
-                >
-                  {navItems.map((item) => {
+                <ul className={styles.mobileNavLinks}>
+                  {navItems.map((item, idx) => {
+                    // Index-based delay replaces motion's `staggerChildren`
+                    // variant inheritance, which doesn't propagate reliably
+                    // through nested motion parents — left items invisible.
+                    const itemTransition = {
+                      duration: 0.28,
+                      ease: [0.16, 1, 0.3, 1] as const,
+                      delay: 0.1 + idx * 0.045,
+                    };
                     if (!isDropdown(item)) {
                       return (
                         <motion.li
                           key={item.label}
-                          variants={{
-                            hidden: { opacity: 0, y: 12 },
-                            show: { opacity: 1, y: 0, transition: { duration: 0.28, ease: [0.16, 1, 0.3, 1] } },
-                          }}
+                          initial={{ opacity: 0, y: 12 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={itemTransition}
                         >
                           <a
                             className={styles.mobileNavLink}
@@ -691,10 +688,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                     return (
                       <motion.li
                         key={item.label}
-                        variants={{
-                          hidden: { opacity: 0, y: 12 },
-                          show: { opacity: 1, y: 0, transition: { duration: 0.28, ease: [0.16, 1, 0.3, 1] } },
-                        }}
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={itemTransition}
                       >
                         <button
                           type="button"
@@ -716,7 +712,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       </motion.li>
                     );
                   })}
-                </motion.ul>
+                </ul>
                 {(mobileActions || actions) && (
                   <motion.div
                     className={styles.mobileActions}

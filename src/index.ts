@@ -59,6 +59,9 @@ export type { PaginationProps } from './components/atoms/Pagination';
 export { FilterButton } from './components/atoms/FilterButton';
 export type { FilterButtonProps } from './components/atoms/FilterButton';
 
+export { FilterChip } from './components/atoms/FilterChip';
+export type { FilterChipProps } from './components/atoms/FilterChip';
+
 export { SearchBar } from './components/atoms/SearchBar';
 export type { SearchBarProps } from './components/atoms/SearchBar';
 
@@ -131,6 +134,13 @@ export type {
   ContactFormProps,
   ContactFormValues,
 } from './components/molecules/ContactForm';
+
+export { FilterPanel } from './components/molecules/FilterPanel';
+export type {
+  FilterPanelProps,
+  FilterGroup,
+  FilterOption,
+} from './components/molecules/FilterPanel';
 
 // Layouts
 export { Grid } from './components/layouts/Grid';

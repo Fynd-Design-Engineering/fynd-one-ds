@@ -22,7 +22,7 @@ export interface ContentCardProps {
   /** @deprecated Use imageHoverSrc instead. */
   hoverImageSrc?: string;
   imageAlt?: string;
-  imagePosition?: 'below' | 'behind' | 'bottom-right';
+  imagePosition?: 'above' | 'below' | 'behind' | 'bottom-right';
   chipLabel?: string;
   showChip?: boolean;
   title: string;
@@ -71,6 +71,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
 }) => {
   const isBehind = imagePosition === 'behind';
   const isBottomRight = imagePosition === 'bottom-right';
+  const isAbove = imagePosition === 'above';
   const sizeClass = size;
   const resolvedHoverSrc = imageHoverSrc ?? hoverImageSrc;
   const resolvedHoverAlt = imageHoverAlt ?? imageAlt;
@@ -81,6 +82,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
     (clickable || onClick) && styles.clickable,
     isBehind && styles['root--behind'],
     isBottomRight && styles['root--bottom-right'],
+    isAbove && styles['root--above'],
     onDarkBg && styles['root--dark'],
     className,
   ].filter(Boolean).join(' ');

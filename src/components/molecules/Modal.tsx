@@ -193,16 +193,25 @@ export const Modal: React.FC<ModalProps> = ({
                     tab order starts at the first focusable inside the user's
                     content (e.g. the first form field). */}
                 <div className={styles.scroll}>{children}</div>
+                {/* Desktop close — anchored top-right INSIDE the card. */}
+                {showClose && !isMobile && (
+                  <button
+                    type="button"
+                    onClick={() => setOpen(false)}
+                    className={styles.close}
+                    aria-label="Close"
+                  >
+                    <CloseGlyph />
+                  </button>
+                )}
               </motion.div>
-              {/* Close button is rendered as a sibling of the card so it
-                  sits OUTSIDE the modal — top-right corner of the overlay
-                  on desktop, centered above the bottom-sheet on mobile.
-                  Order keeps it last in tab sequence. */}
-              {showClose && (
+              {/* Mobile close — sibling of the card, centered above the
+                  bottom sheet so it floats in the visible page sliver. */}
+              {showClose && isMobile && (
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
-                  className={styles.close}
+                  className={styles.closeMobile}
                   aria-label="Close"
                 >
                   <CloseGlyph />

@@ -178,6 +178,9 @@ The DS components themselves stay generic — no preset coupling. Use the preset
 ### Building an asymmetric split hero (text left + image right, 40/60)?
 → Use `<HeroSplit>` — handles the SectionWrapper, grid, bullets, actions, and visual cell automatically.
 
+### Need a sitewide announcement bar above the nav?
+→ Use `<SiteBanner>` — full-bleed dark strip with a centered content slot. Drop any text/link/button inside.
+
 ### Need a pricing table?
 → Use `<PricingCard>` with label, amount, features, optional popular badge.
 
@@ -622,7 +625,7 @@ Desktop: icon + label. Mobile: icon-only (40px circle). Count badge appears top-
 `PricingFeature` shape: `{ text: string }`
 
 #### HeroSplit
-Asymmetric split hero: text-left + visual-right (40/60 desktop, stacked on mobile). Internally wraps `SectionWrapper`, so vertical/horizontal page padding is handled — drop it directly into a page, no outer Section needed.
+Asymmetric split hero: text-left + visual-right (40/60 desktop, stacked on mobile). Renders as `<header>` (HTML5 — the page's introductory landmark) and internally wraps `SectionWrapper`, so vertical/horizontal page padding is handled. Drop directly into a page, no outer Section needed.
 
 | Prop | Type | Default |
 |------|------|---------|
@@ -634,6 +637,7 @@ Asymmetric split hero: text-left + visual-right (40/60 desktop, stacked on mobil
 | `imagePriority` | `boolean` | `true` (eager loading + sync decode for above-the-fold hero) |
 | `bg` | `string` | — (any CSS color for the **section** background — paints both columns and the gutters outside the inner container, e.g. `'var(--fds-blue-20)'`) |
 | `visualBg` | `string` | — (any CSS color for the visual cell background; useful when the image has transparency and you want a different tint behind it than the surrounding section) |
+| `topOffset` | `'auto' \| string \| number` | — (pulls the hero up under sticky/fixed chrome above it; pads the inner content by the same amount. `'auto'` reads `--fds-banner-h` + `--fds-nav-h` published by `<SiteBanner>` / `<Navbar>`. Use a literal `'4rem'` / `80` for custom chrome.) |
 | `onDarkBg` | `boolean` | `false` |
 
 Layout: 2-col `minmax(0, 40fr) minmax(0, 60fr)` grid with 60px gap on desktop, single column with 40px gap below 992px. Visual cell: max-width 45rem, border-radius 24px, `margin-left: auto`. Content cell: max-width 560px, flex-column gap 28px.
@@ -653,6 +657,43 @@ Layout: 2-col `minmax(0, 40fr) minmax(0, 60fr)` grid with 60px gap on desktop, s
   }
 />
 ```
+
+#### SiteBanner
+Full-bleed announcement strip for the very top of the page (above `<Navbar>`). Dark background, light text, centered horizontally and vertically. Single content slot — drop in `<Text>`, anchors, `<Button>`s, icons, anything.
+
+| Prop | Type | Default |
+|------|------|---------|
+| `children` | `ReactNode` | required — banner content (rendered on a dark background; pass `color="white"` / `onDarkBg` to nested `<Text>` / `<Button>`) |
+
+Layout: full-width, padding `10px 20px` mobile → `12px 40px` tablet → `12px 120px` desktop. Children sit in a centered flex row with 12px gap and `flex-wrap: wrap`. The element has `role="region"` + `aria-label="Site notice"` so screen-reader users can navigate to / past it.
+
+When mounted, SiteBanner publishes `--fds-banner-h: 44px` on `<body>` (via a `:has()` rule in `tokens.css`). Top-of-page sections that need to sit under it can read this — e.g. `<HeroSplit topOffset="auto">` composes banner + nav heights automatically.
+
+```jsx
+<SiteBanner>
+  <Text variant="body-s" as="span" color="white">
+    Free onboarding for the next 30 days.
+  </Text>
+  <Button label="Claim now" variant="tertiary" onDarkBg showChevron />
+</SiteBanner>
+```
+
+#### Top-of-page chrome composition
+
+For marketing pages where the navbar should overlay (rather than push down) the hero, use:
+
+```jsx
+<SiteBanner>{/* optional announcement */}</SiteBanner>
+<Navbar sticky scrollAware ... />
+<HeroSplit topOffset="auto" bg="var(--fds-blue-20)" ... />
+```
+
+How it composes:
+- `SiteBanner` (when present) sets `--fds-banner-h: 44px` on `<body>`.
+- `Navbar` sets `--fds-nav-h: 4rem` on `<body>`. Its `sticky` prop makes it stick to top on scroll; `scrollAware` keeps it transparent at the top of the page so the hero color shows straight through.
+- `HeroSplit topOffset="auto"` pulls the section up by `calc(var(--fds-banner-h, 0px) + var(--fds-nav-h, 0px))` and pads the inner content row by the same amount, so the `<h1>` lands just below the chrome while the section's `bg` paints from y=0.
+
+If neither banner nor nav are on the page, both vars fall back to `0px` and the offset is a no-op — `topOffset="auto"` is safe to leave on permanently.
 
 #### Popover
 Generic positioned panel anchored to a trigger element. Use for region switchers, action menus, "more info" disclosures, custom dropdowns. Built on Floating UI — handles auto-flip, click-outside, Esc, focus trap, keyboard nav, ARIA.
@@ -733,7 +774,7 @@ Extends all SectionHeader props, plus:
 | `children` | `ReactNode` | required |
 | `bg` | `'default' \| 'muted' \| 'subtle' \| 'dark'` | `'default'` |
 | `noPaddingBottom` | `boolean` | `false` |
-| `as` | `'section' \| 'div' \| 'footer' \| 'nav'` | — |
+| `as` | `'section' \| 'div' \| 'footer' \| 'nav' \| 'header' \| 'main' \| 'aside' \| 'article'` | — |
 | `hideHeader` | `boolean` | `false` |
 | `fullWidthContent` | `boolean` | `false` |
 
@@ -760,7 +801,7 @@ SectionHeader props available on Section:
 | `bg` | `'default' \| 'muted' \| 'subtle' \| 'dark'` | — |
 | `onDarkBg` | `boolean` | — |
 | `noPaddingBottom` | `boolean` | — |
-| `as` | `'section' \| 'div' \| 'footer' \| 'nav'` | — |
+| `as` | `'section' \| 'div' \| 'footer' \| 'nav' \| 'header' \| 'main' \| 'aside' \| 'article'` | — |
 
 ### Core
 

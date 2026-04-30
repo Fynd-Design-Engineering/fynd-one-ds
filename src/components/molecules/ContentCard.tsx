@@ -75,6 +75,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
   const sizeClass = size;
   const resolvedHoverSrc = imageHoverSrc ?? hoverImageSrc;
   const resolvedHoverAlt = imageHoverAlt ?? imageAlt;
+  const hasHover = Boolean(imageSrc) && Boolean(resolvedHoverSrc);
 
   const cardClass = [
     styles.root,
@@ -84,6 +85,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
     isBottomRight && styles['root--bottom-right'],
     isAbove && styles['root--above'],
     onDarkBg && styles['root--dark'],
+    hasHover && styles.hoverable,
     className,
   ].filter(Boolean).join(' ');
 

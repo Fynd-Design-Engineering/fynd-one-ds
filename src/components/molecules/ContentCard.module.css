@@ -143,12 +143,12 @@
 }
 
 @media (hover: hover) {
-  .root:hover .image-default,
-  .root:focus-within .image-default {
+  .hoverable:hover .image-default,
+  .hoverable:focus-within .image-default {
     opacity: 0;
   }
-  .root:hover .image-hover,
-  .root:focus-within .image-hover {
+  .hoverable:hover .image-hover,
+  .hoverable:focus-within .image-hover {
     opacity: 1;
   }
 }

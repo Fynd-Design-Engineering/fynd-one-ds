@@ -24,6 +24,7 @@ import Lottie from 'lottie-react';
 import type {
   FooterContentPair,
   FooterLink,
+  FooterLinkGroup,
   FooterLinkSection,
   FooterProps,
   FooterSocialLink,
@@ -165,7 +166,7 @@ export const fyndFooterLinkSections: FooterLinkSection[] = [
       { label: 'Blogs', href: '/blog' },
       { label: 'Customer stories', href: '/customer-stories' },
       { label: 'Releases', href: '/releases' },
-      { label: 'Seller documents', href: 'https://docs.fynd.com/', external: true },
+      { label: 'Seller documents', href: 'https://docs.fynd.com/' },
       { label: 'Partner List', href: '/partner-listing' },
       { label: 'Events', href: '/events' },
       { label: 'Podcast', href: '/podcast' },
@@ -199,20 +200,18 @@ export const fyndFooterContentPairs: FooterContentPair[] = [
 ];
 
 export const fyndFooterLegalLinks: FooterLink[] = [
-  { label: 'Help', href: '/help' },
-  { label: 'Privacy', href: '/privacy' },
-  { label: 'Terms', href: '/terms' },
+  { label: 'Privacy', href: '/privacy-policy' },
+  { label: 'Terms', href: '/terms-and-conditions' },
   { label: 'Status', href: 'https://status.fynd.com/', external: true },
-  { label: 'Glossary', href: '/glossary' },
-  { label: 'Cookies', href: '/cookies' },
+  { label: 'Glossary', href: '/glossary/collection-lists' },
+  { label: 'Cookies', href: '#' },
 ];
 
 export const fyndFooterSocialLinks: FooterSocialLink[] = [
-  { platform: 'linkedin', href: 'https://www.linkedin.com/company/fynd' },
-  { platform: 'instagram', href: 'https://www.instagram.com/fyndofficial' },
-  { platform: 'twitter', href: 'https://x.com/fyndofficial' },
-  { platform: 'youtube', href: 'https://www.youtube.com/@fyndofficial' },
-  { platform: 'pinterest', href: 'https://in.pinterest.com/fyndofficial/' },
+  { platform: 'linkedin', href: 'https://www.linkedin.com/company/fynd-shopsense/' },
+  { platform: 'instagram', href: 'https://www.instagram.com/gofynd/' },
+  { platform: 'twitter', href: 'https://x.com/fynd_official' },
+  { platform: 'youtube', href: 'https://www.youtube.com/@FyndOfficial' },
 ];
 
 // ── Convenience preset ─────────────────────────────────────────────────
@@ -221,13 +220,31 @@ export const fyndFooterSocialLinks: FooterSocialLink[] = [
  * Spread this onto a `<Footer />` to render the full marketing footer.
  * Override any prop by passing it after the spread.
  */
+/** Three accordion banks that match the live fynd.com footer structure.
+ * Desktop renders each group's sections in a row; tablet/mobile renders
+ * each group's title as an accordion trigger. */
+export const fyndFooterLinkGroups: FooterLinkGroup[] = [
+  {
+    title: 'Channels & Operations',
+    sections: fyndFooterLinkSections.slice(0, 4), // Website builder, Marketplaces, Fulfilment, Retail
+  },
+  {
+    title: 'Intelligence & Innovation',
+    sections: fyndFooterLinkSections.slice(4, 8), // AI for Business, AI for Devs, Company, Brand Resources
+  },
+  {
+    title: 'Company Resources',
+    sections: fyndFooterLinkSections.slice(8, 10), // Manufacturing, Business sizes
+  },
+];
+
 export const fyndMarketingFooterPreset: Partial<FooterProps> = {
   logo: <img src={fyndBrandmark} alt="Fynd" width={80} height={77} />,
   contentPairs: fyndFooterContentPairs,
   trailingContent: <FyndFooterTrailingBadges />,
-  linkSections: fyndFooterLinkSections,
+  linkGroups: fyndFooterLinkGroups,
   legalLinks: fyndFooterLegalLinks,
   socialLinks: fyndFooterSocialLinks,
   wordmark: <FyndFooterLottieWordmark />,
-  copyright: '© 2024 Shopsense Retail Technologies | #MadeInIndia',
+  copyright: `© ${new Date().getFullYear()} Shopsense Retail Technologies | Invented in India`,
 };

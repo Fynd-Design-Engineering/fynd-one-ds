@@ -65,6 +65,11 @@ export const fyndSolutionsItem: NavMegaDropdownItem = {
           description: 'Build a hyperlocal website',
           href: '/solutions/quick',
         },
+        {
+          title: 'Mall Commerce',
+          description: 'Take your mall online',
+          href: '/solutions/mall-commerce',
+        },
       ],
     },
     {
@@ -191,6 +196,12 @@ export const fyndSolutionsItem: NavMegaDropdownItem = {
           href: '/solutions/ai-editing-for-commerce',
         },
         {
+          title: 'Marketing for e-commerce - AI Studio',
+          description: 'Generate ads, photoshoots, and videos using AI',
+          href: 'https://www.fynd.com/aistudio/',
+          external: true,
+        },
+        {
           title: 'Data workflow automation - Boltic',
           description: 'Connect tools and automate data operations',
           href: '/solutions/workflow-automation',
@@ -218,15 +229,15 @@ export const fyndSolutionsItem: NavMegaDropdownItem = {
           href: '/solutions/commerce-apis',
         },
         {
-          title: 'Automate software testing - Ratl',
-          description: 'Automated API testing, web testing and quality assurance',
-          href: '/solutions/ai-software-testing',
-        },
-        {
           title: 'Partner program',
           description: 'Build extensions and earn revenue share',
           href: 'https://partners.fynd.com/',
           external: true,
+        },
+        {
+          title: 'Automate software testing - Ratl',
+          description: 'Automated API testing, web testing and quality assurance',
+          href: '/solutions/ai-software-testing',
         },
       ],
     },
@@ -262,11 +273,11 @@ export const fyndResourcesItem: NavSimpleDropdownItem = {
   type: 'simple',
   links: [
     { title: 'Blogs', icon: <IcEditPen />, href: '/blog' },
-    { title: 'Seller documentation', icon: <IcCodeDocument />, href: 'https://docs.fynd.com/', external: true },
-    { title: 'Partners', icon: <IcGroup />, href: '/partner-listing' },
+    { title: 'Seller documentation', icon: <IcCodeDocument />, href: 'https://docs.fynd.com/' },
+    { title: 'Partners', icon: <IcGroup />, href: '/partners' },
     { title: 'Releases', icon: <IcRocket />, href: '/releases' },
-    { title: 'Academy', icon: <img src={faDark} alt="" width={24} height={24} />, href: 'https://www.fynd.academy/', external: true },
-    { title: 'Ebooks', icon: <IcTextbook />, href: '/ebooks' },
+    { title: 'Academy', icon: <img src={faDark} alt="" width={24} height={24} />, href: '/academy' },
+    { title: 'Knowledge centre', icon: <IcTextbook />, href: '/knowledge-centre' },
   ],
 };
 

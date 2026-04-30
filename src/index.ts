@@ -59,6 +59,9 @@ export type { PaginationProps } from './components/atoms/Pagination';
 export { FilterButton } from './components/atoms/FilterButton';
 export type { FilterButtonProps } from './components/atoms/FilterButton';
 
+export { FilterChip } from './components/atoms/FilterChip';
+export type { FilterChipProps } from './components/atoms/FilterChip';
+
 export { SearchBar } from './components/atoms/SearchBar';
 export type { SearchBarProps } from './components/atoms/SearchBar';
 
@@ -110,6 +113,7 @@ export type {
   FooterProps,
   FooterLink,
   FooterLinkSection,
+  FooterLinkGroup,
   FooterContentPair,
   FooterSocialLink,
   FooterSocialPlatform,
@@ -121,6 +125,22 @@ export type {
   PopoverPlacement,
   PopoverRole,
 } from './components/molecules/Popover';
+
+export { Modal } from './components/molecules/Modal';
+export type { ModalProps } from './components/molecules/Modal';
+
+export { ContactForm } from './components/molecules/ContactForm';
+export type {
+  ContactFormProps,
+  ContactFormValues,
+} from './components/molecules/ContactForm';
+
+export { FilterPanel } from './components/molecules/FilterPanel';
+export type {
+  FilterPanelProps,
+  FilterGroup,
+  FilterOption,
+} from './components/molecules/FilterPanel';
 
 // Layouts
 export { Grid } from './components/layouts/Grid';
@@ -144,6 +164,7 @@ export {
 export {
   fyndMarketingFooterPreset,
   fyndFooterLinkSections,
+  fyndFooterLinkGroups,
   fyndFooterContentPairs,
   fyndFooterLegalLinks,
   fyndFooterSocialLinks,

@@ -22,7 +22,9 @@
   gap: 32px;
   max-width: 80rem;
   margin: 0 auto;
-  padding: 12px 1.5rem;
+  /* Vertical padding is 0 — each .item provides its own 40px tap-
+     target height, which becomes the row's effective height. */
+  padding: 0 1.5rem;
   /* Allow horizontal scrolling on narrow viewports without breaking
      the layout. Hide the scrollbar visually but keep wheel/touch
      dragging working. */
@@ -45,11 +47,14 @@
 .item {
   display: inline-flex;
   align-items: center;
+  /* Minimum 40px tap target per accessibility / mobile-touch guidance.
+     Vertical centering is handled by inline-flex + align-items: center. */
+  min-height: 40px;
   white-space: nowrap;
   text-decoration: none;
   background: none;
   border: none;
-  padding: 4px 0;
+  padding: 0;
   cursor: pointer;
   font-family: 'Inter Display', sans-serif;
   font-size: 14px;

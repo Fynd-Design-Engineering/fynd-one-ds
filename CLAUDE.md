@@ -70,11 +70,19 @@ import {
   Navbar,
   Footer,
   fyndMarketingNavItems,
+  FyndMarketingNavActions,
+  FyndMarketingNavMobileActions,
   fyndMarketingFooterPreset,
 } from '@fynd-design-engineering/fynd-one-ds';
 
-// Marketing site, drop-in
-<Navbar logo={<Logo />} navItems={fyndMarketingNavItems} actions={<CTAs />} />
+// Marketing site, drop-in. The Book-a-demo button opens a Modal
+// containing ContactForm; wire `onContactSubmit` to your CRM/HubSpot.
+<Navbar
+  logo={<Logo />}
+  navItems={fyndMarketingNavItems}
+  actions={<FyndMarketingNavActions onContactSubmit={submit} />}
+  mobileActions={<FyndMarketingNavMobileActions onContactSubmit={submit} />}
+/>
 <Footer {...fyndMarketingFooterPreset} />
 ```
 
@@ -105,6 +113,8 @@ Available exports:
 
 - `fyndMarketingNavItems` — array, full top-nav (Solutions, Resources, Company, Customer stories).
 - `fyndSolutionsItem`, `fyndResourcesItem`, `fyndCompanyItem`, `fyndCustomerStoriesItem` — individual `NavItem`s for composition.
+- `FyndMarketingNavActions` — right-side action group (phone CTA + icon-only mobile circle, Book-a-demo trigger that opens `Modal` + `ContactForm`, Sign in). Override copy/URLs via props; pass `onContactSubmit` to wire the form to your CRM.
+- `FyndMarketingNavMobileActions` — single Book-a-demo Modal trigger for the mobile drawer.
 - `fyndMarketingFooterPreset` — partial `FooterProps` ready to spread.
 - `fyndFooterLinkSections`, `fyndFooterContentPairs`, `fyndFooterLegalLinks`, `fyndFooterSocialLinks` — discrete pieces.
 - `FyndFooterLottieWordmark` — animated Fynd wordmark (uses `lottie-react`, runtime dep).

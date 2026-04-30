@@ -115,6 +115,7 @@ Available exports:
 - `fyndSolutionsItem`, `fyndResourcesItem`, `fyndCompanyItem`, `fyndCustomerStoriesItem` — individual `NavItem`s for composition.
 - `FyndMarketingNavActions` — right-side action group (phone CTA + icon-only mobile circle, Book-a-demo trigger that opens `Modal` + `ContactForm`, Sign in). Override copy/URLs via props; pass `onContactSubmit` to wire the form to your CRM.
 - `FyndMarketingNavMobileActions` — single Book-a-demo Modal trigger for the mobile drawer.
+- `fyndMarketingProductOptions` — canonical "Product interested" select options used in the Book-a-demo form. Both `FyndMarketingNavActions` presets default to this list, so consumers don't have to maintain it. Override per-instance via the `productOptions` prop, or import it directly for your own ContactForm composition.
 - `fyndMarketingFooterPreset` — partial `FooterProps` ready to spread.
 - `fyndFooterLinkSections`, `fyndFooterContentPairs`, `fyndFooterLegalLinks`, `fyndFooterSocialLinks` — discrete pieces.
 - `FyndFooterLottieWordmark` — animated Fynd wordmark (uses `lottie-react`, runtime dep).

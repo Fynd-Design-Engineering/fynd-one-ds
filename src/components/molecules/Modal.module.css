@@ -4,22 +4,17 @@
   z-index: 2147483647;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding: 80px 20px;
-  overflow: auto;
+  align-items: center;
+  padding: 24px 20px;
   background-color: rgba(16, 19, 25, 0.55);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
 }
 
-@media (min-width: 1440px) {
-  .overlay {
-    align-items: center;
-  }
-}
-
 .card {
   position: relative;
+  display: flex;
+  flex-direction: column;
   background-color: var(--fds-neutral-0, #ffffff);
   border-radius: 12px;
   box-shadow:
@@ -28,6 +23,14 @@
   outline: none;
   overflow: hidden;
   max-width: 100%;
+  max-height: calc(100vh - 48px);
+}
+
+.scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .close {

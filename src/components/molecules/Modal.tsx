@@ -167,11 +167,12 @@ export const Modal: React.FC<ModalProps> = ({
                 exit={{ opacity: 0, scale: 0.96, y: 12 }}
                 transition={SPRING}
               >
-                {/* Children render first so the natural tab order starts at the
-                    first focusable inside the user's content (e.g. the first
-                    form field) and the close button comes last. The close
-                    button is visually absolute-positioned top-right via CSS. */}
-                {children}
+                {/* Scrollable region — children render first so the natural
+                    tab order starts at the first focusable inside the user's
+                    content (e.g. the first form field). The close button is
+                    rendered last in the DOM and visually pinned top-right via
+                    CSS so it stays anchored as the inner content scrolls. */}
+                <div className={styles.scroll}>{children}</div>
                 {showClose && (
                   <button
                     type="button"

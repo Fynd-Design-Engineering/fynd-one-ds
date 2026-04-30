@@ -33,6 +33,23 @@
   overflow-x: hidden;
 }
 
+/* ── Mobile: render as a bottom sheet ───────────────────────────────── */
+@media (max-width: 767px) {
+  .overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .card {
+    width: 100% !important;
+    max-width: 100%;
+    /* Leave a comfortable inset above the sheet so the user can still
+       see the page behind it. 64px ≈ tap-target + breathing room. */
+    max-height: calc(100vh - 64px);
+    border-radius: 16px 16px 0 0;
+  }
+}
+
 .close {
   position: absolute;
   top: 16px;

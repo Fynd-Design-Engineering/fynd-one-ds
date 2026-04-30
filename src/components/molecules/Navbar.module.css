@@ -9,10 +9,22 @@
   backdrop-filter: blur(50px);
   z-index: 1000;
   box-sizing: border-box;
+  transition: background-color 0.25s ease, backdrop-filter 0.25s ease,
+    -webkit-backdrop-filter 0.25s ease;
 }
 
 .root--dark {
   background-color: var(--fds-neutral-100, #101319);
+}
+
+/* Scroll-aware transparent variant — applied while the page is at the
+   top of its scroll position, removed once the user scrolls past the
+   threshold (toggled in Navbar.tsx). The transition above handles the
+   fade back to the default fill. */
+.root--transparent {
+  background-color: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 .root--sticky {

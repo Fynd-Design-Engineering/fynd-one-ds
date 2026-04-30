@@ -463,6 +463,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   ) as NavMegaDropdownItem | NavSimpleDropdownItem | undefined;
 
   return (
+    <>
     <nav className={rootClasses} style={style} ref={rootRef}>
       <div className={styles.container}>
         {logo && (
@@ -577,8 +578,11 @@ export const Navbar: React.FC<NavbarProps> = ({
           );
         })()}
       </AnimatePresence>
+    </nav>
 
-      {/* Mobile menu */}
+      {/* Mobile menu — rendered as a sibling of <nav> so its
+          position:fixed escapes the navbar root's containing block
+          (backdrop-filter on .root creates one). */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -813,7 +817,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 };
 

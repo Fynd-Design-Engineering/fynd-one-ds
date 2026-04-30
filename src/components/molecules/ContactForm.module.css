@@ -34,8 +34,28 @@
   flex-direction: column;
 }
 
-/* Label styles come from the global `form label` rule in reset.css —
-   no overrides needed here. */
+/* Row containing the label (left) and the error message (right edge).
+   Sits above the input so the error reads at the same vertical level
+   as the label. */
+.fieldHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* The label inside .fieldHeader inherits the global `form label` rule's
+   margin-bottom (0.2rem), which gives breathing room above the input. */
+.fieldHeader > label {
+  margin-bottom: 0;
+}
+
+.fieldHeader + .input,
+.fieldHeader + .phoneRow,
+.fieldHeader + .textarea,
+.fieldHeader + .select {
+  margin-top: 0.2rem;
+}
 
 .input,
 .select,
@@ -145,12 +165,18 @@
 }
 
 .errorText {
-  display: block;
-  margin-top: 6px;
+  display: inline-block;
   font-family: 'Inter Display', sans-serif;
   font-size: 12px;
   line-height: 1.3;
   color: #d11f2d;
+  text-align: right;
+  /* Right-align the message at the input row's right edge; truncate
+     long messages with ellipsis rather than wrapping below the label. */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 60%;
 }
 
 .inputError,

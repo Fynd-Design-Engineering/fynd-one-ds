@@ -367,7 +367,14 @@ const Field: React.FC<FieldProps> = ({
   error,
 }) => (
   <div className={styles.field}>
-    <label htmlFor={id}>{label}</label>
+    <div className={styles.fieldHeader}>
+      <label htmlFor={id}>{label}</label>
+      {error && (
+        <span id={`${id}-error`} className={styles.errorText}>
+          {error}
+        </span>
+      )}
+    </div>
     <input
       id={id}
       type={type}
@@ -381,11 +388,6 @@ const Field: React.FC<FieldProps> = ({
       aria-invalid={error ? true : undefined}
       aria-describedby={error ? `${id}-error` : undefined}
     />
-    {error && (
-      <span id={`${id}-error`} className={styles.errorText}>
-        {error}
-      </span>
-    )}
   </div>
 );
 
@@ -415,7 +417,14 @@ const PhoneField: React.FC<PhoneFieldProps> = ({
   const country = findCountry(countryIso2) ?? findCountry('IN')!;
   return (
     <div className={styles.field}>
-      <label htmlFor={id}>{label}</label>
+      <div className={styles.fieldHeader}>
+        <label htmlFor={id}>{label}</label>
+        {error && (
+          <span id={`${id}-error`} className={styles.errorText}>
+            {error}
+          </span>
+        )}
+      </div>
       <div
         className={[styles.phoneRow, error ? styles.phoneRowError : '']
           .filter(Boolean)
@@ -457,11 +466,6 @@ const PhoneField: React.FC<PhoneFieldProps> = ({
           aria-describedby={error ? `${id}-error` : undefined}
         />
       </div>
-      {error && (
-        <span id={`${id}-error`} className={styles.errorText}>
-          {error}
-        </span>
-      )}
     </div>
   );
 };

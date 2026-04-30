@@ -19,10 +19,27 @@
 
 /* Scroll-aware transparent variant — applied while the page is at the
    top of its scroll position, removed once the user scrolls past the
-   threshold (toggled in Navbar.tsx). The transition above handles the
-   fade back to the default fill. */
+   threshold OR a dropdown opens (both toggled in Navbar.tsx). The
+   transition above handles the fade back to the default fill. */
 .root--transparent {
   background-color: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+/* On hover (or when any descendant has keyboard focus), bring back
+   the solid bg even while at the top of the page so the nav reads
+   clearly when the user is interacting with it. */
+.root--transparent:hover,
+.root--transparent:focus-within {
+  background-color: rgba(255, 255, 255, 0.8);
+  -webkit-backdrop-filter: blur(50px);
+  backdrop-filter: blur(50px);
+}
+
+.root--transparent.root--dark:hover,
+.root--transparent.root--dark:focus-within {
+  background-color: var(--fds-neutral-100, #101319);
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }

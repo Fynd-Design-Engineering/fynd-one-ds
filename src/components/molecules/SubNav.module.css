@@ -68,6 +68,15 @@
   font-weight: 500;
 }
 
+/* Brand-name items (e.g. "Storefront") read in the display font so
+   they parse as proper nouns rather than menu labels. */
+.item--brand {
+  font-family: 'Fynd Sans Compact', 'Inter Display', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
 .root--dark .item {
   color: rgba(255, 255, 255, 0.7);
 }

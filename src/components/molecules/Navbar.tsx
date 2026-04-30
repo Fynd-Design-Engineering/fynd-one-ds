@@ -279,7 +279,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     styles.root,
     onDarkBg && styles['root--dark'],
     sticky && styles['root--sticky'],
-    scrollAware && !pastTopThreshold && styles['root--transparent'],
+    scrollAware && !pastTopThreshold && !activeDropdown && styles['root--transparent'],
     className,
   ]
     .filter(Boolean)

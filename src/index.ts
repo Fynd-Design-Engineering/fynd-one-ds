@@ -97,6 +97,9 @@ export type { ContentCardProps } from './components/molecules/ContentCard';
 export { HeroSplit } from './components/molecules/HeroSplit';
 export type { HeroSplitProps, HeroSplitImage } from './components/molecules/HeroSplit';
 
+export { SiteBanner } from './components/molecules/SiteBanner';
+export type { SiteBannerProps } from './components/molecules/SiteBanner';
+
 export { PricingCard } from './components/molecules/PricingCard';
 export type { PricingCardProps, PricingFeature } from './components/molecules/PricingCard';
 

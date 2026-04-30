@@ -14,7 +14,7 @@ export interface SectionWrapperProps {
   className?: string;
   style?: CSSProperties;
   /** Override default section element */
-  as?: 'section' | 'div' | 'footer' | 'nav';
+  as?: 'section' | 'div' | 'footer' | 'nav' | 'header' | 'main' | 'aside' | 'article';
 }
 
 export const SectionWrapper: React.FC<SectionWrapperProps> = ({

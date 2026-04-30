@@ -1,0 +1,32 @@
+/* ── SiteBanner ───────────────────────────────────────────────────────────── */
+
+.root {
+  width: 100%;
+  background-color: var(--fds-neutral-100, #101319);
+  color: var(--fds-neutral-0, #ffffff);
+  padding: 10px 20px;
+}
+
+@media (min-width: 768px) {
+  .root {
+    padding: 12px 40px;
+  }
+}
+
+@media (min-width: 992px) {
+  .root {
+    padding: 12px 120px;
+  }
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  text-align: center;
+  font-family: 'Inter Display', sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+}

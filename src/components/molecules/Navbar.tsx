@@ -464,7 +464,12 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <>
-    <nav className={rootClasses} style={style} ref={rootRef}>
+    <nav
+      className={rootClasses}
+      style={style}
+      ref={rootRef}
+      data-fds-component="navbar"
+    >
       <div className={styles.container}>
         {logo && (
           <div className={styles.logo}>

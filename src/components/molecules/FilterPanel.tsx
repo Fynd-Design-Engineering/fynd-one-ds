@@ -64,22 +64,20 @@ export const FilterPanel: React.FC<FilterPanelProps> = ({
 
   return (
     <div className={[styles.root, className].filter(Boolean).join(' ')}>
-      {groups.map((group, idx) => {
+      {showClearAll && (
+        <button
+          type="button"
+          className={styles.clearAll}
+          onClick={handleClearAll}
+        >
+          {clearAllLabel}
+        </button>
+      )}
+      {groups.map((group) => {
         const checkedSet = new Set(selected[group.key] ?? []);
         return (
           <div key={group.key} className={styles.group}>
-            <div className={styles.headingRow}>
-              <h4 className={styles.heading}>{group.heading}</h4>
-              {idx === 0 && showClearAll && (
-                <button
-                  type="button"
-                  className={styles.clearAll}
-                  onClick={handleClearAll}
-                >
-                  {clearAllLabel}
-                </button>
-              )}
-            </div>
+            <h4 className={styles.heading}>{group.heading}</h4>
             <div className={styles.options} role="group" aria-label={group.heading}>
               {group.options.map((opt) => (
                 <FilterChip

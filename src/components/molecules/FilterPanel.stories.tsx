@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { FilterPanel, FilterPanelProps } from './FilterPanel';
 import { Popover } from './Popover';
 import { FilterButton } from '../atoms/FilterButton';
-import { Button } from '../atoms/Button';
 
 const meta: Meta<FilterPanelProps> = {
   title: 'Molecules/FilterPanel',
@@ -78,29 +77,6 @@ export const SingleGroupSolutions: Story = {
   render: () => <SingleGroup />,
 };
 
-const WithFooter = () => {
-  const [selected, setSelected] = useState<Record<string, string[]>>({});
-  return (
-    <div style={{ width: 480 }}>
-      <FilterPanel
-        groups={SAMPLE_GROUPS}
-        selected={selected}
-        onChange={setSelected}
-        footer={
-          <>
-            <Button label="Clear" variant="tertiary" onClick={() => setSelected({})} />
-            <Button label="Apply" variant="primary" />
-          </>
-        }
-      />
-    </div>
-  );
-};
-
-export const WithClearApply: Story = {
-  render: () => <WithFooter />,
-};
-
 const InPopover = () => {
   const [selected, setSelected] = useState<Record<string, string[]>>({});
   const total = Object.values(selected).reduce((n, arr) => n + arr.length, 0);
@@ -108,7 +84,7 @@ const InPopover = () => {
     <div style={{ padding: '120px 240px' }}>
       <Popover
         placement="bottom-start"
-        offset={8}
+        offset={0}
         trigger={<FilterButton filterCount={total} />}
         disableFocusTrap
       >

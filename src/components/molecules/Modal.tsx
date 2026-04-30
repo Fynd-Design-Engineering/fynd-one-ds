@@ -45,6 +45,20 @@ export interface ModalProps {
 }
 
 const SPRING = { duration: 0.25, ease: [0.16, 1, 0.3, 1] as const };
+const MOBILE_QUERY = '(max-width: 767px)';
+
+const useIsMobile = (): boolean => {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    const mql = window.matchMedia(MOBILE_QUERY);
+    const update = () => setIsMobile(mql.matches);
+    update();
+    mql.addEventListener('change', update);
+    return () => mql.removeEventListener('change', update);
+  }, []);
+  return isMobile;
+};
 
 const CloseGlyph = () => (
   <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
@@ -74,6 +88,14 @@ export const Modal: React.FC<ModalProps> = ({
   const open = openProp ?? uncontrolledOpen;
   const cardRef = useRef<HTMLDivElement | null>(null);
   const previousFocus = useRef<HTMLElement | null>(null);
+  const isMobile = useIsMobile();
+  const cardInitial = isMobile
+    ? { y: '100%' as const, opacity: 1 }
+    : { opacity: 0, scale: 0.96, y: 12 };
+  const cardAnimate = isMobile
+    ? { y: 0, opacity: 1 }
+    : { opacity: 1, scale: 1, y: 0 };
+  const cardExit = cardInitial;
 
   const setOpen = useCallback(
     (next: boolean) => {
@@ -161,27 +183,30 @@ export const Modal: React.FC<ModalProps> = ({
                 aria-labelledby={ariaLabelledBy}
                 tabIndex={-1}
                 className={[styles.card, className].filter(Boolean).join(' ')}
-                style={{ width: widthValue, ...style }}
-                initial={{ opacity: 0, scale: 0.96, y: 12 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.96, y: 12 }}
+                style={{ width: isMobile ? undefined : widthValue, ...style }}
+                initial={cardInitial}
+                animate={cardAnimate}
+                exit={cardExit}
                 transition={SPRING}
               >
-                {/* Children render first so the natural tab order starts at the
-                    first focusable inside the user's content (e.g. the first
-                    form field) and the close button comes last. The close
-                    button is visually absolute-positioned top-right via CSS. */}
-                {children}
-                {showClose && (
-                  <button
-                    type="button"
-                    onClick={() => setOpen(false)}
-                    className={styles.close}
-                    aria-label="Close"
-                  >
-                    <CloseGlyph />
-                  </button>
-                )}
+                {/* Scrollable region — children render first so the natural
+                    tab order starts at the first focusable inside the user's
+                    content (e.g. the first form field). The close button
+                    lives INSIDE the scroll region (top-right of the content)
+                    so it scrolls along with the form content. */}
+                <div className={styles.scroll}>
+                  {children}
+                  {showClose && (
+                    <button
+                      type="button"
+                      onClick={() => setOpen(false)}
+                      className={styles.close}
+                      aria-label="Close"
+                    >
+                      <CloseGlyph />
+                    </button>
+                  )}
+                </div>
               </motion.div>
             </motion.div>
           </FloatingPortal>

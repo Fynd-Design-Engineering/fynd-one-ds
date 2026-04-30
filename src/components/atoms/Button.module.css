@@ -19,6 +19,23 @@
   text-underline-offset: 3px;
 }
 
+.icon-left {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Universal icon sizing for any SVG/img inside the button (icon-left
+   slot or trailing chevron) — keeps left and right icons visually
+   balanced regardless of which is rendered. */
+.icon-left > svg,
+.icon-left > img,
+.root > svg {
+  width: 1.5em;
+  height: 1.5em;
+}
+
 /* ── Primary ────────────────────────────── */
 
 .primary {
@@ -77,13 +94,14 @@
   border: none;
   border-radius: 0;
   background-color: transparent;
-  color: var(--btn-tertiary-text);
+  /* Rest state matches secondary text. Hover swaps to the tertiary text color. */
+  color: var(--btn-secondary-text);
   justify-content: flex-start;
 }
 
 .tertiary:hover {
-  color: var(--btn-tertiary-text-hover);
-  text-decoration: underline;
+  color: var(--btn-tertiary-text);
+  text-decoration: none;
 }
 
 /* ── Tertiary Light (on dark bg) ────────── */
@@ -94,10 +112,11 @@
   border: none;
   border-radius: 0;
   background-color: transparent;
-  color: var(--btn-tertiary-text-light);
+  color: var(--btn-secondary-light-text);
   justify-content: flex-start;
 }
 
 .tertiary-light:hover {
-  text-decoration: underline;
+  color: var(--btn-tertiary-text-light);
+  text-decoration: none;
 }

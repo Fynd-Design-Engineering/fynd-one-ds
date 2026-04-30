@@ -1,13 +1,14 @@
 .root {
   background-color: var(--fds-background-darkest, #0e0e0e);
-  padding: 80px 120px;
+  padding: 80px 1.5rem;
   color: var(--fds-neutral-0, #ffffff);
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .container {
-  max-width: 1272px;
+  max-width: 80rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -15,6 +16,7 @@
   width: 100%;
   position: relative;
   z-index: 1;
+  box-sizing: border-box;
 }
 
 /* ── Top: Logo + Heading ───────────────────────────────────────────────── */
@@ -86,7 +88,7 @@
   display: inline-block;
   background: none;
   border: none;
-  padding: 4px 0;
+  padding: 0;
   color: var(--fds-neutral-40, #a0a1a2);
   text-decoration: none;
   text-align: left;
@@ -104,6 +106,101 @@
   height: 1px;
   background-color: var(--fds-neutral-80, #4a4b4c);
   width: 100%;
+}
+
+/* Dividers between rows are not used on desktop — visual separation
+   comes from the row spacing and the per-group accordion border on
+   tablet/mobile. */
+@media (min-width: 992px) {
+  .divider {
+    display: none;
+  }
+}
+
+/* ── Link groups (desktop = expanded rows; tablet/mobile = accordions) ─── */
+
+/* Wrapper around all link groups — no gap between groups so accordion
+   borders sit flush, and the wrapper itself becomes a single child of
+   the .container flex column (separated from neighboring sections by
+   the container's own gap rather than per-group spacing). */
+.linkGroups {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.linkGroup {
+  position: relative;
+  width: 100%;
+}
+
+.linkGroupToggler {
+  display: none;
+  width: 100%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--fds-neutral-80, #4a4b4c);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--fds-neutral-40, #a0a1a2);
+  padding: 1.5rem 0;
+  column-gap: 1.5rem;
+  row-gap: 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  text-align: left;
+}
+
+.linkGroupChevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+  color: currentColor;
+  flex-shrink: 0;
+}
+
+/* Source SVG hardcodes fill="#141414" — invisible on the dark footer.
+   Force fill to currentColor so the chevron tracks the toggler text. */
+.linkGroupChevron svg,
+.linkGroupChevron svg path {
+  fill: currentColor;
+}
+
+.linkGroupChevron--open {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .linkGroupChevron {
+    transition: none;
+  }
+}
+
+/* Desktop: show the expanded sections row, hide the mobile collapse. */
+.linkGroupContent {
+  display: block;
+}
+
+.linkGroupMobileContent {
+  display: none;
+  padding-top: 1.5rem;
+}
+
+@media (max-width: 991px) {
+  .linkGroupToggler {
+    display: flex;
+  }
+  /* Replace the always-visible desktop row with the animated collapse. */
+  .linkGroupContent {
+    display: none;
+  }
+  .linkGroupMobileContent {
+    display: block;
+  }
 }
 
 /* ── Bottom row: legal + social ────────────────────────────────────────── */
@@ -193,7 +290,8 @@
 
 @media (max-width: 991px) {
   .root {
-    padding: 64px 40px;
+    padding-top: 64px;
+    padding-bottom: 64px;
   }
 
   .container {
@@ -208,7 +306,8 @@
 
 @media (max-width: 767px) {
   .root {
-    padding: 48px 20px;
+    padding-top: 48px;
+    padding-bottom: 48px;
   }
 
   .container {

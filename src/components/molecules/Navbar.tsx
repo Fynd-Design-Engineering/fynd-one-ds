@@ -11,9 +11,43 @@ import React, {
 } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Text } from '../Typography/Text';
-import { IcHamburger, IcArrowForward, IcArrowBack } from '../../assets/icons/navigation';
-import { IcCloseRemove, IcArrowLineDiagonal } from '../../assets/icons/actions';
+import { IcArrowForward, IcChevronLeft, IcChevronRight, IcChevronDown } from '../../assets/icons/navigation';
+import fyndHorizontalDark from '../../assets/brand-logos/fynd-horizontal-dark.svg';
 import styles from './Navbar.module.css';
+
+const NavFootLogo: React.FC = () => (
+  <img src={fyndHorizontalDark} alt="" />
+);
+
+// Local 32×32 menu / close icons drawn inside a circle ring (Fynd marketing
+// site mobile-nav style). Inline so they don't pollute the icons barrel.
+const NavMenuIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" {...props}>
+    <path
+      d="M31.3333 16C31.3333 7.5317 24.4683 0.6667 16 0.6667 7.5316 0.6667 0.6667 7.5317 0.6667 16 0.6667 24.4684 7.5316 31.3333 16 31.3333 24.4683 31.3333 31.3333 24.4684 31.3333 16Z"
+      stroke="currentColor"
+      strokeWidth="1.33333"
+    />
+    <path
+      d="M10.5017 22.8028C10.0934 22.8028 9.7439 22.6573 9.4531 22.3665 9.1624 22.0757 9.017 21.7263 9.017 21.318 9.017 20.9097 9.1624 20.5601 9.4531 20.2693 9.7439 19.9787 10.0934 19.8332 10.5017 19.8332 10.91 19.8332 11.2595 19.9787 11.5503 20.2693 11.8411 20.5601 11.9865 20.9097 11.9865 21.318 11.9865 21.7263 11.8411 22.0757 11.5503 22.3665 11.2595 22.6573 10.91 22.8028 10.5017 22.8028ZM16.017 22.8028C15.6087 22.8028 15.2591 22.6573 14.9684 22.3665 14.6776 22.0757 14.5322 21.7263 14.5322 21.318 14.5322 20.9097 14.6776 20.5601 14.9684 20.2693 15.2591 19.9787 15.6087 19.8332 16.017 19.8332 16.4252 19.8332 16.7748 19.9787 17.0655 20.2693 17.3563 20.5601 17.5018 20.9097 17.5018 21.318 17.5018 21.7263 17.3563 22.0757 17.0655 22.3665 16.7748 22.6573 16.4252 22.8028 16.017 22.8028ZM21.5322 22.8028C21.1239 22.8028 20.7744 22.6573 20.4836 22.3665 20.1928 22.0757 20.0475 21.7263 20.0475 21.318 20.0475 20.9097 20.1928 20.5601 20.4836 20.2693 20.7744 19.9787 21.1239 19.8332 21.5322 19.8332 21.9404 19.8332 22.29 19.9787 22.5808 20.2693 22.8716 20.5601 23.017 20.9097 23.017 21.318 23.017 21.7263 22.8716 22.0757 22.5808 22.3665 22.29 22.6573 21.9404 22.8028 21.5322 22.8028ZM10.5017 17.2875C10.0934 17.2875 9.7439 17.1421 9.4531 16.8513 9.1624 16.5605 9.017 16.2111 9.017 15.8028 9.017 15.3944 9.1624 15.0449 9.4531 14.7541 9.7439 14.4633 10.0934 14.318 10.5017 14.318 10.91 14.318 11.2595 14.4633 11.5503 14.7541 11.8411 15.0449 11.9865 15.3944 11.9865 15.8028 11.9865 16.2111 11.8411 16.5605 11.5503 16.8513 11.2595 17.1421 10.91 17.2875 10.5017 17.2875ZM16.017 17.2875C15.6087 17.2875 15.2591 17.1421 14.9684 16.8513 14.6776 16.5605 14.5322 16.2111 14.5322 15.8028 14.5322 15.3944 14.6776 15.0449 14.9684 14.7541 15.2591 14.4633 15.6087 14.318 16.017 14.318 16.4252 14.318 16.7748 14.4633 17.0655 14.7541 17.3563 15.0449 17.5018 15.3944 17.5018 15.8028 17.5018 16.2111 17.3563 16.5605 17.0655 16.8513 16.7748 17.1421 16.4252 17.2875 16.017 17.2875ZM21.5322 17.2875C21.1239 17.2875 20.7744 17.1421 20.4836 16.8513 20.1928 16.5605 20.0475 16.2111 20.0475 15.8028 20.0475 15.3944 20.1928 15.0449 20.4836 14.7541 20.7744 14.4633 21.1239 14.318 21.5322 14.318 21.9404 14.318 22.29 14.4633 22.5808 14.7541 22.8716 15.0449 23.017 15.3944 23.017 15.8028 23.017 16.2111 22.8716 16.5605 22.5808 16.8513 22.29 17.1421 21.9404 17.2875 21.5322 17.2875ZM10.5017 11.7722C10.0934 11.7722 9.7439 11.6269 9.4531 11.3361 9.1624 11.0453 9.017 10.6958 9.017 10.2875 9.017 9.8792 9.1624 9.5297 9.4531 9.2389 9.7439 8.9481 10.0934 8.8027 10.5017 8.8027 10.91 8.8027 11.2595 8.9481 11.5503 9.2389 11.8411 9.5297 11.9865 9.8792 11.9865 10.2875 11.9865 10.6958 11.8411 11.0453 11.5503 11.3361 11.2595 11.6269 10.91 11.7722 10.5017 11.7722ZM16.017 11.7722C15.6087 11.7722 15.2591 11.6269 14.9684 11.3361 14.6776 11.0453 14.5322 10.6958 14.5322 10.2875 14.5322 9.8792 14.6776 9.5297 14.9684 9.2389 15.2591 8.9481 15.6087 8.8027 16.017 8.8027 16.4252 8.8027 16.7748 8.9481 17.0655 9.2389 17.3563 9.5297 17.5018 9.8792 17.5018 10.2875 17.5018 10.6958 17.3563 11.0453 17.0655 11.3361 16.7748 11.6269 16.4252 11.7722 16.017 11.7722ZM21.5322 11.7722C21.1239 11.7722 20.7744 11.6269 20.4836 11.3361 20.1928 11.0453 20.0475 10.6958 20.0475 10.2875 20.0475 9.8792 20.1928 9.5297 20.4836 9.2389 20.7744 8.9481 21.1239 8.8027 21.5322 8.8027 21.9404 8.8027 22.29 8.9481 22.5808 9.2389 22.8716 9.5297 23.017 9.8792 23.017 10.2875 23.017 10.6958 22.8716 11.0453 22.5808 11.3361 22.29 11.6269 21.9404 11.7722 21.5322 11.7722Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+const NavCloseIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" {...props}>
+    <path
+      d="M31.3333 16C31.3333 7.5317 24.4683 0.6667 16 0.6667 7.5316 0.6667 0.6667 7.5317 0.6667 16 0.6667 24.4684 7.5316 31.3333 16 31.3333 24.4683 31.3333 31.3333 24.4684 31.3333 16Z"
+      stroke="currentColor"
+      strokeWidth="1.33333"
+    />
+    <path
+      d="M16 17.0535L10.927 22.1268C10.7885 22.2651 10.6144 22.3359 10.4048 22.3393 10.1953 22.3424 10.018 22.2716 9.873 22.1268 9.7282 21.9818 9.6558 21.8061 9.6558 21.5998 9.6558 21.3934 9.7282 21.2178 9.873 21.0728L14.9463 15.9998 9.873 10.9268C9.7347 10.7883 9.6638 10.6142 9.6605 10.4045 9.6574 10.195 9.7282 10.0178 9.873 9.8728 10.018 9.7279 10.1937 9.6555 10.4 9.6555 10.6063 9.6555 10.782 9.7279 10.927 9.8728L16 14.946 21.073 9.8728C21.2115 9.7344 21.3856 9.6636 21.5953 9.6603 21.8048 9.6571 21.982 9.7279 22.127 9.8728 22.2718 10.0178 22.3443 10.1934 22.3443 10.3998 22.3443 10.6061 22.2718 10.7818 22.127 10.9268L17.0538 15.9998 22.127 21.0728C22.2653 21.2113 22.3362 21.3854 22.3395 21.595 22.3427 21.8045 22.2718 21.9818 22.127 22.1268 21.982 22.2716 21.8063 22.344 21.6 22.344 21.3937 22.344 21.218 22.2716 21.073 22.1268L16 17.0535Z"
+      fill="currentColor"
+    />
+  </svg>
+);
 
 export interface NavDropdownLink {
   title: string;
@@ -59,6 +93,8 @@ export type NavItem = NavDirectItem | NavMegaDropdownItem | NavSimpleDropdownIte
 export interface NavbarProps {
   /** Logo element — typically an <img> of the brand logo */
   logo?: ReactNode;
+  /** When set, the logo is wrapped in an anchor pointing to this URL. */
+  logoHref?: string;
   /** Navigation items — direct links, simple dropdowns, or mega dropdowns */
   navItems?: NavItem[];
   /** Right-side action elements (buttons, icons, etc.) */
@@ -84,6 +120,7 @@ const isDropdown = (
 
 export const Navbar: React.FC<NavbarProps> = ({
   logo,
+  logoHref,
   navItems = [],
   actions,
   mobileActions,
@@ -99,6 +136,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSubMenu, setMobileSubMenu] = useState<string | null>(null);
+  const [expandedMobileCategory, setExpandedMobileCategory] = useState<string | null>(null);
   const [dropdownX, setDropdownX] = useState(0);
   const [contentHeight, setContentHeight] = useState(0);
   const closeTimerRef = useRef<number | null>(null);
@@ -201,6 +239,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     } else {
       document.body.style.overflow = '';
       setMobileSubMenu(null);
+      setExpandedMobileCategory(null);
     }
     return () => {
       document.body.style.overflow = '';
@@ -223,7 +262,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const renderDropdownLink = (link: NavDropdownLink, withIcon = false) => {
     const arrow = (
       <span className={styles.dropdownLinkArrow} aria-hidden="true">
-        {link.external ? <IcArrowLineDiagonal /> : <IcArrowForward />}
+        <IcArrowForward />
       </span>
     );
     const content = (
@@ -231,13 +270,13 @@ export const Navbar: React.FC<NavbarProps> = ({
         {withIcon && link.icon && <span className={styles.dropdownLinkIcon}>{link.icon}</span>}
         <span className={styles.dropdownLinkText}>
           <span className={styles.dropdownLinkTitleRow}>
-            <Text variant="body-m" weight="medium" color="default" as="span">
+            <Text variant="body-m" weight={withIcon ? 'regular' : 'medium'} color="default" as="span">
               {link.title}
             </Text>
             {!withIcon && arrow}
           </span>
           {link.description && (
-            <Text variant="body-s" color="secondary" as="span">
+            <Text variant="body-xs" color="secondary" as="span">
               {link.description}
             </Text>
           )}
@@ -309,7 +348,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onFocus={() => setActiveCategory(cat.key)}
               >
                 {cat.icon && <span className={styles.megaCategoryIcon}>{cat.icon}</span>}
-                <Text variant="body-m" weight="medium" color="default" as="span">
+                <Text variant="body-m" weight="regular" color="default" as="span">
                   {cat.label}
                 </Text>
               </button>
@@ -396,7 +435,17 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <nav className={rootClasses} style={style} ref={rootRef}>
       <div className={styles.container}>
-        {logo && <div className={styles.logo}>{logo}</div>}
+        {logo && (
+          <div className={styles.logo}>
+            {logoHref ? (
+              <a href={logoHref} className={styles.logoLink} aria-label="Home">
+                {logo}
+              </a>
+            ) : (
+              logo
+            )}
+          </div>
+        )}
 
         {navItems.length > 0 && (
           <ul className={styles.navLinks}>{navItems.map(desktopNavItem)}</ul>
@@ -411,15 +460,20 @@ export const Navbar: React.FC<NavbarProps> = ({
           aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={mobileOpen}
         >
-          {mobileOpen ? (
-            <IcCloseRemove
-              style={{ color: onDarkBg ? 'var(--fds-neutral-0)' : 'var(--fds-neutral-100)' }}
-            />
-          ) : (
-            <IcHamburger
-              style={{ color: onDarkBg ? 'var(--fds-neutral-0)' : 'var(--fds-neutral-100)' }}
-            />
-          )}
+          <span
+            className={[styles['menu-icon'], !mobileOpen && styles['menu-icon--visible']]
+              .filter(Boolean)
+              .join(' ')}
+          >
+            <NavMenuIcon />
+          </span>
+          <span
+            className={[styles['menu-icon'], mobileOpen && styles['menu-icon--visible']]
+              .filter(Boolean)
+              .join(' ')}
+          >
+            <NavCloseIcon />
+          </span>
         </button>
       </div>
 
@@ -506,6 +560,53 @@ export const Navbar: React.FC<NavbarProps> = ({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
           >
+            <div className={styles.mobileHeader}>
+              {mobileSubMenu ? (
+                <button
+                  type="button"
+                  className={styles.mobileBack}
+                  onClick={() => setMobileSubMenu(null)}
+                >
+                  <IcChevronLeft />
+                  <Text
+                    variant="body-l"
+                    weight="medium"
+                    color={onDarkBg ? 'white' : 'default'}
+                    as="span"
+                  >
+                    Go back
+                  </Text>
+                </button>
+              ) : (
+                <>
+                  {logo && (
+          <div className={styles.logo}>
+            {logoHref ? (
+              <a href={logoHref} className={styles.logoLink} aria-label="Home">
+                {logo}
+              </a>
+            ) : (
+              logo
+            )}
+          </div>
+        )}
+                  <button
+                    type="button"
+                    className={styles.mobileClose}
+                    onClick={() => setMobileOpen(false)}
+                    aria-label="Close menu"
+                  >
+                    <NavCloseIcon />
+                  </button>
+                </>
+              )}
+            </div>
+            <div className={styles.mobileFoot} aria-hidden="true">
+              <span className={styles.mobileFootLogo}>
+                <NavFootLogo />
+              </span>
+              <span className={styles.mobileFootVersion}>v1.0</span>
+            </div>
             <div className={styles.mobilePanels}>
               {/* Level 0: primary nav */}
               <motion.div
@@ -513,11 +614,27 @@ export const Navbar: React.FC<NavbarProps> = ({
                 animate={{ x: mobileSubMenu ? '-100%' : '0%' }}
                 transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
               >
-                <ul className={styles.mobileNavLinks}>
+                <motion.ul
+                  className={styles.mobileNavLinks}
+                  initial="hidden"
+                  animate="show"
+                  variants={{
+                    hidden: {},
+                    show: {
+                      transition: { staggerChildren: 0.045, delayChildren: 0.1 },
+                    },
+                  }}
+                >
                   {navItems.map((item) => {
                     if (!isDropdown(item)) {
                       return (
-                        <li key={item.label}>
+                        <motion.li
+                          key={item.label}
+                          variants={{
+                            hidden: { opacity: 0, y: 12 },
+                            show: { opacity: 1, y: 0, transition: { duration: 0.28, ease: [0.16, 1, 0.3, 1] } },
+                          }}
+                        >
                           <a
                             className={styles.mobileNavLink}
                             href={item.href ?? '#'}
@@ -530,40 +647,59 @@ export const Navbar: React.FC<NavbarProps> = ({
                             }}
                           >
                             <Text
-                              variant="heading-s"
+                              variant="body-l"
+                              weight="medium"
                               color={onDarkBg ? 'white' : 'default'}
                               as="span"
                             >
                               {item.label}
                             </Text>
                           </a>
-                        </li>
+                        </motion.li>
                       );
                     }
                     return (
-                      <li key={item.label}>
+                      <motion.li
+                        key={item.label}
+                        variants={{
+                          hidden: { opacity: 0, y: 12 },
+                          show: { opacity: 1, y: 0, transition: { duration: 0.28, ease: [0.16, 1, 0.3, 1] } },
+                        }}
+                      >
                         <button
                           type="button"
                           className={styles.mobileNavLinkButton}
                           onClick={() => setMobileSubMenu(item.label)}
                         >
                           <Text
-                            variant="heading-s"
+                            variant="body-l"
+                            weight="medium"
                             color={onDarkBg ? 'white' : 'default'}
                             as="span"
                           >
                             {item.label}
                           </Text>
                           <span className={styles.mobileChevron} aria-hidden="true">
-                            <IcArrowForward />
+                            <IcChevronRight />
                           </span>
                         </button>
-                      </li>
+                      </motion.li>
                     );
                   })}
-                </ul>
+                </motion.ul>
                 {(mobileActions || actions) && (
-                  <div className={styles.mobileActions}>{mobileActions || actions}</div>
+                  <motion.div
+                    className={styles.mobileActions}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.28,
+                      ease: [0.16, 1, 0.3, 1],
+                      delay: 0.1 + navItems.length * 0.045,
+                    }}
+                  >
+                    {mobileActions || actions}
+                  </motion.div>
                 )}
               </motion.div>
 
@@ -574,56 +710,77 @@ export const Navbar: React.FC<NavbarProps> = ({
                 transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 aria-hidden={!mobileSubMenu}
               >
-                <button
-                  type="button"
-                  className={styles.mobileBack}
-                  onClick={() => setMobileSubMenu(null)}
-                >
-                  <IcArrowBack />
-                  <Text
-                    variant="body-m"
-                    weight="medium"
-                    color={onDarkBg ? 'white' : 'default'}
-                    as="span"
-                  >
-                    {activeMobileItem?.label ?? 'Back'}
-                  </Text>
-                </button>
                 <div className={styles.mobileSubContent}>
                   {activeMobileItem?.type === 'mega' &&
-                    activeMobileItem.categories.map((cat) => (
-                      <section key={cat.key} className={styles.mobileCategory}>
-                        <div className={styles.mobileCategoryHeader}>
-                          {cat.icon && (
-                            <span className={styles.mobileCategoryIcon}>{cat.icon}</span>
-                          )}
-                          <Text
-                            variant="body-s"
-                            caps
-                            weight="medium"
-                            color={onDarkBg ? 'muted' : 'subtle'}
-                            as="span"
+                    activeMobileItem.categories.map((cat) => {
+                      const open = expandedMobileCategory === cat.key;
+                      return (
+                        <section
+                          key={cat.key}
+                          className={[
+                            styles.mobileCategory,
+                            open && styles['mobileCategory--open'],
+                          ]
+                            .filter(Boolean)
+                            .join(' ')}
+                        >
+                          <button
+                            type="button"
+                            className={styles.mobileCategoryHeader}
+                            aria-expanded={open}
+                            onClick={() =>
+                              setExpandedMobileCategory((prev) => (prev === cat.key ? null : cat.key))
+                            }
                           >
-                            {cat.label}
-                          </Text>
-                        </div>
-                        <div className={styles.mobileCategoryLinks}>
-                          {cat.links.map((link) => renderDropdownLink(link))}
-                        </div>
-                      </section>
-                    ))}
+                            {cat.icon && (
+                              <span className={styles.mobileCategoryIcon}>{cat.icon}</span>
+                            )}
+                            <Text
+                              variant="body-l"
+                              weight="regular"
+                              color={onDarkBg ? 'white' : 'default'}
+                              as="span"
+                            >
+                              {cat.label}
+                            </Text>
+                            <span className={styles.mobileCategoryChevron} aria-hidden="true">
+                              <IcChevronDown />
+                            </span>
+                          </button>
+                          <AnimatePresence initial={false}>
+                            {open && (
+                              <motion.div
+                                key="content"
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: 'auto', opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                                style={{ overflow: 'hidden' }}
+                              >
+                                <div className={styles.mobileCategoryLinks}>
+                                  {cat.links.map((link) => renderDropdownLink(link))}
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </section>
+                      );
+                    })}
                   {activeMobileItem?.type === 'simple' && (
                     <div className={styles.mobileCategoryLinks}>
                       {activeMobileItem.links.map((link) => renderDropdownLink(link, true))}
                     </div>
                   )}
-                  {activeMobileItem?.type === 'mega' &&
+                  {/* mobileBottomLinks hidden — mirrors desktop where megaBottom
+                      was removed in the current design. Re-enable by
+                      uncommenting the block if the section returns. */}
+                  {/* {activeMobileItem?.type === 'mega' &&
                     activeMobileItem.bottomLinks &&
                     activeMobileItem.bottomLinks.length > 0 && (
                       <div className={styles.mobileBottomLinks}>
                         {activeMobileItem.bottomLinks.map((link) => renderDropdownLink(link))}
                       </div>
-                    )}
+                    )} */}
                 </div>
               </motion.div>
             </div>

@@ -47,9 +47,9 @@
 .item {
   display: inline-flex;
   align-items: center;
-  /* Minimum 40px tap target per accessibility / mobile-touch guidance.
+  /* 48px tap target — matches the live site SubNav row height.
      Vertical centering is handled by inline-flex + align-items: center. */
-  min-height: 40px;
+  min-height: 48px;
   white-space: nowrap;
   text-decoration: none;
   background: none;

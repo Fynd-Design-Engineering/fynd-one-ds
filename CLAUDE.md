@@ -72,15 +72,17 @@ This package ships modules with the `'use client'` directive where it's required
 
 **Components that ship with `'use client'`** (use hooks or own internal interaction state):
 
-- `Accordion`, `Tabs`, `TextField`, `SearchBar`, `Pagination`, `FilterButton`
+- `Accordion`, `Tabs`, `TextField`, `SearchBar`, `Pagination`, `FilterButton`, `FilterChip`
 - `Rail` (layout)
-- `Navbar`, `Popover` (molecules)
+- `Navbar`, `Popover`, `Modal`, `ContactForm`, `SubNav`, `FilterPanel` (molecules)
+- Marketing presets that contain hooks: `FyndMarketingNavActions`, `FyndMarketingNavMobileActions`, `FyndFooterLottieWordmark`
 
 Everything else is a pure-render server component:
 
 - `Text`, `Chip`, `Tag`, `Button`, `ImageHolder`, `VisualElement`, `TitleContentPair`, `SectionIndicator`, `LogoMarquee`
-- `MetricCard`, `RichIconCard`, `ContentCard`, `ListingCard`, `PricingCard`, `CTABanner`, `Footer`
+- `MetricCard`, `RichIconCard`, `ContentCard`, `ListingCard`, `PricingCard`, `CTABanner`, `Footer`, `Pointers`
 - `Section`, `SectionWrapper`, `SectionHeader`, `Grid`, `BentoGrid`, `GradientSurface`
+- The marketing-preset data modules (`fyndMarketingNavItems`, `fyndMarketingFooterPreset`, `fyndMarketingProductOptions`, …) are plain data exports and are RSC-server-importable. The Lottie wordmark referenced inside `fyndMarketingFooterPreset.wordmark` is itself a `'use client'` component, which is fine — server modules can compose client components in their JSX trees.
 
 If you pass an event handler (e.g., `onClick`) to a pure-render component from a server component, that's still a server-component error per RSC rules — wrap your call site in a client component, or use a DS component that already ships with `'use client'`.
 

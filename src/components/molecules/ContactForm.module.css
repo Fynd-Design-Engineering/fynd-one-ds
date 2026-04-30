@@ -127,6 +127,23 @@
   padding: 48px 32px;
 }
 
+@media (max-width: 767px) {
+  .form {
+    padding: 1.5rem 1.5rem 0;
+  }
+
+  /* Match the new horizontal padding so the sticky bg still reaches
+     the form gutters on mobile. */
+  .submitRow {
+    margin: 0 -1.5rem;
+    padding: 16px 1.5rem 1.5rem;
+  }
+
+  .success {
+    padding: 48px 1.5rem;
+  }
+}
+
 .errorText {
   display: block;
   margin-top: 6px;

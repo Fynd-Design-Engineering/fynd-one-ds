@@ -43,9 +43,9 @@
   .card {
     width: 100% !important;
     max-width: 100%;
-    /* Leave a comfortable inset above the sheet so the user can still
-       see the page behind it. 64px ≈ tap-target + breathing room. */
-    max-height: calc(100vh - 64px);
+    /* Leave a small inset above the sheet so a sliver of the page
+       behind it stays visible. */
+    max-height: calc(100vh - 56px);
     border-radius: 16px 16px 0 0;
   }
 }

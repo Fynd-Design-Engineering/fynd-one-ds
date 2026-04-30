@@ -14,6 +14,12 @@ export interface SubNavItem {
   onClick?: (e: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void;
   /** Optional leading icon. */
   icon?: ReactNode;
+  /**
+   * Render the label in the brand display font (Fynd Sans Compact)
+   * instead of the default UI font. Use for product / brand-name
+   * items (e.g. "Storefront") that should read as proper nouns.
+   */
+  brand?: boolean;
 }
 
 export interface SubNavProps {
@@ -64,7 +70,11 @@ export const SubNav: React.FC<SubNavProps> = ({
     <nav className={rootClasses} style={rootStyle} aria-label={ariaLabel}>
       <div className={styles.container}>
         {items.map((item, idx) => {
-          const className = [styles.item, item.active && styles['item--active']]
+          const className = [
+            styles.item,
+            item.active && styles['item--active'],
+            item.brand && styles['item--brand'],
+          ]
             .filter(Boolean)
             .join(' ');
           if (item.href) {

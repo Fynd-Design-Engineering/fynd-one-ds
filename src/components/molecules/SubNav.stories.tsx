@@ -11,7 +11,7 @@ export default meta;
 type Story = StoryObj<SubNavProps>;
 
 const ITEMS = [
-  { label: 'Storefront', href: '#storefront', active: true },
+  { label: 'Storefront', href: '#storefront', brand: true, active: true },
   { label: 'Features', href: '#features' },
   { label: 'Pricing', href: '#pricing' },
   { label: 'Customers', href: '#customers' },

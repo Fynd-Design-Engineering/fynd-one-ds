@@ -33,8 +33,20 @@
   font-display: swap;
 }
 
+/* Fynd Sans (regular display family) — heading font, also used for
+   brand-name labels (e.g. SubNav brand items). */
 @font-face {
   font-family: 'Fynd Sans';
+  src: url('../assets/fonts/FyndSans.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Fynd Sans Compact — narrower display variant. Used for the largest
+   headings (Heading XXL → M) where horizontal density matters. */
+@font-face {
+  font-family: 'Fynd Sans Compact';
   src: url('../assets/fonts/FyndSans-Compact.woff2') format('woff2'),
        url('../assets/fonts/FyndSans-Compact.woff') format('woff');
   font-weight: 400;
@@ -61,7 +73,7 @@ h1, h2, h3, h4, h5, h6 {
 
 :root {
   /* ── Font families (spec naming) ─────────────────────────── */
-  --font-family--primary:   'Fynd Sans', sans-serif;
+  --font-family--primary:   'Fynd Sans Compact', sans-serif;
   --font-family--secondary: 'Inter Display', sans-serif;
   --font-family--ui:        'Inter', sans-serif;
 

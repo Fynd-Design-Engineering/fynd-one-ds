@@ -18,6 +18,7 @@ const meta: Meta<typeof HeroSplit> = {
     onDarkBg: { control: 'boolean' },
     imagePriority: { control: 'boolean' },
     bg: { control: 'color' },
+    visualBg: { control: 'color' },
   },
 };
 
@@ -84,6 +85,42 @@ export const TitleOnly: Story = {
     title: 'AI-driven commerce for modern businesses',
     image: SAMPLE_IMAGE,
     bg: 'var(--fds-grey-20, #f2f2f2)',
+  },
+};
+
+export const WithVisualBg: Story = {
+  name: 'visualBg only (tinted visual cell, default section bg)',
+  args: {
+    title: 'Compose your storefront with reusable building blocks',
+    description:
+      'Drag, drop, and ship — every component pre-wired to your catalog.',
+    bullets: ['Theming engine', 'Headless commerce APIs', 'Edge-rendered pages'],
+    actions: (
+      <>
+        <Button label="Get started" variant="primary" showChevron />
+        <Button label="Book a demo" variant="secondary" />
+      </>
+    ),
+    image: SAMPLE_IMAGE,
+    visualBg: 'var(--fds-lavender-20, #ece6fa)',
+  },
+};
+
+export const WithBothBgs: Story = {
+  name: 'bg + visualBg (section tint with contrasting visual cell)',
+  args: {
+    title: 'A unified commerce stack for every channel',
+    description: 'Storefront, OMS, POS — one platform, everywhere you sell.',
+    bullets: ['Real-time inventory', 'Built-in analytics', 'Composable APIs'],
+    actions: (
+      <>
+        <Button label="Get started" variant="primary" showChevron />
+        <Button label="Book a demo" variant="secondary" />
+      </>
+    ),
+    image: SAMPLE_IMAGE,
+    bg: 'var(--fds-blue-20, #e7eefe)',
+    visualBg: 'var(--fds-neutral-0, #ffffff)',
   },
 };
 

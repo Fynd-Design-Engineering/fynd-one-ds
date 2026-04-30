@@ -32,6 +32,7 @@ import { Button } from '../components/atoms/Button';
 import { Modal } from '../components/molecules/Modal';
 import { ContactForm, ContactFormValues } from '../components/molecules/ContactForm';
 import { IcCall } from '../assets/icons/communication';
+import { fyndMarketingProductOptions } from './fyndMarketingProductOptions';
 
 export interface FyndMarketingNavActionsProps {
   /** Visible phone number text on desktop. Default "+91 74001 56169". */
@@ -105,7 +106,7 @@ export const FyndMarketingNavActions = ({
   bookDemoLabel = 'Book a demo',
   contactFormTitle,
   onContactSubmit,
-  productOptions,
+  productOptions = [...fyndMarketingProductOptions],
 }: FyndMarketingNavActionsProps) => {
   return (
     <>
@@ -168,7 +169,7 @@ export const FyndMarketingNavMobileActions = ({
   bookDemoLabel = 'Book a demo',
   contactFormTitle,
   onContactSubmit,
-  productOptions,
+  productOptions = [...fyndMarketingProductOptions],
 }: FyndMarketingNavMobileActionsProps) => (
   <ContactModal
     trigger={

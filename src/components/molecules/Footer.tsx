@@ -1,5 +1,9 @@
-import React, { CSSProperties, Fragment, ReactNode } from 'react';
+'use client';
+
+import React, { CSSProperties, Fragment, ReactNode, useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
 import { Text } from '../Typography/Text';
+import { IcChevronDown } from '../../assets/icons/navigation';
 import styles from './Footer.module.css';
 
 export interface FooterLink {
@@ -12,6 +16,13 @@ export interface FooterLink {
 export interface FooterLinkSection {
   title: string;
   links: FooterLink[];
+}
+
+/** A group of link sections. Renders as a row of sections on desktop and
+ * collapses behind a single accordion trigger on tablet/mobile. */
+export interface FooterLinkGroup {
+  title: string;
+  sections: FooterLinkSection[];
 }
 
 export interface FooterContentPair {
@@ -41,8 +52,12 @@ export interface FooterProps {
   contentPairs?: FooterContentPair[];
   /** Optional trailing slot shown alongside the last content pair (e.g. certifications) */
   trailingContent?: ReactNode;
-  /** Link columns — auto-chunked into rows of 4 with dividers between rows */
+  /** Link columns — auto-chunked into rows of 4 (legacy / flat layout). */
   linkSections?: FooterLinkSection[];
+  /** Grouped link columns. On desktop each group renders its sections in
+   * a row (no dividers between rows). On tablet/mobile each group is
+   * collapsed behind an accordion trigger labelled with the group title. */
+  linkGroups?: FooterLinkGroup[];
   /** Bottom-left legal links (Help, Privacy, Terms) */
   legalLinks?: FooterLink[];
   /** Bottom-right social icons */
@@ -137,12 +152,26 @@ const chunk = <T,>(arr: T[], size: number): T[][] => {
   return out;
 };
 
+const renderLinkSection = (section: FooterLinkSection) => (
+  <div key={section.title} className={styles.linkSection}>
+    <Text variant="body-xs" caps weight="semibold" color="white" as="h3">
+      {section.title}
+    </Text>
+    <ul className={styles.linkList}>
+      {section.links.map((link) => (
+        <li key={link.label}>{renderLink(link, styles.link)}</li>
+      ))}
+    </ul>
+  </div>
+);
+
 export const Footer: React.FC<FooterProps> = ({
   logo,
   heading,
   contentPairs,
   trailingContent,
   linkSections = [],
+  linkGroups,
   legalLinks,
   socialLinks,
   wordmark,
@@ -152,6 +181,7 @@ export const Footer: React.FC<FooterProps> = ({
 }) => {
   const rootClass = [styles.root, className].filter(Boolean).join(' ');
   const linkRows = chunk(linkSections, 4);
+  const [openGroup, setOpenGroup] = useState<string | null>(null);
 
   return (
     <footer className={rootClass} style={style}>
@@ -183,35 +213,72 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
         )}
 
-        {linkRows.map((row, rowIdx) => (
-          <Fragment key={rowIdx}>
-            <div className={styles.divider} role="presentation" />
-            <div className={styles.linkRow}>
-              {row.map((section) => (
-                <div key={section.title} className={styles.linkSection}>
-                  <Text
-                    variant="body-xs"
-                    caps
-                    weight="semibold"
-                    color="white"
-                    as="h3"
+        {linkGroups && linkGroups.length > 0 ? (
+          <div className={styles.linkGroups}>
+            {linkGroups.map((group) => {
+              const isOpen = openGroup === group.title;
+              return (
+                <div key={group.title} className={styles.linkGroup}>
+                  <button
+                    type="button"
+                    className={styles.linkGroupToggler}
+                    aria-expanded={isOpen}
+                    onClick={() =>
+                      setOpenGroup((prev) => (prev === group.title ? null : group.title))
+                    }
                   >
-                    {section.title}
-                  </Text>
-                  <ul className={styles.linkList}>
-                    {section.links.map((link) => (
-                      <li key={link.label}>{renderLink(link, styles.link)}</li>
-                    ))}
-                  </ul>
+                    <span>{group.title}</span>
+                    <span
+                      className={[
+                        styles.linkGroupChevron,
+                        isOpen && styles['linkGroupChevron--open'],
+                      ]
+                        .filter(Boolean)
+                        .join(' ')}
+                      aria-hidden="true"
+                    >
+                      <IcChevronDown />
+                    </span>
+                  </button>
+                  {/* Desktop: always visible row of sections.
+                      Tablet/mobile: animated collapse driven by isOpen. */}
+                  <div className={styles.linkGroupContent}>
+                    <div className={styles.linkRow}>
+                      {group.sections.map(renderLinkSection)}
+                    </div>
+                  </div>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        key="mobile"
+                        className={styles.linkGroupMobileContent}
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                        style={{ overflow: 'hidden' }}
+                      >
+                        <div className={styles.linkRow}>
+                          {group.sections.map(renderLinkSection)}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
-              ))}
-            </div>
-          </Fragment>
-        ))}
+              );
+            })}
+          </div>
+        ) : (
+          linkRows.map((row, rowIdx) => (
+            <Fragment key={rowIdx}>
+              <div className={styles.divider} role="presentation" />
+              <div className={styles.linkRow}>{row.map(renderLinkSection)}</div>
+            </Fragment>
+          ))
+        )}
 
         {(legalLinks?.length || socialLinks?.length) && (
           <>
-            <div className={styles.divider} role="presentation" />
             <div className={styles.bottomRow}>
               {legalLinks && legalLinks.length > 0 && (
                 <div className={styles.legalLinks}>

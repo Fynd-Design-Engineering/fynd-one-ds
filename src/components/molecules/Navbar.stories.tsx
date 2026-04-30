@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Navbar, NavbarProps } from './Navbar';
 import { Button } from '../atoms/Button';
 import { Text } from '../Typography/Text';
+import { IcCall } from '../../assets/icons/communication';
 import {
   fyndMarketingNavItems,
   fyndSolutionsItem,
@@ -37,19 +38,71 @@ type Story = StoryObj<NavbarProps>;
 export const Default: Story = {
   args: {
     logo: <img src={fyndLogoDark} alt="Fynd" />,
+    logoHref: '/',
     navItems: fyndMarketingNavItems,
     actions: (
       <>
-        <Button label="+91 74001 56169" variant="tertiary" onClick={() => {}} />
-        <Button label="Book a demo" variant="secondary" onClick={() => {}} />
+        {/* Phone CTA — full text + icon on desktop, icon-only circle below 992px */}
+        <Button
+          className="fds-actions__desktop-only"
+          label="+91 74001 56169"
+          variant="tertiary"
+          iconLeft={<IcCall />}
+          showChevron={false}
+          style={{
+            fontFamily: "'Inter Display', sans-serif",
+            fontSize: 16,
+            fontWeight: 500,
+            lineHeight: 1.5,
+            letterSpacing: 0,
+          }}
+          onClick={() => {}}
+        />
+        <a
+          className="fds-actions__phone-circle"
+          href="tel:+917400156169"
+          aria-label="Call +91 74001 56169"
+          style={{
+            display: 'none',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: 40,
+            height: 40,
+            borderRadius: '999px',
+            border: '1px solid #0000001f',
+            color: 'var(--fds-neutral-100, #101319)',
+            textDecoration: 'none',
+            flexShrink: 0,
+          }}
+        >
+          <IcCall />
+        </a>
+        <Button
+          className="fds-actions__desktop-only"
+          label="Book a demo"
+          variant="secondary"
+          style={{ borderColor: '#0000001f' }}
+          onClick={() => {}}
+        />
         <Button label="Sign in" variant="primary" onClick={() => {}} />
+        <style>{`
+          @media (max-width: 991px) {
+            .fds-actions__phone-circle { display: inline-flex !important; }
+          }
+        `}</style>
       </>
     ),
+    /* Inside the open mobile drawer — sits below the nav links list
+       (which already contains Customer Stories). Only the Book-a-demo
+       CTA renders here; the bar already has the phone + Sign in. */
     mobileActions: (
-      <>
-        <Button label="Book a demo" variant="secondary" onClick={() => {}} />
-        <Button label="Sign in" variant="primary" onClick={() => {}} />
-      </>
+      <Button
+        label="Book a demo"
+        variant="primary"
+        showChevron={false}
+        style={{ marginTop: '1.5rem' }}
+        onClick={() => {}}
+      />
     ),
     sticky: true,
   },

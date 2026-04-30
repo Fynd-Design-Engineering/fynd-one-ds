@@ -108,6 +108,9 @@ export type {
   NavDropdownLink,
 } from './components/molecules/Navbar';
 
+export { SubNav } from './components/molecules/SubNav';
+export type { SubNavProps, SubNavItem } from './components/molecules/SubNav';
+
 export { Footer } from './components/molecules/Footer';
 export type {
   FooterProps,

@@ -3,21 +3,22 @@
  * Source: One Design System Figma (qtxg951KvgNG3jYzQQU2s4)
  *
  * Font families:
- *   Title  → Fynd Sans (Compact style) — used for Heading XXL → Heading M
- *   Body   → Inter Variable              — used for Heading S + all Body styles
+ *   Title    → Fynd Sans Compact — used for Heading XXL → Heading M
+ *   Display  → Fynd Sans         — heading-style font for brand-name labels
+ *                                  (e.g. SubNav `brand` items)
+ *   Body     → Inter Display     — Heading S + all Body styles
  *
- * Font loading: Both fonts must be available in your project.
- * Add to your global CSS:
- *   @font-face { font-family: 'Fynd Sans'; src: url('/fonts/FyndSans-Compact.woff2'); }
- *   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+ * Font loading: Both Fynd Sans faces ship with the DS via tokens.css
+ * @font-face declarations. Inter Display is bundled separately.
  */
 
 // ─── Font families ────────────────────────────────────────────────────────────
 
 export const fontFamily = {
-  title: "'Fynd Sans', sans-serif",            // Compact style (display / heading XXL–M)
-  body: "'Inter Display', sans-serif", // Medium / Regular / SemiBold
-  ui: "'Inter', sans-serif",                    // Buttons, nav links, badges, table headers
+  title: "'Fynd Sans Compact', sans-serif",   // Compact display (Heading XXL–M)
+  display: "'Fynd Sans', sans-serif",         // Regular display (brand-name labels)
+  body: "'Inter Display', sans-serif",        // Medium / Regular / SemiBold
+  ui: "'Inter', sans-serif",                  // Buttons, nav links, badges, table headers
 } as const;
 
 // ─── Font weights ─────────────────────────────────────────────────────────────

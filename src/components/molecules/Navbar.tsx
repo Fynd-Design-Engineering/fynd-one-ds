@@ -106,14 +106,18 @@ export interface NavbarProps {
   /** Sticky positioning at top of viewport */
   sticky?: boolean;
   /**
-   * Render with a transparent background (no blur, no fill) while the
-   * page is at the top, then transition to the default nav background
-   * once the user scrolls past `transparentOnTopThreshold` pixels.
-   * Pair with `onDarkBg` if the hero behind the nav is dark.
+   * Default `false`. By default the nav renders transparent (no blur,
+   * no fill) while the page is at the top of its scroll, then fades
+   * to the solid background once the user scrolls past
+   * `scrollThreshold` pixels. Set to `true` to disable the
+   * transparency behavior and always render with the solid bg.
+   *
+   * Pair the default scroll-aware behavior with `onDarkBg` if the
+   * hero behind the nav is dark, so link colors stay readable.
    */
-  transparentOnTop?: boolean;
-  /** Pixels of scroll past which the nav fades back to its default bg. Default 8. */
-  transparentOnTopThreshold?: number;
+  alwaysSolidBg?: boolean;
+  /** Pixels of scroll past which the nav fades to its solid bg. Default 8. */
+  scrollThreshold?: number;
   /** Open this dropdown by default (label match). Useful for previews / Storybook. */
   defaultOpenDropdown?: string;
   className?: string;
@@ -135,8 +139,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   mobileActions,
   onDarkBg = false,
   sticky = false,
-  transparentOnTop = false,
-  transparentOnTopThreshold = 8,
+  alwaysSolidBg = false,
+  scrollThreshold = 8,
   defaultOpenDropdown,
   className,
   style,
@@ -257,24 +261,25 @@ export const Navbar: React.FC<NavbarProps> = ({
     };
   }, [mobileOpen]);
 
-  // Scroll-aware transparent variant. When `transparentOnTop` is on,
-  // the nav reads as transparent until the page scrolls past the
-  // threshold, then fades back to its default fill. Listener is
-  // passive + cleaned up on unmount.
+  // Scroll-aware transparent variant. By default the nav reads as
+  // transparent until the page scrolls past the threshold, then fades
+  // back to its solid fill. Pass `alwaysSolidBg` to opt out. Listener
+  // is passive + cleaned up on unmount.
+  const scrollAware = !alwaysSolidBg;
   const [pastTopThreshold, setPastTopThreshold] = useState(false);
   useEffect(() => {
-    if (!transparentOnTop || typeof window === 'undefined') return;
-    const update = () => setPastTopThreshold(window.scrollY > transparentOnTopThreshold);
+    if (!scrollAware || typeof window === 'undefined') return;
+    const update = () => setPastTopThreshold(window.scrollY > scrollThreshold);
     update();
     window.addEventListener('scroll', update, { passive: true });
     return () => window.removeEventListener('scroll', update);
-  }, [transparentOnTop, transparentOnTopThreshold]);
+  }, [scrollAware, scrollThreshold]);
 
   const rootClasses = [
     styles.root,
     onDarkBg && styles['root--dark'],
     sticky && styles['root--sticky'],
-    transparentOnTop && !pastTopThreshold && styles['root--transparent'],
+    scrollAware && !pastTopThreshold && styles['root--transparent'],
     className,
   ]
     .filter(Boolean)

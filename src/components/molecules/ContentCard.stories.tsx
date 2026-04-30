@@ -6,7 +6,7 @@ const meta: Meta<typeof ContentCard> = {
   title: 'Molecules/ContentCard',
   component: ContentCard,
   argTypes: {
-    imagePosition: { control: 'select', options: ['below', 'behind', 'bottom-right'] },
+    imagePosition: { control: 'select', options: ['above', 'below', 'behind', 'bottom-right'] },
     size: { control: 'select', options: ['lg', 'md', 'sm'] },
     onDarkBg: { control: 'boolean' },
     showChip: { control: 'boolean' },
@@ -202,6 +202,38 @@ export const AllBreakpoints: Story = {
           imageSrc="https://placehold.co/272x362/a0a1a2/ffffff?text=BG"
         />
       </div>
+    </div>
+  ),
+};
+
+export const ImageAbove: Story = {
+  name: 'Image above (audience cards)',
+  render: () => (
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, maxWidth: 1200 }}>
+      <ContentCard
+        imagePosition="above"
+        title="Emerging Business"
+        subtext="Launch your business and get a head start to success"
+        imageSrc="https://placehold.co/520x340/d2d2d2/4a4b4c?text=Emerging+Business"
+        imageAlt="Emerging Business"
+        showButton={false}
+      />
+      <ContentCard
+        imagePosition="above"
+        title="Mid-market & Enterprise"
+        subtext="Tailored retail solutions for ambitious businesses ready to scale"
+        imageSrc="https://placehold.co/520x340/d2d2d2/4a4b4c?text=Mid-market+%26+Enterprise"
+        imageAlt="Mid-market and Enterprise"
+        showButton={false}
+      />
+      <ContentCard
+        imagePosition="above"
+        title="Partners"
+        subtext="Offer your services and empower retailers around the world"
+        imageSrc="https://placehold.co/520x340/d2d2d2/4a4b4c?text=Partners"
+        imageAlt="Partners"
+        showButton={false}
+      />
     </div>
   ),
 };

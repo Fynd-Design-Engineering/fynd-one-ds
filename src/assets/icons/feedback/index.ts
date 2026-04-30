@@ -18,6 +18,7 @@ export { default as IcLock } from './ic_lock.svg?react';
 export { default as IcMessagePartiallyDelivered } from './ic_message_partially_delivered.svg?react';
 export { default as IcMessageRead } from './ic_message_read.svg?react';
 export { default as IcMessageSend } from './ic_message_send.svg?react';
+export { default as IcPointerTick } from './ic_pointer_tick.svg?react';
 export { default as IcReturnOrders } from './ic_return_orders.svg?react';
 export { default as IcSlash } from './ic_slash.svg?react';
 export { default as IcSmileyDelighted } from './ic_smiley_delighted.svg?react';

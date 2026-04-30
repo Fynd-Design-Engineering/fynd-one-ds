@@ -111,6 +111,9 @@ export type {
 export { SubNav } from './components/molecules/SubNav';
 export type { SubNavProps, SubNavItem } from './components/molecules/SubNav';
 
+export { Pointers } from './components/molecules/Pointers';
+export type { PointersProps, PointerItem } from './components/molecules/Pointers';
+
 export { Footer } from './components/molecules/Footer';
 export type {
   FooterProps,

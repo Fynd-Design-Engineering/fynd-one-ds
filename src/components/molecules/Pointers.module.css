@@ -1,0 +1,40 @@
+.root {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  /* Visually align the 22px icon's optical center with the first
+     line of text (body-m has line-height ~24px → icon top: 1px). */
+  margin-top: 1px;
+  color: var(--fds-neutral-100, #101319);
+}
+
+.label {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Dark variant — flip the circle to white (via currentColor) AND the
+   inner check to dark so it stays visible on the white circle. The
+   second path in the SVG ships with a literal fill="white" which we
+   override via attribute selector. */
+.root--dark .icon {
+  color: var(--fds-neutral-0, #ffffff);
+}
+
+.root--dark .icon svg path[fill="white"] {
+  fill: var(--fds-neutral-100, #101319);
+}

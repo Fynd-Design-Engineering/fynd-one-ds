@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, ReactNode } from 'react';
 import { Button } from '../atoms/Button';
 import { VisualElement, VisualElementSize } from '../atoms/VisualElement';
 import styles from './RichIconCard.module.css';
@@ -8,6 +8,12 @@ export interface RichIconCardProps {
   iconSize?: VisualElementSize;
   title: string;
   subtext?: string;
+  /**
+   * Actions slot — drop one or more `<Button>` elements here for the
+   * card footer. When provided, takes precedence over the legacy
+   * `buttonLabel` / `showButton` / `onButtonClick` props.
+   */
+  actions?: ReactNode;
   buttonLabel?: string;
   onButtonClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   showButton?: boolean;
@@ -21,6 +27,7 @@ export const RichIconCard: React.FC<RichIconCardProps> = ({
   iconSize = 'icon-32',
   title,
   subtext,
+  actions,
   buttonLabel = 'Button',
   onButtonClick,
   showButton = true,
@@ -51,19 +58,23 @@ export const RichIconCard: React.FC<RichIconCardProps> = ({
       data-figma-id="879:3878"
     >
       <div className={styles.content}>
-        <VisualElement size={iconSize}>{icon}</VisualElement>
+        {icon && <VisualElement size={iconSize}>{icon}</VisualElement>}
         <div className={styles['text-group']}>
           <p className={titleClass}>{title}</p>
           {subtext && <p className={subtextClass}>{subtext}</p>}
         </div>
       </div>
-      {showButton && (
-        <Button
-          label={buttonLabel}
-          variant="tertiary"
-          onClick={onButtonClick}
-          onDarkBg={onDarkBg}
-        />
+      {actions ? (
+        <div className={styles.actions}>{actions}</div>
+      ) : (
+        showButton && (
+          <Button
+            label={buttonLabel}
+            variant="tertiary"
+            onClick={onButtonClick}
+            onDarkBg={onDarkBg}
+          />
+        )
       )}
     </div>
   );

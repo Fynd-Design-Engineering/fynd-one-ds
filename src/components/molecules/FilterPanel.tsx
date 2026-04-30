@@ -1,0 +1,84 @@
+'use client';
+
+import React, { ReactNode } from 'react';
+import { FilterChip } from '../atoms/FilterChip';
+import styles from './FilterPanel.module.css';
+
+export interface FilterOption {
+  /** Stable identifier — what `selected` arrays contain. */
+  value: string;
+  label: string;
+  icon?: ReactNode;
+  disabled?: boolean;
+}
+
+export interface FilterGroup {
+  /** Heading shown above the option chips. */
+  heading: string;
+  /** Stable group key — used to namespace selection in `selected`. */
+  key: string;
+  options: FilterOption[];
+}
+
+export interface FilterPanelProps {
+  groups: FilterGroup[];
+  /** Map of `groupKey → selected option values`. */
+  selected: Record<string, string[]>;
+  /** Fires with the next full selection map. */
+  onChange: (next: Record<string, string[]>) => void;
+  /** Optional footer (Clear / Apply etc.). Rendered above the panel border. */
+  footer?: ReactNode;
+  className?: string;
+}
+
+const toggleValue = (list: string[] | undefined, value: string): string[] => {
+  const set = new Set(list ?? []);
+  if (set.has(value)) set.delete(value);
+  else set.add(value);
+  return Array.from(set);
+};
+
+export const FilterPanel: React.FC<FilterPanelProps> = ({
+  groups,
+  selected,
+  onChange,
+  footer,
+  className,
+}) => {
+  const handleToggle = (groupKey: string, value: string) => {
+    onChange({
+      ...selected,
+      [groupKey]: toggleValue(selected[groupKey], value),
+    });
+  };
+
+  return (
+    <div className={[styles.root, className].filter(Boolean).join(' ')}>
+      {groups.map((group) => {
+        const checkedSet = new Set(selected[group.key] ?? []);
+        return (
+          <div key={group.key} className={styles.group}>
+            <h4 className={styles.heading}>{group.heading}</h4>
+            <div className={styles.options} role="group" aria-label={group.heading}>
+              {group.options.map((opt) => (
+                <FilterChip
+                  key={opt.value}
+                  label={opt.label}
+                  icon={opt.icon}
+                  disabled={opt.disabled}
+                  checked={checkedSet.has(opt.value)}
+                  onChange={() => handleToggle(group.key, opt.value)}
+                />
+              ))}
+            </div>
+          </div>
+        );
+      })}
+      {footer && <div className={styles.actions}>{footer}</div>}
+    </div>
+  );
+};
+
+FilterPanel.displayName = 'FilterPanel';
+
+export default FilterPanel;

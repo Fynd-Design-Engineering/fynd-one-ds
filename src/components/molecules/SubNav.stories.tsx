@@ -54,11 +54,43 @@ export const StickyUnderNavbar: Story = {
           zIndex: 1000,
         }}
       >
-        <strong>Faux Navbar (64px)</strong>
+        <strong>Faux Navbar (64px) — sticky</strong>
       </div>
       <SubNav {...args} />
       <div style={{ height: 1600, padding: 24, background: '#fff' }}>
         Scroll the canvas — the sub-nav pins below the nav.
+      </div>
+    </div>
+  ),
+};
+
+export const OnlySubNavSticky: Story = {
+  name: 'Only SubNav sticky (Navbar scrolls away)',
+  args: {
+    items: ITEMS,
+    sticky: true,
+    stickyOffset: 0,
+  },
+  render: (args) => (
+    <div>
+      {/* Faux nav rendered in normal flow — NOT sticky, so it scrolls
+          off-screen with the rest of the page. */}
+      <div
+        style={{
+          height: 64,
+          background: '#ffffff',
+          borderBottom: '1px solid #f2f2f2',
+          display: 'flex',
+          alignItems: 'center',
+          padding: '0 1.5rem',
+        }}
+      >
+        <strong>Faux Navbar (64px) — NOT sticky</strong>
+      </div>
+      <SubNav {...args} />
+      <div style={{ height: 1600, padding: 24, background: '#fff' }}>
+        Scroll the canvas — the navbar disappears off the top, the
+        sub-nav stays pinned at the top of the viewport.
       </div>
     </div>
   ),

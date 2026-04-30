@@ -94,6 +94,9 @@ export type { CTABannerProps } from './components/molecules/CTABanner';
 export { ContentCard } from './components/molecules/ContentCard';
 export type { ContentCardProps } from './components/molecules/ContentCard';
 
+export { HeroSplit } from './components/molecules/HeroSplit';
+export type { HeroSplitProps, HeroSplitImage } from './components/molecules/HeroSplit';
+
 export { PricingCard } from './components/molecules/PricingCard';
 export type { PricingCardProps, PricingFeature } from './components/molecules/PricingCard';
 

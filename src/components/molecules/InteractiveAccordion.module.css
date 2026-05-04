@@ -63,15 +63,19 @@
   }
 }
 
+/* The canvas stacks every media slot into the same grid cell so they
+   overlap for cross-fade. The cell's height is driven by the natural
+   height of the media itself — we don't constrain with aspect-ratio. */
 .mediaCanvas {
-  position: relative;
+  display: grid;
+  justify-items: center;
   width: 100%;
-  aspect-ratio: 1 / 1;
 }
 
 .mediaSlot {
-  position: absolute;
-  inset: 0;
+  grid-row: 1;
+  grid-column: 1;
+  width: 50%;
   opacity: 0;
   transition: opacity 0.2s ease;
   pointer-events: none;
@@ -85,8 +89,7 @@
 .mediaSlot video {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -184,8 +187,7 @@
 .inlineMedia {
   display: none;
   width: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius: 16px;
+  border-radius: var(--border-radius--16, 1rem);
   overflow: hidden;
   background-color: var(--fds-neutral-20, #f2f2f2);
 }
@@ -200,6 +202,5 @@
 .inlineMedia video {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
 }

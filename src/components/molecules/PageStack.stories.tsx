@@ -72,9 +72,9 @@ export const NavbarAndHero: Story = {
         }
         description="Delight your customers with same-day deliveries."
         bullets={[
-          'Build an attractive website',
-          'Automate order management',
-          'Run promotions across channels',
+          { label: 'Build an attractive website' },
+          { label: 'Automate order management' },
+          { label: 'Run promotions across channels' },
         ]}
         actions={
           <>
@@ -116,9 +116,9 @@ export const BannerNavbarAndHero: Story = {
         title="Compose your storefront with reusable building blocks"
         description="Drag, drop, and ship — every component pre-wired to your catalog."
         bullets={[
-          'Theming engine',
-          'Headless commerce APIs',
-          'Edge-rendered pages',
+          { label: 'Theming engine' },
+          { label: 'Headless commerce APIs' },
+          { label: 'Edge-rendered pages' },
         ]}
         actions={
           <>

@@ -38,7 +38,7 @@ export const Pointers: React.FC<PointersProps> = ({
   const rootClasses = [styles.root, onDarkBg && styles['root--dark'], className]
     .filter(Boolean)
     .join(' ');
-  const labelColor = onDarkBg ? 'white' : 'subtle';
+  const labelColor = onDarkBg ? 'white' : 'secondary';
   return (
     <ul className={rootClasses} style={style}>
       {items.map((item, idx) => (

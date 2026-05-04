@@ -1,6 +1,7 @@
 /* ── RichIconCard ─────────────────────────────────────────────────────────── */
 
 .root {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -11,6 +12,10 @@
   overflow: hidden;
   box-shadow: none;
   transition: box-shadow 0.3s;
+}
+
+.clickable {
+  cursor: pointer;
 }
 
 .root:hover {
@@ -71,6 +76,33 @@
 
 .subtext--dark {
   color: #a0a0a0;
+}
+
+/* ── Link / button overlay ────────────────────────────────────────────────── */
+
+/* Transparent element that makes the whole card clickable. Sits at z-index 0
+   so non-positioned content paints above it in the stacking context, but the
+   footer (position: relative; z-index: 1) is explicitly raised above it so
+   footer buttons remain independently interactive. */
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  text-decoration: none;
+}
+
+/* ── Footer (actions / button) ────────────────────────────────────────────── */
+
+/* Raised above the overlay so footer buttons intercept their own clicks. */
+.footer {
+  position: relative;
+  z-index: 1;
 }
 
 /* ── Actions slot ─────────────────────────────────────────────────────────── */

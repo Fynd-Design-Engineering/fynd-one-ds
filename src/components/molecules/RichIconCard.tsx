@@ -25,6 +25,19 @@ export interface RichIconCardProps {
   onButtonClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   showButton?: boolean;
   onDarkBg?: boolean;
+  /**
+   * Makes the entire card a link. Renders a transparent `<a>` overlay
+   * covering the card. Any footer buttons remain independently clickable
+   * above the overlay.
+   */
+  href?: string;
+  /**
+   * Makes the entire card a clickable button overlay. Use `href` for
+   * navigation; use `onClick` for in-page actions.
+   */
+  onClick?: (e: React.MouseEvent) => void;
+  /** Accessible label for the card overlay. Defaults to `title`. */
+  overlayLabel?: string;
   className?: string;
   style?: CSSProperties;
 }
@@ -43,12 +56,18 @@ export const RichIconCard: React.FC<RichIconCardProps> = ({
   onButtonClick,
   showButton = true,
   onDarkBg = false,
+  href,
+  onClick,
+  overlayLabel,
   className,
   style,
 }) => {
+  const isClickable = !!(href || onClick);
+
   const cardClass = [
     styles.root,
     onDarkBg && styles.dark,
+    isClickable && styles.clickable,
     className,
   ].filter(Boolean).join(' ');
 
@@ -62,12 +81,40 @@ export const RichIconCard: React.FC<RichIconCardProps> = ({
     onDarkBg && styles['subtext--dark'],
   ].filter(Boolean).join(' ');
 
+  const footerContent = actions ? (
+    <div className={styles.actions}>{actions}</div>
+  ) : showButton ? (
+    <Button
+      label={buttonLabel}
+      variant="tertiary"
+      onClick={onButtonClick}
+      onDarkBg={onDarkBg}
+    />
+  ) : null;
+
   return (
     <div
       className={cardClass}
       style={style}
       data-figma-id="879:3878"
     >
+      {isClickable && (
+        href ? (
+          <a
+            href={href}
+            onClick={onClick}
+            className={styles.overlay}
+            aria-label={overlayLabel ?? title}
+          />
+        ) : (
+          <button
+            type="button"
+            onClick={onClick}
+            className={styles.overlay}
+            aria-label={overlayLabel ?? title}
+          />
+        )
+      )}
       <div className={styles.content}>
         {icon && (
           <VisualElement
@@ -82,17 +129,8 @@ export const RichIconCard: React.FC<RichIconCardProps> = ({
           {subtext && <p className={subtextClass}>{subtext}</p>}
         </div>
       </div>
-      {actions ? (
-        <div className={styles.actions}>{actions}</div>
-      ) : (
-        showButton && (
-          <Button
-            label={buttonLabel}
-            variant="tertiary"
-            onClick={onButtonClick}
-            onDarkBg={onDarkBg}
-          />
-        )
+      {footerContent && (
+        <div className={styles.footer}>{footerContent}</div>
       )}
     </div>
   );

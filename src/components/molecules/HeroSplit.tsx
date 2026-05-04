@@ -1,7 +1,10 @@
 import React, { CSSProperties, ReactNode } from 'react';
 import { SectionWrapper } from '../_shared/SectionWrapper';
 import { Text } from '../Typography/Text';
+import { Pointers, type PointerItem } from './Pointers';
 import styles from './HeroSplit.module.css';
+
+export type { PointerItem } from './Pointers';
 
 export interface HeroSplitImage {
   src: string;
@@ -13,7 +16,7 @@ export interface HeroSplitImage {
 export interface HeroSplitProps {
   title: ReactNode;
   description?: ReactNode;
-  bullets?: string[];
+  bullets?: PointerItem[];
   actions?: ReactNode;
   image: HeroSplitImage;
   imagePriority?: boolean;
@@ -106,20 +109,7 @@ export const HeroSplit: React.FC<HeroSplitProps> = ({
             </Text>
           )}
           {bullets && bullets.length > 0 && (
-            <ul className={styles.bullets}>
-              {bullets.map((bullet, i) => (
-                <li key={i} className={styles.bullet}>
-                  <span className={styles.dot} aria-hidden="true" />
-                  <Text
-                    variant="body-l"
-                    as="span"
-                    color={onDarkBg ? 'white' : 'default'}
-                  >
-                    {bullet}
-                  </Text>
-                </li>
-              ))}
-            </ul>
+            <Pointers items={bullets} variant="body-l" onDarkBg={onDarkBg} />
           )}
           {actions && <div className={styles.actions}>{actions}</div>}
         </div>

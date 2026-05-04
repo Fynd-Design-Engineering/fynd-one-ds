@@ -239,10 +239,18 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
                 </span>
               </button>
               <div
+                className={[
+                  styles.itemContent,
+                  isOpen ? styles['itemContent--open'] : '',
+                ]
+                  .filter(Boolean)
+                  .join(' ')}
+              >
+              <div
                 id={panelId}
                 role="region"
                 aria-labelledby={triggerId}
-                hidden={!isOpen}
+                aria-hidden={!isOpen}
                 className={styles.panel}
               >
                 <Text
@@ -260,6 +268,7 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
                     {renderInlineMedia(item)}
                   </div>
                 )}
+              </div>
               </div>
             </div>
           );

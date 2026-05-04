@@ -631,7 +631,7 @@ Asymmetric split hero: text-left + visual-right (40/60 desktop, stacked on mobil
 |------|------|---------|
 | `title` | `ReactNode` | required — rendered as `<h1>` with `heading-xl` |
 | `description` | `ReactNode` | — |
-| `bullets` | `string[]` | — |
+| `bullets` | `PointerItem[]` | — (rendered via `<Pointers>` with the canonical tick icon; each item is `{ label: string; node?: ReactNode }`. Re-exported from HeroSplit so `import { HeroSplitProps, PointerItem } from '@fynd-design-engineering/fynd-one-ds'` works.) |
 | `actions` | `ReactNode` | — (1–2 `<Button>`s) |
 | `image` | `{ src, alt, width?, height? }` | required |
 | `imagePriority` | `boolean` | `true` (eager loading + sync decode for above-the-fold hero) |
@@ -646,7 +646,11 @@ Layout: 2-col `minmax(0, 40fr) minmax(0, 60fr)` grid with 60px gap on desktop, s
 <HeroSplit
   title={<>Launch a hyperlocal website in 30 minutes</>}
   description="Delight your customers with same-day deliveries"
-  bullets={['Build a website', 'Automate orders', 'Run promotions']}
+  bullets={[
+    { label: 'Build a website' },
+    { label: 'Automate orders' },
+    { label: 'Run promotions' },
+  ]}
   image={{ src: '/hero.png', alt: 'Hyperlocal storefront', width: 1200, height: 900 }}
   bg="var(--fds-blue-20)"
   actions={

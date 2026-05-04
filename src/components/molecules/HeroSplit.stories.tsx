@@ -34,9 +34,9 @@ export const Default: Story = {
     ),
     description: 'Delight your customers with same-day deliveries.',
     bullets: [
-      'Build an attractive website',
-      'Automate order management',
-      'Run promotions across channels',
+      { label: 'Build an attractive website' },
+      { label: 'Automate order management' },
+      { label: 'Run promotions across channels' },
     ],
     actions: (
       <>
@@ -70,9 +70,9 @@ export const WithoutActions: Story = {
     title: 'Launch a hyperlocal website in 30 minutes',
     description: 'Delight your customers with same-day deliveries.',
     bullets: [
-      'Build an attractive website',
-      'Automate order management',
-      'Run promotions across channels',
+      { label: 'Build an attractive website' },
+      { label: 'Automate order management' },
+      { label: 'Run promotions across channels' },
     ],
     image: SAMPLE_IMAGE,
     bg: 'var(--fds-green-20, #d8f1de)',
@@ -94,7 +94,11 @@ export const WithVisualBg: Story = {
     title: 'Compose your storefront with reusable building blocks',
     description:
       'Drag, drop, and ship — every component pre-wired to your catalog.',
-    bullets: ['Theming engine', 'Headless commerce APIs', 'Edge-rendered pages'],
+    bullets: [
+      { label: 'Theming engine' },
+      { label: 'Headless commerce APIs' },
+      { label: 'Edge-rendered pages' },
+    ],
     actions: (
       <>
         <Button label="Get started" variant="primary" showChevron />
@@ -111,7 +115,11 @@ export const WithBothBgs: Story = {
   args: {
     title: 'A unified commerce stack for every channel',
     description: 'Storefront, OMS, POS — one platform, everywhere you sell.',
-    bullets: ['Real-time inventory', 'Built-in analytics', 'Composable APIs'],
+    bullets: [
+      { label: 'Real-time inventory' },
+      { label: 'Built-in analytics' },
+      { label: 'Composable APIs' },
+    ],
     actions: (
       <>
         <Button label="Get started" variant="primary" showChevron />
@@ -129,9 +137,9 @@ export const OnDarkBackground: Story = {
     title: 'Build your commerce on a unified platform',
     description: 'Storefront, OMS, and POS — one stack, everywhere you sell.',
     bullets: [
-      'Composable architecture',
-      'Real-time inventory',
-      'Built-in analytics',
+      { label: 'Composable architecture' },
+      { label: 'Real-time inventory' },
+      { label: 'Built-in analytics' },
     ],
     actions: (
       <>
@@ -150,4 +158,48 @@ export const OnDarkBackground: Story = {
       </div>
     ),
   ],
+};
+
+export const RichBullets: Story = {
+  name: 'Bullets with rich content (node field)',
+  args: {
+    title: 'Composable commerce, with the integrations you already use',
+    description:
+      'Plug into your existing stack — no rip-and-replace required.',
+    bullets: [
+      { label: 'Build an attractive website' },
+      {
+        label: 'Connect to Shopify, Magento, or BigCommerce',
+        node: (
+          <>
+            Connect to <strong>Shopify</strong>, <strong>Magento</strong>, or{' '}
+            <strong>BigCommerce</strong>
+          </>
+        ),
+      },
+      {
+        label: 'Read the integration docs',
+        node: (
+          <>
+            Read the{' '}
+            <a
+              href="#"
+              style={{ color: 'inherit', textDecoration: 'underline' }}
+            >
+              integration docs
+            </a>{' '}
+            to get started
+          </>
+        ),
+      },
+    ],
+    actions: (
+      <>
+        <Button label="Get started" variant="primary" showChevron />
+        <Button label="Book a demo" variant="secondary" />
+      </>
+    ),
+    image: SAMPLE_IMAGE,
+    bg: 'var(--fds-blue-20, #e7eefe)',
+  },
 };

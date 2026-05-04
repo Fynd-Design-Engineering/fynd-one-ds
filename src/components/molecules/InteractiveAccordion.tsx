@@ -40,6 +40,14 @@ export interface InteractiveAccordionProps {
   onOpenIndexChange?: (i: number) => void;
   /** Optional background fill behind the media panel — any CSS color. */
   mediaBg?: string;
+  /**
+   * Drop the card shadow. Default `true` — appropriate when the molecule
+   * sits on a white page bg. Pass `false` when the page bg is already
+   * tinted (gray, etc.) so the card doesn't double-shadow against it.
+   * Ignored on dark — the dark variant uses bg-color contrast instead
+   * of a shadow.
+   */
+  shadow?: boolean;
   /** Inverted on dark sections — flips text/icon colors and dividers. */
   onDarkBg?: boolean;
   className?: string;
@@ -53,6 +61,7 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
   openIndex: controlledOpenIndex,
   onOpenIndexChange,
   mediaBg,
+  shadow = true,
   onDarkBg = false,
   className,
   style,
@@ -105,6 +114,7 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
     styles.root,
     mediaSide === 'left' ? styles['media-left'] : styles['media-right'],
     onDarkBg ? styles['root--dark'] : styles['root--light'],
+    !onDarkBg && shadow && styles['root--shadow'],
     className,
   ]
     .filter(Boolean)

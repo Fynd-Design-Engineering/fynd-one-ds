@@ -82,6 +82,7 @@ const meta: Meta<typeof InteractiveAccordion> = {
   argTypes: {
     mediaSide: { control: 'inline-radio', options: ['left', 'right'] },
     onDarkBg: { control: 'boolean' },
+    shadow: { control: 'boolean' },
     mediaBg: { control: 'color' },
   },
 };
@@ -91,20 +92,35 @@ type Story = StoryObj<typeof InteractiveAccordion>;
 
 const Frame: React.FC<{ children: React.ReactNode; bg?: string }> = ({
   children,
-  bg = 'var(--fds-neutral-10, #f8f8f9)',
+  bg = '#ffffff',
 }) => (
   <div style={{ background: bg, padding: '40px 24px' }}>{children}</div>
 );
 
-export const Default: Story = {
+export const OnWhiteBg: Story = {
+  name: 'White page bg (with shadow)',
   render: (args) => (
-    <Frame>
+    <Frame bg="#ffffff">
       <InteractiveAccordion {...args} />
     </Frame>
   ),
   args: {
     items: SAMPLE_ITEMS,
     mediaBg: 'var(--fds-blue-20, #e7eefe)',
+  },
+};
+
+export const OnGrayBg: Story = {
+  name: 'Gray page bg (shadow off)',
+  render: (args) => (
+    <Frame bg="var(--fds-neutral-10, #f8f8f9)">
+      <InteractiveAccordion {...args} />
+    </Frame>
+  ),
+  args: {
+    items: SAMPLE_ITEMS,
+    mediaBg: 'var(--fds-blue-20, #e7eefe)',
+    shadow: false,
   },
 };
 

@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { InteractiveAccordion } from './InteractiveAccordion';
-import { Section } from '../_shared/Section';
 
 const IMAGE_BASE = 'https://images.unsplash.com/';
 const SAMPLE_ITEMS = [
@@ -89,11 +88,18 @@ const meta: Meta<typeof InteractiveAccordion> = {
 export default meta;
 type Story = StoryObj<typeof InteractiveAccordion>;
 
+const Frame: React.FC<{ children: React.ReactNode; bg?: string }> = ({
+  children,
+  bg = 'var(--fds-neutral-10, #f8f8f9)',
+}) => (
+  <div style={{ background: bg, padding: '40px 24px' }}>{children}</div>
+);
+
 export const Default: Story = {
   render: (args) => (
-    <Section title="Everything you need to build a storefront" chipLabel="Storefront">
+    <Frame>
       <InteractiveAccordion {...args} />
-    </Section>
+    </Frame>
   ),
   args: {
     items: SAMPLE_ITEMS,
@@ -103,9 +109,9 @@ export const Default: Story = {
 
 export const MediaOnLeft: Story = {
   render: (args) => (
-    <Section title="Manage everything in one place" chipLabel="Operations">
+    <Frame>
       <InteractiveAccordion {...args} />
-    </Section>
+    </Frame>
   ),
   args: {
     items: SAMPLE_ITEMS,
@@ -116,9 +122,9 @@ export const MediaOnLeft: Story = {
 
 export const WithVideo: Story = {
   render: (args) => (
-    <Section title="See it in action" chipLabel="Storefront">
+    <Frame>
       <InteractiveAccordion {...args} />
-    </Section>
+    </Frame>
   ),
   args: {
     items: SAMPLE_ITEMS.slice(0, 4).map((item) => ({
@@ -135,9 +141,9 @@ export const WithVideo: Story = {
 
 export const OnDarkBackground: Story = {
   render: (args) => (
-    <Section bg="dark" title="Built for scale" chipLabel="Platform" onDarkBg>
+    <Frame bg="#101319">
       <InteractiveAccordion {...args} />
-    </Section>
+    </Frame>
   ),
   args: {
     items: SAMPLE_ITEMS,

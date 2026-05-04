@@ -169,19 +169,21 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
         className={styles.mediaPanel}
         style={mediaBg ? { background: mediaBg } : undefined}
       >
-        {items.map((item, idx) => (
-          <div
-            key={idx}
-            className={[
-              styles.mediaSlot,
-              idx === openIndex ? styles['mediaSlot--active'] : '',
-            ]
-              .filter(Boolean)
-              .join(' ')}
-          >
-            {renderPanelMedia(item, idx)}
-          </div>
-        ))}
+        <div className={styles.mediaCanvas}>
+          {items.map((item, idx) => (
+            <div
+              key={idx}
+              className={[
+                styles.mediaSlot,
+                idx === openIndex ? styles['mediaSlot--active'] : '',
+              ]
+                .filter(Boolean)
+                .join(' ')}
+            >
+              {renderPanelMedia(item, idx)}
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className={styles.list}>

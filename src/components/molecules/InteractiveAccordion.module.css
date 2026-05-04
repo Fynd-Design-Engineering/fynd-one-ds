@@ -134,8 +134,11 @@
   height: 24px;
 }
 
-.root--dark .toggleIcon svg {
-  color: var(--fds-neutral-0, #ffffff);
+/* The IcAdd / IcMinus SVGs ship with a hardcoded fill="#141414" attribute
+   instead of currentColor, so we override the path's fill directly when on
+   a dark surface. CSS `fill` beats the inline attribute. */
+.root--dark .toggleIcon svg path {
+  fill: var(--fds-neutral-0, #ffffff);
 }
 
 /* ── Panel ────────────────────────────────────────────────────────────────── */

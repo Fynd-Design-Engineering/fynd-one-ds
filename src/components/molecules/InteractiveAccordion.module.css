@@ -54,15 +54,6 @@
   grid-row: 1;
 }
 
-@media (max-width: 767px) {
-  .root {
-    grid-template-columns: 1fr;
-  }
-  .mediaPanel {
-    display: none;
-  }
-}
-
 /* ── Media panel ──────────────────────────────────────────────────────────── */
 
 .mediaPanel {
@@ -83,6 +74,22 @@
   .mediaPanel {
     position: sticky;
     top: calc(var(--fds-nav-h, 0px) + 24px);
+  }
+}
+
+/* Below 992px (tablet + mobile) the 50:50 split feels cramped — collapse
+   to a single column. The right-side media panel hides; each accordion
+   item shows its media inline below the answer text via .inlineMedia
+   (which has the matching media query further down). This block must
+   come AFTER the bare .mediaPanel rule above so source-order wins —
+   otherwise `display: flex` would beat `display: none` at equal
+   specificity. */
+@media (max-width: 991px) {
+  .root {
+    grid-template-columns: 1fr;
+  }
+  .mediaPanel {
+    display: none;
   }
 }
 
@@ -227,7 +234,7 @@
   background-color: var(--fds-neutral-20, #f2f2f2);
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .inlineMedia {
     display: block;
   }

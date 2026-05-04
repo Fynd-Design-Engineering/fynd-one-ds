@@ -97,6 +97,51 @@ export const OnDarkBackground: Story = {
   ),
 };
 
+export const ClickableLink: Story = {
+  name: 'Clickable — link overlay (href)',
+  render: () => (
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, maxWidth: 1272 }}>
+      <RichIconCard
+        icon={<StarIcon />}
+        title="Unified platform"
+        subtext="Manage your entire commerce stack from a single dashboard."
+        buttonLabel="Explore"
+        href="/solutions/platform"
+      />
+      <RichIconCard
+        icon={<StarIcon />}
+        title="Scalable infrastructure"
+        subtext="Built to handle millions of transactions without breaking a sweat."
+        buttonLabel="Learn more"
+        href="/solutions/infrastructure"
+      />
+      <RichIconCard
+        icon={<StarIcon />}
+        title="Developer friendly"
+        subtext="Comprehensive APIs, SDKs, and documentation for rapid integration."
+        showButton={false}
+        href="/solutions/developers"
+      />
+    </div>
+  ),
+};
+
+export const ClickableButton: Story = {
+  name: 'Clickable — button overlay (onClick)',
+  render: () => (
+    <div style={{ maxWidth: 400 }}>
+      <RichIconCard
+        icon={<StarIcon />}
+        title="Open modal on click"
+        subtext="The entire card surface is a button. The footer button below is independently clickable."
+        buttonLabel="Learn more"
+        onClick={() => alert('Card clicked')}
+        onButtonClick={(e) => { e.stopPropagation(); alert('Footer button clicked'); }}
+      />
+    </div>
+  ),
+};
+
 export const NoIconWithActions: Story = {
   name: 'No icon + actions slot (two buttons)',
   render: () => (

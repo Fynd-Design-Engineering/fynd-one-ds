@@ -10,6 +10,7 @@ const meta: Meta<typeof CTABannerSection> = {
   parameters: { layout: 'fullscreen' },
   argTypes: {
     align: { control: 'radio', options: ['center', 'left'] },
+    variant: { control: 'radio', options: ['dark', 'light'] },
     bgColor: { control: 'color' },
     bgImage: { control: 'text' },
   },
@@ -91,6 +92,50 @@ export const CustomBgColor: Story = {
       "Lorem Ipsum has been the industry's standard dummy text.",
     align: 'center',
     bgColor: '#0a1f12',
+    primaryButton: { label: 'Get started' },
+    secondaryButton: { label: 'Book a demo' },
+  },
+};
+
+export const LightCenter: Story = {
+  name: 'Light — center',
+  args: {
+    variant: 'light',
+    chipLabel: 'Get started',
+    title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+    subtext:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.",
+    align: 'center',
+    primaryButton: { label: 'Get started' },
+    secondaryButton: { label: 'Book a demo' },
+  },
+};
+
+export const LightLeft: Story = {
+  name: 'Light — left',
+  args: {
+    variant: 'light',
+    chipLabel: 'Get started',
+    title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+    subtext:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.",
+    align: 'left',
+    primaryButton: { label: 'Get started' },
+    secondaryButton: { label: 'Book a demo' },
+  },
+};
+
+export const LightWithBgImage: Story = {
+  name: 'Light — with background image',
+  args: {
+    variant: 'light',
+    chipLabel: 'Get started',
+    title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+    subtext:
+      "Lorem Ipsum has been the industry's standard dummy text.",
+    align: 'center',
+    bgImage: SAMPLE_BG,
+    bgColor: 'rgba(245,245,245,0.85)',
     primaryButton: { label: 'Get started' },
     secondaryButton: { label: 'Book a demo' },
   },

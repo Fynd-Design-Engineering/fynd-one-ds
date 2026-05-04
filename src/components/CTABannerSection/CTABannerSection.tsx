@@ -18,7 +18,9 @@ export interface CTABannerSectionProps {
   chipLabel?: string;
   /** Content alignment. Defaults to center. */
   align?: 'center' | 'left';
-  /** Section background color. Any CSS color. Defaults to darkest neutral. */
+  /** Color theme. `dark` (default) uses darkest neutral bg + white text; `light` uses neutral-10 bg + dark text. */
+  variant?: 'dark' | 'light';
+  /** Section background color. Any CSS color. Overrides the variant default. */
   bgColor?: string;
   /** Optional background image URL — layered on top of bgColor. */
   bgImage?: string;
@@ -34,6 +36,7 @@ export const CTABannerSection: React.FC<CTABannerSectionProps> = ({
   subtext,
   chipLabel,
   align = 'center',
+  variant = 'dark',
   bgColor,
   bgImage,
   primaryButton,
@@ -41,7 +44,10 @@ export const CTABannerSection: React.FC<CTABannerSectionProps> = ({
   className,
 }) => {
   const isCenter = align === 'center';
+  const isDark = variant === 'dark';
   const hasButtons = primaryButton || secondaryButton;
+
+  const defaultBg = isDark ? '#101319' : 'var(--fds-neutral-10, #f8f8f9)';
 
   const rootClass = [styles.root, isCenter ? styles.center : styles.left, className]
     .filter(Boolean)
@@ -52,7 +58,7 @@ export const CTABannerSection: React.FC<CTABannerSectionProps> = ({
       className={rootClass}
       style={
         {
-          '--cta-bg': bgColor ?? 'var(--fds-neutral-100, #101319)',
+          '--cta-bg': bgColor ?? defaultBg,
           ...(bgImage ? { '--cta-image': `url(${bgImage})` } : {}),
         } as React.CSSProperties
       }
@@ -61,18 +67,22 @@ export const CTABannerSection: React.FC<CTABannerSectionProps> = ({
 
       <div className={styles.inner}>
         {chipLabel && (
-          <Chip label={chipLabel} variant="anchor" onDarkBg dotColor="blue" />
+          <Chip label={chipLabel} variant="anchor" onDarkBg={isDark} dotColor="blue" />
         )}
 
         <div className={styles.textBlock}>
-          <Text variant="heading-xl" as="h2" color="white">
+          <Text variant="heading-xl" as="h2" color={isDark ? 'white' : 'default'}>
             {title}
           </Text>
           {subtext && (
             <Text
               variant="body-l"
               as="p"
-              style={{ color: 'var(--fds-neutral-40, #a0a1a2)' }}
+              style={{
+                color: isDark
+                  ? 'var(--fds-neutral-40, #a0a1a2)'
+                  : 'var(--fds-neutral-60, #5b5c5d)',
+              }}
             >
               {subtext}
             </Text>
@@ -85,7 +95,7 @@ export const CTABannerSection: React.FC<CTABannerSectionProps> = ({
               <Button
                 label={primaryButton.label}
                 variant="primary"
-                onDarkBg
+                onDarkBg={isDark}
                 onClick={primaryButton.onClick}
               />
             )}
@@ -93,7 +103,7 @@ export const CTABannerSection: React.FC<CTABannerSectionProps> = ({
               <Button
                 label={secondaryButton.label}
                 variant="secondary"
-                onDarkBg
+                onDarkBg={isDark}
                 onClick={secondaryButton.onClick}
               />
             )}

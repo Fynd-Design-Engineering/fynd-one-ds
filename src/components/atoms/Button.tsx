@@ -15,6 +15,16 @@ export interface ButtonProps
   showChevron?: boolean;
   /** Optional icon rendered before the label (e.g., a phone icon on a CTA). */
   iconLeft?: ReactNode;
+  /** Renders the button as an `<a>` with this href. */
+  href?: string;
+  /** When `href` is set, adds `target="_blank" rel="noopener noreferrer"`. */
+  external?: boolean;
+  /**
+   * Render as a custom component (e.g. Next.js `Link`). The component
+   * receives `href` and all remaining props. Overrides the `href` → `<a>`
+   * auto-detection.
+   */
+  as?: React.ElementType;
 }
 
 const variantClass = (variant: string, onDarkBg: boolean): string => {
@@ -25,7 +35,21 @@ const variantClass = (variant: string, onDarkBg: boolean): string => {
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { label, variant = 'primary', onDarkBg = false, showChevron, iconLeft, className, ...rest },
+    {
+      label,
+      variant = 'primary',
+      onDarkBg = false,
+      showChevron,
+      iconLeft,
+      href,
+      external,
+      as: Tag,
+      disabled,
+      onClick,
+      className,
+      type = 'button',
+      ...rest
+    },
     ref
   ) => {
     const showChevronResolved = showChevron ?? variant === 'tertiary';
@@ -33,11 +57,45 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       .filter(Boolean)
       .join(' ');
 
-    return (
-      <button ref={ref} className={classes} {...rest}>
+    const inner = (
+      <>
         {iconLeft && <span className={styles['icon-left']}>{iconLeft}</span>}
         {label}
         {showChevronResolved && <IconChevronRight />}
+      </>
+    );
+
+    if (Tag || href) {
+      const Elem = Tag ?? 'a';
+      const handleClick = (e: React.MouseEvent) => {
+        if (disabled) { e.preventDefault(); return; }
+        onClick?.(e as React.MouseEvent<HTMLButtonElement>);
+      };
+      return (
+        <Elem
+          ref={ref as unknown as React.Ref<HTMLAnchorElement>}
+          className={classes}
+          href={href}
+          {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          {...(disabled ? { 'aria-disabled': true, tabIndex: -1 } : {})}
+          onClick={handleClick}
+          {...rest}
+        >
+          {inner}
+        </Elem>
+      );
+    }
+
+    return (
+      <button
+        ref={ref}
+        type={type}
+        className={classes}
+        disabled={disabled}
+        onClick={onClick}
+        {...rest}
+      >
+        {inner}
       </button>
     );
   }

@@ -5,6 +5,7 @@ import React, {
   KeyboardEvent,
   useEffect,
   useId,
+  useLayoutEffect,
   useRef,
   useState,
 } from 'react';
@@ -54,6 +55,12 @@ export interface InteractiveAccordionProps {
   style?: CSSProperties;
 }
 
+/** Append the Media Fragment `#t=0.001` so the browser seeks to ~0s
+ *  on load and renders the first frame as an automatic poster. Skip
+ *  if the consumer's URL already has a fragment. */
+const autoFirstFrame = (src: string): string =>
+  src.includes('#') ? src : `${src}#t=0.001`;
+
 export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
   items,
   mediaSide = 'right',
@@ -78,7 +85,8 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
   const idBase = useId();
   const triggerRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const panelVideoRefs = useRef<Array<HTMLVideoElement | null>>([]);
-  const inlineVideoRef = useRef<HTMLVideoElement | null>(null);
+  const inlineVideoRefs = useRef<Array<HTMLVideoElement | null>>([]);
+  const panelRefs = useRef<Array<HTMLDivElement | null>>([]);
 
   // Pause non-active videos so we don't burn CPU on hidden videos.
   useEffect(() => {
@@ -90,9 +98,25 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
         video.pause();
       }
     });
-    if (inlineVideoRef.current) {
-      inlineVideoRef.current.play().catch(() => {});
-    }
+    inlineVideoRefs.current.forEach((video, i) => {
+      if (!video) return;
+      if (i === openIndex) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  }, [openIndex]);
+
+  // JS-driven panel open/close — measure each panel's natural content
+  // height (scrollHeight) and set it inline so CSS can transition. Pure
+  // CSS approaches (grid-template-rows: 0fr → 1fr, max-height) had
+  // issues collapsing the panel reliably here.
+  useLayoutEffect(() => {
+    panelRefs.current.forEach((el, idx) => {
+      if (!el) return;
+      el.style.height = idx === openIndex ? `${el.scrollHeight}px` : '0px';
+    });
   }, [openIndex]);
 
   const handleKeyDown = (
@@ -127,17 +151,23 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
 
   const renderPanelMedia = (item: InteractiveAccordionItem, idx: number) => {
     if (item.media.type === 'video') {
+      const isActive = idx === openIndex;
+      // `#t=0.001` Media Fragment: browser seeks to 0.001s on load,
+      // so the first frame renders as an automatic poster while the
+      // rest of the video buffers. No explicit poster image needed
+      // unless the consumer provides one.
+      const src = autoFirstFrame(item.media.src);
       return (
         <video
           ref={(el) => {
             panelVideoRefs.current[idx] = el;
           }}
-          src={item.media.src}
+          src={src}
           poster={item.media.poster}
           loop
           muted
           playsInline
-          preload="metadata"
+          preload={isActive ? 'auto' : 'metadata'}
           aria-hidden="true"
         />
       );
@@ -153,14 +183,15 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
     );
   };
 
-  const renderInlineMedia = (item: InteractiveAccordionItem) => {
+  const renderInlineMedia = (item: InteractiveAccordionItem, idx: number) => {
     if (item.media.type === 'video') {
       return (
         <video
-          ref={inlineVideoRef}
-          src={item.media.src}
+          ref={(el) => {
+            inlineVideoRefs.current[idx] = el;
+          }}
+          src={autoFirstFrame(item.media.src)}
           poster={item.media.poster}
-          autoPlay
           loop
           muted
           playsInline
@@ -239,36 +270,30 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
                 </span>
               </button>
               <div
-                className={[
-                  styles.itemContent,
-                  isOpen ? styles['itemContent--open'] : '',
-                ]
-                  .filter(Boolean)
-                  .join(' ')}
-              >
-              <div
+                ref={(el) => {
+                  panelRefs.current[idx] = el;
+                }}
                 id={panelId}
                 role="region"
                 aria-labelledby={triggerId}
                 aria-hidden={!isOpen}
                 className={styles.panel}
               >
-                <Text
-                  variant="body-m"
-                  color={onDarkBg ? 'muted' : 'secondary'}
-                  as="p"
-                >
-                  {item.answer}
-                </Text>
-                {isOpen && (
+                <div className={styles.panelInner}>
+                  <Text
+                    variant="body-m"
+                    color={onDarkBg ? 'muted' : 'secondary'}
+                    as="p"
+                  >
+                    {item.answer}
+                  </Text>
                   <div
                     className={styles.inlineMedia}
                     style={mediaBg ? { background: mediaBg } : undefined}
                   >
-                    {renderInlineMedia(item)}
+                    {renderInlineMedia(item, idx)}
                   </div>
-                )}
-              </div>
+                </div>
               </div>
             </div>
           );

@@ -194,23 +194,17 @@
 
 /* ── Panel + open/close animation ─────────────────────────────────────────── */
 
-/* The grid-template-rows: 0fr → 1fr trick lets us animate from 0 to the
-   panel's natural content height with pure CSS — no JS measurement, no
-   max-height guessing. The inner .panel needs `overflow: hidden` and
-   `min-height: 0` so the grid track can collapse. */
-.itemContent {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.3s ease;
-}
-
-.itemContent--open {
-  grid-template-rows: 1fr;
-}
-
+/* The panel height is set inline by JS (useLayoutEffect measures the
+   inner content's scrollHeight when openIndex changes) and CSS just
+   transitions whatever value lands there. Default is 0 so server-
+   rendered markup starts collapsed. */
 .panel {
-  min-height: 0;
+  height: 0;
   overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+.panelInner {
   padding-bottom: 20px;
   display: flex;
   flex-direction: column;
@@ -218,7 +212,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .itemContent {
+  .panel {
     transition: none;
   }
 }

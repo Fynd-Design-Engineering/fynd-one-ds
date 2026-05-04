@@ -190,6 +190,9 @@ The DS components themselves stay generic — no preset coupling. Use the preset
 ### Need FAQ/collapsible content?
 → Use `<Accordion items={[{question, answer}]}>`
 
+### Need a feature accordion paired with a sticky media panel?
+→ Use `<InteractiveAccordion items={[{question, answer, media: {type: 'image' | 'video', src, alt?, poster?}}]}>` — two-column 50:50 with image/video on the right that swaps to match the open item. Plus/minus toggle (chevron is reserved for `<Accordion>`).
+
 ### Need pagination?
 → Use `<Pagination totalPages={10} currentPage={page} onPageChange={setPage}>`
 
@@ -698,6 +701,46 @@ How it composes:
 - `HeroSplit topOffset="auto"` pulls the section up by `calc(var(--fds-banner-h, 0px) + var(--fds-nav-h, 0px))` and pads the inner content row by the same amount, so the `<h1>` lands just below the chrome while the section's `bg` paints from y=0.
 
 If neither banner nor nav are on the page, both vars fall back to `0px` and the offset is a no-op — `topOffset="auto"` is safe to leave on permanently.
+
+#### InteractiveAccordion
+Two-column 50:50 layout pairing an accordion list with a sticky media panel that swaps to match whichever item is currently expanded. Used for product / solutions feature lists where each feature has a screenshot or short video. Plus/minus toggle (chevron is reserved for `<Accordion>`).
+
+| Prop | Type | Default |
+|------|------|---------|
+| `items` | `InteractiveAccordionItem[]` | required — `{ question, answer, media: { type: 'image' \| 'video', src, alt?, poster? } }` |
+| `mediaSide` | `'left' \| 'right'` | `'right'` (desktop/tablet only — mobile always renders media inline below the expanded item) |
+| `defaultOpenIndex` | `number` | `0` |
+| `openIndex` | `number` | — (controlled mode) |
+| `onOpenIndexChange` | `(i: number) => void` | — |
+| `mediaBg` | `string` | — (any CSS color for the panel/inline media background) |
+| `onDarkBg` | `boolean` | `false` |
+
+Behavior:
+- Desktop (≥ 992px): true 50:50 grid; media panel is `position: sticky; top: calc(var(--fds-nav-h, 0px) + 24px)` so it stays put while the accordion list scrolls past.
+- Tablet (768–991px): same 50:50 grid; media is **not** sticky (avoids jumpy short content).
+- Mobile (< 768px): single column; media renders **inline below each expanded item**.
+- Radio behavior — only one item open at a time.
+- Cross-fade (~200ms) when swapping media; videos pause when not active. `prefers-reduced-motion` skips the fade.
+- Keyboard: ArrowUp / ArrowDown moves focus between triggers; Home / End jump to first / last; Enter / Space toggles via native button.
+- ARIA: trigger is `<button aria-expanded aria-controls>`, panel is `role="region" aria-labelledby`.
+
+```jsx
+<InteractiveAccordion
+  items={[
+    {
+      question: 'Logistics and shipping',
+      answer: 'Manage and fulfill orders effortlessly with Fynd’s integrated delivery partners.',
+      media: { type: 'image', src: '/logistics.png', alt: 'Delivery partner network' },
+    },
+    {
+      question: 'No-code website builder',
+      answer: 'Drag-and-drop your way to a polished storefront — no engineering required.',
+      media: { type: 'video', src: '/builder.mp4', poster: '/builder-poster.jpg' },
+    },
+  ]}
+  mediaBg="var(--fds-blue-20)"
+/>
+```
 
 #### Popover
 Generic positioned panel anchored to a trigger element. Use for region switchers, action menus, "more info" disclosures, custom dropdowns. Built on Floating UI — handles auto-flip, click-outside, Esc, focus trap, keyboard nav, ARIA.

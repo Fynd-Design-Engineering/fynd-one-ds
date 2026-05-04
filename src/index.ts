@@ -100,6 +100,13 @@ export type { HeroSplitProps, HeroSplitImage } from './components/molecules/Hero
 export { SiteBanner } from './components/molecules/SiteBanner';
 export type { SiteBannerProps } from './components/molecules/SiteBanner';
 
+export { InteractiveAccordion } from './components/molecules/InteractiveAccordion';
+export type {
+  InteractiveAccordionProps,
+  InteractiveAccordionItem,
+  InteractiveAccordionMedia,
+} from './components/molecules/InteractiveAccordion';
+
 export { PricingCard } from './components/molecules/PricingCard';
 export type { PricingCardProps, PricingFeature } from './components/molecules/PricingCard';
 

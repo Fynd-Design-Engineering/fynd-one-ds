@@ -9,6 +9,10 @@
   flex-shrink: 0;
 }
 
+.no-border {
+  border: none;
+}
+
 /* ── Size modifiers ────────────────────────── */
 
 .icon-32 {

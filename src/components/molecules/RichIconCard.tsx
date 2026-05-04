@@ -6,6 +6,13 @@ import styles from './RichIconCard.module.css';
 export interface RichIconCardProps {
   icon?: React.ReactNode;
   iconSize?: VisualElementSize;
+  /**
+   * Show the 1px hairline border on the icon chip. When omitted, defaults
+   * by size: `true` for `icon-32` / `icon-48` (where the bezel reads as
+   * the chip itself), `false` for logo / custom sizes (where the border
+   * adds nothing around an illustration).
+   */
+  iconBordered?: boolean;
   title: string;
   subtext?: string;
   /**
@@ -22,9 +29,13 @@ export interface RichIconCardProps {
   style?: CSSProperties;
 }
 
+const defaultBorderedFor = (size: VisualElementSize): boolean =>
+  typeof size === 'string' && (size === 'icon-32' || size === 'icon-48');
+
 export const RichIconCard: React.FC<RichIconCardProps> = ({
   icon,
   iconSize = 'icon-32',
+  iconBordered,
   title,
   subtext,
   actions,
@@ -58,7 +69,14 @@ export const RichIconCard: React.FC<RichIconCardProps> = ({
       data-figma-id="879:3878"
     >
       <div className={styles.content}>
-        {icon && <VisualElement size={iconSize}>{icon}</VisualElement>}
+        {icon && (
+          <VisualElement
+            size={iconSize}
+            bordered={iconBordered ?? defaultBorderedFor(iconSize)}
+          >
+            {icon}
+          </VisualElement>
+        )}
         <div className={styles['text-group']}>
           <p className={titleClass}>{title}</p>
           {subtext && <p className={subtextClass}>{subtext}</p>}

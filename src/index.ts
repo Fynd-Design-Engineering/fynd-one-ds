@@ -161,6 +161,12 @@ export type {
   FilterOption,
 } from './components/molecules/FilterPanel';
 
+export { ContactCTASection } from './components/ContactCTASection';
+export type { ContactCTASectionProps, Step } from './components/ContactCTASection';
+
+export { CTABannerSection } from './components/CTABannerSection';
+export type { CTABannerSectionProps, BannerButton } from './components/CTABannerSection';
+
 // Layouts
 export { Grid } from './components/layouts/Grid';
 export type { GridProps } from './components/layouts/Grid';

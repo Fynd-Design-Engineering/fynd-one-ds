@@ -1,0 +1,123 @@
+/* ── CTABannerSection ─────────────────────────────────────────────────────── */
+
+.root {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: var(--cta-bg, var(--fds-neutral-100, #101319));
+  padding: 80px 120px;
+}
+
+@media (max-width: 991px) {
+  .root {
+    padding: 120px 56px;
+  }
+}
+
+@media (max-width: 767px) {
+  .root {
+    padding: 80px 24px;
+  }
+}
+
+/* ── Background image layer ───────────────────────────────────────────────── */
+
+.bgLayer {
+  position: absolute;
+  inset: 0;
+  background-image: var(--cta-image);
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+/* ── Inner content ────────────────────────────────────────────────────────── */
+
+.inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  max-width: 626px;
+}
+
+@media (max-width: 991px) {
+  .inner {
+    max-width: 508px;
+  }
+}
+
+@media (max-width: 767px) {
+  .inner {
+    max-width: 312px;
+  }
+}
+
+/* ── Alignment modifiers ──────────────────────────────────────────────────── */
+
+.center .inner {
+  align-items: center;
+  text-align: center;
+}
+
+.left .inner {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.center.root {
+  justify-content: center;
+}
+
+.left.root {
+  justify-content: flex-start;
+}
+
+/* ── Text block ───────────────────────────────────────────────────────────── */
+
+.textBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+@media (max-width: 991px) {
+  .textBlock {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 767px) {
+  .textBlock {
+    gap: 8px;
+  }
+}
+
+/* ── Actions (buttons) ────────────────────────────────────────────────────── */
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.center .actions {
+  justify-content: center;
+}
+
+.left .actions {
+  justify-content: flex-start;
+}
+
+@media (max-width: 767px) {
+  .actions {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+}

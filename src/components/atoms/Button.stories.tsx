@@ -62,3 +62,42 @@ export const OnDarkWithChevron: Story = {
     </div>
   ),
 };
+
+export const Anchor: Story = {
+  name: 'As anchor (href)',
+  render: () => (
+    <div style={{ display: 'flex', gap: 16 }}>
+      <Button label="Get started" variant="primary" href="/solutions" />
+      <Button label="Learn more" variant="secondary" href="/solutions" />
+      <Button label="Docs" variant="tertiary" href="/docs" />
+    </div>
+  ),
+};
+
+export const External: Story = {
+  name: 'External link (href + external)',
+  render: () => (
+    <div style={{ display: 'flex', gap: 16 }}>
+      <Button label="Visit fynd.com" variant="primary" href="https://fynd.com" external />
+      <Button label="Open docs" variant="tertiary" href="https://fynd.com/docs" external />
+    </div>
+  ),
+};
+
+export const AsLink: Story = {
+  name: 'Custom component (as prop)',
+  render: () => {
+    const MockLink = React.forwardRef<HTMLAnchorElement, React.AnchorHTMLAttributes<HTMLAnchorElement>>(
+      ({ href, children, ...props }, ref) => (
+        <a ref={ref} href={href} data-mock-link {...props}>{children}</a>
+      )
+    );
+    MockLink.displayName = 'MockLink';
+    return (
+      <div style={{ display: 'flex', gap: 16 }}>
+        <Button label="Navigate" variant="primary" as={MockLink} href="/dashboard" />
+        <Button label="Settings" variant="secondary" as={MockLink} href="/settings" />
+      </div>
+    );
+  },
+};

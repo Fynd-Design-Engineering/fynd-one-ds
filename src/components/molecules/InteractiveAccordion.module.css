@@ -4,7 +4,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
-  align-items: start;
+  /* No align-items — grid default `stretch` makes both columns match
+     in height, so the media panel fills the same height as the list. */
   background-color: var(--fds-neutral-0, #ffffff);
   border-radius: var(--border-radius--16, 1rem);
   /* clip-path clips children to the rounded shape without creating a
@@ -52,6 +53,11 @@
   background-color: var(--fds-neutral-20, #f2f2f2);
   padding: 1.5rem 2.5rem;
   box-sizing: border-box;
+  /* Center the media canvas inside the column so the colored bg
+     extends above and below the media when the list is taller. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   /* No border-radius — the rounded outer corners come from the
      parent .root's clip-path. */
 }

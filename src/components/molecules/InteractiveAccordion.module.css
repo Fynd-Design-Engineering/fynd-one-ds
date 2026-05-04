@@ -54,7 +54,11 @@
   grid-row: 1;
 }
 
-@media (max-width: 767px) {
+/* Below ~800px (and through the full tablet range) the 50:50 split feels
+   cramped — collapse to a single column. The right-side media panel
+   hides; each accordion item shows its media inline below the answer
+   text via .inlineMedia (which has the matching media query below). */
+@media (max-width: 991px) {
   .root {
     grid-template-columns: 1fr;
   }
@@ -227,7 +231,7 @@
   background-color: var(--fds-neutral-20, #f2f2f2);
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .inlineMedia {
     display: block;
   }

@@ -6,6 +6,10 @@ import styles from './CTABannerSection.module.css';
 
 export interface BannerButton {
   label: string;
+  /** Internal route or absolute URL. Renders the button as an `<a href>`. */
+  href?: string;
+  /** When true, adds `target="_blank" rel="noopener noreferrer"`. Requires `href`. */
+  external?: boolean;
   onClick?: (e: React.MouseEvent) => void;
 }
 
@@ -96,6 +100,8 @@ export const CTABannerSection: React.FC<CTABannerSectionProps> = ({
                 label={primaryButton.label}
                 variant="primary"
                 onDarkBg={isDark}
+                href={primaryButton.href}
+                external={primaryButton.external}
                 onClick={primaryButton.onClick}
               />
             )}
@@ -104,6 +110,8 @@ export const CTABannerSection: React.FC<CTABannerSectionProps> = ({
                 label={secondaryButton.label}
                 variant="secondary"
                 onDarkBg={isDark}
+                href={secondaryButton.href}
+                external={secondaryButton.external}
                 onClick={secondaryButton.onClick}
               />
             )}

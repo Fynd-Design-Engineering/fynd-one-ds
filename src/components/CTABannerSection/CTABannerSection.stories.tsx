@@ -140,3 +140,16 @@ export const LightWithBgImage: Story = {
     secondaryButton: { label: 'Book a demo' },
   },
 };
+
+export const WithLinks: Story = {
+  name: 'Link buttons (href)',
+  args: {
+    chipLabel: 'Get started',
+    title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+    subtext:
+      "Lorem Ipsum has been the industry's standard dummy text.",
+    align: 'center',
+    primaryButton: { label: 'Get started', href: 'https://fynd.com', external: true },
+    secondaryButton: { label: 'Book a demo', href: '/contact' },
+  },
+};

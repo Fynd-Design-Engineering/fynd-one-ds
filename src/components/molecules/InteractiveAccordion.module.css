@@ -1,5 +1,23 @@
 /* ── InteractiveAccordion ─────────────────────────────────────────────────── */
 
+/* The molecule is wrapped in two divs:
+   - .outer holds the shadow + radius. No clip-path here, so the
+     box-shadow paints freely outside the box.
+   - .root holds the grid + clip-path so the children (media panel,
+     list) follow the rounded shape. clip-path would otherwise clip
+     the shadow, which is why we keep them on separate elements. */
+.outer {
+  border-radius: var(--border-radius--16, 1rem);
+}
+
+.outer--shadow {
+  box-shadow:
+    1px 5px 10px #2929290a,
+    2px 19px 19px #2929290a,
+    5px 42px 26px #29292905,
+    8px 76px 30px #29292903;
+}
+
 .root {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -7,24 +25,16 @@
      in height, so the media panel fills the same height as the list. */
   background-color: var(--fds-neutral-0, #ffffff);
   border-radius: var(--border-radius--16, 1rem);
-  /* clip-path clips children to the rounded shape without creating a
-     scroll container, so the media panel's `position: sticky` still
-     works (overflow: hidden would break it). */
+  /* clip-path clips children (no scroll container, so position:sticky
+     on the media panel keeps working). */
   clip-path: inset(0 round var(--border-radius--16, 1rem));
 }
 
 .root--dark {
-  /* One shade lighter than --fds-neutral-100 so the card stands out
-     against a dark page bg without needing a shadow. */
-  background-color: var(--fds-neutral-80, #4a4b4c);
-}
-
-.root--shadow {
-  box-shadow:
-    1px 5px 10px #2929290a,
-    2px 19px 19px #2929290a,
-    5px 42px 26px #29292905,
-    8px 76px 30px #29292903;
+  /* Subtle elevation above --fds-neutral-100 (#101319) — just enough
+     for the card to read as separate from a dark page bg without
+     looking gray. */
+  background-color: #1c1f27;
 }
 
 .media-left .mediaPanel {

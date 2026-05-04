@@ -110,12 +110,17 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
     }
   };
 
+  const outerCls = [
+    styles.outer,
+    !onDarkBg && shadow && styles['outer--shadow'],
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ');
   const rootCls = [
     styles.root,
     mediaSide === 'left' ? styles['media-left'] : styles['media-right'],
     onDarkBg ? styles['root--dark'] : styles['root--light'],
-    !onDarkBg && shadow && styles['root--shadow'],
-    className,
   ]
     .filter(Boolean)
     .join(' ');
@@ -174,7 +179,8 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
   };
 
   return (
-    <div className={rootCls} style={style}>
+    <div className={outerCls} style={style}>
+      <div className={rootCls}>
       <div
         className={styles.mediaPanel}
         style={mediaBg ? { background: mediaBg } : undefined}
@@ -258,6 +264,7 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
             </div>
           );
         })}
+      </div>
       </div>
     </div>
   );

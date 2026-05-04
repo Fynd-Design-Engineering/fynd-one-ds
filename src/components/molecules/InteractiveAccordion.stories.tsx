@@ -148,8 +148,7 @@ export const WithVideo: Story = {
       ...item,
       media: {
         type: 'video' as const,
-        src: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        poster: item.media.src,
+        src: 'https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/original/webflow-team/Fynd_One/Storefront_animations/1._no_code_builder.mp4',
       },
     })),
     mediaBg: 'var(--fds-grey-20, #f2f2f2)',

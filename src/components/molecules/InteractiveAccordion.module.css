@@ -51,15 +51,14 @@
   position: relative;
   width: 100%;
   background-color: var(--fds-neutral-20, #f2f2f2);
-  padding: 1.5rem 2.5rem;
   box-sizing: border-box;
   /* Center the media canvas inside the column so the colored bg
      extends above and below the media when the list is taller. */
   display: flex;
   align-items: center;
   justify-content: center;
-  /* No border-radius — the rounded outer corners come from the
-     parent .root's clip-path. */
+  /* No padding — media covers the full column width edge-to-edge.
+     No border-radius — outer rounded corners come from .root's clip-path. */
 }
 
 @media (min-width: 992px) {
@@ -81,7 +80,7 @@
 .mediaSlot {
   grid-row: 1;
   grid-column: 1;
-  width: 50%;
+  width: 100%;
   opacity: 0;
   transition: opacity 0.2s ease;
   pointer-events: none;

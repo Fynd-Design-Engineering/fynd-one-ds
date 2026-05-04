@@ -3,7 +3,6 @@
 .root {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
   /* No align-items — grid default `stretch` makes both columns match
      in height, so the media panel fills the same height as the list. */
   background-color: var(--fds-neutral-0, #ffffff);
@@ -38,7 +37,6 @@
 @media (max-width: 767px) {
   .root {
     grid-template-columns: 1fr;
-    gap: 0;
   }
   .mediaPanel {
     display: none;

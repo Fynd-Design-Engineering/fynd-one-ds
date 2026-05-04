@@ -108,16 +108,40 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
     });
   }, [openIndex]);
 
-  // JS-driven panel open/close — measure each panel's natural content
-  // height (scrollHeight) and set it inline so CSS can transition. Pure
-  // CSS approaches (grid-template-rows: 0fr → 1fr, max-height) had
-  // issues collapsing the panel reliably here.
+  // JS-driven panel open/close. Each panel has a single child
+  // (.panelInner) — we measure that child's natural height and set
+  // panel.style.height inline so CSS can transition. Measuring the
+  // child rather than the panel itself sidesteps overflow:hidden /
+  // height: 0 self-feedback.
   useLayoutEffect(() => {
     panelRefs.current.forEach((el, idx) => {
       if (!el) return;
-      el.style.height = idx === openIndex ? `${el.scrollHeight}px` : '0px';
+      const inner = el.firstElementChild as HTMLElement | null;
+      const target = inner?.scrollHeight ?? 0;
+      el.style.height = idx === openIndex ? `${target}px` : '0px';
     });
   }, [openIndex]);
+
+  // Content height can change after the initial measurement — images
+  // and videos load asynchronously, fonts swap, mobile breakpoint
+  // reflows the inline media to visible. A ResizeObserver on each
+  // .panelInner keeps the open panel's height in sync.
+  useEffect(() => {
+    const observers: ResizeObserver[] = [];
+    panelRefs.current.forEach((el, idx) => {
+      if (!el) return;
+      const inner = el.firstElementChild as HTMLElement | null;
+      if (!inner) return;
+      const ro = new ResizeObserver(() => {
+        if (idx === openIndex && el.style.height !== '0px') {
+          el.style.height = `${inner.scrollHeight}px`;
+        }
+      });
+      ro.observe(inner);
+      observers.push(ro);
+    });
+    return () => observers.forEach((o) => o.disconnect());
+  }, [openIndex, items]);
 
   const handleKeyDown = (
     e: KeyboardEvent<HTMLButtonElement>,

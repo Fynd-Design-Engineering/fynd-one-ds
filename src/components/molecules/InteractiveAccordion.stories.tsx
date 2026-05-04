@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { InteractiveAccordion } from './InteractiveAccordion';
-import { Section } from '../_shared/Section';
 
-const IMAGE_BASE = 'https://images.unsplash.com/';
+const SAMPLE_MEDIA_IMG =
+  'https://cdn.prod.website-files.com/67a9c8e5f2c74ac8c2c9b88b/694399f6e28097a33484d3f4_Website-builder.avif';
 const SAMPLE_ITEMS = [
   {
     question: 'No-code website builder',
@@ -11,7 +11,7 @@ const SAMPLE_ITEMS = [
       'Drag-and-drop your way to a polished storefront — no engineering required.',
     media: {
       type: 'image' as const,
-      src: `${IMAGE_BASE}photo-1581291518857-4e27b48ff24e?w=1000&h=1000&fit=crop`,
+      src: SAMPLE_MEDIA_IMG,
       alt: 'No-code website builder UI',
     },
   },
@@ -21,7 +21,7 @@ const SAMPLE_ITEMS = [
       'Plug into 100+ payment gateways with one toggle. Reconcile automatically.',
     media: {
       type: 'image' as const,
-      src: `${IMAGE_BASE}photo-1556741533-411cf82e4e2d?w=1000&h=1000&fit=crop`,
+      src: SAMPLE_MEDIA_IMG,
       alt: 'Payment integrations',
     },
   },
@@ -31,7 +31,7 @@ const SAMPLE_ITEMS = [
       'Manage and fulfill orders effortlessly with Fynd’s integrated delivery partners.',
     media: {
       type: 'image' as const,
-      src: `${IMAGE_BASE}photo-1586528116311-ad8dd3c8310d?w=1000&h=1000&fit=crop`,
+      src: SAMPLE_MEDIA_IMG,
       alt: 'Delivery partner network',
     },
   },
@@ -40,7 +40,7 @@ const SAMPLE_ITEMS = [
     answer: 'Connect to your CRM, ERP, ESP, and analytics in minutes.',
     media: {
       type: 'image' as const,
-      src: `${IMAGE_BASE}photo-1551434678-e076c223a692?w=1000&h=1000&fit=crop`,
+      src: SAMPLE_MEDIA_IMG,
       alt: 'Integrations directory',
     },
   },
@@ -49,7 +49,7 @@ const SAMPLE_ITEMS = [
     answer: 'Every storefront ships responsive by default — pixel-perfect from 320px up.',
     media: {
       type: 'image' as const,
-      src: `${IMAGE_BASE}photo-1512486130939-2c4f79935e4f?w=1000&h=1000&fit=crop`,
+      src: SAMPLE_MEDIA_IMG,
       alt: 'Mobile storefront',
     },
   },
@@ -59,7 +59,7 @@ const SAMPLE_ITEMS = [
       'Describe what you want; the AI lays out a section that matches your brand tokens.',
     media: {
       type: 'image' as const,
-      src: `${IMAGE_BASE}photo-1677442136019-21780ecad995?w=1000&h=1000&fit=crop`,
+      src: SAMPLE_MEDIA_IMG,
       alt: 'AI section builder',
     },
   },
@@ -69,7 +69,7 @@ const SAMPLE_ITEMS = [
       'Customers self-serve returns; you approve, refund, and restock from one inbox.',
     media: {
       type: 'image' as const,
-      src: `${IMAGE_BASE}photo-1556742111-a301076d9d18?w=1000&h=1000&fit=crop`,
+      src: SAMPLE_MEDIA_IMG,
       alt: 'Returns workflow',
     },
   },
@@ -82,6 +82,7 @@ const meta: Meta<typeof InteractiveAccordion> = {
   argTypes: {
     mediaSide: { control: 'inline-radio', options: ['left', 'right'] },
     onDarkBg: { control: 'boolean' },
+    shadow: { control: 'boolean' },
     mediaBg: { control: 'color' },
   },
 };
@@ -89,11 +90,19 @@ const meta: Meta<typeof InteractiveAccordion> = {
 export default meta;
 type Story = StoryObj<typeof InteractiveAccordion>;
 
-export const Default: Story = {
+const Frame: React.FC<{ children: React.ReactNode; bg?: string }> = ({
+  children,
+  bg = '#ffffff',
+}) => (
+  <div style={{ background: bg, padding: '40px 24px' }}>{children}</div>
+);
+
+export const OnWhiteBg: Story = {
+  name: 'White page bg (with shadow)',
   render: (args) => (
-    <Section title="Everything you need to build a storefront" chipLabel="Storefront">
+    <Frame bg="#ffffff">
       <InteractiveAccordion {...args} />
-    </Section>
+    </Frame>
   ),
   args: {
     items: SAMPLE_ITEMS,
@@ -101,11 +110,25 @@ export const Default: Story = {
   },
 };
 
+export const OnGrayBg: Story = {
+  name: 'Gray page bg (shadow off)',
+  render: (args) => (
+    <Frame bg="var(--fds-neutral-10, #f8f8f9)">
+      <InteractiveAccordion {...args} />
+    </Frame>
+  ),
+  args: {
+    items: SAMPLE_ITEMS,
+    mediaBg: 'var(--fds-blue-20, #e7eefe)',
+    shadow: false,
+  },
+};
+
 export const MediaOnLeft: Story = {
   render: (args) => (
-    <Section title="Manage everything in one place" chipLabel="Operations">
+    <Frame>
       <InteractiveAccordion {...args} />
-    </Section>
+    </Frame>
   ),
   args: {
     items: SAMPLE_ITEMS,
@@ -116,17 +139,16 @@ export const MediaOnLeft: Story = {
 
 export const WithVideo: Story = {
   render: (args) => (
-    <Section title="See it in action" chipLabel="Storefront">
+    <Frame>
       <InteractiveAccordion {...args} />
-    </Section>
+    </Frame>
   ),
   args: {
     items: SAMPLE_ITEMS.slice(0, 4).map((item) => ({
       ...item,
       media: {
         type: 'video' as const,
-        src: 'https://www.w3schools.com/html/mov_bbb.mp4',
-        poster: item.media.src,
+        src: 'https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/original/webflow-team/Fynd_One/Storefront_animations/1._no_code_builder.mp4',
       },
     })),
     mediaBg: 'var(--fds-grey-20, #f2f2f2)',
@@ -135,9 +157,9 @@ export const WithVideo: Story = {
 
 export const OnDarkBackground: Story = {
   render: (args) => (
-    <Section bg="dark" title="Built for scale" chipLabel="Platform" onDarkBg>
+    <Frame bg="#101319">
       <InteractiveAccordion {...args} />
-    </Section>
+    </Frame>
   ),
   args: {
     items: SAMPLE_ITEMS,

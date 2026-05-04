@@ -1,10 +1,40 @@
 /* ── InteractiveAccordion ─────────────────────────────────────────────────── */
 
+/* The molecule is wrapped in two divs:
+   - .outer holds the shadow + radius. No clip-path here, so the
+     box-shadow paints freely outside the box.
+   - .root holds the grid + clip-path so the children (media panel,
+     list) follow the rounded shape. clip-path would otherwise clip
+     the shadow, which is why we keep them on separate elements. */
+.outer {
+  border-radius: var(--border-radius--16, 1rem);
+}
+
+.outer--shadow {
+  box-shadow:
+    1px 5px 10px #2929290a,
+    2px 19px 19px #2929290a,
+    5px 42px 26px #29292905,
+    8px 76px 30px #29292903;
+}
+
 .root {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: start;
+  /* No align-items — grid default `stretch` makes both columns match
+     in height, so the media panel fills the same height as the list. */
+  background-color: var(--fds-neutral-0, #ffffff);
+  border-radius: var(--border-radius--16, 1rem);
+  /* clip-path clips children (no scroll container, so position:sticky
+     on the media panel keeps working). */
+  clip-path: inset(0 round var(--border-radius--16, 1rem));
+}
+
+.root--dark {
+  /* Subtle elevation above --fds-neutral-100 (#101319) — just enough
+     for the card to read as separate from a dark page bg without
+     looking gray. */
+  background-color: #1c1f27;
 }
 
 .media-left .mediaPanel {
@@ -27,7 +57,6 @@
 @media (max-width: 767px) {
   .root {
     grid-template-columns: 1fr;
-    gap: 0;
   }
   .mediaPanel {
     display: none;
@@ -39,10 +68,15 @@
 .mediaPanel {
   position: relative;
   width: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius: 24px;
-  overflow: hidden;
   background-color: var(--fds-neutral-20, #f2f2f2);
+  box-sizing: border-box;
+  /* Center the media canvas inside the column so the colored bg
+     extends above and below the media when the list is taller. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* No padding — media covers the full column width edge-to-edge.
+     No border-radius — outer rounded corners come from .root's clip-path. */
 }
 
 @media (min-width: 992px) {
@@ -52,9 +86,19 @@
   }
 }
 
+/* The canvas stacks every media slot into the same grid cell so they
+   overlap for cross-fade. The cell's height is driven by the natural
+   height of the media itself — we don't constrain with aspect-ratio. */
+.mediaCanvas {
+  display: grid;
+  justify-items: center;
+  width: 100%;
+}
+
 .mediaSlot {
-  position: absolute;
-  inset: 0;
+  grid-row: 1;
+  grid-column: 1;
+  width: 100%;
   opacity: 0;
   transition: opacity 0.2s ease;
   pointer-events: none;
@@ -68,8 +112,7 @@
 .mediaSlot video {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -83,6 +126,8 @@
 .list {
   display: flex;
   flex-direction: column;
+  padding: 1.5rem 2.5rem;
+  box-sizing: border-box;
 }
 
 .item {
@@ -125,14 +170,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 }
 
 .toggleIcon svg {
   display: block;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 }
 
 /* The IcAdd / IcMinus SVGs ship with a hardcoded fill="#141414" attribute
@@ -147,17 +192,29 @@
   fill: var(--fds-neutral-0, #ffffff);
 }
 
-/* ── Panel ────────────────────────────────────────────────────────────────── */
+/* ── Panel + open/close animation ─────────────────────────────────────────── */
 
+/* The panel height is set inline by JS (useLayoutEffect measures the
+   inner content's scrollHeight when openIndex changes) and CSS just
+   transitions whatever value lands there. Default is 0 so server-
+   rendered markup starts collapsed. */
 .panel {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+.panelInner {
   padding-bottom: 20px;
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.panel[hidden] {
-  display: none;
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    transition: none;
+  }
 }
 
 /* ── Inline media (mobile only) ───────────────────────────────────────────── */
@@ -165,8 +222,7 @@
 .inlineMedia {
   display: none;
   width: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius: 16px;
+  border-radius: var(--border-radius--16, 1rem);
   overflow: hidden;
   background-color: var(--fds-neutral-20, #f2f2f2);
 }
@@ -181,6 +237,5 @@
 .inlineMedia video {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
 }

@@ -14,7 +14,17 @@
 }
 
 .root--dark {
-  background-color: var(--fds-neutral-100, #101319);
+  /* One shade lighter than --fds-neutral-100 so the card stands out
+     against a dark page bg without needing a shadow. */
+  background-color: var(--fds-neutral-80, #4a4b4c);
+}
+
+.root--shadow {
+  box-shadow:
+    1px 5px 10px #2929290a,
+    2px 19px 19px #2929290a,
+    5px 42px 26px #29292905,
+    8px 76px 30px #29292903;
 }
 
 .media-left .mediaPanel {

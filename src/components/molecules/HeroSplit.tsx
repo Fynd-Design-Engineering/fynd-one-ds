@@ -96,21 +96,23 @@ export const HeroSplit: React.FC<HeroSplitProps> = ({
     <SectionWrapper as="header" onDarkBg={onDarkBg} style={sectionStyle}>
       <div className={rootClass} style={innerStyle}>
         <div className={styles.content}>
-          <Text variant="heading-xl" as="h1" color={onDarkBg ? 'white' : 'default'}>
-            {title}
-          </Text>
-          {description && (
-            <Text
-              variant="body-l"
-              as="p"
-              color={onDarkBg ? 'white' : 'secondary'}
-            >
-              {description}
+          <div className={styles.textGroup}>
+            <Text variant="heading-xl" as="h1" color={onDarkBg ? 'white' : 'default'}>
+              {title}
             </Text>
-          )}
-          {bullets && bullets.length > 0 && (
-            <Pointers items={bullets} variant="body-l" onDarkBg={onDarkBg} />
-          )}
+            {description && (
+              <Text
+                variant="body-l"
+                as="p"
+                color={onDarkBg ? 'white' : 'secondary'}
+              >
+                {description}
+              </Text>
+            )}
+            {bullets && bullets.length > 0 && (
+              <Pointers items={bullets} variant="body-l" onDarkBg={onDarkBg} />
+            )}
+          </div>
           {actions && <div className={styles.actions}>{actions}</div>}
         </div>
         <div

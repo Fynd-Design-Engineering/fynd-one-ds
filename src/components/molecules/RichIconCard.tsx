@@ -120,6 +120,7 @@ export const RichIconCard: React.FC<RichIconCardProps> = ({
           <VisualElement
             size={iconSize}
             bordered={iconBordered ?? defaultBorderedFor(iconSize)}
+            style={onDarkBg ? { borderColor: 'var(--fds-neutral-80, #4a4b4c)' } : undefined}
           >
             {icon}
           </VisualElement>

@@ -66,12 +66,14 @@ export const ContactCTASection: React.FC<ContactCTASectionProps> = ({
         <div className={styles.left}>
           <div className={styles.bgLayer} />
           <div className={styles.card}>
-            {chipLabel && (
-              <Chip label={chipLabel} variant="anchor" showDot={false} />
-            )}
-            <Text variant="heading-m" as="h2">
-              {title}
-            </Text>
+            <div className={styles.cardHead}>
+              {chipLabel && (
+                <Chip label={chipLabel} variant="anchor" showDot={false} />
+              )}
+              <Text variant="heading-m" as="h2">
+                {title}
+              </Text>
+            </div>
             {steps && steps.length > 0 && (
               <ol className={styles.steps}>
                 {steps.map((step) => (

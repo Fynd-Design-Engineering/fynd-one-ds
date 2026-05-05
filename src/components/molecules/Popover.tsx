@@ -109,7 +109,7 @@ export const Popover: React.FC<PopoverProps> = ({
   const listRef = useRef<Array<HTMLElement | null>>([]);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  const { refs, floatingStyles, context } = useFloating({
+  const { refs, floatingStyles, context, isPositioned } = useFloating({
     open,
     onOpenChange: setOpen,
     placement,
@@ -208,7 +208,7 @@ export const Popover: React.FC<PopoverProps> = ({
               }}
               id={panelId}
               className={panelClass}
-              style={{ ...floatingStyles, ...style }}
+              style={{ ...floatingStyles, ...style, visibility: isPositioned ? undefined : 'hidden' }}
               {...getFloatingProps()}
             >
               <PopoverItemContext.Provider value={{ getItemProps, isMenuRole: isMenuRole(role) }}>

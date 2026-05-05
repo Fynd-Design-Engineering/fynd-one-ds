@@ -142,6 +142,107 @@ export const ClickableButton: Story = {
   ),
 };
 
+export const Link: Story = {
+  name: 'Link — hover-reveal corner arrow',
+  render: () => (
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, maxWidth: 1272 }}>
+      <RichIconCard
+        icon={<StarIcon />}
+        href="/solutions/b2b-commerce"
+        title="B2B platforms"
+        subtext="Manage bulk orders, pricing tiers and vendor relationships with ease."
+        showButton={false}
+        showArrow
+      />
+      <RichIconCard
+        icon={<StarIcon />}
+        href="/solutions/storefronts"
+        title="Storefronts"
+        subtext="Build high-performance storefronts with full design freedom."
+        showButton={false}
+        showArrow
+      />
+      <RichIconCard
+        icon={<StarIcon />}
+        href="/solutions/marketplace"
+        title="Marketplace"
+        subtext="Launch and scale a multi-vendor marketplace in weeks."
+        showButton={false}
+        showArrow
+      />
+    </div>
+  ),
+};
+
+export const LinkAlwaysArrow: Story = {
+  name: 'Link — always-visible corner arrow',
+  render: () => (
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, maxWidth: 1272 }}>
+      <RichIconCard
+        icon={<StarIcon />}
+        href="/solutions/b2b-commerce"
+        title="B2B platforms"
+        subtext="Manage bulk orders, pricing tiers and vendor relationships with ease."
+        showButton={false}
+        alwaysShowArrow
+      />
+      <RichIconCard
+        icon={<StarIcon />}
+        href="/solutions/storefronts"
+        title="Storefronts"
+        subtext="Build high-performance storefronts with full design freedom."
+        showButton={false}
+        alwaysShowArrow
+      />
+      <RichIconCard
+        icon={<StarIcon />}
+        href="/solutions/marketplace"
+        title="Marketplace"
+        subtext="Launch and scale a multi-vendor marketplace in weeks."
+        showButton={false}
+        alwaysShowArrow
+      />
+    </div>
+  ),
+};
+
+export const LinkOnDark: Story = {
+  name: 'Link — corner arrow on dark surface',
+  render: () => (
+    <div style={{ background: '#101319', padding: 32 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, maxWidth: 1272 }}>
+        <RichIconCard
+          icon={<StarIcon />}
+          href="/solutions/b2b-commerce"
+          title="B2B platforms"
+          subtext="Manage bulk orders, pricing tiers and vendor relationships with ease."
+          showButton={false}
+          showArrow
+          onDarkBg
+        />
+        <RichIconCard
+          icon={<StarIcon />}
+          href="/solutions/storefronts"
+          title="Storefronts"
+          subtext="Build high-performance storefronts with full design freedom."
+          showButton={false}
+          alwaysShowArrow
+          onDarkBg
+        />
+        <RichIconCard
+          icon={<StarIcon />}
+          href="/solutions/marketplace"
+          title="Marketplace"
+          subtext="Launch and scale a multi-vendor marketplace in weeks."
+          showButton={false}
+          alwaysShowArrow
+          onDarkBg
+        />
+      </div>
+    </div>
+  ),
+};
+
 export const NoIconWithActions: Story = {
   name: 'No icon + actions slot (two buttons)',
   render: () => (

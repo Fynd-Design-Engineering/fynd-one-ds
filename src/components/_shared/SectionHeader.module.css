@@ -112,26 +112,43 @@
     margin-bottom: 24px;
   }
 
+  /* Left: stack content above actions with 24px gap. */
   .root--left {
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
+    gap: 24px;
   }
 
   .root--center {
-    gap: 12px;
+    gap: 16px;
   }
 
+  /* 16px between chip and text-stack for both alignments. */
   .content {
-    gap: 12px;
+    gap: 16px;
   }
 
   .root--center .content {
     max-width: 100%;
+    gap: 16px;
+  }
+
+  /* 12px between heading and subtext. */
+  .root--left .text-stack {
+    gap: 12px;
+  }
+
+  .root--center .text-stack {
+    gap: 12px;
   }
 
   .root--left .subtext {
     max-width: 100%;
+  }
+
+  /* Center: actions sits inside .content (gap: 16px). Push it to 24px total. */
+  .root--center .actions--center {
+    margin-top: 8px;
   }
 
   .actions {

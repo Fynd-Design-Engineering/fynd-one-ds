@@ -7,7 +7,6 @@ import React, {
   ReactElement,
   ReactNode,
   Ref,
-  useEffect,
   useId,
   useMemo,
   useRef,
@@ -110,22 +109,31 @@ export const Popover: React.FC<PopoverProps> = ({
   const listRef = useRef<Array<HTMLElement | null>>([]);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  // Delay portal mount by one rAF so the floating element is never in the DOM
-  // at the default top:0/left:0 position. When it does mount, Floating UI's
-  // useLayoutEffect fires synchronously and positions it before the first paint,
-  // so the panel always appears at the correct location with no flash.
-  const [portalMounted, setPortalMounted] = useState(false);
-  useEffect(() => {
-    if (!open) { setPortalMounted(false); return; }
-    const id = requestAnimationFrame(() => setPortalMounted(true));
-    return () => cancelAnimationFrame(id);
-  }, [open]);
+  // computePosition inside Floating UI is async (Promise-based). The panel
+  // must be in the DOM so Floating UI can measure it, but we keep it hidden
+  // until the first update() Promise resolves — at which point floatingStyles
+  // holds the correct coordinates and we can safely show the panel.
+  const positionReadyRef = useRef(false);
+  const [isPositionReady, setIsPositionReady] = useState(false);
 
   const { refs, floatingStyles, context } = useFloating({
     open,
     onOpenChange: setOpen,
     placement,
-    whileElementsMounted: autoUpdate,
+    whileElementsMounted(reference, floating, update) {
+      const cleanup = autoUpdate(reference, floating, async () => {
+        await update();
+        if (!positionReadyRef.current) {
+          positionReadyRef.current = true;
+          setIsPositionReady(true);
+        }
+      });
+      return () => {
+        cleanup();
+        positionReadyRef.current = false;
+        setIsPositionReady(false);
+      };
+    },
     middleware: [
       offsetMiddleware(offset),
       flip({ padding: 8 }),
@@ -204,7 +212,7 @@ export const Popover: React.FC<PopoverProps> = ({
   return (
     <>
       {triggerWithProps}
-      {open && portalMounted && (
+      {open && (
         <FloatingPortal>
           <FloatingFocusManager
             context={context}
@@ -220,7 +228,7 @@ export const Popover: React.FC<PopoverProps> = ({
               }}
               id={panelId}
               className={panelClass}
-              style={{ ...floatingStyles, ...style }}
+              style={{ ...floatingStyles, ...style, visibility: isPositionReady ? undefined : 'hidden' }}
               {...getFloatingProps()}
             >
               <PopoverItemContext.Provider value={{ getItemProps, isMenuRole: isMenuRole(role) }}>

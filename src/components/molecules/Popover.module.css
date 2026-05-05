@@ -17,15 +17,16 @@
   color: var(--fds-neutral-0, #ffffff);
 }
 
-/* Animation only starts once panel--visible is added (after Floating UI has
-   computed the correct position), so it always plays from the right location. */
-.panel--visible {
+/* Panel is only mounted after one rAF (see Popover.tsx), so Floating UI has
+   already positioned it before first paint. The animation always plays from
+   the correct location. */
+.panel {
   transform-origin: top left;
   animation: fds-popover-fade-in 120ms ease-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .panel--visible {
+  .panel {
     animation: none;
   }
 }

@@ -110,13 +110,15 @@ export const Popover: React.FC<PopoverProps> = ({
   const listRef = useRef<Array<HTMLElement | null>>([]);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  // Delay visibility by one paint so Floating UI can compute the correct
-  // position (via useLayoutEffect) before the panel becomes visible.
-  // This prevents the top-left flash on first open.
-  const [panelVisible, setPanelVisible] = useState(false);
+  // Delay portal mount by one rAF so the floating element is never in the DOM
+  // at the default top:0/left:0 position. When it does mount, Floating UI's
+  // useLayoutEffect fires synchronously and positions it before the first paint,
+  // so the panel always appears at the correct location with no flash.
+  const [portalMounted, setPortalMounted] = useState(false);
   useEffect(() => {
-    if (open) setPanelVisible(true);
-    else setPanelVisible(false);
+    if (!open) { setPortalMounted(false); return; }
+    const id = requestAnimationFrame(() => setPortalMounted(true));
+    return () => cancelAnimationFrame(id);
   }, [open]);
 
   const { refs, floatingStyles, context } = useFloating({
@@ -193,7 +195,6 @@ export const Popover: React.FC<PopoverProps> = ({
 
   const panelClass = [
     styles.panel,
-    panelVisible && styles['panel--visible'],
     onDarkBg && styles['panel--dark'],
     className,
   ]
@@ -203,7 +204,7 @@ export const Popover: React.FC<PopoverProps> = ({
   return (
     <>
       {triggerWithProps}
-      {open && (
+      {open && portalMounted && (
         <FloatingPortal>
           <FloatingFocusManager
             context={context}
@@ -219,7 +220,7 @@ export const Popover: React.FC<PopoverProps> = ({
               }}
               id={panelId}
               className={panelClass}
-              style={{ ...floatingStyles, ...style, visibility: panelVisible ? undefined : 'hidden' }}
+              style={{ ...floatingStyles, ...style }}
               {...getFloatingProps()}
             >
               <PopoverItemContext.Provider value={{ getItemProps, isMenuRole: isMenuRole(role) }}>

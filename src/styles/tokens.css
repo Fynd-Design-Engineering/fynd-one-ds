@@ -204,7 +204,7 @@ h1, h2, h3, h4, h5, h6 {
   --breakpoint-mobile:     375px;
 
   /* ── Color primitives ───────────────────────────────────── */
-  --color-blue-20: rgba(216, 226, 245, 0.7);
+  --color-blue-20: rgba(212, 229, 255, 0.7);
   --color-blue-40: rgba(92, 152, 247, 0.7);
   --color-ai-from: rgb(226, 195, 254);
   --color-ai-mid:  rgb(146, 126, 255);
@@ -278,7 +278,7 @@ h1, h2, h3, h4, h5, h6 {
 
   /* ── Primitives — Blue ──────────────────────────────────── */
   --blue-10: #f9fbff;
-  --blue-20: #d8e2f5;
+  --blue-20: #D4E5FF;
   --blue-40: #5c98f7;
   --blue-50: #2f7af6;
   --blue-60: #084bb8;

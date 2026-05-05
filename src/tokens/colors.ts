@@ -21,7 +21,7 @@ export const neutrals = {
 
 export const blue = {
   10: '#f9fbff',
-  20: '#d8e2f5',
+  20: '#D4E5FF',
   40: '#5c98f7',
   50: '#2f7af6',
   60: '#084bb8',
@@ -89,7 +89,7 @@ export const colors = {
   white: '#FFFFFF',
   black: '#000000',
 
-  blue20: 'rgba(216, 226, 245, 0.7)',
+  blue20: 'rgba(212, 229, 255, 0.7)',
   blue40: 'rgba(92, 152, 247, 0.7)',
 
   peach20: 'rgba(234, 177, 141, 0.4)',

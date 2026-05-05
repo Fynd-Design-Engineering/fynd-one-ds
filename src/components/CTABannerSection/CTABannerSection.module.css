@@ -7,18 +7,18 @@
   align-items: center;
   overflow: hidden;
   background-color: var(--cta-bg, var(--fds-neutral-100, #101319));
-  padding: 80px 120px;
+  padding: 8rem 120px;
 }
 
 @media (max-width: 991px) {
   .root {
-    padding: 120px 56px;
+    padding: 8rem 56px;
   }
 }
 
 @media (max-width: 767px) {
   .root {
-    padding: 80px 24px;
+    padding: 8rem 24px;
   }
 }
 

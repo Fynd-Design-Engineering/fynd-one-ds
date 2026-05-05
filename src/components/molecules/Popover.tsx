@@ -108,27 +108,11 @@ export const Popover: React.FC<PopoverProps> = ({
   const listRef = useRef<Array<HTMLElement | null>>([]);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  const positionReadyRef = useRef(false);
-  const [isPositionReady, setIsPositionReady] = useState(false);
-
-  const { refs, floatingStyles, context } = useFloating({
+  const { refs, floatingStyles, context, isPositioned } = useFloating({
     open,
     onOpenChange: setOpen,
     placement,
-    whileElementsMounted(reference, floating, update) {
-      const cleanup = autoUpdate(reference, floating, async () => {
-        await update();
-        if (!positionReadyRef.current) {
-          positionReadyRef.current = true;
-          setIsPositionReady(true);
-        }
-      });
-      return () => {
-        cleanup();
-        positionReadyRef.current = false;
-        setIsPositionReady(false);
-      };
-    },
+    whileElementsMounted: autoUpdate,
     middleware: [
       offsetMiddleware(offset),
       flip({ padding: 8 }),
@@ -222,12 +206,14 @@ export const Popover: React.FC<PopoverProps> = ({
             }}
             id={panelId}
             className={panelClass}
-            style={{ ...floatingStyles, ...style, display: isPositionReady ? 'block' : undefined }}
+            style={{ ...floatingStyles, visibility: isPositioned ? 'visible' : 'hidden', ...style }}
             {...getFloatingProps()}
           >
-            <PopoverItemContext.Provider value={{ getItemProps, isMenuRole: isMenuRole(role) }}>
-              {children}
-            </PopoverItemContext.Provider>
+            <div className={styles['panel-inner']}>
+              <PopoverItemContext.Provider value={{ getItemProps, isMenuRole: isMenuRole(role) }}>
+                {children}
+              </PopoverItemContext.Provider>
+            </div>
           </div>
         </FloatingFocusManager>
       )}

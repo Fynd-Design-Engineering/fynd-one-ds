@@ -63,7 +63,7 @@ type Story = StoryObj<PopoverProps>;
 
 export const MenuTrigger: Story = {
   args: {
-    role: 'menu',
+    role: "dialog",
     placement: 'bottom-end',
     trigger: <Button label="India" variant="tertiary" showChevron />,
     children: <RegionMenuItems />,

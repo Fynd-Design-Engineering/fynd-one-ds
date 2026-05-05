@@ -27,6 +27,8 @@ export interface ListingCardProps {
   showButton?: boolean;
   breakpoint?: 'lg' | 'sm';
   onDarkBg?: boolean;
+  /** Adds a 1px #e3e3e3 border around the card. Default `false`. */
+  bordered?: boolean;
   onClick?: () => void;
   className?: string;
   style?: CSSProperties;
@@ -52,6 +54,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({
   showButton = true,
   breakpoint = 'lg',
   onDarkBg = false,
+  bordered = false,
   onClick,
   className,
   style,
@@ -62,6 +65,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({
     styles.root,
     onClick && styles.clickable,
     onDarkBg && styles['root--dark'],
+    bordered && styles['root--bordered'],
     className,
   ].filter(Boolean).join(' ');
 

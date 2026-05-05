@@ -28,8 +28,9 @@
   position: absolute;
   inset: 0;
   background-image: var(--cta-image);
-  background-size: cover;
-  background-position: center;
+  background-size: var(--cta-bg-size, cover);
+  background-position: var(--cta-bg-position, center);
+  background-repeat: var(--cta-bg-repeat, no-repeat);
   z-index: 0;
 }
 

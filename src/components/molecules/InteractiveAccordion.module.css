@@ -91,9 +91,6 @@
   .mediaPanel {
     display: none;
   }
-  .list {
-    padding: 1.5rem;
-  }
 }
 
 @media (max-width: 767px) {
@@ -107,9 +104,6 @@
     background-color: transparent;
     border-radius: 0;
     clip-path: none;
-  }
-  .list {
-    padding: 0;
   }
 }
 
@@ -155,6 +149,18 @@
   flex-direction: column;
   padding: 1.5rem 2.5rem;
   box-sizing: border-box;
+}
+
+@media (max-width: 991px) {
+  .list {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .list {
+    padding: 0;
+  }
 }
 
 .item {

@@ -1,3 +1,10 @@
+/* Wrapper holds both the trigger and the panel so the panel is absolutely
+   positioned relative to the trigger rather than injected into <body>. */
+.wrapper {
+  position: relative;
+  display: inline-block;
+}
+
 .panel {
   z-index: 1100;
   background-color: var(--fds-neutral-0, #ffffff);

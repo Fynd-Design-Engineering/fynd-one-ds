@@ -16,7 +16,6 @@ import {
   autoUpdate,
   flip,
   FloatingFocusManager,
-  FloatingPortal,
   Middleware,
   offset as offsetMiddleware,
   Placement,
@@ -109,31 +108,11 @@ export const Popover: React.FC<PopoverProps> = ({
   const listRef = useRef<Array<HTMLElement | null>>([]);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  // computePosition inside Floating UI is async (Promise-based). The panel
-  // must be in the DOM so Floating UI can measure it, but we keep it hidden
-  // until the first update() Promise resolves — at which point floatingStyles
-  // holds the correct coordinates and we can safely show the panel.
-  const positionReadyRef = useRef(false);
-  const [isPositionReady, setIsPositionReady] = useState(false);
-
   const { refs, floatingStyles, context } = useFloating({
     open,
     onOpenChange: setOpen,
     placement,
-    whileElementsMounted(reference, floating, update) {
-      const cleanup = autoUpdate(reference, floating, async () => {
-        await update();
-        if (!positionReadyRef.current) {
-          positionReadyRef.current = true;
-          setIsPositionReady(true);
-        }
-      });
-      return () => {
-        cleanup();
-        positionReadyRef.current = false;
-        setIsPositionReady(false);
-      };
-    },
+    whileElementsMounted: autoUpdate,
     middleware: [
       offsetMiddleware(offset),
       flip({ padding: 8 }),
@@ -210,35 +189,33 @@ export const Popover: React.FC<PopoverProps> = ({
     .join(' ');
 
   return (
-    <>
+    <div className={styles.wrapper}>
       {triggerWithProps}
       {open && (
-        <FloatingPortal>
-          <FloatingFocusManager
-            context={context}
-            modal={modal}
-            disabled={disableFocusTrap}
-            initialFocus={isMenuRole(role) ? -1 : 0}
-            returnFocus
+        <FloatingFocusManager
+          context={context}
+          modal={modal}
+          disabled={disableFocusTrap}
+          initialFocus={isMenuRole(role) ? -1 : 0}
+          returnFocus
+        >
+          <div
+            ref={(node) => {
+              refs.setFloating(node);
+              collectItems(node);
+            }}
+            id={panelId}
+            className={panelClass}
+            style={{ ...floatingStyles, ...style }}
+            {...getFloatingProps()}
           >
-            <div
-              ref={(node) => {
-                refs.setFloating(node);
-                collectItems(node);
-              }}
-              id={panelId}
-              className={panelClass}
-              style={{ ...floatingStyles, ...style, visibility: isPositionReady ? undefined : 'hidden' }}
-              {...getFloatingProps()}
-            >
-              <PopoverItemContext.Provider value={{ getItemProps, isMenuRole: isMenuRole(role) }}>
-                {children}
-              </PopoverItemContext.Provider>
-            </div>
-          </FloatingFocusManager>
-        </FloatingPortal>
+            <PopoverItemContext.Provider value={{ getItemProps, isMenuRole: isMenuRole(role) }}>
+              {children}
+            </PopoverItemContext.Provider>
+          </div>
+        </FloatingFocusManager>
       )}
-    </>
+    </div>
   );
 };
 

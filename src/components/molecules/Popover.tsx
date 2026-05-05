@@ -222,7 +222,7 @@ export const Popover: React.FC<PopoverProps> = ({
             }}
             id={panelId}
             className={panelClass}
-            style={{ ...floatingStyles, ...style, display: isPositionReady ? undefined : 'none' }}
+            style={{ ...floatingStyles, ...style, display: isPositionReady ? 'block' : undefined }}
             {...getFloatingProps()}
           >
             <PopoverItemContext.Provider value={{ getItemProps, isMenuRole: isMenuRole(role) }}>

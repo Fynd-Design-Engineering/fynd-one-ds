@@ -91,6 +91,26 @@
   .mediaPanel {
     display: none;
   }
+  .list {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .outer {
+    border-radius: 0;
+  }
+  .outer--shadow {
+    box-shadow: none;
+  }
+  .root {
+    background-color: transparent;
+    border-radius: 0;
+    clip-path: none;
+  }
+  .list {
+    padding: 0;
+  }
 }
 
 /* The canvas stacks every media slot into the same grid cell so they

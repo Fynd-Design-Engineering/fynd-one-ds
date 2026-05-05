@@ -108,11 +108,27 @@ export const Popover: React.FC<PopoverProps> = ({
   const listRef = useRef<Array<HTMLElement | null>>([]);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
+  const positionReadyRef = useRef(false);
+  const [isPositionReady, setIsPositionReady] = useState(false);
+
   const { refs, floatingStyles, context } = useFloating({
     open,
     onOpenChange: setOpen,
     placement,
-    whileElementsMounted: autoUpdate,
+    whileElementsMounted(reference, floating, update) {
+      const cleanup = autoUpdate(reference, floating, async () => {
+        await update();
+        if (!positionReadyRef.current) {
+          positionReadyRef.current = true;
+          setIsPositionReady(true);
+        }
+      });
+      return () => {
+        cleanup();
+        positionReadyRef.current = false;
+        setIsPositionReady(false);
+      };
+    },
     middleware: [
       offsetMiddleware(offset),
       flip({ padding: 8 }),
@@ -206,7 +222,7 @@ export const Popover: React.FC<PopoverProps> = ({
             }}
             id={panelId}
             className={panelClass}
-            style={{ ...floatingStyles, ...style }}
+            style={{ ...floatingStyles, ...style, display: isPositionReady ? undefined : 'none' }}
             {...getFloatingProps()}
           >
             <PopoverItemContext.Provider value={{ getItemProps, isMenuRole: isMenuRole(role) }}>

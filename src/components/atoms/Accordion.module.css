@@ -15,15 +15,11 @@
 }
 
 .item--light {
-  border-color: var(--fds-neutral-10, #f8f8f9);
+  border-color: var(--fds-neutral-30, #e3e3e3);
 }
 
 .item--dark {
   border-color: var(--fds-neutral-80, #4a4b4c);
-}
-
-.item--open {
-  gap: 24px;
 }
 
 /* ── Question (button) ────────────────────────────────────────────────────── */
@@ -60,9 +56,27 @@
   transform: rotate(-90deg);
 }
 
-/* ── Answer ───────────────────────────────────────────────────────────────── */
+/* ── Panel + open/close animation ─────────────────────────────────────────── */
 
-.answer {
+/* Height is driven by JS (useLayoutEffect measures scrollHeight of the inner
+   div); CSS just transitions whatever value lands there. Starts at 0 so
+   server-rendered markup is collapsed by default. */
+.panel {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    transition: none;
+  }
+}
+
+/* ── Panel inner ──────────────────────────────────────────────────────────── */
+
+.panelInner {
+  padding-top: 24px;
   padding-right: 120px;
 }
 
@@ -73,8 +87,8 @@
     padding: 20px 0;
   }
 
-  .item--open {
-    gap: 20px;
+  .panelInner {
+    padding-top: 20px;
   }
 }
 
@@ -85,15 +99,12 @@
     padding: 16px 0;
   }
 
-  .item--open {
-    gap: 16px;
-  }
-
   .question {
     gap: 40px;
   }
 
-  .answer {
+  .panelInner {
+    padding-top: 16px;
     padding-right: 40px;
   }
 }

@@ -40,6 +40,8 @@ export interface RichIconCardProps {
   onClick?: (e: React.MouseEvent) => void;
   /** Accessible label for the card overlay. Defaults to `title`. */
   overlayLabel?: string;
+  /** Semantic heading level for the card title. Defaults to `'h3'`. */
+  titleAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   /** Show the corner arrow affordance. Only renders when `href` or `onClick`
    *  is set. Hidden at rest, visible on card hover / focus-within. */
   showArrow?: boolean;
@@ -67,6 +69,7 @@ export const RichIconCard: React.FC<RichIconCardProps> = ({
   href,
   onClick,
   overlayLabel,
+  titleAs: TitleTag = 'h3',
   showArrow = false,
   alwaysShowArrow = false,
   className,
@@ -150,7 +153,7 @@ export const RichIconCard: React.FC<RichIconCardProps> = ({
           </VisualElement>
         )}
         <div className={styles['text-group']}>
-          <p className={titleClass}>{title}</p>
+          <TitleTag className={titleClass}>{title}</TitleTag>
           {subtext && <p className={subtextClass}>{subtext}</p>}
         </div>
       </div>

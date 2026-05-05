@@ -53,7 +53,6 @@ export const NavbarAndHero: Story = {
     <>
       <Navbar
         sticky
-        scrollAware
         logo={<Logo />}
         navItems={fyndMarketingNavItems}
         actions={
@@ -102,7 +101,6 @@ export const BannerNavbarAndHero: Story = {
       </SiteBanner>
       <Navbar
         sticky
-        scrollAware
         logo={<Logo />}
         navItems={fyndMarketingNavItems}
         actions={

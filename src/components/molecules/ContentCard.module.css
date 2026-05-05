@@ -77,9 +77,11 @@
 /* `imagePosition="above"` reuses the same DOM (text-overlay then
    image-container) but visually flips the order via flex-reverse, so
    the image renders at the top while the heading stays first in the
-   accessibility tree. */
+   accessibility tree. flex-end packs items toward the visual top so
+   extra height (from equal-height grid rows) falls at the bottom. */
 .root--above {
   flex-direction: column-reverse;
+  justify-content: flex-end;
 }
 
 /* ── Bottom-right image ───────────────────────────────────────────────────── */
@@ -123,6 +125,19 @@
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+/* imagePosition="above": image spans full card width and the panel height
+   follows the image's natural aspect ratio. flex: none overrides the
+   inherited flex: 1 so the container doesn't stretch beyond the image. */
+.image-container--above {
+  flex: none;
+}
+
+.image-container--above img {
+  width: 100%;
+  height: auto;
+  object-fit: fill;
 }
 
 /* When the image-container holds both default and hover, stack them. */
@@ -202,6 +217,15 @@
 
 .chip-wrapper {
   margin-bottom: 4px;
+}
+
+/* chipPosition="floating": badge sits at the top-left corner of the card,
+   24px from both edges, overlaying the image panel. */
+.chip--floating {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 10;
 }
 
 

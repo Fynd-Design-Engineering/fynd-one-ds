@@ -3,7 +3,7 @@ import React from 'react';
 import { ContentCard } from './ContentCard';
 
 const meta: Meta<typeof ContentCard> = {
-  title: 'Molecules/ContentCard',
+  title: 'Cards/ContentCard',
   component: ContentCard,
   argTypes: {
     imagePosition: { control: 'select', options: ['above', 'below', 'behind', 'bottom-right'] },
@@ -233,6 +233,46 @@ export const ImageAbove: Story = {
         imageSrc="https://placehold.co/520x340/d2d2d2/4a4b4c?text=Partners"
         imageAlt="Partners"
         showButton={false}
+      />
+    </div>
+  ),
+};
+
+export const ImageAboveWithBullets: Story = {
+  name: 'Image above — tinted panel + bullets',
+  render: () => (
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, maxWidth: 900 }}>
+      <ContentCard
+        imagePosition="above"
+        chipLabel="Without"
+        chipPosition="floating"
+        title="Without 3D, AR, & VR Shopping"
+        imageSrc="https://placehold.co/520x340/f9c8d0/c0546a?text=Preview"
+        imageAlt="Without 3D AR VR preview"
+        imageBg="#fce8ec"
+        showButton={false}
+        showSubtext={false}
+        bullets={[
+          { label: 'Customers hesitate to buy due to uncertainty' },
+          { label: 'High return rates from incorrect product expectations' },
+          { label: 'Limited engagement and lower session times' },
+        ]}
+      />
+      <ContentCard
+        imagePosition="above"
+        chipLabel="With"
+        chipPosition="floating"
+        title="With 3D, AR, & VR Shopping"
+        imageSrc="https://placehold.co/520x340/c8e6c9/2e7d32?text=Preview"
+        imageAlt="With 3D AR VR preview"
+        imageBg="#e8f5e9"
+        showButton={false}
+        showSubtext={false}
+        bullets={[
+          { label: 'Shoppers buy with confidence knowing exactly what they get' },
+          { label: 'Fewer returns thanks to accurate product visualisation' },
+          { label: 'Higher session depth and conversion rates' },
+        ]}
       />
     </div>
   ),

@@ -5,7 +5,7 @@ import { Text } from '../Typography/Text';
 import { Button } from '../atoms/Button';
 
 const meta: Meta<typeof SiteBanner> = {
-  title: 'Molecules/SiteBanner',
+  title: 'Navigation/SiteBanner',
   component: SiteBanner,
   parameters: { layout: 'fullscreen' },
 };

@@ -5,7 +5,7 @@ const SAMPLE_BG =
   'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1600&h=900&fit=crop';
 
 const meta: Meta<typeof CTABannerSection> = {
-  title: 'Molecules/CTABannerSection',
+  title: 'Marketing/CTABannerSection',
   component: CTABannerSection,
   parameters: { layout: 'fullscreen' },
   argTypes: {

@@ -51,7 +51,7 @@ const RegionMenuItems = ({ onPick }: { onPick?: (label: string) => void }) => (
 );
 
 const meta: Meta<PopoverProps> = {
-  title: 'Molecules/Popover',
+  title: 'Navigation/Popover',
   component: Popover,
   parameters: {
     layout: 'centered',

@@ -5,7 +5,7 @@ import { Button } from '../atoms/Button';
 import { Text } from '../Typography/Text';
 
 const meta: Meta<ModalProps> = {
-  title: 'Molecules/Modal',
+  title: 'Navigation/Modal',
   component: Modal,
   parameters: { layout: 'centered' },
 };

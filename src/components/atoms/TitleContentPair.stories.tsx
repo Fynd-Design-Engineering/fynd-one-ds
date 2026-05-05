@@ -3,7 +3,7 @@ import React from 'react';
 import { TitleContentPair } from './TitleContentPair';
 
 const meta: Meta<typeof TitleContentPair> = {
-  title: 'Atoms/TitleContentPair',
+  title: 'Content/TitleContentPair',
   component: TitleContentPair,
   argTypes: {
     titleSize: { control: 'select', options: ['xxl', 'xl', 'l', 'm'] },

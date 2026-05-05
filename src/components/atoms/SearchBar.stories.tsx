@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { SearchBar } from './SearchBar';
 
 const meta: Meta<typeof SearchBar> = {
-  title: 'Atoms/SearchBar',
+  title: 'Form/SearchBar',
   component: SearchBar,
   argTypes: {
     onDarkBg: { control: 'boolean' },

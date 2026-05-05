@@ -76,7 +76,7 @@ const SAMPLE_ITEMS = [
 ];
 
 const meta: Meta<typeof InteractiveAccordion> = {
-  title: 'Molecules/InteractiveAccordion',
+  title: 'Content/InteractiveAccordion',
   component: InteractiveAccordion,
   parameters: { layout: 'fullscreen' },
   argTypes: {

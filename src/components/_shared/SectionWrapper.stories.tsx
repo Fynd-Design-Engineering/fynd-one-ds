@@ -3,7 +3,7 @@ import React from 'react';
 import { SectionWrapper } from './SectionWrapper';
 
 const meta: Meta<typeof SectionWrapper> = {
-  title: 'Shared/SectionWrapper',
+  title: 'Layout/SectionWrapper',
   component: SectionWrapper,
   argTypes: {
     as: { control: 'select', options: ['section', 'div', 'footer', 'nav'] },

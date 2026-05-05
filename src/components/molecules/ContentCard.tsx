@@ -4,8 +4,11 @@ import { Chip } from '../atoms/Chip';
 import { Button } from '../atoms/Button';
 import { Text, TextVariant } from '../Typography/Text';
 import { IconArrowDiagonal } from '../../icons';
+import { Pointers, PointerItem } from './Pointers';
 import '../../styles/gradient-blur.css';
 import styles from './ContentCard.module.css';
+
+export type { PointerItem };
 
 const GradientBlur: React.FC = () => (
   <div className="gradient-blur">
@@ -25,6 +28,12 @@ export interface ContentCardProps {
   imagePosition?: 'above' | 'below' | 'behind' | 'bottom-right';
   chipLabel?: string;
   showChip?: boolean;
+  /**
+   * `'inline'` (default) — chip sits in the normal content flow above the title.
+   * `'floating'` — chip is absolutely positioned 24px from the top-left corner
+   * of the card, overlaying the image panel. Useful with `imagePosition="above"`.
+   */
+  chipPosition?: 'inline' | 'floating';
   title: string;
   titleVariant?: TextVariant;
   /** Semantic heading level for the card title. Defaults to `'h3'`. */
@@ -42,6 +51,17 @@ export interface ContentCardProps {
   size?: 'lg' | 'md' | 'sm';
   /** Dark background variant */
   onDarkBg?: boolean;
+  /**
+   * Bullet point list rendered below the title/subtext. Uses `<Pointers>`.
+   * Pairs naturally with `imagePosition="above"`.
+   */
+  bullets?: PointerItem[];
+  /**
+   * Background color for the image panel. Applied as a CSS color — any valid
+   * value (hex, CSS variable, etc.). Most useful with `imagePosition="above"`
+   * to tint the visual panel independently from the card background.
+   */
+  imageBg?: string;
   className?: string;
   style?: CSSProperties;
 }
@@ -55,6 +75,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
   imagePosition = 'below',
   chipLabel,
   showChip = true,
+  chipPosition = 'inline',
   title,
   titleVariant = 'body-xl',
   titleAs = 'h3',
@@ -69,6 +90,8 @@ export const ContentCard: React.FC<ContentCardProps> = ({
   onClick,
   size = 'lg',
   onDarkBg = false,
+  bullets,
+  imageBg,
   className,
   style,
 }) => {
@@ -157,9 +180,21 @@ export const ContentCard: React.FC<ContentCardProps> = ({
         </div>
       )}
 
+      {showChip && chipLabel && chipPosition === 'floating' && (
+        <div className={styles['chip--floating']}>
+          <Chip label={chipLabel} variant="filled" showDot={false}
+            style={{
+              backgroundColor: neutrals[0],
+              borderRadius: 1000,
+              padding: '4px 16px',
+            }}
+          />
+        </div>
+      )}
+
       <div className={textOverlayClass}>
         <div className={styles['content-left']}>
-          {showChip && chipLabel && (
+          {showChip && chipLabel && chipPosition === 'inline' && (
             <div className={styles['chip-wrapper']}>
               <Chip label={chipLabel} variant="filled" showDot={false}
                 style={{
@@ -172,6 +207,9 @@ export const ContentCard: React.FC<ContentCardProps> = ({
           )}
           <Text variant={titleVariant} as={titleAs} weight="medium" color={onDarkBg ? 'white' : 'default'}>{title}</Text>
           {showSubtext && subtext && <Text variant={subtextVariant} weight="regular" color={onDarkBg ? 'muted' : 'secondary'}>{subtext}</Text>}
+          {bullets && bullets.length > 0 && (
+            <Pointers items={bullets} onDarkBg={onDarkBg} />
+          )}
         </div>
 
         {showButton && !clickable && (
@@ -191,7 +229,13 @@ export const ContentCard: React.FC<ContentCardProps> = ({
       </div>
 
       {!isBehind && !isBottomRight && (
-        <div className={styles['image-container']}>
+        <div
+          className={[
+            styles['image-container'],
+            isAbove && styles['image-container--above'],
+          ].filter(Boolean).join(' ')}
+          style={imageBg ? { backgroundColor: imageBg } : undefined}
+        >
           {imageSrc && (
             <img
               src={imageSrc}

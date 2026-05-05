@@ -11,7 +11,7 @@ const sampleFeatures = [
 ];
 
 const meta: Meta<typeof PricingCard> = {
-  title: 'Molecules/PricingCard',
+  title: 'Cards/PricingCard',
   component: PricingCard,
   argTypes: {
     onDarkBg: { control: 'boolean' },

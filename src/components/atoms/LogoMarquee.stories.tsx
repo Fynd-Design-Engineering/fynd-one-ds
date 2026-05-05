@@ -3,7 +3,7 @@ import React from 'react';
 import { LogoMarquee } from './LogoMarquee';
 
 const meta: Meta<typeof LogoMarquee> = {
-  title: 'Atoms/LogoMarquee',
+  title: 'Content/LogoMarquee',
   component: LogoMarquee,
   argTypes: {
     duration: { control: { type: 'range', min: 5, max: 60, step: 1 } },

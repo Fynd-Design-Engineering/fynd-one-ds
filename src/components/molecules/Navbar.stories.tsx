@@ -13,7 +13,7 @@ import fyndLogoDark from '../../assets/brand-logos/fynd-horizontal-dark.svg';
 import fyndLogoLight from '../../assets/brand-logos/fynd-horizontal-light.svg';
 
 const meta: Meta<NavbarProps> = {
-  title: 'Molecules/Navbar',
+  title: 'Navigation/Navbar',
   component: Navbar,
   parameters: {
     layout: 'fullscreen',

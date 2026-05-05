@@ -9,7 +9,7 @@ const HeartIcon = () => (
 );
 
 const meta: Meta<typeof TextField> = {
-  title: 'Atoms/TextField',
+  title: 'Form/TextField',
   component: TextField,
   argTypes: {
     type: { control: 'select', options: ['text', 'email', 'password', 'number', 'tel', 'url'] },

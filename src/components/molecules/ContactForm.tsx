@@ -1,6 +1,17 @@
 'use client';
 
-import React, { CSSProperties, ReactNode, useEffect, useMemo, useState } from 'react';
+import React, { CSSProperties, ReactNode, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  autoUpdate,
+  flip,
+  FloatingFocusManager,
+  offset,
+  shift,
+  useClick,
+  useDismiss,
+  useFloating,
+  useInteractions,
+} from '@floating-ui/react';
 import { Text } from '../Typography/Text';
 import { Button } from '../atoms/Button';
 import {
@@ -414,7 +425,47 @@ const PhoneField: React.FC<PhoneFieldProps> = ({
   onBlur,
   error,
 }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [search, setSearch] = useState('');
+  const selectedRef = useRef<HTMLLIElement>(null);
+
   const country = findCountry(countryIso2) ?? findCountry('IN')!;
+
+  const filtered = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    if (!q) return COUNTRIES;
+    return COUNTRIES.filter(
+      (c) =>
+        c.name.toLowerCase().includes(q) ||
+        String(c.dialCode).includes(q) ||
+        c.iso2.toLowerCase().startsWith(q),
+    );
+  }, [search]);
+
+  const handleOpenChange = (open: boolean) => {
+    setIsOpen(open);
+    if (!open) setSearch('');
+  };
+
+  const { refs, floatingStyles, context, isPositioned } = useFloating({
+    open: isOpen,
+    onOpenChange: handleOpenChange,
+    placement: 'bottom-start',
+    whileElementsMounted: autoUpdate,
+    middleware: [offset(4), flip({ padding: 8 }), shift({ padding: 8 })],
+  });
+
+  const click = useClick(context);
+  const dismiss = useDismiss(context, { outsidePressEvent: 'mousedown' });
+  const { getReferenceProps, getFloatingProps } = useInteractions([click, dismiss]);
+
+  // Scroll the already-selected country into view when the list opens.
+  useEffect(() => {
+    if (isOpen && selectedRef.current) {
+      selectedRef.current.scrollIntoView({ block: 'nearest' });
+    }
+  }, [isOpen]);
+
   return (
     <div className={styles.field}>
       <div className={styles.fieldHeader}>
@@ -431,25 +482,117 @@ const PhoneField: React.FC<PhoneFieldProps> = ({
           .join(' ')}
       >
         <div className={styles.phoneCountryWrap}>
-          <span className={styles.phoneFlag} aria-hidden="true">
-            {flagEmoji(country.iso2)}
-          </span>
-          <span className={styles.phoneDial} aria-hidden="true">
-            +{country.dialCode}
-          </span>
-          <select
-            aria-label="Country code"
-            className={styles.phoneCountrySelect}
-            value={countryIso2}
-            onChange={(e) => onCountryChange(e.target.value)}
+          <button
+            type="button"
+            ref={refs.setReference}
+            className={[
+              styles.phoneCountryTrigger,
+              isOpen ? styles['phoneCountryTrigger--open'] : '',
+            ]
+              .filter(Boolean)
+              .join(' ')}
+            aria-expanded={isOpen}
+            aria-haspopup="listbox"
+            aria-label={`Country: ${country.name} +${country.dialCode}`}
+            {...getReferenceProps()}
           >
-            {COUNTRIES.map((c) => (
-              <option key={c.iso2} value={c.iso2}>
-                {flagEmoji(c.iso2)} {c.name} (+{c.dialCode})
-              </option>
-            ))}
-          </select>
+            <span className={styles.phoneFlag} aria-hidden="true">
+              {flagEmoji(country.iso2)}
+            </span>
+            <span className={styles.phoneDial} aria-hidden="true">
+              +{country.dialCode}
+            </span>
+            <svg
+              className={[
+                styles.phoneChevron,
+                isOpen ? styles['phoneChevron--open'] : '',
+              ]
+                .filter(Boolean)
+                .join(' ')}
+              aria-hidden="true"
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M6 9l6 6 6-6"
+                stroke="#797a7c"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+
+          {isOpen && (
+            <FloatingFocusManager context={context} modal={false} initialFocus={0} returnFocus>
+              <div
+                ref={refs.setFloating}
+                style={{
+                  ...floatingStyles,
+                  visibility: isPositioned ? 'visible' : 'hidden',
+                }}
+                className={styles.countryDropdown}
+                {...getFloatingProps()}
+              >
+                <div className={styles.countrySearchWrap}>
+                  <input
+                    type="search"
+                    placeholder="Search country or code…"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    className={styles.countrySearchInput}
+                    aria-label="Search countries"
+                  />
+                </div>
+                <ul className={styles.countryList} role="listbox" aria-label="Select country">
+                  {filtered.map((c) => {
+                    const isSelected = c.iso2 === countryIso2;
+                    return (
+                      <li
+                        key={c.iso2}
+                        ref={isSelected ? selectedRef : undefined}
+                        role="option"
+                        aria-selected={isSelected}
+                        tabIndex={0}
+                        className={[
+                          styles.countryOption,
+                          isSelected ? styles['countryOption--selected'] : '',
+                        ]
+                          .filter(Boolean)
+                          .join(' ')}
+                        onClick={() => {
+                          onCountryChange(c.iso2);
+                          handleOpenChange(false);
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            onCountryChange(c.iso2);
+                            handleOpenChange(false);
+                          }
+                        }}
+                      >
+                        <span className={styles.phoneFlag} aria-hidden="true">
+                          {flagEmoji(c.iso2)}
+                        </span>
+                        <span className={styles.countryName}>{c.name}</span>
+                        <span className={styles.countryDial}>+{c.dialCode}</span>
+                      </li>
+                    );
+                  })}
+                  {filtered.length === 0 && (
+                    <li className={styles.countryNoResults} role="option" aria-selected={false}>
+                      No results
+                    </li>
+                  )}
+                </ul>
+              </div>
+            </FloatingFocusManager>
+          )}
         </div>
+
         <input
           id={id}
           type="tel"

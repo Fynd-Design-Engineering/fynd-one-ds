@@ -1,4 +1,6 @@
 import React, { CSSProperties, ReactNode } from 'react';
+import { neutrals } from '../../tokens';
+import { IconArrowDiagonal } from '../../icons';
 import { Button } from '../atoms/Button';
 import { VisualElement, VisualElementSize } from '../atoms/VisualElement';
 import styles from './RichIconCard.module.css';
@@ -38,6 +40,12 @@ export interface RichIconCardProps {
   onClick?: (e: React.MouseEvent) => void;
   /** Accessible label for the card overlay. Defaults to `title`. */
   overlayLabel?: string;
+  /** Show the corner arrow affordance. Only renders when `href` or `onClick`
+   *  is set. Hidden at rest, visible on card hover / focus-within. */
+  showArrow?: boolean;
+  /** Keep the corner arrow permanently visible (still requires `href` or
+   *  `onClick`). Hover adds a small directional shift. */
+  alwaysShowArrow?: boolean;
   className?: string;
   style?: CSSProperties;
 }
@@ -59,10 +67,18 @@ export const RichIconCard: React.FC<RichIconCardProps> = ({
   href,
   onClick,
   overlayLabel,
+  showArrow = false,
+  alwaysShowArrow = false,
   className,
   style,
 }) => {
   const isClickable = !!(href || onClick);
+  const showCornerArrow = isClickable && (showArrow || alwaysShowArrow);
+
+  const arrowClass = [
+    styles['corner-arrow'],
+    alwaysShowArrow && styles['corner-arrow--always'],
+  ].filter(Boolean).join(' ');
 
   const cardClass = [
     styles.root,
@@ -114,6 +130,14 @@ export const RichIconCard: React.FC<RichIconCardProps> = ({
             aria-label={overlayLabel ?? title}
           />
         )
+      )}
+      {showCornerArrow && (
+        <span className={arrowClass} aria-hidden="true">
+          <IconArrowDiagonal
+            size={20}
+            color={onDarkBg ? neutrals[0] : neutrals[100]}
+          />
+        </span>
       )}
       <div className={styles.content}>
         {icon && (

@@ -115,3 +115,39 @@
   gap: 8px;
   align-items: center;
 }
+
+/* ── Corner arrow affordance ──────────────────────────────────────────────── */
+
+.corner-arrow {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease-out, translate 120ms ease-out;
+}
+
+.corner-arrow--always {
+  opacity: 1;
+}
+
+.clickable:hover .corner-arrow,
+.clickable:focus-within .corner-arrow {
+  opacity: 1;
+  translate: 2px -2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .corner-arrow {
+    transition: none;
+  }
+
+  .clickable:hover .corner-arrow,
+  .clickable:focus-within .corner-arrow {
+    translate: none;
+  }
+}

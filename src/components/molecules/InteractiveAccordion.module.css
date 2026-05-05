@@ -149,6 +149,15 @@
   border-color: var(--fds-neutral-80, #4a4b4c);
 }
 
+/* ── Question heading ─────────────────────────────────────────────────────── */
+
+/* Heading wraps the trigger button for semantics; no visual contribution. */
+.questionHeading {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
 /* ── Trigger ──────────────────────────────────────────────────────────────── */
 
 .trigger {

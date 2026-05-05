@@ -51,6 +51,8 @@ export interface InteractiveAccordionProps {
   shadow?: boolean;
   /** Inverted on dark sections — flips text/icon colors and dividers. */
   onDarkBg?: boolean;
+  /** Semantic heading level for each accordion question. Default `'h3'`. */
+  questionAs?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   className?: string;
   style?: CSSProperties;
 }
@@ -70,6 +72,7 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
   mediaBg,
   shadow = true,
   onDarkBg = false,
+  questionAs: QuestionTag = 'h3',
   className,
   style,
 }) => {
@@ -269,30 +272,32 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
                 .filter(Boolean)
                 .join(' ')}
             >
-              <button
-                ref={(el) => {
-                  triggerRefs.current[idx] = el;
-                }}
-                id={triggerId}
-                aria-expanded={isOpen}
-                aria-controls={panelId}
-                onClick={() => setOpenIndex(idx)}
-                onKeyDown={(e) => handleKeyDown(e, idx)}
-                className={styles.trigger}
-                type="button"
-              >
-                <Text
-                  variant="body-l"
-                  weight="medium"
-                  color={onDarkBg ? 'white' : 'default'}
-                  as="span"
+              <QuestionTag className={styles.questionHeading}>
+                <button
+                  ref={(el) => {
+                    triggerRefs.current[idx] = el;
+                  }}
+                  id={triggerId}
+                  aria-expanded={isOpen}
+                  aria-controls={panelId}
+                  onClick={() => setOpenIndex(idx)}
+                  onKeyDown={(e) => handleKeyDown(e, idx)}
+                  className={styles.trigger}
+                  type="button"
                 >
-                  {item.question}
-                </Text>
-                <span className={styles.toggleIcon} aria-hidden="true">
-                  {isOpen ? <IcMinus /> : <IcAdd />}
-                </span>
-              </button>
+                  <Text
+                    variant="body-xl"
+                    weight="medium"
+                    color={onDarkBg ? 'white' : 'default'}
+                    as="span"
+                  >
+                    {item.question}
+                  </Text>
+                  <span className={styles.toggleIcon} aria-hidden="true">
+                    {isOpen ? <IcMinus /> : <IcAdd />}
+                  </span>
+                </button>
+              </QuestionTag>
               <div
                 ref={(el) => {
                   panelRefs.current[idx] = el;

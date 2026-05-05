@@ -6,6 +6,7 @@
 }
 
 .panel {
+  display: none;
   z-index: 1100;
   background-color: var(--fds-neutral-0, #ffffff);
   border: 1px solid var(--fds-neutral-20, #f2f2f2);

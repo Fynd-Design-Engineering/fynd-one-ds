@@ -9,6 +9,8 @@ export interface MetricCardProps {
   title: string;
   breakpoint?: 'lg' | 'md' | 'sm';
   onDarkBg?: boolean;
+  /** Adds a 1px #e3e3e3 border around the card. Default `false`. */
+  bordered?: boolean;
   className?: string;
   style?: CSSProperties;
 }
@@ -20,6 +22,7 @@ export const MetricCard: React.FC<MetricCardProps> = ({
   title,
   breakpoint = 'lg',
   onDarkBg = false,
+  bordered = false,
   className,
   style,
 }) => {
@@ -30,6 +33,7 @@ export const MetricCard: React.FC<MetricCardProps> = ({
     styles.root,
     styles[breakpoint],
     onDarkBg && styles.dark,
+    bordered && styles.bordered,
     className,
   ].filter(Boolean).join(' ');
 

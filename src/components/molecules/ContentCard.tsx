@@ -51,6 +51,8 @@ export interface ContentCardProps {
   size?: 'lg' | 'md' | 'sm';
   /** Dark background variant */
   onDarkBg?: boolean;
+  /** Adds a 1px #e3e3e3 border around the card. Default `false`. */
+  bordered?: boolean;
   /**
    * Bullet point list rendered below the title/subtext. Uses `<Pointers>`.
    * Pairs naturally with `imagePosition="above"`.
@@ -90,6 +92,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
   onClick,
   size = 'lg',
   onDarkBg = false,
+  bordered = false,
   bullets,
   imageBg,
   className,
@@ -111,6 +114,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
     isBottomRight && styles['root--bottom-right'],
     isAbove && styles['root--above'],
     onDarkBg && styles['root--dark'],
+    bordered && styles['root--bordered'],
     hasHover && styles.hoverable,
     className,
   ].filter(Boolean).join(' ');

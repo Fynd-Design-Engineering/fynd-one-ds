@@ -40,6 +40,8 @@ export interface RichIconCardProps {
   onClick?: (e: React.MouseEvent) => void;
   /** Accessible label for the card overlay. Defaults to `title`. */
   overlayLabel?: string;
+  /** Adds a 1px #e3e3e3 border around the card. Default `true` (matches the existing visual). */
+  bordered?: boolean;
   /** Semantic heading level for the card title. Defaults to `'h3'`. */
   titleAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   /** Show the corner arrow affordance. Only renders when `href` or `onClick`
@@ -66,6 +68,7 @@ export const RichIconCard: React.FC<RichIconCardProps> = ({
   onButtonClick,
   showButton = true,
   onDarkBg = false,
+  bordered = true,
   href,
   onClick,
   overlayLabel,
@@ -87,6 +90,7 @@ export const RichIconCard: React.FC<RichIconCardProps> = ({
     styles.root,
     onDarkBg && styles.dark,
     isClickable && styles.clickable,
+    bordered && styles.bordered,
     className,
   ].filter(Boolean).join(' ');
 

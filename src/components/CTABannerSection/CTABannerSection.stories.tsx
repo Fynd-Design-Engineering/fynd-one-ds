@@ -141,6 +141,52 @@ export const LightWithBgImage: Story = {
   },
 };
 
+export const WithCoverImage: Story = {
+  name: 'BgSize — cover (default hero)',
+  args: {
+    chipLabel: 'Get started',
+    title: 'Full-bleed hero with cover background',
+    subtext: 'No bgSize prop needed — cover is the default.',
+    align: 'center',
+    bgImage: SAMPLE_BG,
+    bgColor: 'rgba(0,0,0,0.55)',
+    primaryButton: { label: 'Get started' },
+    secondaryButton: { label: 'Book a demo' },
+  },
+};
+
+export const WithPatternTile: Story = {
+  name: 'BgSize — auto + repeat (pattern tile)',
+  args: {
+    chipLabel: 'Pattern',
+    title: 'Repeating SVG tile background',
+    subtext: 'Pass bgSize="auto" and bgRepeat="repeat" for small pattern tiles.',
+    align: 'center',
+    bgColor: '#101319',
+    bgImage:
+      "data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='1.5' fill='%23ffffff' fill-opacity='0.08'/%3E%3C/svg%3E",
+    bgSize: 'auto',
+    bgRepeat: 'repeat',
+    primaryButton: { label: 'Get started' },
+    secondaryButton: { label: 'Book a demo' },
+  },
+};
+
+export const WithContainedLogo: Story = {
+  name: 'BgSize — contain + top right (watermark)',
+  args: {
+    chipLabel: 'Watermark',
+    title: 'Contained logo in the top-right corner',
+    subtext: 'Pass bgSize="contain" and bgPosition="top right" for a corner watermark.',
+    align: 'left',
+    bgColor: '#0d1117',
+    bgImage: SAMPLE_BG,
+    bgSize: 'contain',
+    bgPosition: 'top right',
+    primaryButton: { label: 'Get started' },
+  },
+};
+
 export const WithLinks: Story = {
   name: 'Link buttons (href)',
   args: {

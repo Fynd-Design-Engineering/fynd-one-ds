@@ -28,6 +28,13 @@ export interface CTABannerSectionProps {
   bgColor?: string;
   /** Optional background image URL — layered on top of bgColor. */
   bgImage?: string;
+  /** background-size for `bgImage`. Defaults to `'cover'` for full-bleed hero imagery.
+   *  Use `'auto'` for SVG / pattern tiles, or `'contain'` to fit. Any CSS value works. */
+  bgSize?: 'cover' | 'contain' | 'auto' | (string & {});
+  /** background-position for `bgImage`. Defaults to `'center'`. Any CSS value works. */
+  bgPosition?: string;
+  /** background-repeat for `bgImage`. Defaults to `'no-repeat'`. Use `'repeat'` for tile patterns. */
+  bgRepeat?: 'no-repeat' | 'repeat' | 'repeat-x' | 'repeat-y' | 'space' | 'round' | (string & {});
   /** Primary CTA button. Omit to hide. */
   primaryButton?: BannerButton;
   /** Secondary CTA button. Omit to hide. */
@@ -43,6 +50,9 @@ export const CTABannerSection: React.FC<CTABannerSectionProps> = ({
   variant = 'dark',
   bgColor,
   bgImage,
+  bgSize,
+  bgPosition,
+  bgRepeat,
   primaryButton,
   secondaryButton,
   className,
@@ -64,6 +74,9 @@ export const CTABannerSection: React.FC<CTABannerSectionProps> = ({
         {
           '--cta-bg': bgColor ?? defaultBg,
           ...(bgImage ? { '--cta-image': `url(${bgImage})` } : {}),
+          ...(bgSize ? { '--cta-bg-size': bgSize } : {}),
+          ...(bgPosition ? { '--cta-bg-position': bgPosition } : {}),
+          ...(bgRepeat ? { '--cta-bg-repeat': bgRepeat } : {}),
         } as React.CSSProperties
       }
     >

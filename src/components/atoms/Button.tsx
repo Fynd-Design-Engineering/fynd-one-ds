@@ -67,10 +67,15 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     if (Tag || href) {
       const Elem = Tag ?? 'a';
-      const handleClick = (e: React.MouseEvent) => {
-        if (disabled) { e.preventDefault(); return; }
-        onClick?.(e as React.MouseEvent<HTMLButtonElement>);
-      };
+      const needsClickHandler = disabled || !!onClick;
+      const clickProps = needsClickHandler
+        ? {
+            onClick: (e: React.MouseEvent) => {
+              if (disabled) { e.preventDefault(); return; }
+              onClick?.(e as React.MouseEvent<HTMLButtonElement>);
+            },
+          }
+        : undefined;
       return (
         <Elem
           ref={ref as unknown as React.Ref<HTMLAnchorElement>}
@@ -78,7 +83,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           href={href}
           {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
           {...(disabled ? { 'aria-disabled': true, tabIndex: -1 } : {})}
-          onClick={handleClick}
+          {...clickProps}
           {...rest}
         >
           {inner}

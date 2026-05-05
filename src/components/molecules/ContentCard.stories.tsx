@@ -3,7 +3,7 @@ import React from 'react';
 import { ContentCard } from './ContentCard';
 
 const meta: Meta<typeof ContentCard> = {
-  title: 'Molecules/ContentCard',
+  title: 'Cards/ContentCard',
   component: ContentCard,
   argTypes: {
     imagePosition: { control: 'select', options: ['above', 'below', 'behind', 'bottom-right'] },

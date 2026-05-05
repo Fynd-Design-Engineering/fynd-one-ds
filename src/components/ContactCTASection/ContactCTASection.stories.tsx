@@ -5,7 +5,7 @@ const SAMPLE_BG =
   'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&h=1000&fit=crop';
 
 const meta: Meta<typeof ContactCTASection> = {
-  title: 'Molecules/ContactCTASection',
+  title: 'Marketing/ContactCTASection',
   component: ContactCTASection,
   parameters: { layout: 'fullscreen' },
   argTypes: {

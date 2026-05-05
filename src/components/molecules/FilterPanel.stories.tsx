@@ -5,7 +5,7 @@ import { Popover } from './Popover';
 import { FilterButton } from '../atoms/FilterButton';
 
 const meta: Meta<FilterPanelProps> = {
-  title: 'Molecules/FilterPanel',
+  title: 'Marketing/FilterPanel',
   component: FilterPanel,
   parameters: { layout: 'centered' },
 };

@@ -4,7 +4,7 @@ import { SectionHeader } from './SectionHeader';
 import { Button } from '../atoms/Button';
 
 const meta: Meta<typeof SectionHeader> = {
-  title: 'Shared/SectionHeader',
+  title: 'Layout/SectionHeader',
   component: SectionHeader,
   argTypes: {
     chipVariant: { control: 'select', options: ['anchor', 'filled', 'outlined'] },

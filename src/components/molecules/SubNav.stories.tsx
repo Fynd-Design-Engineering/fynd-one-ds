@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { SubNav, SubNavProps } from './SubNav';
 
 const meta: Meta<SubNavProps> = {
-  title: 'Molecules/SubNav',
+  title: 'Navigation/SubNav',
   component: SubNav,
   parameters: { layout: 'fullscreen' },
 };

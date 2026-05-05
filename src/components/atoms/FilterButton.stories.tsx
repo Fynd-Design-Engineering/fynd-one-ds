@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { FilterButton } from './FilterButton';
 
 const meta: Meta<typeof FilterButton> = {
-  title: 'Atoms/FilterButton',
+  title: 'Form/FilterButton',
   component: FilterButton,
   argTypes: {
     filterCount: { control: { type: 'number', min: 0, max: 99 } },

@@ -6,7 +6,7 @@ import { PricingCard } from '../molecules/PricingCard';
 import { RichIconCard } from '../molecules/RichIconCard';
 
 const meta: Meta<typeof Rail> = {
-  title: 'Layouts/Rail',
+  title: 'Layout/Rail',
   component: Rail,
   argTypes: {
     gap: { control: { type: 'number', min: 0, max: 60, step: 4 } },

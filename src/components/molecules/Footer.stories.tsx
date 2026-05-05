@@ -6,7 +6,7 @@ import {
 } from '../../presets/fyndMarketingFooter';
 
 const meta: Meta<FooterProps> = {
-  title: 'Molecules/Footer',
+  title: 'Marketing/Footer',
   component: Footer,
   parameters: {
     layout: 'fullscreen',

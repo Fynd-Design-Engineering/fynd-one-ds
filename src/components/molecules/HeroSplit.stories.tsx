@@ -11,7 +11,7 @@ const SAMPLE_IMAGE = {
 };
 
 const meta: Meta<typeof HeroSplit> = {
-  title: 'Molecules/HeroSplit',
+  title: 'Content/HeroSplit',
   component: HeroSplit,
   parameters: { layout: 'fullscreen' },
   argTypes: {

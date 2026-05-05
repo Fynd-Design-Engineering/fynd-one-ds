@@ -10,7 +10,7 @@ const StarIcon = () => (
 );
 
 const meta: Meta<typeof RichIconCard> = {
-  title: 'Molecules/RichIconCard',
+  title: 'Cards/RichIconCard',
   component: RichIconCard,
   argTypes: {
     iconSize: { control: 'select', options: ['icon-32', 'icon-48', 'logo-64', 'logo-80', 'logo-horizontal'] },

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ContactForm, ContactFormProps } from './ContactForm';
 
 const meta: Meta<ContactFormProps> = {
-  title: 'Molecules/ContactForm',
+  title: 'Marketing/ContactForm',
   component: ContactForm,
   parameters: { layout: 'centered' },
   decorators: [

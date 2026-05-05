@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Pointers, PointersProps } from './Pointers';
 
 const meta: Meta<PointersProps> = {
-  title: 'Molecules/Pointers',
+  title: 'Content/Pointers',
   component: Pointers,
   parameters: { layout: 'centered' },
 };

@@ -10,7 +10,7 @@ const PlaceholderIcon = () => (
 );
 
 const meta: Meta<typeof MetricCard> = {
-  title: 'Molecules/MetricCard',
+  title: 'Cards/MetricCard',
   component: MetricCard,
   argTypes: {
     variant: { control: 'select', options: ['icon', 'number'] },

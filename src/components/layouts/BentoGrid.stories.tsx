@@ -14,7 +14,7 @@ const Placeholder = ({ label }: { label: string }) => (
 );
 
 const meta: Meta<typeof BentoGrid> = {
-  title: 'Layouts/BentoGrid',
+  title: 'Layout/BentoGrid',
   component: BentoGrid,
   argTypes: {
     gap: { control: 'number' },

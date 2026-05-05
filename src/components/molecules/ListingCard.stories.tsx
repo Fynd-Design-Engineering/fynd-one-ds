@@ -3,7 +3,7 @@ import React from 'react';
 import { ListingCard } from './ListingCard';
 
 const meta: Meta<typeof ListingCard> = {
-  title: 'Molecules/ListingCard',
+  title: 'Cards/ListingCard',
   component: ListingCard,
   argTypes: {
     imageAspectRatio: { control: 'select', options: ['5:4', '1:1', '16:9', 'portrait'] },

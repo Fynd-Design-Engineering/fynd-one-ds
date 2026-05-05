@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, CSSProperties } from 'react';
+import React, { useState, useLayoutEffect, useRef, CSSProperties } from 'react';
 import { Text } from '../Typography/Text';
 import { IconChevronRight } from '../../icons';
 import styles from './Accordion.module.css';
@@ -27,6 +27,14 @@ export const Accordion: React.FC<AccordionProps> = ({
   style,
 }) => {
   const [openIndices, setOpenIndices] = useState<Set<number>>(new Set());
+  const panelRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useLayoutEffect(() => {
+    panelRefs.current.forEach((el, i) => {
+      if (!el) return;
+      el.style.height = openIndices.has(i) ? `${el.scrollHeight}px` : '0px';
+    });
+  }, [openIndices]);
 
   const toggle = (index: number) => {
     setOpenIndices((prev) => {
@@ -56,7 +64,6 @@ export const Accordion: React.FC<AccordionProps> = ({
             className={[
               styles.item,
               onDarkBg ? styles['item--dark'] : styles['item--light'],
-              isOpen ? styles['item--open'] : '',
             ].filter(Boolean).join(' ')}
           >
             <button
@@ -76,8 +83,11 @@ export const Accordion: React.FC<AccordionProps> = ({
                 <IconChevronRight color={onDarkBg ? '#ffffff' : '#101319'} />
               </span>
             </button>
-            {isOpen && (
-              <div className={styles.answer}>
+            <div
+              className={styles.panel}
+              ref={(el) => { panelRefs.current[i] = el; }}
+            >
+              <div className={styles.panelInner}>
                 <Text
                   variant="body-m"
                   color={onDarkBg ? 'muted' : 'secondary'}
@@ -85,7 +95,7 @@ export const Accordion: React.FC<AccordionProps> = ({
                   {item.answer}
                 </Text>
               </div>
-            )}
+            </div>
           </div>
         );
       })}

@@ -43,6 +43,8 @@ export type { SectionIndicatorProps } from './components/atoms/SectionIndicator'
 
 export { ImageHolder } from './components/atoms/ImageHolder';
 export type { ImageHolderProps } from './components/atoms/ImageHolder';
+export { MediaHolder } from './components/atoms/MediaHolder';
+export type { MediaHolderProps, MediaHolderLayer, MediaHolderAspectRatio } from './components/atoms/MediaHolder';
 
 export { TitleContentPair } from './components/atoms/TitleContentPair';
 export type { TitleContentPairProps } from './components/atoms/TitleContentPair';

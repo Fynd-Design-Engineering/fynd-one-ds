@@ -11,42 +11,35 @@ import React, {
 } from 'react';
 import { Text } from '../Typography/Text';
 import { IcAdd, IcMinus } from '../../icons';
+import { MediaHolder, MediaHolderLayer, MediaHolderAspectRatio } from '../atoms/MediaHolder';
 import styles from './InteractiveAccordion.module.css';
 
-export interface InteractiveAccordionMedia {
-  type: 'image' | 'video';
-  src: string;
-  /** Required for type === 'image'; ignored for video. */
-  alt?: string;
-  /** Optional poster for video. */
-  poster?: string;
-}
+export type { MediaHolderLayer as InteractiveAccordionMedia };
 
 export interface InteractiveAccordionItem {
   question: string;
   answer: string;
-  media: InteractiveAccordionMedia;
+  media: MediaHolderLayer;
 }
 
 export interface InteractiveAccordionProps {
   items: InteractiveAccordionItem[];
-  /** Which side the media panel sits on (desktop/tablet only — mobile
-   *  always renders media inline below the expanded item). Default `'right'`. */
+  /** Which side the media panel sits on (desktop only — mobile always renders
+   *  media inline below the expanded item). Default `'right'`. */
   mediaSide?: 'left' | 'right';
+  /** Aspect ratio of the media panel and inline media. Default `'portrait'` (3:4). */
+  aspectRatio?: MediaHolderAspectRatio;
   /** Which item is open initially (uncontrolled). Default `0`. */
   defaultOpenIndex?: number;
-  /** Controlled open index. When provided, the component is fully
-   *  controlled by the consumer. */
+  /** Controlled open index. */
   openIndex?: number;
   onOpenIndexChange?: (i: number) => void;
-  /** Optional background fill behind the media panel — any CSS color. */
+  /** Background color behind the media panel and inline media. */
   mediaBg?: string;
   /**
-   * Drop the card shadow. Default `true` — appropriate when the molecule
-   * sits on a white page bg. Pass `false` when the page bg is already
-   * tinted (gray, etc.) so the card doesn't double-shadow against it.
-   * Ignored on dark — the dark variant uses bg-color contrast instead
-   * of a shadow.
+   * Drop the card shadow. Default `true`.
+   * Pass `false` when the page bg is already tinted.
+   * Ignored on dark — uses bg-color contrast instead.
    */
   shadow?: boolean;
   /** Inverted on dark sections — flips text/icon colors and dividers. */
@@ -57,15 +50,10 @@ export interface InteractiveAccordionProps {
   style?: CSSProperties;
 }
 
-/** Append the Media Fragment `#t=0.001` so the browser seeks to ~0s
- *  on load and renders the first frame as an automatic poster. Skip
- *  if the consumer's URL already has a fragment. */
-const autoFirstFrame = (src: string): string =>
-  src.includes('#') ? src : `${src}#t=0.001`;
-
 export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
   items,
   mediaSide = 'right',
+  aspectRatio = 'portrait',
   defaultOpenIndex = 0,
   openIndex: controlledOpenIndex,
   onOpenIndexChange,
@@ -91,31 +79,21 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
   const inlineVideoRefs = useRef<Array<HTMLVideoElement | null>>([]);
   const panelRefs = useRef<Array<HTMLDivElement | null>>([]);
 
-  // Pause non-active videos so we don't burn CPU on hidden videos.
+  // Pause non-active videos to avoid burning CPU on hidden media.
   useEffect(() => {
     panelVideoRefs.current.forEach((video, i) => {
       if (!video) return;
-      if (i === openIndex) {
-        video.play().catch(() => {});
-      } else {
-        video.pause();
-      }
+      if (i === openIndex) video.play().catch(() => {});
+      else video.pause();
     });
     inlineVideoRefs.current.forEach((video, i) => {
       if (!video) return;
-      if (i === openIndex) {
-        video.play().catch(() => {});
-      } else {
-        video.pause();
-      }
+      if (i === openIndex) video.play().catch(() => {});
+      else video.pause();
     });
   }, [openIndex]);
 
-  // JS-driven panel open/close. Each panel has a single child
-  // (.panelInner) — we measure that child's natural height and set
-  // panel.style.height inline so CSS can transition. Measuring the
-  // child rather than the panel itself sidesteps overflow:hidden /
-  // height: 0 self-feedback.
+  // JS-driven panel height animation.
   useLayoutEffect(() => {
     panelRefs.current.forEach((el, idx) => {
       if (!el) return;
@@ -125,10 +103,7 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
     });
   }, [openIndex]);
 
-  // Content height can change after the initial measurement — images
-  // and videos load asynchronously, fonts swap, mobile breakpoint
-  // reflows the inline media to visible. A ResizeObserver on each
-  // .panelInner keeps the open panel's height in sync.
+  // Keep open panel in sync when content reflows (images / fonts load).
   useEffect(() => {
     const observers: ResizeObserver[] = [];
     panelRefs.current.forEach((el, idx) => {
@@ -146,10 +121,7 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
     return () => observers.forEach((o) => o.disconnect());
   }, [openIndex, items]);
 
-  const handleKeyDown = (
-    e: KeyboardEvent<HTMLButtonElement>,
-    idx: number,
-  ) => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>, idx: number) => {
     let next: number | null = null;
     if (e.key === 'ArrowDown') next = (idx + 1) % items.length;
     else if (e.key === 'ArrowUp') next = (idx - 1 + items.length) % items.length;
@@ -168,6 +140,7 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
   ]
     .filter(Boolean)
     .join(' ');
+
   const rootCls = [
     styles.root,
     mediaSide === 'left' ? styles['media-left'] : styles['media-right'],
@@ -176,163 +149,105 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
     .filter(Boolean)
     .join(' ');
 
-  const renderPanelMedia = (item: InteractiveAccordionItem, idx: number) => {
-    if (item.media.type === 'video') {
-      const isActive = idx === openIndex;
-      // `#t=0.001` Media Fragment: browser seeks to 0.001s on load,
-      // so the first frame renders as an automatic poster while the
-      // rest of the video buffers. No explicit poster image needed
-      // unless the consumer provides one.
-      const src = autoFirstFrame(item.media.src);
-      return (
-        <video
-          ref={(el) => {
-            panelVideoRefs.current[idx] = el;
-          }}
-          src={src}
-          poster={item.media.poster}
-          loop
-          muted
-          playsInline
-          preload={isActive ? 'auto' : 'metadata'}
-          aria-hidden="true"
-        />
-      );
-    }
-    return (
-      <img
-        src={item.media.src}
-        alt={item.media.alt ?? ''}
-        loading={idx === 0 ? 'eager' : 'lazy'}
-        decoding="async"
-        aria-hidden={idx !== openIndex}
-      />
-    );
-  };
-
-  const renderInlineMedia = (item: InteractiveAccordionItem, idx: number) => {
-    if (item.media.type === 'video') {
-      return (
-        <video
-          ref={(el) => {
-            inlineVideoRefs.current[idx] = el;
-          }}
-          src={autoFirstFrame(item.media.src)}
-          poster={item.media.poster}
-          loop
-          muted
-          playsInline
-          preload="metadata"
-        />
-      );
-    }
-    return (
-      <img
-        src={item.media.src}
-        alt={item.media.alt ?? ''}
-        loading="lazy"
-        decoding="async"
-      />
-    );
-  };
-
   return (
     <div className={outerCls} style={style}>
       <div className={rootCls}>
-      <div
-        className={styles.mediaPanel}
-        style={mediaBg ? { background: mediaBg } : undefined}
-      >
-        <div className={styles.mediaCanvas}>
-          {items.map((item, idx) => (
-            <div
-              key={idx}
-              className={[
-                styles.mediaSlot,
-                idx === openIndex ? styles['mediaSlot--active'] : '',
-              ]
-                .filter(Boolean)
-                .join(' ')}
-            >
-              {renderPanelMedia(item, idx)}
-            </div>
-          ))}
+        <div
+          className={styles.mediaPanel}
+          style={mediaBg ? { background: mediaBg } : undefined}
+        >
+          <MediaHolder
+            aspectRatio={aspectRatio}
+            layers={items.map((i) => i.media)}
+            activeIndex={openIndex}
+            videoRef={(el, i) => {
+              panelVideoRefs.current[i] = el;
+            }}
+            background={mediaBg}
+          />
         </div>
-      </div>
 
-      <div className={styles.list}>
-        {items.map((item, idx) => {
-          const isOpen = idx === openIndex;
-          const triggerId = `${idBase}-trigger-${idx}`;
-          const panelId = `${idBase}-panel-${idx}`;
-          return (
-            <div
-              key={idx}
-              className={[styles.item, isOpen ? styles['item--open'] : '']
-                .filter(Boolean)
-                .join(' ')}
-            >
-              <QuestionTag className={styles.questionHeading}>
-                <button
-                  ref={(el) => {
-                    triggerRefs.current[idx] = el;
-                  }}
-                  id={triggerId}
-                  aria-expanded={isOpen}
-                  aria-controls={panelId}
-                  onClick={() => setOpenIndex(idx)}
-                  onKeyDown={(e) => handleKeyDown(e, idx)}
-                  className={styles.trigger}
-                  type="button"
-                >
-                  <Text
-                    variant="body-xl"
-                    weight="medium"
-                    color={onDarkBg ? 'white' : 'default'}
-                    as="span"
-                  >
-                    {item.question}
-                  </Text>
-                  <span className={styles.toggleIcon} aria-hidden="true">
-                    {isOpen ? <IcMinus /> : <IcAdd />}
-                  </span>
-                </button>
-              </QuestionTag>
+        <div className={styles.list}>
+          {items.map((item, idx) => {
+            const isOpen = idx === openIndex;
+            const triggerId = `${idBase}-trigger-${idx}`;
+            const panelId = `${idBase}-panel-${idx}`;
+            return (
               <div
-                ref={(el) => {
-                  panelRefs.current[idx] = el;
-                }}
-                id={panelId}
-                role="region"
-                aria-labelledby={triggerId}
-                aria-hidden={!isOpen}
-                className={styles.panel}
+                key={idx}
+                className={[styles.item, isOpen ? styles['item--open'] : '']
+                  .filter(Boolean)
+                  .join(' ')}
               >
-                <div className={styles.panelInner}>
-                  <Text
-                    variant="body-m"
-                    color={onDarkBg ? 'muted' : 'secondary'}
-                    as="p"
+                <QuestionTag className={styles.questionHeading}>
+                  <button
+                    ref={(el) => {
+                      triggerRefs.current[idx] = el;
+                    }}
+                    id={triggerId}
+                    aria-expanded={isOpen}
+                    aria-controls={panelId}
+                    onClick={() => setOpenIndex(idx)}
+                    onKeyDown={(e) => handleKeyDown(e, idx)}
+                    className={styles.trigger}
+                    type="button"
                   >
-                    {item.answer}
-                  </Text>
-                  <div
-                    className={styles.inlineMedia}
-                    style={mediaBg ? { background: mediaBg } : undefined}
-                  >
-                    {renderInlineMedia(item, idx)}
+                    <Text
+                      variant="body-xl"
+                      weight="medium"
+                      color={onDarkBg ? 'white' : 'default'}
+                      as="span"
+                    >
+                      {item.question}
+                    </Text>
+                    <span className={styles.toggleIcon} aria-hidden="true">
+                      {isOpen ? <IcMinus /> : <IcAdd />}
+                    </span>
+                  </button>
+                </QuestionTag>
+
+                <div
+                  ref={(el) => {
+                    panelRefs.current[idx] = el;
+                  }}
+                  id={panelId}
+                  role="region"
+                  aria-labelledby={triggerId}
+                  aria-hidden={!isOpen}
+                  className={styles.panel}
+                >
+                  <div className={styles.panelInner}>
+                    <Text
+                      variant="body-m"
+                      color={onDarkBg ? 'muted' : 'secondary'}
+                      as="p"
+                    >
+                      {item.answer}
+                    </Text>
+                    <div
+                      className={styles.inlineMedia}
+                      style={mediaBg ? { background: mediaBg } : undefined}
+                    >
+                      <MediaHolder
+                        aspectRatio={aspectRatio}
+                        layers={[item.media]}
+                        activeIndex={0}
+                        videoRef={(el) => {
+                          inlineVideoRefs.current[idx] = el;
+                        }}
+                        background={mediaBg}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
 };
 
 InteractiveAccordion.displayName = 'InteractiveAccordion';
-
 export default InteractiveAccordion;

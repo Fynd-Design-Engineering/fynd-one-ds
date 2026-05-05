@@ -81,6 +81,7 @@ const meta: Meta<typeof InteractiveAccordion> = {
   parameters: { layout: 'fullscreen' },
   argTypes: {
     mediaSide: { control: 'inline-radio', options: ['left', 'right'] },
+    aspectRatio: { control: 'select', options: ['portrait', '5:4', '1:1', '16:9'] },
     onDarkBg: { control: 'boolean' },
     shadow: { control: 'boolean' },
     mediaBg: { control: 'color' },

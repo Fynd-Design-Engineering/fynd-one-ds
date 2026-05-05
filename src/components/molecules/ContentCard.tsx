@@ -27,6 +27,8 @@ export interface ContentCardProps {
   showChip?: boolean;
   title: string;
   titleVariant?: TextVariant;
+  /** Semantic heading level for the card title. Defaults to `'h3'`. */
+  titleAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   subtext?: string;
   subtextVariant?: TextVariant;
   showSubtext?: boolean;
@@ -55,6 +57,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
   showChip = true,
   title,
   titleVariant = 'body-xl',
+  titleAs = 'h3',
   subtext,
   subtextVariant = 'body-m',
   showSubtext = true,
@@ -167,7 +170,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
               />
             </div>
           )}
-          <Text variant={titleVariant} weight="medium" color={onDarkBg ? 'white' : 'default'}>{title}</Text>
+          <Text variant={titleVariant} as={titleAs} weight="medium" color={onDarkBg ? 'white' : 'default'}>{title}</Text>
           {showSubtext && subtext && <Text variant={subtextVariant} weight="regular" color={onDarkBg ? 'muted' : 'secondary'}>{subtext}</Text>}
         </div>
 

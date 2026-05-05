@@ -15,6 +15,8 @@ export interface ListingCardProps {
   tags?: string[];
   showTags?: boolean;
   title: string;
+  /** Semantic heading level for the card title. Defaults to `'h3'`. */
+  titleAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   subtext?: string;
   showSubtext?: boolean;
   date?: string;
@@ -39,6 +41,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({
   tags,
   showTags = true,
   title,
+  titleAs: TitleTag = 'h3',
   subtext,
   showSubtext = true,
   date,
@@ -107,7 +110,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({
               ))}
             </div>
           )}
-          <p className={[titleClass, onDarkBg ? styles['title--dark'] : ''].filter(Boolean).join(' ')}>{title}</p>
+          <TitleTag className={[titleClass, onDarkBg ? styles['title--dark'] : ''].filter(Boolean).join(' ')}>{title}</TitleTag>
           {showSubtext && subtext && <p className={[subtextClass, onDarkBg ? styles['subtext--dark'] : ''].filter(Boolean).join(' ')}>{subtext}</p>}
         </div>
         {hasMeta && (

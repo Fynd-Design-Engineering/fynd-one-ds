@@ -203,13 +203,24 @@
 .phoneCountryWrap {
   position: relative;
   display: flex;
+  align-items: stretch;
+}
+
+.phoneCountryTrigger {
+  display: flex;
   align-items: center;
   gap: 6px;
-  padding: 0 28px 0 12px;
+  padding: 0 10px 0 12px;
+  border: none;
   border-right: 1px solid var(--fds-neutral-30, #e3e3e3);
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none'><path d='M6 9l6 6 6-6' stroke='%23797a7c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
-  background-repeat: no-repeat;
-  background-position: right 8px center;
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  border-radius: 0;
+}
+
+.phoneCountryTrigger:focus {
+  outline: none;
 }
 
 .phoneFlag {
@@ -225,17 +236,103 @@
   color: var(--fds-neutral-100, #101319);
 }
 
-.phoneCountrySelect {
-  position: absolute;
-  inset: 0;
+.phoneChevron {
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+}
+
+.phoneChevron--open {
+  transform: rotate(180deg);
+}
+
+/* ── Country dropdown panel ───────────────────────────────────────────────── */
+
+.countryDropdown {
+  z-index: 1100;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  background: var(--fds-neutral-0, #ffffff);
+  border: 1px solid var(--fds-neutral-30, #e3e3e3);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(16, 19, 25, 0.12);
+  overflow: hidden;
+}
+
+.countrySearchWrap {
+  padding: 8px;
+  border-bottom: 1px solid var(--fds-neutral-20, #f2f2f2);
+  flex-shrink: 0;
+}
+
+.countrySearchInput {
   width: 100%;
-  height: 100%;
-  opacity: 0;
+  border: 1px solid var(--fds-neutral-30, #e3e3e3);
+  border-radius: 6px;
+  padding: 7px 10px;
+  font-family: 'Inter Display', sans-serif;
+  font-size: 13px;
+  color: var(--fds-neutral-100, #101319);
+  background: var(--fds-neutral-10, #f8f8f9);
+  outline: none;
+}
+
+.countrySearchInput:focus {
+  border-color: var(--fds-neutral-100, #101319);
+}
+
+.countryList {
+  list-style: none;
+  margin: 0;
+  padding: 4px;
+  max-height: 240px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.countryOption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 6px;
   cursor: pointer;
-  border: none;
-  background: transparent;
-  appearance: none;
-  -webkit-appearance: none;
+  font-family: 'Inter Display', sans-serif;
+  font-size: 13px;
+  color: var(--fds-neutral-100, #101319);
+}
+
+.countryOption:hover,
+.countryOption:focus {
+  background: var(--fds-neutral-10, #f8f8f9);
+  outline: none;
+}
+
+.countryOption--selected {
+  background: var(--fds-neutral-10, #f8f8f9);
+  font-weight: 500;
+}
+
+.countryName {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.countryDial {
+  flex-shrink: 0;
+  color: var(--fds-neutral-50, #797a7c);
+  font-size: 12px;
+}
+
+.countryNoResults {
+  padding: 12px 10px;
+  font-family: 'Inter Display', sans-serif;
+  font-size: 13px;
+  color: var(--fds-neutral-50, #797a7c);
+  text-align: center;
 }
 
 .phoneRow:hover {

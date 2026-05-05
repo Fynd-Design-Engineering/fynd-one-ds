@@ -7,6 +7,7 @@ import React, {
   ReactElement,
   ReactNode,
   Ref,
+  useEffect,
   useId,
   useMemo,
   useRef,
@@ -109,7 +110,16 @@ export const Popover: React.FC<PopoverProps> = ({
   const listRef = useRef<Array<HTMLElement | null>>([]);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  const { refs, floatingStyles, context, isPositioned } = useFloating({
+  // Delay visibility by one paint so Floating UI can compute the correct
+  // position (via useLayoutEffect) before the panel becomes visible.
+  // This prevents the top-left flash on first open.
+  const [panelVisible, setPanelVisible] = useState(false);
+  useEffect(() => {
+    if (open) setPanelVisible(true);
+    else setPanelVisible(false);
+  }, [open]);
+
+  const { refs, floatingStyles, context } = useFloating({
     open,
     onOpenChange: setOpen,
     placement,
@@ -183,6 +193,7 @@ export const Popover: React.FC<PopoverProps> = ({
 
   const panelClass = [
     styles.panel,
+    panelVisible && styles['panel--visible'],
     onDarkBg && styles['panel--dark'],
     className,
   ]
@@ -208,7 +219,7 @@ export const Popover: React.FC<PopoverProps> = ({
               }}
               id={panelId}
               className={panelClass}
-              style={{ ...floatingStyles, ...style, visibility: isPositioned ? undefined : 'hidden' }}
+              style={{ ...floatingStyles, ...style, visibility: panelVisible ? undefined : 'hidden' }}
               {...getFloatingProps()}
             >
               <PopoverItemContext.Provider value={{ getItemProps, isMenuRole: isMenuRole(role) }}>

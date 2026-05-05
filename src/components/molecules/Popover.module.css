@@ -17,15 +17,15 @@
   color: var(--fds-neutral-0, #ffffff);
 }
 
-/* Animations are minimal — keeping the primitive lightweight. Consumers can
-   layer their own enter/exit via children if needed. */
-.panel {
+/* Animation only starts once panel--visible is added (after Floating UI has
+   computed the correct position), so it always plays from the right location. */
+.panel--visible {
   transform-origin: top left;
   animation: fds-popover-fade-in 120ms ease-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .panel {
+  .panel--visible {
     animation: none;
   }
 }

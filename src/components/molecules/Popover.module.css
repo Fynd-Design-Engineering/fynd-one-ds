@@ -6,7 +6,6 @@
 }
 
 .panel {
-  display: none;
   z-index: 1100;
   background-color: var(--fds-neutral-0, #ffffff);
   border: 1px solid var(--fds-neutral-20, #f2f2f2);
@@ -25,16 +24,16 @@
   color: var(--fds-neutral-0, #ffffff);
 }
 
-/* Panel is only mounted after one rAF (see Popover.tsx), so Floating UI has
-   already positioned it before first paint. The animation always plays from
-   the correct location. */
-.panel {
+/* Inner wrapper owns the open animation so the keyframe transform: scale(...)
+   never conflicts with the outer panel's inline transform: translate(x, y)
+   set by Floating UI. The outer panel's transform is uncontested. */
+.panel-inner {
   transform-origin: top left;
   animation: fds-popover-fade-in 120ms ease-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .panel {
+  .panel-inner {
     animation: none;
   }
 }

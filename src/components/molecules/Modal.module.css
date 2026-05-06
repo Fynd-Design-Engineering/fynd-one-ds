@@ -8,8 +8,8 @@
   align-items: center;
   padding: 24px 20px;
   background-color: rgba(44, 44, 44, 0.42);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .card {

@@ -1,6 +1,6 @@
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, ReactNode } from 'react';
 import { neutrals } from '../../tokens';
-import { Chip } from '../atoms/Chip';
+import { Chip, ChipDotColor } from '../atoms/Chip';
 import { Button } from '../atoms/Button';
 import { Text, TextVariant } from '../Typography/Text';
 import { IconArrowDiagonal } from '../../icons';
@@ -34,6 +34,14 @@ export interface ContentCardProps {
    * of the card, overlaying the image panel. Useful with `imagePosition="above"`.
    */
   chipPosition?: 'inline' | 'floating';
+  /** Show the dot indicator. Defaults to `false` (ContentCard default). */
+  chipShowDot?: boolean;
+  /** Dot color. Forwarded to `Chip.dotColor`. */
+  chipDotColor?: ChipDotColor;
+  /** Optional leading icon. Forwarded to `Chip.icon`. */
+  chipIcon?: ReactNode;
+  /** Chip variant. Defaults to `'filled'` (ContentCard default). */
+  chipVariant?: 'anchor' | 'filled' | 'outlined';
   title: string;
   titleVariant?: TextVariant;
   /** Semantic heading level for the card title. Defaults to `'h3'`. */
@@ -92,6 +100,10 @@ export const ContentCard: React.FC<ContentCardProps> = ({
   onClick,
   size = 'lg',
   onDarkBg = false,
+  chipShowDot = false,
+  chipDotColor,
+  chipIcon,
+  chipVariant = 'filled',
   bordered = false,
   bullets,
   imageBg,
@@ -186,7 +198,12 @@ export const ContentCard: React.FC<ContentCardProps> = ({
 
       {showChip && chipLabel && chipPosition === 'floating' && (
         <div className={styles['chip--floating']}>
-          <Chip label={chipLabel} variant="filled" showDot={false}
+          <Chip
+            label={chipLabel}
+            variant={chipVariant}
+            showDot={chipShowDot}
+            dotColor={chipDotColor}
+            icon={chipIcon}
             style={{
               backgroundColor: neutrals[0],
               borderRadius: 1000,
@@ -200,7 +217,12 @@ export const ContentCard: React.FC<ContentCardProps> = ({
         <div className={styles['content-left']}>
           {showChip && chipLabel && chipPosition === 'inline' && (
             <div className={styles['chip-wrapper']}>
-              <Chip label={chipLabel} variant="filled" showDot={false}
+              <Chip
+                label={chipLabel}
+                variant={chipVariant}
+                showDot={chipShowDot}
+                dotColor={chipDotColor}
+                icon={chipIcon}
                 style={{
                   backgroundColor: neutrals[0],
                   borderRadius: 1000,

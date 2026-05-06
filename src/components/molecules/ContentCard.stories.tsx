@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { ContentCard } from './ContentCard';
+import { IcAiStar } from '../../icons';
 
 const meta: Meta<typeof ContentCard> = {
   title: 'Cards/ContentCard',
@@ -276,4 +277,51 @@ export const ImageAboveWithBullets: Story = {
       />
     </div>
   ),
+};
+
+export const LabelOnlyChip: Story = {
+  name: 'Chip — label only, floating (comparison card)',
+  args: {
+    imagePosition: 'above',
+    chipLabel: 'Before',
+    chipPosition: 'floating',
+    chipShowDot: false,
+    imageBg: '#fce8ec',
+    imageSrc: 'https://placehold.co/520x340/f9c8d0/c0546a?text=Before',
+    title: 'Without the feature',
+    subtext: 'No dot, no icon — clean label badge overlaying the image.',
+    showButton: false,
+  },
+  decorators: [(Story) => <div style={{ width: 400 }}><Story /></div>],
+};
+
+export const IconChip: Story = {
+  name: 'Chip — icon + label, inline',
+  args: {
+    chipLabel: 'New',
+    chipPosition: 'inline',
+    chipIcon: <IcAiStar />,
+    chipShowDot: false,
+    title: 'AI-powered feature',
+    subtext: 'Icon renders to the left of the label inside the chip.',
+    imagePosition: 'below',
+    imageSrc: 'https://placehold.co/600x400/d2d2d2/4a4b4c?text=Feature',
+    showButton: false,
+  },
+  decorators: [(Story) => <div style={{ width: 420 }}><Story /></div>],
+};
+
+export const FilledChipVariant: Story = {
+  name: 'Chip — filled variant',
+  args: {
+    chipLabel: 'Featured',
+    chipVariant: 'filled',
+    chipShowDot: false,
+    title: 'Featured card',
+    subtext: 'Chip rendered with the filled variant.',
+    imagePosition: 'below',
+    imageSrc: 'https://placehold.co/600x400/d2d2d2/4a4b4c?text=Featured',
+    showButton: false,
+  },
+  decorators: [(Story) => <div style={{ width: 420 }}><Story /></div>],
 };

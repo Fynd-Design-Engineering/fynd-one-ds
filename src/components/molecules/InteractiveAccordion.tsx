@@ -3,6 +3,7 @@
 import React, {
   CSSProperties,
   KeyboardEvent,
+  ReactNode,
   useEffect,
   useId,
   useLayoutEffect,
@@ -17,8 +18,8 @@ import styles from './InteractiveAccordion.module.css';
 export type { MediaHolderLayer as InteractiveAccordionMedia };
 
 export interface InteractiveAccordionItem {
-  question: string;
-  answer: string;
+  question: ReactNode;
+  answer: ReactNode;
   media: MediaHolderLayer;
 }
 
@@ -192,14 +193,18 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
                     className={styles.trigger}
                     type="button"
                   >
-                    <Text
-                      variant="body-xl"
-                      weight="medium"
-                      color={onDarkBg ? 'white' : 'default'}
-                      as="span"
-                    >
-                      {item.question}
-                    </Text>
+                    {typeof item.question === 'string' ? (
+                      <Text
+                        variant="body-xl"
+                        weight="medium"
+                        color={onDarkBg ? 'white' : 'default'}
+                        as="span"
+                      >
+                        {item.question}
+                      </Text>
+                    ) : (
+                      item.question
+                    )}
                     <span className={styles.toggleIcon} aria-hidden="true">
                       {isOpen ? <IcMinus /> : <IcAdd />}
                     </span>
@@ -217,13 +222,17 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
                   className={styles.panel}
                 >
                   <div className={styles.panelInner}>
-                    <Text
-                      variant="body-m"
-                      color={onDarkBg ? 'muted' : 'secondary'}
-                      as="p"
-                    >
-                      {item.answer}
-                    </Text>
+                    {typeof item.answer === 'string' ? (
+                      <Text
+                        variant="body-m"
+                        color={onDarkBg ? 'muted' : 'secondary'}
+                        as="p"
+                      >
+                        {item.answer}
+                      </Text>
+                    ) : (
+                      item.answer
+                    )}
                     <div
                       className={styles.inlineMedia}
                       style={mediaBg ? { background: mediaBg } : undefined}

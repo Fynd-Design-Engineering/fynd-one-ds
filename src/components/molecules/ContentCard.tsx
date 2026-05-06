@@ -42,6 +42,8 @@ export interface ContentCardProps {
   chipIcon?: ReactNode;
   /** Chip variant. Defaults to `'filled'` (ContentCard default). */
   chipVariant?: 'anchor' | 'filled' | 'outlined';
+  /** Chip breakpoint size lock. Forwarded to `Chip.breakpoint`. */
+  chipBreakpoint?: 'lg' | 'md' | 'sm';
   title: string;
   titleVariant?: TextVariant;
   /** Semantic heading level for the card title. Defaults to `'h3'`. */
@@ -107,6 +109,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
   bordered = false,
   bullets,
   imageBg,
+  chipBreakpoint,
   className,
   style,
 }) => {
@@ -204,6 +207,8 @@ export const ContentCard: React.FC<ContentCardProps> = ({
             showDot={chipShowDot}
             dotColor={chipDotColor}
             icon={chipIcon}
+            breakpoint={chipBreakpoint}
+            onDarkBg={onDarkBg}
             style={{
               backgroundColor: neutrals[0],
               borderRadius: 1000,
@@ -223,6 +228,8 @@ export const ContentCard: React.FC<ContentCardProps> = ({
                 showDot={chipShowDot}
                 dotColor={chipDotColor}
                 icon={chipIcon}
+                breakpoint={chipBreakpoint}
+                onDarkBg={onDarkBg}
                 style={{
                   backgroundColor: neutrals[0],
                   borderRadius: 1000,

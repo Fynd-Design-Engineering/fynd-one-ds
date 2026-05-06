@@ -166,6 +166,7 @@ export const Modal: React.FC<ModalProps> = ({
           <FloatingPortal>
             <motion.div
               className={styles.overlay}
+              style={{ backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)' }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}

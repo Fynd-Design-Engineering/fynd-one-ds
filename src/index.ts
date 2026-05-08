@@ -112,6 +112,9 @@ export type {
 export { AISummary } from './components/molecules/AISummary';
 export type { AISummaryProps } from './components/molecules/AISummary';
 
+export { Stepper } from './components/molecules/Stepper';
+export type { StepperProps, StepperItem, StepperVariant } from './components/molecules/Stepper';
+
 export { PricingCard } from './components/molecules/PricingCard';
 export type { PricingCardProps, PricingFeature } from './components/molecules/PricingCard';
 

@@ -1,0 +1,211 @@
+/* ── Stepper ──────────────────────────────────────────────────────────────── */
+
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.step {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+/* ── Indicator column ─────────────────────────────────────────────────────── */
+
+.indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+
+/* ── Connector (dashed vertical line) ────────────────────────────────────── */
+
+.connector {
+  flex: 1;
+  width: 2px;
+  min-height: 8px;
+  position: relative;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--fds-neutral-40, #a0a1a2) 0px,
+    var(--fds-neutral-40, #a0a1a2) 4px,
+    transparent 4px,
+    transparent 10px
+  );
+}
+
+.connector__fill {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--fds-neutral-100, #101319) 0px,
+    var(--fds-neutral-100, #101319) 4px,
+    transparent 4px,
+    transparent 10px
+  );
+  transform: scaleY(0);
+  transform-origin: top center;
+}
+
+.connector__fill--done {
+  transform: scaleY(1);
+}
+
+.connector__fill--animating {
+  animation: fds-stepper-fill 600ms ease-in-out forwards;
+}
+
+@keyframes fds-stepper-fill {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .connector__fill--animating {
+    animation: none;
+    transform: scaleY(1);
+  }
+}
+
+/* ── Dot (DotTrail) ───────────────────────────────────────────────────────── */
+
+.dot {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  border: 10px solid var(--fds-neutral-100, #101319);
+}
+
+.dot--muted {
+  border-color: var(--fds-neutral-40, #a0a1a2);
+}
+
+/* ── Count pill (CountFlow) ───────────────────────────────────────────────── */
+
+.count {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  flex-shrink: 0;
+  background: var(--fds-neutral-100, #101319);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter Display', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--fds-neutral-0, #ffffff);
+}
+
+.count--muted {
+  background: var(--fds-neutral-40, #a0a1a2);
+}
+
+/* ── Node slot (NodeLink / NodeSolo) ──────────────────────────────────────── */
+
+.node {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: var(--fds-neutral-20, #f2f2f2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.node--muted {
+  opacity: 0.5;
+}
+
+/* ── Text column ──────────────────────────────────────────────────────────── */
+
+.text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 6px;
+  padding-bottom: 40px;
+}
+
+.step:last-child .text {
+  padding-bottom: 0;
+}
+
+.title {
+  margin: 0;
+  font-family: 'Inter Display', sans-serif;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 34px;
+  letter-spacing: -0.02em;
+  color: var(--fds-neutral-100, #101319);
+}
+
+.subtext {
+  margin: 0;
+  font-family: 'Inter Display', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--fds-neutral-60, #5b5c5d);
+}
+
+/* ── Dark background overrides ────────────────────────────────────────────── */
+
+.dark .title {
+  color: var(--fds-neutral-0, #ffffff);
+}
+
+.dark .subtext {
+  color: var(--fds-neutral-40, #a0a1a2);
+}
+
+.dark .dot {
+  border-color: var(--fds-neutral-0, #ffffff);
+}
+
+.dark .dot--muted {
+  border-color: var(--fds-neutral-60, #5b5c5d);
+}
+
+.dark .count {
+  background: var(--fds-neutral-0, #ffffff);
+  color: var(--fds-neutral-100, #101319);
+}
+
+.dark .count--muted {
+  background: var(--fds-neutral-80, #4a4b4c);
+  color: var(--fds-neutral-0, #ffffff);
+}
+
+.dark .connector {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--fds-neutral-80, #4a4b4c) 0px,
+    var(--fds-neutral-80, #4a4b4c) 4px,
+    transparent 4px,
+    transparent 10px
+  );
+}
+
+.dark .connector__fill {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--fds-neutral-0, #ffffff) 0px,
+    var(--fds-neutral-0, #ffffff) 4px,
+    transparent 4px,
+    transparent 10px
+  );
+}

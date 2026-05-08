@@ -1,0 +1,54 @@
+/* ── AISummary ───────────────────────────────────────────────────────────── */
+
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.tab {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  align-self: flex-start;
+  border-radius: 8px 8px 0 0;
+  background: linear-gradient(88deg, #E0D0EE -14.85%, #9F80F8 21.47%, #1079E2 85.02%);
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: #ffffff;
+}
+
+.icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.icon svg path {
+  fill: #ffffff;
+}
+
+.tab-label {
+  font-family: var(--typeface-font-family-body, 'Inter Display', sans-serif);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.body {
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(88deg, #E0D0EE -14.85%, #9F80F8 21.47%, #1079E2 85.02%) border-box;
+  border: 2px solid transparent;
+  border-radius: 0 16px 16px 16px;
+  padding: 16px;
+}

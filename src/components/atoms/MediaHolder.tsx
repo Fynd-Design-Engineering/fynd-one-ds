@@ -30,6 +30,8 @@ export interface MediaHolderProps {
   videoRef?: (el: HTMLVideoElement | null, index: number) => void;
   /** Background color shown behind / around the media. */
   background?: string;
+  /** How the media fills its container. Default `'cover'`. */
+  objectFit?: 'cover' | 'contain';
   className?: string;
   style?: CSSProperties;
 }
@@ -55,6 +57,7 @@ export const MediaHolder: React.FC<MediaHolderProps> = ({
   activeIndex = 0,
   videoRef,
   background,
+  objectFit = 'cover',
   className,
   style,
 }) => {
@@ -90,6 +93,7 @@ export const MediaHolder: React.FC<MediaHolderProps> = ({
                 playsInline
                 preload={isActive ? 'auto' : 'metadata'}
                 aria-hidden="true"
+                style={{ objectFit }}
               />
             </div>
           );
@@ -103,6 +107,7 @@ export const MediaHolder: React.FC<MediaHolderProps> = ({
               loading={idx === 0 ? 'eager' : 'lazy'}
               decoding="async"
               aria-hidden={!isActive}
+              style={{ objectFit }}
             />
           </div>
         );

@@ -37,6 +37,8 @@ export interface InteractiveAccordionProps {
   onOpenIndexChange?: (i: number) => void;
   /** Background color behind the media panel and inline media. */
   mediaBg?: string;
+  /** How media fills its container. Default `'contain'`. */
+  mediaObjectFit?: 'cover' | 'contain';
   /**
    * Drop the card shadow. Default `true`.
    * Pass `false` when the page bg is already tinted.
@@ -59,6 +61,7 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
   openIndex: controlledOpenIndex,
   onOpenIndexChange,
   mediaBg,
+  mediaObjectFit = 'contain',
   shadow = true,
   onDarkBg = false,
   questionAs: QuestionTag = 'h3',
@@ -165,6 +168,7 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
               panelVideoRefs.current[i] = el;
             }}
             background={mediaBg}
+            objectFit={mediaObjectFit}
           />
         </div>
 
@@ -245,6 +249,7 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
                           inlineVideoRefs.current[idx] = el;
                         }}
                         background={mediaBg}
+                        objectFit={mediaObjectFit}
                       />
                     </div>
                   </div>

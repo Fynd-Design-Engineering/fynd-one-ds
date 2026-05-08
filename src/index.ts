@@ -109,6 +109,9 @@ export type {
   InteractiveAccordionMedia,
 } from './components/molecules/InteractiveAccordion';
 
+export { AISummary } from './components/molecules/AISummary';
+export type { AISummaryProps } from './components/molecules/AISummary';
+
 export { PricingCard } from './components/molecules/PricingCard';
 export type { PricingCardProps, PricingFeature } from './components/molecules/PricingCard';
 

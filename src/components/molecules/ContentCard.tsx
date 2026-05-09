@@ -76,6 +76,11 @@ export interface ContentCardProps {
    * to tint the visual panel independently from the card background.
    */
   imageBg?: string;
+  /**
+   * Arbitrary content slot rendered below the title/subtext/bullets.
+   * Use to inject `<Pointers>`, metric rows, or any other DS component.
+   */
+  children?: ReactNode;
   className?: string;
   style?: CSSProperties;
 }
@@ -110,6 +115,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
   chipVariant = 'filled',
   bordered = false,
   bullets,
+  children,
   imageBg,
   chipBreakpoint,
   chipOnDarkBg = false,
@@ -245,6 +251,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
           {bullets && bullets.length > 0 && (
             <Pointers items={bullets} onDarkBg={onDarkBg} />
           )}
+          {children}
         </div>
 
         {showButton && !clickable && (

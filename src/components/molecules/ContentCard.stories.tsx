@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { ContentCard } from './ContentCard';
+import { Pointers } from './Pointers';
 import { IcAiStar } from '../../icons';
 
 const meta: Meta<typeof ContentCard> = {
@@ -373,6 +374,33 @@ export const DarkWithImages: Story = {
           onDarkBg
         />
       </div>
+    </div>
+  ),
+};
+
+export const WithContentSlot: Story = {
+  name: 'Content slot — injected Pointers',
+  render: () => (
+    <div style={{ width: 440 }}>
+      <ContentCard
+        imagePosition="above"
+        chipLabel="With"
+        chipPosition="floating"
+        title="With 3D, AR, & VR Shopping"
+        imageSrc="https://picsum.photos/seed/with3d/520/340"
+        imageAlt="With 3D AR VR preview"
+        imageBg="#e8f5e9"
+        showButton={false}
+        showSubtext={false}
+      >
+        <Pointers
+          items={[
+            { label: 'Shoppers buy with confidence knowing exactly what they get' },
+            { label: 'Fewer returns thanks to accurate product visualisation' },
+            { label: 'Higher session depth and conversion rates' },
+          ]}
+        />
+      </ContentCard>
     </div>
   ),
 };

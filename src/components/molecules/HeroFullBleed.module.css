@@ -74,24 +74,24 @@
 .inner {
   position: relative;
   z-index: 2;
-  max-width: 1440px;
+  max-width: 80rem;
   margin: 0 auto;
   width: 100%;
   box-sizing: border-box;
-  padding: 80px 120px 6rem;
+  padding: 80px 1.5rem 6rem;
   padding-top: calc(80px + var(--fds-hfb-top, 0px));
 }
 
 @media (max-width: 1023px) {
   .inner {
-    padding: 64px 48px 6rem;
+    padding: 64px 1.5rem 6rem;
     padding-top: calc(64px + var(--fds-hfb-top, 0px));
   }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
   .inner {
-    padding: 64px 64px 6rem;
+    padding: 64px 1.5rem 6rem;
     padding-top: calc(64px + var(--fds-hfb-top, 0px));
     order: 0;
   }
@@ -103,7 +103,8 @@
 
 @media (max-width: 767px) {
   .inner {
-    padding: 48px 24px 6rem;
+    max-width: 100%;
+    padding: 48px 1.5rem 6rem;
     padding-top: calc(48px + var(--fds-hfb-top, 0px));
     order: 0;
   }

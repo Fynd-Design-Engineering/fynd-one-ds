@@ -56,8 +56,7 @@ export const Default: Story = {
     ),
     extras: <StatsGrid />,
     video: {
-      src: 'https://cdn.pixelbin.io/v2/nameless-waterfall-bf6e98/original/fynd-web/home/fynd-homepage-hero-desktop.mp4',
-      poster: 'https://cdn.pixelbin.io/v2/nameless-waterfall-bf6e98/original/fynd-web/solutions/storefront/fynd-storefront.avif',
+      src: 'https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/original/webflow-team/Fynd_One/uk/hero_uk_Mobile_optimised_crop.mp4',
       objectFit: 'cover',
     },
     bg: '#eeeeee',

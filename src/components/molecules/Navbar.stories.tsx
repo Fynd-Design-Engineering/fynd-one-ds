@@ -81,10 +81,11 @@ export const Default: Story = {
           className="fds-actions__desktop-only"
           label="Book a demo"
           variant="secondary"
+          size="md"
           style={{ borderColor: '#0000001f' }}
           onClick={() => {}}
         />
-        <Button label="Sign in" variant="primary" onClick={() => {}} />
+        <Button label="Sign in" variant="primary" size="md" onClick={() => {}} />
         <style>{`
           @media (max-width: 991px) {
             .fds-actions__phone-circle { display: inline-flex !important; }
@@ -144,8 +145,8 @@ export const DarkBackground: Story = {
     onDarkBg: true,
     actions: (
       <>
-        <Button label="Book a demo" variant="secondary" onDarkBg onClick={() => {}} />
-        <Button label="Sign in" variant="primary" onDarkBg onClick={() => {}} />
+        <Button label="Book a demo" variant="secondary" size="md" onDarkBg onClick={() => {}} />
+        <Button label="Sign in" variant="primary" size="md" onDarkBg onClick={() => {}} />
       </>
     ),
   },

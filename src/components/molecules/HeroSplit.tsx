@@ -81,7 +81,7 @@ export const HeroSplit: React.FC<HeroSplitProps> = ({
         : topOffset;
 
   const sectionStyle: CSSProperties = {
-    paddingBottom: '4rem',
+    paddingBottom: '6rem',
     ...(bg ? ({ '--fds-herosplit-bg': bg } as CSSProperties) : null),
     ...(resolvedOffset ? { marginTop: `calc(-1 * (${resolvedOffset}))` } : null),
   };

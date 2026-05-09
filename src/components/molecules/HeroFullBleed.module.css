@@ -34,15 +34,13 @@
   height: 100%;
 }
 
+/* Combines with the global .gradient-blur class for layered backdrop blur.
+   Overrides gradient-blur's height and z-index, adds the bg-matched color fade. */
 .videoGradient {
   display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
   height: 500px;
+  z-index: 1;
   background-image: linear-gradient(var(--fds-herofullbleed-bg, transparent) 50%, transparent);
-  pointer-events: none;
 }
 
 /* On mobile (<768px): wrap drops out of absolute flow, sits below content,

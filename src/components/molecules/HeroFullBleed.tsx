@@ -4,6 +4,7 @@ import React, { CSSProperties, ReactNode, useEffect, useRef } from 'react';
 import { Text } from '../Typography/Text';
 import { Chip } from '../atoms/Chip';
 import { Pointers, PointerItem } from './Pointers';
+import '../../styles/gradient-blur.css';
 import styles from './HeroFullBleed.module.css';
 
 export type { PointerItem };
@@ -173,7 +174,11 @@ export const HeroFullBleed: React.FC<HeroFullBleedProps> = ({
             playsInline
             style={{ objectFit: video.objectFit ?? 'cover' }}
           />
-          {bg && <div className={styles.videoGradient} />}
+          {bg && (
+            <div className={`gradient-blur ${styles.videoGradient}`}>
+              <div/><div/><div/><div/><div/><div/>
+            </div>
+          )}
         </div>
       )}
 

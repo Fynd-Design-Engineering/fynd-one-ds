@@ -29,14 +29,14 @@
   z-index: 0;
 }
 
-/* On mobile: drops out of absolute flow and sits below the content. */
+/* On mobile (<768px): drops out of absolute flow, sits below content,
+   preserves the video's native aspect ratio. */
 @media (max-width: 767px) {
   .video {
     position: relative;
     inset: auto;
     width: 100%;
     height: auto;
-    aspect-ratio: 16 / 10;
     order: 1;
     pointer-events: auto;
     z-index: auto;

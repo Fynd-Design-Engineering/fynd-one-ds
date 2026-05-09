@@ -26,10 +26,6 @@ const FYND_STATS = [
 
 export const Default: Story = {
   args: {
-    ratingChips: [
-      { platform: 'amazon', rank: '#1', label: 'in Commerce Platform' },
-      { platform: 'g2', stars: 5, rating: '4.8 / 5' },
-    ],
     title: (
       <>
         Run your entire retail

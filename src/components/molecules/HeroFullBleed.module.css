@@ -167,42 +167,11 @@
   display: flex;
 }
 
-/* ── Rating chips row ─────────────────────────────────────────────────────── */
+/* ── Badges (consumer-owned slot above chip/title) ────────────────────────── */
 
-.ratingChips {
+.badges {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
   align-items: center;
-}
-
-.ratingChip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(255, 255, 255, 0.71);
-  border: 0.5px solid rgba(0, 0, 0, 0.14);
-  border-radius: 2000px;
-  padding: 6px 16px 6px 12px;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  font-family: 'Inter Display', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: #5b5c5d;
-  line-height: 1.4;
-  white-space: nowrap;
-}
-
-/* Rank / rating number in dark text */
-.ratingChipRank {
-  color: #0e0e0e;
-  font-weight: 600;
-}
-
-/* Stars row */
-.ratingChipStars {
-  display: inline-flex;
-  align-items: center;
-  letter-spacing: -1px;
 }

@@ -72,10 +72,6 @@ const triggerCircleStyle: CSSProperties = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  width: 40,
-  height: 40,
-  borderRadius: 999,
-  border: '1px solid #0000001f',
   flexShrink: 0,
 };
 

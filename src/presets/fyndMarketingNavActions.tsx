@@ -4,8 +4,7 @@
  * Fynd Marketing Navbar action presets
  *
  * Drop-in right-side action group for the marketing Navbar:
- *   • desktop: phone number + chevron → opens contact dropdown (WhatsApp QR + phone)
- *   • mobile: icon-only circle → same dropdown
+ *   • desktop: phone icon + chevron → opens contact dropdown (WhatsApp QR + phone)
  *   • "Book a demo" → opens Modal with ContactForm
  *   • "Sign in" anchored to the consumer's auth route
  *
@@ -28,7 +27,7 @@
  *   />
  */
 
-import React, { CSSProperties, ReactNode, forwardRef, useRef, useState } from 'react';
+import React, { ReactNode, forwardRef, useRef, useState } from 'react';
 import { Button } from '../components/atoms/Button';
 import { Modal } from '../components/molecules/Modal';
 import { Popover } from '../components/molecules/Popover';
@@ -36,6 +35,7 @@ import { ContactForm, ContactFormValues } from '../components/molecules/ContactF
 import { IcCall } from '../assets/icons/communication';
 import { IcChevronDown } from '../assets/icons/navigation';
 import { fyndMarketingProductOptions } from './fyndMarketingProductOptions';
+import styles from './fyndMarketingNavActions.module.css';
 
 // ── WhatsApp inline icon ──────────────────────────────────────────────────────
 
@@ -56,115 +56,17 @@ const IcWhatsApp = () => (
   </svg>
 );
 
-// ── Styles ────────────────────────────────────────────────────────────────────
-
-const triggerBaseStyle: CSSProperties = {
-  background: 'none',
-  border: 'none',
-  cursor: 'pointer',
-  padding: 0,
-  display: 'flex',
-  alignItems: 'center',
-  color: 'var(--fds-neutral-100, #101319)',
-};
-
-const triggerCircleStyle: CSSProperties = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  flexShrink: 0,
-};
-
-const panelStyle: CSSProperties = {
-  padding: '8px 0',
-};
-
-const waHeaderStyle: CSSProperties = {
-  display: 'flex',
-  gap: 12,
-  alignItems: 'flex-start',
-  padding: '10px 16px 14px',
-};
-
-const waHeaderTitleStyle: CSSProperties = {
-  fontFamily: "'Inter Display', sans-serif",
-  fontSize: 14,
-  fontWeight: 600,
-  lineHeight: 1.4,
-  color: 'var(--fds-neutral-100, #101319)',
-  margin: 0,
-};
-
-const waHeaderSubStyle: CSSProperties = {
-  fontFamily: "'Inter Display', sans-serif",
-  fontSize: 12,
-  fontWeight: 400,
-  lineHeight: 1.4,
-  color: 'var(--fds-neutral-60, #5b5c5d)',
-  margin: '2px 0 0',
-};
-
-const qrCardStyle: CSSProperties = {
-  margin: '0 12px',
-  border: '1px solid var(--fds-neutral-30, #e3e3e3)',
-  borderRadius: 12,
-  overflow: 'hidden',
-};
-
-const qrImageBlockStyle: CSSProperties = {
-  background: 'var(--fds-neutral-10, #f8f8f9)',
-  display: 'flex',
-  justifyContent: 'center',
-  padding: 24,
-};
-
-const qrCopyStyle: CSSProperties = {
-  textAlign: 'center',
-  padding: '16px 16px 20px',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  gap: 8,
-};
-
-const qrTitleStyle: CSSProperties = {
-  fontFamily: "'Inter Display', sans-serif",
-  fontSize: 14,
-  fontWeight: 600,
-  lineHeight: 1.4,
-  color: 'var(--fds-neutral-100, #101319)',
-  margin: 0,
-};
-
-const qrOrStyle: CSSProperties = {
-  fontFamily: "'Inter Display', sans-serif",
-  fontSize: 14,
-  fontWeight: 400,
-  color: 'var(--fds-neutral-60, #5b5c5d)',
-  margin: 0,
-};
-
-const dividerStyle: CSSProperties = {
-  height: 1,
-  background: 'var(--fds-neutral-30, #e3e3e3)',
-  margin: '8px 12px',
-};
-
-const phoneButtonWrapStyle: CSSProperties = {
-  padding: '8px 12px',
-};
-
 // ── ContactDropdownTrigger ────────────────────────────────────────────────────
 
 const ContactDropdownTrigger = forwardRef<
   HTMLButtonElement,
-  React.ButtonHTMLAttributes<HTMLButtonElement>
->(({ style, ...props }, ref) => (
-  <button ref={ref} {...props} style={{ ...triggerBaseStyle, gap: 6, ...style }}>
-    <span style={triggerCircleStyle}>
+  Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'style'>
+>(({ className, ...props }, ref) => (
+  <button ref={ref} {...props} className={[styles.trigger, className].filter(Boolean).join(' ')}>
+    <span className={styles.triggerIcon}>
       <IcCall />
     </span>
-    <span style={{ width: 16, height: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: 0.5 }}>
+    <span className={styles.triggerChevron}>
       <IcChevronDown />
     </span>
   </button>
@@ -184,36 +86,34 @@ const ContactDropdownPanel = ({
   phoneNumber: string;
   phoneHref: string;
 }) => (
-  <div style={panelStyle}>
-    <div style={waHeaderStyle}>
-      <span style={{ color: 'var(--fds-neutral-60, #5b5c5d)', display: 'flex', flexShrink: 0, marginTop: 1 }}>
+  <div className={styles.panel}>
+    <div className={styles.waHeader}>
+      <span className={styles.waIcon}>
         <IcWhatsApp />
       </span>
       <div>
-        <p style={waHeaderTitleStyle}>Chat on Whatsapp</p>
-        <p style={waHeaderSubStyle}>Message us for quick assistance</p>
+        <p className={styles.waTitle}>Chat on Whatsapp</p>
+        <p className={styles.waSub}>Message us for quick assistance</p>
       </div>
     </div>
 
-    <div style={qrCardStyle}>
-      <div style={qrImageBlockStyle}>
+    <div className={styles.qrCard}>
+      <div className={styles.qrImage}>
         <img
           src={whatsappQrSrc}
           alt="WhatsApp QR code — scan to chat"
           width={160}
           height={160}
-          style={{ display: 'block' }}
         />
       </div>
-      <div style={qrCopyStyle}>
-        <p style={qrTitleStyle}>Scan the QR code to chat</p>
-        <p style={qrOrStyle}>or</p>
+      <div className={styles.qrCopy}>
+        <p className={styles.qrTitle}>Scan the QR code to chat</p>
+        <p className={styles.qrOr}>or</p>
         <Button
           label="Open Whatsapp"
           variant="secondary"
-          size="md"
           showChevron
-          style={{ borderColor: '#0000001f' }}
+          className={styles.panelBtn}
           onClick={() => {
             if (typeof window !== 'undefined') window.open(whatsappHref, '_blank', 'noopener,noreferrer');
           }}
@@ -221,14 +121,13 @@ const ContactDropdownPanel = ({
       </div>
     </div>
 
-    <div style={phoneButtonWrapStyle}>
+    <div className={styles.phoneWrap}>
       <Button
         label={phoneNumber}
         variant="secondary"
-        size="md"
         iconLeft={<IcCall />}
         href={phoneHref}
-        style={{ width: '100%', borderColor: '#0000001f' }}
+        className={`${styles.panelBtn} ${styles.callBtn}`}
       />
     </div>
   </div>
@@ -315,54 +214,52 @@ export const FyndMarketingNavActions = ({
   };
 
   return (
-  <>
-    <Popover
-      open={contactOpen}
-      onOpenChange={setContactOpen}
-      trigger={
-        <ContactDropdownTrigger
-          onMouseEnter={openContact}
-          onMouseLeave={scheduleClose}
-        />
-      }
-      placement="bottom-end"
-      width={360}
-    >
-      <div onMouseEnter={openContact} onMouseLeave={scheduleClose}>
-        <ContactDropdownPanel
-          whatsappHref={whatsappHref}
-          whatsappQrSrc={whatsappQrSrc}
-          phoneNumber={phoneNumber}
-          phoneHref={phoneHref}
-        />
-      </div>
-    </Popover>
+    <>
+      <Popover
+        open={contactOpen}
+        onOpenChange={setContactOpen}
+        trigger={
+          <ContactDropdownTrigger
+            onMouseEnter={openContact}
+            onMouseLeave={scheduleClose}
+          />
+        }
+        placement="bottom-end"
+        width={360}
+      >
+        <div onMouseEnter={openContact} onMouseLeave={scheduleClose}>
+          <ContactDropdownPanel
+            whatsappHref={whatsappHref}
+            whatsappQrSrc={whatsappQrSrc}
+            phoneNumber={phoneNumber}
+            phoneHref={phoneHref}
+          />
+        </div>
+      </Popover>
 
-    <ContactModal
-      trigger={
-        <Button
-          className="fds-actions__desktop-only"
-          label={bookDemoLabel}
-          variant="secondary"
-          size="md"
-          style={{ borderColor: '#0000001f' }}
-        />
-      }
-      formTitle={contactFormTitle}
-      productOptions={productOptions}
-      onSubmit={onContactSubmit}
-    />
+      <ContactModal
+        trigger={
+          <Button
+            className={`fds-actions__desktop-only ${styles.bookDemoBtn}`}
+            label={bookDemoLabel}
+            variant="secondary"
+            size="md"
+          />
+        }
+        formTitle={contactFormTitle}
+        productOptions={productOptions}
+        onSubmit={onContactSubmit}
+      />
 
-    <Button
-      label={signInLabel}
-      variant="primary"
-      size="md"
-      onClick={() => {
-        if (typeof window !== 'undefined') window.location.href = signInHref;
-      }}
-    />
-
-  </>
+      <Button
+        label={signInLabel}
+        variant="primary"
+        size="md"
+        onClick={() => {
+          if (typeof window !== 'undefined') window.location.href = signInHref;
+        }}
+      />
+    </>
   );
 };
 
@@ -387,7 +284,7 @@ export const FyndMarketingNavMobileActions = ({
         label={bookDemoLabel}
         variant="primary"
         showChevron={false}
-        style={{ marginTop: '1.5rem' }}
+        className={styles.mobileBookDemoBtn}
       />
     }
     formTitle={contactFormTitle}

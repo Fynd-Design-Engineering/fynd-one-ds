@@ -1,0 +1,133 @@
+/* ── Trigger ──────────────────────────────────────────── */
+
+.trigger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--fds-neutral-100, #101319);
+}
+
+.triggerIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.triggerChevron {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+}
+
+/* ── Panel ────────────────────────────────────────────── */
+
+.panel {
+  padding: 8px 0;
+}
+
+.waHeader {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 10px 16px 14px;
+}
+
+.waIcon {
+  color: var(--fds-neutral-60, #5b5c5d);
+  display: flex;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.waTitle {
+  font-family: 'Inter Display', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--fds-neutral-100, #101319);
+  margin: 0;
+}
+
+.waSub {
+  font-family: 'Inter Display', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--fds-neutral-60, #5b5c5d);
+  margin: 2px 0 0;
+}
+
+.qrCard {
+  margin: 0 12px;
+  border: 1px solid var(--fds-neutral-30, #e3e3e3);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.qrImage {
+  background: var(--fds-neutral-10, #f8f8f9);
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+}
+
+.qrImage img {
+  display: block;
+}
+
+.qrCopy {
+  text-align: center;
+  padding: 16px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.qrTitle {
+  font-family: 'Inter Display', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--fds-neutral-100, #101319);
+  margin: 0;
+}
+
+.qrOr {
+  font-family: 'Inter Display', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--fds-neutral-60, #5b5c5d);
+  margin: 0;
+}
+
+/* ── Buttons ──────────────────────────────────────────── */
+
+.phoneWrap {
+  padding: 8px 12px;
+}
+
+.panelBtn {
+  height: 40px !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+.callBtn {
+  width: 100%;
+}
+
+.bookDemoBtn {
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+.mobileBookDemoBtn {
+  margin-top: 1.5rem;
+}

@@ -221,8 +221,6 @@ const ContactDropdownPanel = ({
       </div>
     </div>
 
-    <div style={dividerStyle} />
-
     <div style={phoneButtonWrapStyle}>
       <Button
         label={phoneNumber}

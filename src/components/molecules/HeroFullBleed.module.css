@@ -18,41 +18,54 @@
   }
 }
 
-/* ── Video background ─────────────────────────────────────────────────────── */
+/* ── Video wrap (video + gradient together, shifted up) ───────────────────── */
+
+.videoWrap {
+  position: absolute;
+  inset: 0;
+  margin-top: -200px;
+  z-index: 0;
+  pointer-events: none;
+}
 
 .video {
   position: absolute;
   inset: 0;
-  margin-top: -200px;
   width: 100%;
   height: 100%;
-  pointer-events: none;
-  z-index: 0;
 }
 
-/* Gradient that fades from the section bg color into the video below it. */
+/* Gradient re-aligns to the visible section top (top: 200px compensates for
+   the -200px margin on the wrap). */
 .videoGradient {
   position: absolute;
-  top: 0;
+  top: 200px;
   left: 0;
   right: 0;
   height: 300px;
   background-image: linear-gradient(var(--fds-herofullbleed-bg, transparent) 50%, transparent);
   pointer-events: none;
-  z-index: 1;
 }
 
-/* On mobile (<768px): drops out of absolute flow, sits below content,
-   preserves the video's native aspect ratio. */
+/* On mobile (<768px): wrap drops out of absolute flow, sits below content. */
 @media (max-width: 767px) {
+  .videoWrap {
+    position: relative;
+    inset: auto;
+    margin-top: 0;
+    order: 1;
+    pointer-events: auto;
+  }
+
   .video {
     position: relative;
     inset: auto;
     width: 100%;
     height: auto;
-    order: 1;
-    pointer-events: auto;
-    z-index: auto;
+  }
+
+  .videoGradient {
+    display: none;
   }
 }
 

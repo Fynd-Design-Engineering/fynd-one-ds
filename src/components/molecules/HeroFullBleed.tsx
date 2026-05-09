@@ -163,17 +163,19 @@ export const HeroFullBleed: React.FC<HeroFullBleedProps> = ({
   return (
     <section className={rootCls} style={rootStyle}>
       {video && (
-        <video
-          ref={videoRef}
-          className={styles.video}
-          autoPlay
-          muted
-          loop
-          playsInline
-          style={{ objectFit: video.objectFit ?? 'cover' }}
-        />
+        <div className={styles.videoWrap} aria-hidden="true">
+          <video
+            ref={videoRef}
+            className={styles.video}
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{ objectFit: video.objectFit ?? 'cover' }}
+          />
+          {bg && <div className={styles.videoGradient} />}
+        </div>
       )}
-      {video && bg && <div className={styles.videoGradient} aria-hidden="true" />}
 
       <div className={styles.inner}>
         <div className={styles.content}>

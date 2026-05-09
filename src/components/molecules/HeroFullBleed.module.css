@@ -40,7 +40,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 300px;
+  height: 500px;
   background-image: linear-gradient(var(--fds-herofullbleed-bg, transparent) 50%, transparent);
   pointer-events: none;
 }

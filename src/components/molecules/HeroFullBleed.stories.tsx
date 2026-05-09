@@ -48,12 +48,7 @@ export const Default: Story = {
     ),
     subtext:
       'Storefront, OMS, POS, and marketplace — all connected, all in sync.',
-    actions: (
-      <>
-        <Button label="Book a demo" variant="primary" showChevron />
-        <Button label="Explore features" variant="secondary" />
-      </>
-    ),
+    actions: <Button label="Book a demo" variant="primary" showChevron />,
     extras: <StatsGrid />,
     video: {
       src: 'https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/original/webflow-team/Fynd_One/uk/hero_uk_full_desktop_fullscale.mp4',

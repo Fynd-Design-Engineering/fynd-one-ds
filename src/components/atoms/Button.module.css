@@ -86,12 +86,6 @@
   border-color: var(--btn-secondary-light-border-hover);
 }
 
-/* ── Size variants ──────────────────────── */
-
-.size-md {
-  height: 40px;
-}
-
 /* ── Tertiary ───────────────────────────── */
 
 .tertiary {
@@ -125,4 +119,10 @@
 .tertiary-light:hover {
   color: var(--btn-tertiary-text-light);
   text-decoration: none;
+}
+
+/* ── Size variants (must be last to win over variant height rules) ── */
+
+.size-md {
+  height: 40px;
 }

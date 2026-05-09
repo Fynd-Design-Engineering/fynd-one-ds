@@ -1,7 +1,7 @@
 import React, { CSSProperties } from 'react';
 import styles from './MediaHolder.module.css';
 
-export type MediaHolderAspectRatio = '5:4' | '1:1' | '16:9' | 'portrait' | (string & {});
+export type MediaHolderAspectRatio = '5:4' | '1:1' | '16:9' | 'portrait' | '3:3.5' | (string & {});
 
 export interface MediaHolderLayer {
   type: 'image' | 'video';
@@ -41,6 +41,7 @@ const PRESET_RATIOS: Record<string, string> = {
   '1:1': '1 / 1',
   '16:9': '16 / 9',
   portrait: '3 / 4',
+  '3:3.5': '3 / 3.5',
 };
 
 /** Resolves a named preset or passes through a raw CSS aspect-ratio value. */

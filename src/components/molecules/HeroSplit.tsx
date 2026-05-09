@@ -83,7 +83,7 @@ export const HeroSplit: React.FC<HeroSplitProps> = ({
   const sectionStyle: CSSProperties | undefined =
     bg || resolvedOffset
       ? {
-          ...(bg ? { background: bg } : null),
+          ...(bg ? ({ '--fds-herosplit-bg': bg } as CSSProperties) : null),
           ...(resolvedOffset ? { marginTop: `calc(-1 * (${resolvedOffset}))` } : null),
         }
       : undefined;
@@ -93,7 +93,7 @@ export const HeroSplit: React.FC<HeroSplitProps> = ({
     : style;
 
   return (
-    <SectionWrapper as="header" onDarkBg={onDarkBg} style={sectionStyle}>
+    <SectionWrapper as="header" onDarkBg={onDarkBg} style={sectionStyle} className={bg ? styles.hasBg : undefined}>
       <div className={rootClass} style={innerStyle}>
         <div className={styles.content}>
           <div className={styles.textGroup}>

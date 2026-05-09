@@ -4,10 +4,8 @@ import { HeroSplit } from './HeroSplit';
 import { Button } from '../atoms/Button';
 
 const SAMPLE_IMAGE = {
-  src: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=900&fit=crop',
-  alt: 'Hyperlocal commerce illustration',
-  width: 1200,
-  height: 900,
+  src: 'https://cdn.pixelbin.io/v2/nameless-waterfall-bf6e98/original/fynd-web/solutions/storefront/fynd-storefront.avif',
+  alt: 'Fynd Storefront',
 };
 
 const meta: Meta<typeof HeroSplit> = {

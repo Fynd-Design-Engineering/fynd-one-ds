@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { HeroFullBleed } from './HeroFullBleed';
 import { Button } from '../atoms/Button';
-import { Text } from '../Typography/Text';
+import { StatsGrid } from './StatsGrid';
 
 const meta: Meta<typeof HeroFullBleed> = {
   title: 'Content/HeroFullBleed',
@@ -17,21 +17,12 @@ const meta: Meta<typeof HeroFullBleed> = {
 export default meta;
 type Story = StoryObj<typeof HeroFullBleed>;
 
-const StatsGrid: React.FC = () => (
-  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px 32px' }}>
-    {[
-      { stat: '10,000+', label: 'Brands' },
-      { stat: '$2B+', label: 'GMV processed' },
-      { stat: '50+', label: 'Countries' },
-      { stat: '99.9%', label: 'Uptime' },
-    ].map(({ stat, label }) => (
-      <div key={label}>
-        <Text variant="heading-m" as="p" weight="medium">{stat}</Text>
-        <Text variant="body-s" as="p" color="secondary">{label}</Text>
-      </div>
-    ))}
-  </div>
-);
+const FYND_STATS = [
+  { stat: '10,000+', label: 'Brands' },
+  { stat: '$2B+', label: 'GMV processed' },
+  { stat: '50+', label: 'Countries' },
+  { stat: '99.9%', label: 'Uptime' },
+];
 
 export const Default: Story = {
   args: {
@@ -49,7 +40,7 @@ export const Default: Story = {
     subtext:
       'Storefront, OMS, POS, and marketplace — all connected, all in sync.',
     actions: <Button label="Book a demo" variant="primary" showChevron />,
-    extras: <StatsGrid />,
+    extras: <StatsGrid items={FYND_STATS} />,
     video: {
       src: 'https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/original/webflow-team/Fynd_One/uk/hero_uk_full_desktop_fullscale.mp4',
       mobileSrc: 'https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/original/webflow-team/Fynd_One/uk/hero_uk_Mobile_optimised_crop.mp4',

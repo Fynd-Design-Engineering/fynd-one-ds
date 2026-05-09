@@ -223,6 +223,7 @@ const ContactDropdownPanel = ({
         <Button
           label="Open Whatsapp"
           variant="secondary"
+          size="md"
           showChevron
           style={{ borderColor: '#0000001f' }}
           onClick={() => {

@@ -150,20 +150,8 @@ const dividerStyle: CSSProperties = {
   margin: '8px 12px',
 };
 
-const phoneLinkStyle: CSSProperties = {
-  display: 'flex',
-  alignItems: 'center',
-  gap: 12,
-  padding: '12px 16px',
-  textDecoration: 'none',
-  color: 'var(--fds-neutral-100, #101319)',
-};
-
-const phoneLinkTextStyle: CSSProperties = {
-  fontFamily: "'Inter Display', sans-serif",
-  fontSize: 14,
-  fontWeight: 600,
-  lineHeight: 1.4,
+const phoneButtonWrapStyle: CSSProperties = {
+  padding: '8px 12px',
 };
 
 // ── ContactDropdownTrigger ────────────────────────────────────────────────────
@@ -235,12 +223,16 @@ const ContactDropdownPanel = ({
 
     <div style={dividerStyle} />
 
-    <a href={phoneHref} style={phoneLinkStyle} aria-label={`Call ${phoneNumber}`}>
-      <span style={{ color: 'var(--fds-neutral-60, #5b5c5d)', display: 'flex' }}>
-        <IcCall />
-      </span>
-      <span style={phoneLinkTextStyle}>{phoneNumber}</span>
-    </a>
+    <div style={phoneButtonWrapStyle}>
+      <Button
+        label={phoneNumber}
+        variant="secondary"
+        size="md"
+        iconLeft={<IcCall />}
+        href={phoneHref}
+        style={{ width: '100%', borderColor: '#0000001f' }}
+      />
+    </div>
   </div>
 );
 

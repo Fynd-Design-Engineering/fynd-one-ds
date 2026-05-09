@@ -34,7 +34,6 @@ import { Modal } from '../components/molecules/Modal';
 import { Popover } from '../components/molecules/Popover';
 import { ContactForm, ContactFormValues } from '../components/molecules/ContactForm';
 import { IcCall } from '../assets/icons/communication';
-import { IcChevronDown } from '../assets/icons/navigation';
 import { fyndMarketingProductOptions } from './fyndMarketingProductOptions';
 
 // ── WhatsApp inline icon ──────────────────────────────────────────────────────
@@ -68,18 +67,8 @@ const triggerBaseStyle: CSSProperties = {
   color: 'var(--fds-neutral-100, #101319)',
 };
 
-const desktopTriggerContentStyle: CSSProperties = {
+const triggerCircleStyle: CSSProperties = {
   display: 'flex',
-  alignItems: 'center',
-  gap: 6,
-  fontFamily: "'Inter Display', sans-serif",
-  fontSize: 16,
-  fontWeight: 500,
-  lineHeight: 1.5,
-};
-
-const mobileTriggerCircleStyle: CSSProperties = {
-  display: 'none',
   alignItems: 'center',
   justifyContent: 'center',
   width: 40,
@@ -87,15 +76,6 @@ const mobileTriggerCircleStyle: CSSProperties = {
   borderRadius: 999,
   border: '1px solid #0000001f',
   flexShrink: 0,
-};
-
-const chevronStyle: CSSProperties = {
-  width: 16,
-  height: 16,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  opacity: 0.5,
 };
 
 const panelStyle: CSSProperties = {
@@ -193,17 +173,10 @@ const phoneLinkTextStyle: CSSProperties = {
 
 const ContactDropdownTrigger = forwardRef<
   HTMLButtonElement,
-  React.ButtonHTMLAttributes<HTMLButtonElement> & { phoneNumber: string }
->(({ phoneNumber, style, ...props }, ref) => (
+  React.ButtonHTMLAttributes<HTMLButtonElement>
+>(({ style, ...props }, ref) => (
   <button ref={ref} {...props} style={{ ...triggerBaseStyle, ...style }}>
-    <span className="fds-contact__desktop" style={desktopTriggerContentStyle}>
-      <IcCall />
-      <span>{phoneNumber}</span>
-      <span style={chevronStyle}>
-        <IcChevronDown />
-      </span>
-    </span>
-    <span className="fds-contact__mobile" style={mobileTriggerCircleStyle}>
+    <span style={triggerCircleStyle}>
       <IcCall />
     </span>
   </button>
@@ -341,7 +314,7 @@ export const FyndMarketingNavActions = ({
 }: FyndMarketingNavActionsProps) => (
   <>
     <Popover
-      trigger={<ContactDropdownTrigger phoneNumber={phoneNumber} />}
+      trigger={<ContactDropdownTrigger />}
       placement="bottom-end"
       width={360}
     >
@@ -377,13 +350,6 @@ export const FyndMarketingNavActions = ({
       }}
     />
 
-    <style>{`
-      .fds-contact__mobile { display: none !important; }
-      @media (max-width: 991px) {
-        .fds-contact__desktop { display: none !important; }
-        .fds-contact__mobile { display: flex !important; }
-      }
-    `}</style>
   </>
 );
 

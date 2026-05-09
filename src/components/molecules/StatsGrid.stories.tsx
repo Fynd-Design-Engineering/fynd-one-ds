@@ -22,14 +22,14 @@ const FYND_STATS = [
 
 export const Default: Story = {
   args: { items: FYND_STATS },
-  decorators: [(Story) => <div style={{ width: 320 }}><Story /></div>],
+  decorators: [(Story) => <div style={{ padding: 40 }}><Story /></div>],
 };
 
 export const Dark: Story = {
   args: { items: FYND_STATS, onDarkBg: true },
   decorators: [
     (Story) => (
-      <div style={{ background: '#101319', padding: 40, width: 320 }}>
+      <div style={{ background: '#101319', padding: 40 }}>
         <Story />
       </div>
     ),

@@ -179,6 +179,9 @@ export const HeroFullBleed: React.FC<HeroFullBleedProps> = ({
               <div/><div/><div/><div/><div/><div/>
             </div>
           )}
+          <div className={styles.videoGradientLeft} aria-hidden="true">
+            <div/><div/><div/><div/><div/><div/>
+          </div>
         </div>
       )}
 

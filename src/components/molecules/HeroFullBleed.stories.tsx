@@ -18,10 +18,10 @@ export default meta;
 type Story = StoryObj<typeof HeroFullBleed>;
 
 const FYND_STATS = [
-  { stat: '10,000+', label: 'Brands' },
-  { stat: '$2B+', label: 'GMV processed' },
-  { stat: '50+', label: 'Countries' },
-  { stat: '99.9%', label: 'Uptime' },
+  { stat: '300M+', label: 'customers served' },
+  { stat: '$2.5B', label: 'GMV enabled' },
+  { stat: '20K+', label: 'stores served' },
+  { stat: '30', label: 'countries served' },
 ];
 
 export const Default: Story = {

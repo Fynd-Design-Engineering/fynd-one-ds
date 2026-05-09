@@ -1,0 +1,146 @@
+/* ── HeroFullBleed ────────────────────────────────────────────────────────── */
+
+.root {
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .root {
+    min-height: 640px;
+  }
+}
+
+@media (max-width: 767px) {
+  .root {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* ── Video background ─────────────────────────────────────────────────────── */
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* On mobile: drops out of absolute flow and sits below the content. */
+@media (max-width: 767px) {
+  .video {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    order: 1;
+    pointer-events: auto;
+    z-index: auto;
+  }
+}
+
+/* ── Inner container ──────────────────────────────────────────────────────── */
+
+.inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 80px 120px 60px;
+}
+
+@media (max-width: 1023px) {
+  .inner {
+    padding: 64px 48px;
+  }
+}
+
+@media (max-width: 767px) {
+  .inner {
+    padding: 48px 24px;
+    order: 0;
+    z-index: auto;
+  }
+}
+
+/* ── Content column ───────────────────────────────────────────────────────── */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 552px;
+}
+
+/* ── Text group (title + subtext + pointers) ──────────────────────────────── */
+
+.textGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Actions ──────────────────────────────────────────────────────────────── */
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+/* ── Extras (consumer-owned slot) ─────────────────────────────────────────── */
+
+.extras {}
+
+/* ── DS Chip wrapper ──────────────────────────────────────────────────────── */
+
+.chipWrapper {
+  display: flex;
+}
+
+/* ── Rating chips row ─────────────────────────────────────────────────────── */
+
+.ratingChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+
+.ratingChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.71);
+  border: 0.5px solid rgba(0, 0, 0, 0.14);
+  border-radius: 2000px;
+  padding: 6px 16px 6px 12px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  font-family: 'Inter Display', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #5b5c5d;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* Rank / rating number in dark text */
+.ratingChipRank {
+  color: #0e0e0e;
+  font-weight: 600;
+}
+
+/* Stars row */
+.ratingChipStars {
+  display: inline-flex;
+  align-items: center;
+  letter-spacing: -1px;
+}

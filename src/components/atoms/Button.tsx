@@ -6,6 +6,8 @@ export interface ButtonProps
   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
   label: string;
   variant?: 'primary' | 'secondary' | 'tertiary';
+  /** Button height. 'lg' = 48px (default), 'md' = 40px. */
+  size?: 'lg' | 'md';
   onDarkBg?: boolean;
   /**
    * Show the trailing chevron. Defaults to `true` for `tertiary`,
@@ -38,6 +40,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     {
       label,
       variant = 'primary',
+      size = 'lg',
       onDarkBg = false,
       showChevron,
       iconLeft,
@@ -53,7 +56,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const showChevronResolved = showChevron ?? variant === 'tertiary';
-    const classes = [styles.root, variantClass(variant, onDarkBg), className]
+    const classes = [styles.root, variantClass(variant, onDarkBg), size === 'md' ? styles['size-md'] : undefined, className]
       .filter(Boolean)
       .join(' ');
 

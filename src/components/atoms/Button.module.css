@@ -86,6 +86,12 @@
   border-color: var(--btn-secondary-light-border-hover);
 }
 
+/* ── Size variants ──────────────────────── */
+
+.size-md {
+  height: 40px;
+}
+
 /* ── Tertiary ───────────────────────────── */
 
 .tertiary {

@@ -156,7 +156,7 @@ export const HeroFullBleed: React.FC<HeroFullBleedProps> = ({
 
   const rootCls = [styles.root, className].filter(Boolean).join(' ');
   const rootStyle: CSSProperties = {
-    ...(bg ? { background: bg } : null),
+    ...(bg ? { background: bg, '--fds-herofullbleed-bg': bg } as CSSProperties : null),
     ...style,
   };
 
@@ -173,6 +173,7 @@ export const HeroFullBleed: React.FC<HeroFullBleedProps> = ({
           style={{ objectFit: video.objectFit ?? 'cover' }}
         />
       )}
+      {video && bg && <div className={styles.videoGradient} aria-hidden="true" />}
 
       <div className={styles.inner}>
         <div className={styles.content}>

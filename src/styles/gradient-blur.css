@@ -3,8 +3,9 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 45%;
+  height: 300px;
   pointer-events: none;
+  z-index: -1;
 }
 
 .gradient-blur > div,
@@ -105,4 +106,12 @@
     rgba(0, 0, 0, 0) 95%,
     rgba(0, 0, 0, 1) 100%
   );
+}
+
+/* Dark variant — top layer uses brightness(0.8) to darken the image */
+.gradient-blur--dark::after {
+  backdrop-filter: blur(25px) brightness(0.8);
+  -webkit-backdrop-filter: blur(25px) brightness(0.9);
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 1) 70%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 1) 70%);
 }

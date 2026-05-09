@@ -22,69 +22,79 @@
   align-self: stretch;
 }
 
-/* ── Connector (dashed vertical line) ────────────────────────────────────── */
+/* ── Connector (SVG dashed vertical line) ────────────────────────────────── */
 
 .connector {
   flex: 1;
   width: 2px;
   min-height: 8px;
   position: relative;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    var(--fds-neutral-40, #a0a1a2) 0px,
-    var(--fds-neutral-40, #a0a1a2) 4px,
-    transparent 4px,
-    transparent 10px
-  );
 }
 
+/* Both the track SVG and the fill SVG are stacked absolutely inside .connector */
+.connectorSvg,
 .connector__fill {
   position: absolute;
-  inset: 0;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    var(--fds-neutral-100, #101319) 0px,
-    var(--fds-neutral-100, #101319) 4px,
-    transparent 4px,
-    transparent 10px
-  );
-  transform: scaleY(0);
-  transform-origin: top center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.connectorTrack {
+  stroke: var(--fds-neutral-40, #a0a1a2);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 6;
+}
+
+.connectorFillLine {
+  stroke: var(--fds-neutral-100, #101319);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 6;
+}
+
+/* Fill SVG is clipped from the bottom; clip-path reveals dashes top→bottom */
+.connector__fill {
+  clip-path: inset(0 0 100% 0);
 }
 
 .connector__fill--done {
-  transform: scaleY(1);
+  clip-path: inset(0 0 0% 0);
 }
 
 .connector__fill--animating {
-  animation: fds-stepper-fill 600ms ease-in-out forwards;
+  animation: fds-stepper-fill var(--fds-stepper-fill-duration, 2500ms) ease-in-out forwards;
 }
 
 @keyframes fds-stepper-fill {
-  from { transform: scaleY(0); }
-  to   { transform: scaleY(1); }
+  from { clip-path: inset(0 0 100% 0); }
+  to   { clip-path: inset(0 0 0% 0); }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .connector__fill--animating {
     animation: none;
-    transform: scaleY(1);
+    clip-path: inset(0 0 0% 0);
   }
 }
 
 /* ── Dot (DotTrail) ───────────────────────────────────────────────────────── */
 
+/* Active: scale(1) ring via inset shadow. Muted: scale(0.8) solid fill via inset shadow. */
 .dot {
-  width: 40px;
-  height: 40px;
+  width: 2rem;
+  height: 2rem;
   border-radius: 999px;
   flex-shrink: 0;
-  box-sizing: border-box;
-  border: 10px solid var(--fds-neutral-100, #101319);
+  box-shadow: inset 0 0 0 10px var(--fds-neutral-100, #101319);
+  transition: all 0.3s;
 }
 
 .dot--muted {
-  border-color: var(--fds-neutral-40, #a0a1a2);
+  transform: scale(0.8);
+  box-shadow: inset 0 0 0 20px var(--fds-neutral-40, #a0a1a2);
 }
 
 /* ── Count pill (CountFlow) ───────────────────────────────────────────────── */
@@ -104,6 +114,7 @@
   line-height: 1.5;
   letter-spacing: -0.01em;
   color: var(--fds-neutral-0, #ffffff);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .count--muted {
@@ -122,6 +133,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: opacity 0.3s ease;
 }
 
 .node--muted {
@@ -164,20 +176,24 @@
 
 /* ── Dark background overrides ────────────────────────────────────────────── */
 
+.dark {
+  --fds-text-muted: #f3f3f3;
+}
+
 .dark .title {
   color: var(--fds-neutral-0, #ffffff);
 }
 
 .dark .subtext {
-  color: var(--fds-neutral-40, #a0a1a2);
+  color: #f3f3f3;
 }
 
 .dark .dot {
-  border-color: var(--fds-neutral-0, #ffffff);
+  box-shadow: inset 0 0 0 10px var(--fds-neutral-0, #ffffff);
 }
 
 .dark .dot--muted {
-  border-color: var(--fds-neutral-60, #5b5c5d);
+  box-shadow: inset 0 0 0 20px var(--fds-neutral-60, #5b5c5d);
 }
 
 .dark .count {
@@ -190,22 +206,10 @@
   color: var(--fds-neutral-0, #ffffff);
 }
 
-.dark .connector {
-  background-image: repeating-linear-gradient(
-    to bottom,
-    var(--fds-neutral-80, #4a4b4c) 0px,
-    var(--fds-neutral-80, #4a4b4c) 4px,
-    transparent 4px,
-    transparent 10px
-  );
+.dark .connectorTrack {
+  stroke: var(--fds-neutral-80, #4a4b4c);
 }
 
-.dark .connector__fill {
-  background-image: repeating-linear-gradient(
-    to bottom,
-    var(--fds-neutral-0, #ffffff) 0px,
-    var(--fds-neutral-0, #ffffff) 4px,
-    transparent 4px,
-    transparent 10px
-  );
+.dark .connectorFillLine {
+  stroke: var(--fds-neutral-0, #ffffff);
 }

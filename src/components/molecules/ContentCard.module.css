@@ -15,6 +15,7 @@
 .root--dark {
   background-color: var(--fds-neutral-80, #4a4b4c);
   border: 1px solid var(--fds-neutral-80, #4a4b4c);
+  --fds-text-muted: #f3f3f3;
 }
 
 .root--bordered {

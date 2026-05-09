@@ -27,6 +27,8 @@ export const ImageBelow: Story = {
     subtext: 'Subtext goes here',
     buttonLabel: 'Button',
     imagePosition: 'below',
+    imageSrc: 'https://picsum.photos/seed/card1/626/400',
+    imageAlt: 'Sample image',
   },
   decorators: [(Story) => <div style={{ width: 626 }}><Story /></div>],
 };
@@ -38,7 +40,8 @@ export const ImageBehind: Story = {
     subtext: 'Subtext goes here',
     buttonLabel: 'Button',
     imagePosition: 'behind',
-    imageSrc: 'https://placehold.co/626x626/a0a1a2/ffffff?text=Background',
+    imageSrc: 'https://picsum.photos/seed/behind1/626/626',
+    imageAlt: 'Background image',
   },
   decorators: [(Story) => <div style={{ width: 626, height: 500 }}><Story /></div>],
 };
@@ -49,6 +52,8 @@ export const Dark: Story = {
     subtext: 'Subtext goes here',
     buttonLabel: 'Button',
     imagePosition: 'below',
+    imageSrc: 'https://picsum.photos/seed/dark1/626/400',
+    imageAlt: 'Sample image',
     onDarkBg: true,
   },
   decorators: [
@@ -65,7 +70,8 @@ export const DarkBottomRight: Story = {
     title: 'Text goes here',
     subtext: 'Subtext goes here',
     imagePosition: 'bottom-right',
-    imageSrc: 'https://placehold.co/300x300/a0a1a2/ffffff?text=Product',
+    imageSrc: 'https://picsum.photos/seed/product1/300/300',
+    imageAlt: 'Product image',
     clickable: true,
     alwaysShowArrow: true,
     onDarkBg: true,
@@ -85,7 +91,8 @@ export const Clickable: Story = {
     title: 'Hover to see arrow',
     subtext: 'This card is clickable with a diagonal arrow on hover',
     imagePosition: 'behind',
-    imageSrc: 'https://placehold.co/626x626/a0a1a2/ffffff?text=Background',
+    imageSrc: 'https://picsum.photos/seed/click1/626/626',
+    imageAlt: 'Background image',
     clickable: true,
     showButton: false,
   },
@@ -98,8 +105,9 @@ export const ImageBottomRight: Story = {
     title: 'Text goes here',
     subtext: 'Subtext goes here',
     imagePosition: 'bottom-right',
-    imageSrc: 'https://placehold.co/300x300/a0a1a2/ffffff?text=Product',
-    imageHoverSrc: 'https://placehold.co/300x300/797a7c/ffffff?text=Hover',
+    imageSrc: 'https://picsum.photos/seed/product2/300/300',
+    imageHoverSrc: 'https://picsum.photos/seed/product2hover/300/300',
+    imageAlt: 'Product image',
     clickable: true,
     alwaysShowArrow: true,
   },
@@ -113,8 +121,9 @@ export const ImageBelowWithHover: Story = {
     title: 'D2C website',
     subtext: 'Customized, high-performance websites for modern brands.',
     imagePosition: 'below',
-    imageSrc: 'https://placehold.co/600x400/a0a1a2/ffffff?text=Default',
-    imageHoverSrc: 'https://placehold.co/600x400/3b82f6/ffffff?text=Hover',
+    imageSrc: 'https://picsum.photos/seed/d2c1/600/400',
+    imageHoverSrc: 'https://picsum.photos/seed/d2c2/600/400',
+    imageAlt: 'D2C website preview',
     imageHoverAlt: 'Animated preview of the D2C website',
   },
   decorators: [(Story) => <div style={{ width: 400, height: 500 }}><Story /></div>],
@@ -127,7 +136,8 @@ export const ImageBelowWithoutHover: Story = {
     title: 'D2C website',
     subtext: 'Customized, high-performance websites for modern brands.',
     imagePosition: 'below',
-    imageSrc: 'https://placehold.co/600x400/a0a1a2/ffffff?text=Default',
+    imageSrc: 'https://picsum.photos/seed/d2c1/600/400',
+    imageAlt: 'D2C website preview',
   },
   decorators: [(Story) => <div style={{ width: 400, height: 500 }}><Story /></div>],
 };
@@ -139,8 +149,9 @@ export const ImageBehindWithHover: Story = {
     title: 'Sold worldwide',
     subtext: 'Reach customers across 50+ countries.',
     imagePosition: 'behind',
-    imageSrc: 'https://placehold.co/600x400/606060/ffffff?text=Default',
-    imageHoverSrc: 'https://placehold.co/600x400/0e7490/ffffff?text=Hover',
+    imageSrc: 'https://picsum.photos/seed/world1/600/400',
+    imageHoverSrc: 'https://picsum.photos/seed/world2/600/400',
+    imageAlt: 'World map',
   },
   decorators: [(Story) => <div style={{ width: 400, height: 320 }}><Story /></div>],
 };
@@ -153,6 +164,8 @@ export const Tablet: Story = {
     buttonLabel: 'Button',
     size: 'md',
     imagePosition: 'below',
+    imageSrc: 'https://picsum.photos/seed/tablet1/377/260',
+    imageAlt: 'Sample image',
   },
   decorators: [(Story) => <div style={{ width: 377 }}><Story /></div>],
 };
@@ -165,7 +178,8 @@ export const Mobile: Story = {
     size: 'sm',
     imagePosition: 'behind',
     clickable: true,
-    imageSrc: 'https://placehold.co/272x362/a0a1a2/ffffff?text=BG',
+    imageSrc: 'https://picsum.photos/seed/mobile1/272/362',
+    imageAlt: 'Background image',
   },
   decorators: [(Story) => <div style={{ width: 272, height: 362 }}><Story /></div>],
 };
@@ -180,6 +194,8 @@ export const AllBreakpoints: Story = {
           subtext="Subtext goes here"
           buttonLabel="Button"
           imagePosition="below"
+          imageSrc="https://picsum.photos/seed/bp1/626/400"
+          imageAlt="Desktop preview"
         />
       </div>
       <div style={{ width: 377 }}>
@@ -190,6 +206,8 @@ export const AllBreakpoints: Story = {
           buttonLabel="Button"
           size="md"
           imagePosition="below"
+          imageSrc="https://picsum.photos/seed/bp2/377/260"
+          imageAlt="Tablet preview"
         />
       </div>
       <div style={{ width: 272, height: 362 }}>
@@ -200,7 +218,8 @@ export const AllBreakpoints: Story = {
           size="sm"
           imagePosition="behind"
           clickable
-          imageSrc="https://placehold.co/272x362/a0a1a2/ffffff?text=BG"
+          imageSrc="https://picsum.photos/seed/bp3/272/362"
+          imageAlt="Mobile background"
         />
       </div>
     </div>
@@ -215,7 +234,7 @@ export const ImageAbove: Story = {
         imagePosition="above"
         title="Emerging Business"
         subtext="Launch your business and get a head start to success"
-        imageSrc="https://placehold.co/520x340/d2d2d2/4a4b4c?text=Emerging+Business"
+        imageSrc="https://picsum.photos/seed/audience1/520/340"
         imageAlt="Emerging Business"
         showButton={false}
       />
@@ -223,7 +242,7 @@ export const ImageAbove: Story = {
         imagePosition="above"
         title="Mid-market & Enterprise"
         subtext="Tailored retail solutions for ambitious businesses ready to scale"
-        imageSrc="https://placehold.co/520x340/d2d2d2/4a4b4c?text=Mid-market+%26+Enterprise"
+        imageSrc="https://picsum.photos/seed/audience2/520/340"
         imageAlt="Mid-market and Enterprise"
         showButton={false}
       />
@@ -231,7 +250,7 @@ export const ImageAbove: Story = {
         imagePosition="above"
         title="Partners"
         subtext="Offer your services and empower retailers around the world"
-        imageSrc="https://placehold.co/520x340/d2d2d2/4a4b4c?text=Partners"
+        imageSrc="https://picsum.photos/seed/audience3/520/340"
         imageAlt="Partners"
         showButton={false}
       />
@@ -248,7 +267,7 @@ export const ImageAboveWithBullets: Story = {
         chipLabel="Without"
         chipPosition="floating"
         title="Without 3D, AR, & VR Shopping"
-        imageSrc="https://placehold.co/520x340/f9c8d0/c0546a?text=Preview"
+        imageSrc="https://picsum.photos/seed/without3d/520/340"
         imageAlt="Without 3D AR VR preview"
         imageBg="#fce8ec"
         showButton={false}
@@ -264,7 +283,7 @@ export const ImageAboveWithBullets: Story = {
         chipLabel="With"
         chipPosition="floating"
         title="With 3D, AR, & VR Shopping"
-        imageSrc="https://placehold.co/520x340/c8e6c9/2e7d32?text=Preview"
+        imageSrc="https://picsum.photos/seed/with3d/520/340"
         imageAlt="With 3D AR VR preview"
         imageBg="#e8f5e9"
         showButton={false}
@@ -287,7 +306,8 @@ export const LabelOnlyChip: Story = {
     chipPosition: 'floating',
     chipShowDot: false,
     imageBg: '#fce8ec',
-    imageSrc: 'https://placehold.co/520x340/f9c8d0/c0546a?text=Before',
+    imageSrc: 'https://picsum.photos/seed/chipbefore/520/340',
+    imageAlt: 'Before state',
     title: 'Without the feature',
     subtext: 'No dot, no icon — clean label badge overlaying the image.',
     showButton: false,
@@ -305,10 +325,56 @@ export const IconChip: Story = {
     title: 'AI-powered feature',
     subtext: 'Icon renders to the left of the label inside the chip.',
     imagePosition: 'below',
-    imageSrc: 'https://placehold.co/600x400/d2d2d2/4a4b4c?text=Feature',
+    imageSrc: 'https://picsum.photos/seed/aifeature/600/400',
+    imageAlt: 'AI feature preview',
     showButton: false,
   },
   decorators: [(Story) => <div style={{ width: 420 }}><Story /></div>],
+};
+
+export const DarkWithImages: Story = {
+  name: 'Dark — all positions with images',
+  render: () => (
+    <div style={{ background: '#101319', padding: 40, display: 'flex', gap: 24, alignItems: 'flex-start', flexWrap: 'wrap' }}>
+      <div style={{ width: 380 }}>
+        <ContentCard
+          chipLabel="Below"
+          title="Image below on dark"
+          subtext="Full-width image below the text content."
+          imagePosition="below"
+          imageSrc="https://picsum.photos/seed/dark-below/380/260"
+          imageAlt="Dark mode below image"
+          buttonLabel="Learn more"
+          onDarkBg
+        />
+      </div>
+      <div style={{ width: 380, height: 420 }}>
+        <ContentCard
+          chipLabel="Behind"
+          title="Image behind on dark"
+          subtext="Background image with dark text overlay."
+          imagePosition="behind"
+          imageSrc="https://picsum.photos/seed/dark-behind/380/420"
+          imageAlt="Dark mode behind image"
+          buttonLabel="Explore"
+          onDarkBg
+        />
+      </div>
+      <div style={{ width: 380 }}>
+        <ContentCard
+          chipLabel="Bottom right"
+          title="Product card on dark"
+          subtext="Image anchored to the bottom-right corner."
+          imagePosition="bottom-right"
+          imageSrc="https://picsum.photos/seed/dark-product/240/240"
+          imageAlt="Product on dark background"
+          clickable
+          alwaysShowArrow
+          onDarkBg
+        />
+      </div>
+    </div>
+  ),
 };
 
 export const FilledChipVariant: Story = {
@@ -320,7 +386,8 @@ export const FilledChipVariant: Story = {
     title: 'Featured card',
     subtext: 'Chip rendered with the filled variant.',
     imagePosition: 'below',
-    imageSrc: 'https://placehold.co/600x400/d2d2d2/4a4b4c?text=Featured',
+    imageSrc: 'https://picsum.photos/seed/featured1/600/400',
+    imageAlt: 'Featured content',
     showButton: false,
   },
   decorators: [(Story) => <div style={{ width: 420 }}><Story /></div>],

@@ -10,8 +10,8 @@ import styles from './ContentCard.module.css';
 
 export type { PointerItem };
 
-const GradientBlur: React.FC = () => (
-  <div className="gradient-blur">
+const GradientBlur: React.FC<{ dark?: boolean }> = ({ dark }) => (
+  <div className={['gradient-blur', dark && 'gradient-blur--dark'].filter(Boolean).join(' ')}>
     <div /><div /><div /><div /><div /><div />
   </div>
 );
@@ -44,6 +44,8 @@ export interface ContentCardProps {
   chipVariant?: 'anchor' | 'filled' | 'outlined';
   /** Chip breakpoint size lock. Forwarded to `Chip.breakpoint`. */
   chipBreakpoint?: 'lg' | 'md' | 'sm';
+  /** Pass `true` to flip the chip to its dark variant. Independent from `onDarkBg`. */
+  chipOnDarkBg?: boolean;
   title: string;
   titleVariant?: TextVariant;
   /** Semantic heading level for the card title. Defaults to `'h3'`. */
@@ -110,6 +112,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
   bullets,
   imageBg,
   chipBreakpoint,
+  chipOnDarkBg = false,
   className,
   style,
 }) => {
@@ -175,8 +178,6 @@ export const ContentCard: React.FC<ContentCardProps> = ({
         </>
       )}
 
-      {isBehind && <GradientBlur />}
-
       {isBottomRight && imageSrc && (
         <div className={styles['image--bottom-right']}>
           <img
@@ -208,7 +209,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
             dotColor={chipDotColor}
             icon={chipIcon}
             breakpoint={chipBreakpoint}
-            onDarkBg={onDarkBg}
+            onDarkBg={chipOnDarkBg}
             style={{
               backgroundColor: neutrals[0],
               borderRadius: 1000,
@@ -219,6 +220,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
       )}
 
       <div className={textOverlayClass}>
+        {isBehind && <GradientBlur dark={onDarkBg} />}
         <div className={styles['content-left']}>
           {showChip && chipLabel && chipPosition === 'inline' && (
             <div className={styles['chip-wrapper']}>
@@ -229,7 +231,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
                 dotColor={chipDotColor}
                 icon={chipIcon}
                 breakpoint={chipBreakpoint}
-                onDarkBg={onDarkBg}
+                onDarkBg={chipOnDarkBg}
                 style={{
                   backgroundColor: neutrals[0],
                   borderRadius: 1000,

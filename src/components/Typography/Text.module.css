@@ -249,7 +249,7 @@
 }
 
 .color--muted {
-  color: #a0a1a2;
+  color: var(--fds-text-muted, #a0a1a2);
 }
 
 .color--subtle {

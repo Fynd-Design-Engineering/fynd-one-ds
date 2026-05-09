@@ -39,8 +39,6 @@ export interface StepperProps {
   style?: CSSProperties;
 }
 
-const FILL_DURATION = 600;
-
 export const Stepper: React.FC<StepperProps> = ({
   items,
   variant = 'DotTrail',
@@ -63,28 +61,25 @@ export const Stepper: React.FC<StepperProps> = ({
   useEffect(() => {
     if (!shouldAnimate) return;
 
-    const holdDuration = Math.max(stepDuration - FILL_DURATION, 100);
-    let fillTimer: ReturnType<typeof setTimeout>;
+    // Fill starts immediately; advance to the next step once fill completes.
+    setFillingIndex(internalActiveIndex);
 
-    const holdTimer = setTimeout(() => {
-      setFillingIndex(internalActiveIndex);
+    const fillTimer = setTimeout(() => {
+      setFillingIndex(-1);
+      setInternalActiveIndex((prev) => (prev + 1) % items.length);
+    }, stepDuration);
 
-      fillTimer = setTimeout(() => {
-        setFillingIndex(-1);
-        setInternalActiveIndex((prev) => (prev + 1) % items.length);
-      }, FILL_DURATION);
-    }, holdDuration);
-
-    return () => {
-      clearTimeout(holdTimer);
-      clearTimeout(fillTimer);
-    };
+    return () => clearTimeout(fillTimer);
   }, [internalActiveIndex, shouldAnimate, stepDuration, items.length]);
 
   const rootClass = [styles.root, onDarkBg && styles.dark, className].filter(Boolean).join(' ');
 
   return (
-    <div className={rootClass} style={style} data-figma-id="4192:9031">
+    <div
+      className={rootClass}
+      style={{ '--fds-stepper-fill-duration': `${stepDuration}ms`, ...style } as CSSProperties}
+      data-figma-id="4192:9031"
+    >
       {items.map((item, idx) => {
         const isMuted = idx > activeIdx;
         const isLast = idx === items.length - 1;
@@ -97,6 +92,7 @@ export const Stepper: React.FC<StepperProps> = ({
         ]
           .filter(Boolean)
           .join(' ');
+
 
         return (
           <div key={idx} className={styles.step}>
@@ -132,7 +128,14 @@ export const Stepper: React.FC<StepperProps> = ({
 
               {showConnector && (
                 <div className={styles.connector}>
-                  <div className={connectorFillClass} />
+                  {/* muted dashed track */}
+                  <svg className={styles.connectorSvg} aria-hidden="true">
+                    <line className={styles.connectorTrack} x1="1" y1="0" x2="1" y2="100%" />
+                  </svg>
+                  {/* fill SVG — clip-path reveals dashes top→bottom */}
+                  <svg className={connectorFillClass} aria-hidden="true">
+                    <line className={styles.connectorFillLine} x1="1" y1="0" x2="1" y2="100%" />
+                  </svg>
                 </div>
               )}
             </div>

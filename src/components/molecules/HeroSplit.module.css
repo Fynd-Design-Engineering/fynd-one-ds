@@ -1,5 +1,21 @@
 /* ── HeroSplit ────────────────────────────────────────────────────────────── */
 
+/* Desktop: bg paints the full section. Mobile (<768px): section is transparent
+   and the bg color moves to the visual cell so it reads as a tinted card. */
+.hasBg {
+  background: var(--fds-herosplit-bg);
+}
+
+@media (max-width: 767px) {
+  .hasBg {
+    background: transparent;
+  }
+
+  .hasBg .visual {
+    background: var(--fds-herosplit-bg);
+  }
+}
+
 .root {
   display: grid;
   grid-template-columns: minmax(0, 40fr) minmax(0, 60fr);
@@ -54,6 +70,12 @@
 @media (max-width: 991px) {
   .visual {
     margin-left: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .visual {
+    aspect-ratio: 3 / 3.5;
   }
 }
 

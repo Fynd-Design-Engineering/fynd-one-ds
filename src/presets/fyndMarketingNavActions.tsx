@@ -226,6 +226,7 @@ export const FyndMarketingNavActions = ({
         }
         placement="bottom-end"
         width={360}
+        disableFocusTrap
       >
         <div onMouseEnter={openContact} onMouseLeave={scheduleClose}>
           <ContactDropdownPanel

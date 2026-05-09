@@ -91,6 +91,10 @@
     padding: 64px;
     order: 0;
   }
+
+  .videoWrap {
+    margin-top: -500px;
+  }
 }
 
 @media (max-width: 767px) {

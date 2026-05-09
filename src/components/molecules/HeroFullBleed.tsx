@@ -34,6 +34,9 @@ export interface HeroFullBleedProps {
   };
   /** Section background — hex, var(--token), or any CSS color. */
   bg?: string;
+  /** Adds top padding to the inner content equal to the sticky chrome height.
+   *  'auto' reads --fds-nav-h + --fds-banner-h set by <Navbar> / <SiteBanner>. */
+  topOffset?: 'auto' | string | number;
   onDarkBg?: boolean;
   className?: string;
   style?: CSSProperties;
@@ -121,6 +124,7 @@ export const HeroFullBleed: React.FC<HeroFullBleedProps> = ({
   ratingChips,
   video,
   bg,
+  topOffset,
   onDarkBg = false,
   className,
   style,
@@ -156,8 +160,17 @@ export const HeroFullBleed: React.FC<HeroFullBleedProps> = ({
   }, [video]);
 
   const rootCls = [styles.root, className].filter(Boolean).join(' ');
+
+  const topOffsetVal =
+    topOffset === 'auto'
+      ? 'calc(var(--fds-nav-h, 0px) + var(--fds-banner-h, 0px))'
+      : typeof topOffset === 'number'
+      ? `${topOffset}px`
+      : topOffset;
+
   const rootStyle: CSSProperties = {
     ...(bg ? { background: bg, '--fds-herofullbleed-bg': bg } as CSSProperties : null),
+    ...(topOffsetVal ? { '--fds-hfb-top': topOffsetVal } as CSSProperties : null),
     ...style,
   };
 

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { CSSProperties, ReactNode } from 'react';
+import React, { CSSProperties, ReactNode, useEffect, useRef } from 'react';
 import { Text } from '../Typography/Text';
 import { Chip } from '../atoms/Chip';
 import { Pointers, PointerItem } from './Pointers';
@@ -24,9 +24,11 @@ export interface HeroFullBleedProps {
   ratingChips?: RatingChipItem[];
   video?: {
     src: string;
-    /** Used as <source media="(max-width:767px)"> for smaller viewports. */
+    /** Switched in via JS when viewport ≤ 767px. */
     mobileSrc?: string;
     poster?: string;
+    /** Poster shown on mobile when mobileSrc is active. */
+    mobilePoster?: string;
     objectFit?: 'cover' | 'contain';
   };
   /** Section background — hex, var(--token), or any CSS color. */
@@ -106,6 +108,8 @@ const RatingChip: React.FC<{ item: RatingChipItem }> = ({ item }) => {
 
 /* ── Component ────────────────────────────────────────────────────────────── */
 
+const MOBILE_BP = 767;
+
 export const HeroFullBleed: React.FC<HeroFullBleedProps> = ({
   chipLabel,
   title,
@@ -120,6 +124,36 @@ export const HeroFullBleed: React.FC<HeroFullBleedProps> = ({
   className,
   style,
 }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  // Tracks which mode is currently loaded so we only reload on breakpoint crossing.
+  const modeRef = useRef<'desktop' | 'mobile' | null>(null);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el || !video) return;
+
+    const apply = () => {
+      const isMobileVP = window.innerWidth <= MOBILE_BP;
+      const mode: 'desktop' | 'mobile' =
+        isMobileVP && video.mobileSrc ? 'mobile' : 'desktop';
+      if (mode === modeRef.current) return;
+      modeRef.current = mode;
+
+      el.src = mode === 'mobile' ? video.mobileSrc! : video.src;
+      const poster =
+        mode === 'mobile' && video.mobilePoster
+          ? video.mobilePoster
+          : video.poster ?? '';
+      if (poster) el.poster = poster;
+      el.load();
+      el.play().catch(() => {});
+    };
+
+    apply();
+    window.addEventListener('resize', apply);
+    return () => window.removeEventListener('resize', apply);
+  }, [video]);
+
   const rootCls = [styles.root, className].filter(Boolean).join(' ');
   const rootStyle: CSSProperties = {
     ...(bg ? { background: bg } : null),
@@ -130,19 +164,14 @@ export const HeroFullBleed: React.FC<HeroFullBleedProps> = ({
     <section className={rootCls} style={rootStyle}>
       {video && (
         <video
+          ref={videoRef}
           className={styles.video}
           autoPlay
           muted
           loop
           playsInline
-          poster={video.poster}
           style={{ objectFit: video.objectFit ?? 'cover' }}
-        >
-          {video.mobileSrc && (
-            <source media="(max-width: 767px)" src={video.mobileSrc} />
-          )}
-          <source src={video.src} />
-        </video>
+        />
       )}
 
       <div className={styles.inner}>

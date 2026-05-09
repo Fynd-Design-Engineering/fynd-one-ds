@@ -56,7 +56,8 @@ export const Default: Story = {
     ),
     extras: <StatsGrid />,
     video: {
-      src: 'https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/original/webflow-team/Fynd_One/uk/hero_uk_Mobile_optimised_crop.mp4',
+      src: 'https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/original/webflow-team/Fynd_One/uk/hero_uk_full_desktop_fullscale.mp4',
+      mobileSrc: 'https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/original/webflow-team/Fynd_One/uk/hero_uk_Mobile_optimised_crop.mp4',
       objectFit: 'cover',
     },
     bg: '#eeeeee',

@@ -109,6 +109,10 @@ form label {
   color: rgba(16, 19, 25, 0.65);
 }
 
+strong {
+  font-weight: 600;
+}
+
 /* Buttons get a pointer cursor and lose the gray UA background; DS Button
    re-styles fully. Keeping border:0 here removes the chrome on raw <button>
    elements used as click targets (icon-only buttons, etc). */

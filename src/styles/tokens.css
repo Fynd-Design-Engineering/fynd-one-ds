@@ -33,6 +33,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Inter Display';
+  src: url('../assets/fonts/InterDisplay-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Fynd Sans (regular display family) — heading font, also used for
    brand-name labels (e.g. SubNav brand items). */
 @font-face {

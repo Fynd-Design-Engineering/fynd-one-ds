@@ -34,6 +34,7 @@ import { Modal } from '../components/molecules/Modal';
 import { Popover } from '../components/molecules/Popover';
 import { ContactForm, ContactFormValues } from '../components/molecules/ContactForm';
 import { IcCall } from '../assets/icons/communication';
+import { IcChevronDown } from '../assets/icons/navigation';
 import { fyndMarketingProductOptions } from './fyndMarketingProductOptions';
 
 // ── WhatsApp inline icon ──────────────────────────────────────────────────────
@@ -175,9 +176,12 @@ const ContactDropdownTrigger = forwardRef<
   HTMLButtonElement,
   React.ButtonHTMLAttributes<HTMLButtonElement>
 >(({ style, ...props }, ref) => (
-  <button ref={ref} {...props} style={{ ...triggerBaseStyle, ...style }}>
+  <button ref={ref} {...props} style={{ ...triggerBaseStyle, gap: 6, ...style }}>
     <span style={triggerCircleStyle}>
       <IcCall />
+    </span>
+    <span style={{ width: 16, height: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: 0.5 }}>
+      <IcChevronDown />
     </span>
   </button>
 ));

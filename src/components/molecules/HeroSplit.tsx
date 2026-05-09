@@ -80,13 +80,11 @@ export const HeroSplit: React.FC<HeroSplitProps> = ({
         ? `${topOffset}px`
         : topOffset;
 
-  const sectionStyle: CSSProperties | undefined =
-    bg || resolvedOffset
-      ? {
-          ...(bg ? ({ '--fds-herosplit-bg': bg } as CSSProperties) : null),
-          ...(resolvedOffset ? { marginTop: `calc(-1 * (${resolvedOffset}))` } : null),
-        }
-      : undefined;
+  const sectionStyle: CSSProperties = {
+    paddingBottom: '4rem',
+    ...(bg ? ({ '--fds-herosplit-bg': bg } as CSSProperties) : null),
+    ...(resolvedOffset ? { marginTop: `calc(-1 * (${resolvedOffset}))` } : null),
+  };
 
   const innerStyle: CSSProperties | undefined = resolvedOffset
     ? { ...style, paddingTop: resolvedOffset }

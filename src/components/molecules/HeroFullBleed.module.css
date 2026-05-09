@@ -23,7 +23,6 @@
 .videoWrap {
   position: absolute;
   inset: 0;
-  margin-top: -200px;
   z-index: 0;
   pointer-events: none;
 }
@@ -35,11 +34,9 @@
   height: 100%;
 }
 
-/* Gradient re-aligns to the visible section top (top: 200px compensates for
-   the -200px margin on the wrap). */
 .videoGradient {
   position: absolute;
-  top: 200px;
+  top: 0;
   left: 0;
   right: 0;
   height: 300px;
@@ -47,12 +44,13 @@
   pointer-events: none;
 }
 
-/* On mobile (<768px): wrap drops out of absolute flow, sits below content. */
+/* On mobile (<768px): wrap drops out of absolute flow, sits below content,
+   pulled up -200px so it peeks under the content area. */
 @media (max-width: 767px) {
   .videoWrap {
     position: relative;
     inset: auto;
-    margin-top: 0;
+    margin-top: -200px;
     order: 1;
     pointer-events: auto;
   }
@@ -91,7 +89,6 @@
   .inner {
     padding: 48px 24px;
     order: 0;
-    z-index: auto;
   }
 }
 

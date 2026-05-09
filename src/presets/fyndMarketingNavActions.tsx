@@ -359,6 +359,7 @@ export const FyndMarketingNavActions = ({
           className="fds-actions__desktop-only"
           label={bookDemoLabel}
           variant="secondary"
+          size="md"
           style={{ borderColor: '#0000001f' }}
         />
       }
@@ -370,6 +371,7 @@ export const FyndMarketingNavActions = ({
     <Button
       label={signInLabel}
       variant="primary"
+      size="md"
       onClick={() => {
         if (typeof window !== 'undefined') window.location.href = signInHref;
       }}

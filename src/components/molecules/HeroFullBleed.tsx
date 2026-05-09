@@ -168,9 +168,17 @@ export const HeroFullBleed: React.FC<HeroFullBleedProps> = ({
       ? `${topOffset}px`
       : topOffset;
 
+  const pullVal =
+    topOffset === 'auto'
+      ? 'calc(-1 * (var(--fds-nav-h, 4rem) + var(--fds-banner-h, 0px)))'
+      : topOffsetVal
+      ? `calc(-1 * ${topOffsetVal})`
+      : undefined;
+
   const rootStyle: CSSProperties = {
     ...(bg ? { background: bg, '--fds-herofullbleed-bg': bg } as CSSProperties : null),
     ...(topOffsetVal ? { '--fds-hfb-top': topOffsetVal } as CSSProperties : null),
+    ...(pullVal ? { '--fds-hfb-pull': pullVal } as CSSProperties : null),
     ...style,
   };
 

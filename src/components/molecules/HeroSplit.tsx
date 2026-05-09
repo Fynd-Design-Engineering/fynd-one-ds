@@ -53,7 +53,7 @@ export interface HeroSplitProps {
   style?: CSSProperties;
 }
 
-const AUTO_OFFSET = 'calc(var(--fds-banner-h, 0px) + var(--fds-nav-h, 0px))';
+const AUTO_OFFSET = 'calc(var(--fds-banner-h, 0px) + var(--fds-nav-h, 4rem))';
 
 export const HeroSplit: React.FC<HeroSplitProps> = ({
   title,

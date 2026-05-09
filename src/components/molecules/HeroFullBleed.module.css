@@ -3,6 +3,7 @@
 .root {
   position: relative;
   overflow: hidden;
+  margin-top: var(--fds-hfb-pull, 0px);
 }
 
 @media (min-width: 1024px) {

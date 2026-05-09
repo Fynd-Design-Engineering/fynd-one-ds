@@ -28,7 +28,7 @@
  *   />
  */
 
-import React, { CSSProperties, ReactNode, forwardRef } from 'react';
+import React, { CSSProperties, ReactNode, forwardRef, useRef, useState } from 'react';
 import { Button } from '../components/atoms/Button';
 import { Modal } from '../components/molecules/Modal';
 import { Popover } from '../components/molecules/Popover';
@@ -311,19 +311,40 @@ export const FyndMarketingNavActions = ({
   contactFormTitle,
   onContactSubmit,
   productOptions = [...fyndMarketingProductOptions],
-}: FyndMarketingNavActionsProps) => (
+}: FyndMarketingNavActionsProps) => {
+  const [contactOpen, setContactOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const openContact = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setContactOpen(true);
+  };
+  const scheduleClose = () => {
+    closeTimer.current = setTimeout(() => setContactOpen(false), 120);
+  };
+
+  return (
   <>
     <Popover
-      trigger={<ContactDropdownTrigger />}
+      open={contactOpen}
+      onOpenChange={setContactOpen}
+      trigger={
+        <ContactDropdownTrigger
+          onMouseEnter={openContact}
+          onMouseLeave={scheduleClose}
+        />
+      }
       placement="bottom-end"
       width={360}
     >
-      <ContactDropdownPanel
-        whatsappHref={whatsappHref}
-        whatsappQrSrc={whatsappQrSrc}
-        phoneNumber={phoneNumber}
-        phoneHref={phoneHref}
-      />
+      <div onMouseEnter={openContact} onMouseLeave={scheduleClose}>
+        <ContactDropdownPanel
+          whatsappHref={whatsappHref}
+          whatsappQrSrc={whatsappQrSrc}
+          phoneNumber={phoneNumber}
+          phoneHref={phoneHref}
+        />
+      </div>
     </Popover>
 
     <ContactModal
@@ -351,7 +372,8 @@ export const FyndMarketingNavActions = ({
     />
 
   </>
-);
+  );
+};
 
 // ── FyndMarketingNavMobileActions ─────────────────────────────────────────────
 

@@ -26,7 +26,7 @@ export const StatsGrid: React.FC<StatsGridProps> = ({
     <div className={rootCls} style={style}>
       {items.map(({ stat, label }) => (
         <div key={label} className={styles.item}>
-          <Text variant="heading-m" as="p" weight="medium" color={onDarkBg ? 'white' : 'default'}>
+          <Text variant="heading-m" as="p" weight="medium" color={onDarkBg ? 'white' : 'default'} className={styles.stat}>
             {stat}
           </Text>
           <Text variant="body-s" as="p" color={onDarkBg ? 'muted' : 'secondary'}>

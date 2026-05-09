@@ -11,3 +11,7 @@
   flex-direction: column;
   gap: 2px;
 }
+
+.stat {
+  font-family: 'Inter Display', sans-serif;
+}

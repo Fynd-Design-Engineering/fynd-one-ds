@@ -108,7 +108,7 @@ const RatingChip: React.FC<{ item: RatingChipItem }> = ({ item }) => {
 
 /* ── Component ────────────────────────────────────────────────────────────── */
 
-const MOBILE_BP = 767;
+const MOBILE_BP = 991;
 
 export const HeroFullBleed: React.FC<HeroFullBleedProps> = ({
   chipLabel,

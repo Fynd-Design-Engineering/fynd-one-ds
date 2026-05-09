@@ -11,7 +11,7 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .root {
     display: flex;
     flex-direction: column;
@@ -47,7 +47,7 @@
 
 /* On mobile (<768px): wrap drops out of absolute flow, sits below content,
    pulled up -200px so it peeks under the content area. */
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .videoWrap {
     position: relative;
     inset: auto;
@@ -86,7 +86,7 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .inner {
     padding: 48px 24px;
     order: 0;
@@ -119,7 +119,7 @@
   align-items: center;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .actions {
     flex-direction: column;
     align-items: stretch;

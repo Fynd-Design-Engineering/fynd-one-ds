@@ -164,8 +164,8 @@
 
 .meta-row {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 }
 
 .meta-text {
@@ -177,8 +177,10 @@
   margin: 0;
 }
 
-.meta-text--right {
-  text-align: right;
+.meta-dot {
+  color: #5b5c5d;
+  line-height: 1;
+  user-select: none;
 }
 
 .meta-text--dark {

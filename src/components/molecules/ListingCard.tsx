@@ -128,8 +128,11 @@ export const ListingCard: React.FC<ListingCardProps> = ({
         {hasMeta && (
           <div className={styles['meta-row']}>
             {showDate && date && <p className={[styles['meta-text'], onDarkBg ? styles['meta-text--dark'] : ''].filter(Boolean).join(' ')}>{date}</p>}
+            {showDate && date && showReadTime && readTime && (
+              <span aria-hidden="true" className={[styles['meta-dot'], onDarkBg ? styles['meta-text--dark'] : ''].filter(Boolean).join(' ')}>·</span>
+            )}
             {showReadTime && readTime && (
-              <p className={[styles['meta-text'], styles['meta-text--right'], onDarkBg ? styles['meta-text--dark'] : ''].filter(Boolean).join(' ')}>{readTime}</p>
+              <p className={[styles['meta-text'], onDarkBg ? styles['meta-text--dark'] : ''].filter(Boolean).join(' ')}>{readTime}</p>
             )}
           </div>
         )}

@@ -3,6 +3,7 @@
 .root {
   display: flex;
   flex-direction: column;
+  height: 100%;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 1px 2px 15px 0px rgba(0, 0, 0, 0.02);
@@ -80,8 +81,13 @@
 .content {
   display: flex;
   flex-direction: column;
+  flex: 1;
   gap: 32px;
   padding: 20px 24px;
+}
+
+.button-wrap {
+  margin-top: auto;
 }
 
 .content--sm {

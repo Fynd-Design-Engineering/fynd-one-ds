@@ -134,7 +134,9 @@ export const ListingCard: React.FC<ListingCardProps> = ({
           </div>
         )}
         {showButton && (
-          <Button label={buttonLabel} variant="tertiary" onDarkBg={onDarkBg} />
+          <div className={styles['button-wrap']}>
+            <Button label={buttonLabel} variant="tertiary" onDarkBg={onDarkBg} />
+          </div>
         )}
       </div>
     </div>

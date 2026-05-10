@@ -1,6 +1,6 @@
 .root {
   background-color: var(--fds-background-darkest, #0e0e0e);
-  padding: 80px 1.5rem;
+  padding: 80px 2.5rem;
   color: var(--fds-neutral-0, #ffffff);
   position: relative;
   overflow: hidden;
@@ -308,6 +308,8 @@
   .root {
     padding-top: 48px;
     padding-bottom: 48px;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
   }
 
   .container {

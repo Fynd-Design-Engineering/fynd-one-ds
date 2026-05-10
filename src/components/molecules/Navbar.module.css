@@ -3,7 +3,7 @@
 .root {
   position: relative;
   width: 100%;
-  padding: 0 1.5rem;
+  padding: 0 2.5rem;
   background-color: rgba(255, 255, 255, 0.8);
   -webkit-backdrop-filter: blur(50px);
   backdrop-filter: blur(50px);
@@ -210,8 +210,8 @@
     gap: 8px;
   }
   .root {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
   }
 }
 
@@ -614,7 +614,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: 0 1.5rem;
+  padding: 0 1.25rem;
   height: 4rem;
   flex-shrink: 0;
   box-sizing: border-box;

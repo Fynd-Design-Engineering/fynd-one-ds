@@ -29,7 +29,7 @@ export interface ListingCardProps {
   onDarkBg?: boolean;
   /** Adds a 1px #e3e3e3 border around the card. Default `false`. */
   bordered?: boolean;
-  /** Cross-fade to imageHoverSrc on hover. Default `true`. */
+  /** Cross-fade to imageHoverSrc on hover. Default `false`. */
   hoverImageSwap?: boolean;
   /** Elevating box-shadow on hover. Default `true`. */
   hoverShadow?: boolean;
@@ -59,7 +59,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({
   breakpoint = 'lg',
   onDarkBg = false,
   bordered = false,
-  hoverImageSwap = true,
+  hoverImageSwap = false,
   hoverShadow = true,
   onClick,
   className,

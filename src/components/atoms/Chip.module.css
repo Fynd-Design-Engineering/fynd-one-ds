@@ -11,7 +11,7 @@
 .anchor {
   justify-content: flex-start;
   gap: 10px;
-  padding: 8px 24px;
+  padding: 8px 1rem;
   border-radius: 10000px;
   background-color: #f8f8f9;
   border: none;
@@ -32,7 +32,7 @@
 .outlined {
   justify-content: center;
   gap: 8px;
-  padding: 8px 16px;
+  padding: 8px 1rem;
   border-radius: 24px;
   background-color: transparent;
   border: 1px solid #d2d2d2;
@@ -49,7 +49,7 @@
 .filled {
   justify-content: flex-start;
   gap: 8px;
-  padding: 4px 16px;
+  padding: 4px 1rem;
   border-radius: 24px;
   background-color: #f8f8f9cc;
   border: 1px solid transparent;
@@ -70,7 +70,7 @@
 }
 
 .anchor .text {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1.3;
 }

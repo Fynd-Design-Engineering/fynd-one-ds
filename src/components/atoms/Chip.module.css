@@ -44,6 +44,32 @@
   color: #ffffff;
 }
 
+/* ── Outlined: selected / interactive ──────── */
+
+.outlined.interactive {
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+  background: none;
+  border: none;
+  font-family: inherit;
+}
+
+.outlined.interactive:hover {
+  background-color: var(--fds-neutral-10, #f8f8f9);
+}
+
+.outlined.selected {
+  background-color: var(--fds-neutral-100, #101319);
+  border-color: var(--fds-neutral-100, #101319);
+  color: var(--fds-neutral-0, #ffffff);
+}
+
+.outlined.dark.selected {
+  background-color: var(--fds-neutral-0, #ffffff);
+  border-color: var(--fds-neutral-0, #ffffff);
+  color: var(--fds-neutral-100, #101319);
+}
+
 /* ── Variant: filled ───────────────────────── */
 
 .filled {

@@ -14,6 +14,10 @@ export interface ChipProps {
   icon?: React.ReactNode;
   breakpoint?: 'lg' | 'md' | 'sm';
   onDarkBg?: boolean;
+  /** Toggled/active state. Only meaningful for `outlined` variant. */
+  selected?: boolean;
+  /** Makes the chip interactive — renders as a `<button>`. */
+  onClick?: () => void;
   className?: string;
   style?: CSSProperties;
 }
@@ -26,6 +30,8 @@ export const Chip: React.FC<ChipProps> = ({
   icon,
   breakpoint = 'lg',
   onDarkBg = false,
+  selected = false,
+  onClick,
   className,
   style,
 }) => {
@@ -38,18 +44,41 @@ export const Chip: React.FC<ChipProps> = ({
     variantClass,
     isCompact && styles.compact,
     onDarkBg && styles.dark,
+    selected && styles.selected,
+    onClick && styles.interactive,
     className,
   ].filter(Boolean).join(' ');
 
   const resolvedIcon = icon ?? (!isAnchor ? <IconStar size={16} /> : null);
 
-  return (
-    <span className={classes} style={style} data-figma-id="961:34535">
+  const content = (
+    <>
       {resolvedIcon}
       {!resolvedIcon && showDot && (
         <span className={[styles.dot, styles[`dot--${dotColor}` as keyof typeof styles]].filter(Boolean).join(' ')} />
       )}
       <span className={styles.text}>{label}</span>
+    </>
+  );
+
+  if (onClick) {
+    return (
+      <button
+        type="button"
+        className={classes}
+        style={style}
+        onClick={onClick}
+        aria-pressed={selected}
+        data-figma-id="961:34535"
+      >
+        {content}
+      </button>
+    );
+  }
+
+  return (
+    <span className={classes} style={style} data-figma-id="961:34535">
+      {content}
     </span>
   );
 };

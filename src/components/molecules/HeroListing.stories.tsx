@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import React from 'react';
+import React, { useState } from 'react';
 import { HeroListing } from './HeroListing';
 import { IcPodcasts } from '../../assets/icons/media';
 
@@ -11,6 +11,7 @@ const meta: Meta<typeof HeroListing> = {
     onDarkBg: { control: 'boolean' },
     showChip: { control: 'boolean' },
     showSubtext: { control: 'boolean' },
+    chipSelected: { control: 'boolean' },
   },
 };
 
@@ -23,6 +24,23 @@ export const Default: Story = {
     chipIcon: <IcPodcasts size={20} />,
     title: 'The Fynd Podcast by Ragini, CBO at Fynd',
     subtext: 'Meaningful weekly conversations with entrepreneurs and industry experts',
+  },
+};
+
+export const Toggleable: Story = {
+  name: 'Toggleable chip',
+  render: () => {
+    const [selected, setSelected] = useState(false);
+    return (
+      <HeroListing
+        chipLabel="Podcast"
+        chipIcon={<IcPodcasts size={20} />}
+        chipSelected={selected}
+        onChipClick={() => setSelected((s) => !s)}
+        title="The Fynd Podcast by Ragini, CBO at Fynd"
+        subtext="Meaningful weekly conversations with entrepreneurs and industry experts"
+      />
+    );
   },
 };
 

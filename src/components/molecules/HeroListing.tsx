@@ -9,6 +9,10 @@ export interface HeroListingProps {
   chipLabel?: string;
   chipIcon?: ReactNode;
   showChip?: boolean;
+  /** Toggled/active state of the chip. */
+  chipSelected?: boolean;
+  /** Makes the chip interactive and fires on click. */
+  onChipClick?: () => void;
   title: string;
   titleAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   subtext?: string;
@@ -23,6 +27,8 @@ export const HeroListing: React.FC<HeroListingProps> = ({
   chipLabel,
   chipIcon,
   showChip = true,
+  chipSelected = false,
+  onChipClick,
   title,
   titleAs = 'h1',
   subtext,
@@ -44,9 +50,11 @@ export const HeroListing: React.FC<HeroListingProps> = ({
         {showChip && chipLabel && (
           <Chip
             label={chipLabel}
-            variant="anchor"
+            variant="outlined"
             icon={chipIcon}
             showDot={false}
+            selected={chipSelected}
+            onClick={onChipClick}
             onDarkBg={onDarkBg}
           />
         )}

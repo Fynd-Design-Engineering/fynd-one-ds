@@ -32,7 +32,6 @@ export const Toggleable: Story = {
     return (
       <HeroListing
         chipLabel="Podcast"
-        chipIcon={<IcPodcasts size={20} />}
         chipSelected={selected}
         onChipClick={() => setSelected((s) => !s)}
         title="The Fynd Podcast by Ragini, CBO at Fynd"

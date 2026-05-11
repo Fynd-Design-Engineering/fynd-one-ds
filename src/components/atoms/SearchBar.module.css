@@ -74,7 +74,7 @@
 }
 
 .icon--dark {
-  color: var(--fds-neutral-50, #797a7c);
+  color: var(--fds-neutral-0, #ffffff);
 }
 
 /* ── Responsive: Mobile ──────────────────────────────────────────────────── */

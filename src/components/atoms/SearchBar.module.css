@@ -70,7 +70,7 @@
 }
 
 .icon--light {
-  color: var(--fds-neutral-40, #a0a1a2);
+  color: var(--fds-neutral-100, #101319);
 }
 
 .icon--dark {

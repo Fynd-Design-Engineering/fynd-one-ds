@@ -103,7 +103,7 @@ textarea {
 form label {
   display: block;
   margin-bottom: 0.2rem;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 400;
   text-align: left;
   color: rgba(16, 19, 25, 0.65);
@@ -149,8 +149,8 @@ ol[class] {
 /* Consistent focus ring — title dark instead of browser-default blue.
    Low specificity so component-level overrides always win. */
 *:focus-visible {
-  outline: 2px solid var(--fds-neutral-100, #101319);
-  outline-offset: 2px;
+  outline: 0.125rem solid var(--fds-neutral-100, #101319);
+  outline-offset: 0.125rem;
 }
 
 /* Respect users who request reduced motion: short, near-instant animations. */

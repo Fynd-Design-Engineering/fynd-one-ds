@@ -1,7 +1,7 @@
 /* ── SectionHeader ─────────────────────────────────────────────────────────── */
 
 .root {
-  margin-bottom: 48px;
+  margin-bottom: 3rem;
 }
 
 /* ── Left alignment ──────────────────────────────────────────────────────── */
@@ -10,7 +10,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  gap: 56px;
+  gap: 3.5rem;
 }
 
 .root--left .content {
@@ -22,7 +22,7 @@
 .root--left .text-stack {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0.75rem;
 }
 
 .root--left .subtext {
@@ -35,7 +35,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 1.5rem;
   text-align: center;
 }
 
@@ -43,7 +43,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 1.5rem;
   max-width: 626px;
 }
 
@@ -51,7 +51,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 /* ── Content ─────────────────────────────────────────────────────────────── */
@@ -59,7 +59,7 @@
 .content {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 1.5rem;
 }
 
 /* ── Chip ────────────────────────────────────────────────────────────────── */
@@ -72,7 +72,7 @@
 
 .actions {
   display: flex;
-  gap: 12px;
+  gap: 0.75rem;
   flex-shrink: 0;
 }
 
@@ -82,64 +82,64 @@
 
 /* ── Responsive: Tablet (768–991px) ──────────────────────────────────────── */
 
-@media (max-width: 991px) {
+@media (max-width: 61.9375rem) {
   .root {
-    margin-bottom: 32px;
+    margin-bottom: 2rem;
   }
 
   .root--left {
-    gap: 56px;
+    gap: 3.5rem;
   }
 
   .root--center .content {
     max-width: 508px;
-    gap: 24px;
+    gap: 1.5rem;
   }
 
   .content {
-    gap: 12px;
+    gap: 0.75rem;
   }
 
   .root--left .text-stack {
-    gap: 4px;
+    gap: 0.25rem;
   }
 }
 
 /* ── Responsive: Mobile (<768px) ─────────────────────────────────────────── */
 
-@media (max-width: 767px) {
+@media (max-width: 47.9375rem) {
   .root {
-    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
   }
 
   /* Left: stack content above actions with 24px gap. */
   .root--left {
     flex-direction: column;
     align-items: flex-start;
-    gap: 24px;
+    gap: 1.5rem;
   }
 
   .root--center {
-    gap: 16px;
+    gap: 1rem;
   }
 
   /* 16px between chip and text-stack for both alignments. */
   .content {
-    gap: 16px;
+    gap: 1rem;
   }
 
   .root--center .content {
     max-width: 100%;
-    gap: 16px;
+    gap: 1rem;
   }
 
   /* 12px between heading and subtext. */
   .root--left .text-stack {
-    gap: 12px;
+    gap: 0.75rem;
   }
 
   .root--center .text-stack {
-    gap: 12px;
+    gap: 0.75rem;
   }
 
   .root--left .subtext {
@@ -148,11 +148,11 @@
 
   /* Center: actions sits inside .content (gap: 16px). Push it to 24px total. */
   .root--center .actions--center {
-    margin-top: 8px;
+    margin-top: 0.5rem;
   }
 
   .actions {
     flex-direction: column;
-    gap: 12px;
+    gap: 0.75rem;
   }
 }

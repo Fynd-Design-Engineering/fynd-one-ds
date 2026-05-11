@@ -1,6 +1,6 @@
 .root {
   background-color: var(--fds-background-darkest, #0e0e0e);
-  padding: 80px 2.5rem;
+  padding: 5rem 2.5rem;
   color: var(--fds-neutral-0, #ffffff);
   position: relative;
   overflow: hidden;
@@ -12,7 +12,7 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 64px;
+  gap: 4rem;
   width: 100%;
   position: relative;
   z-index: 1;
@@ -25,7 +25,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 1.5rem;
   text-align: center;
 }
 
@@ -40,15 +40,15 @@
 .contentPairs {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 40px;
-  row-gap: 40px;
+  column-gap: 2.5rem;
+  row-gap: 2.5rem;
   align-items: start;
 }
 
 .contentPair {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 .trailing {
@@ -56,7 +56,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 24px;
+  gap: 1.5rem;
   flex-wrap: wrap;
 }
 
@@ -65,13 +65,13 @@
 .linkRow {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 24px;
+  gap: 1.5rem;
 }
 
 .linkSection {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0.75rem;
   min-width: 0;
 }
 
@@ -81,7 +81,7 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0.25rem;
 }
 
 .link {
@@ -111,7 +111,7 @@
 /* Dividers between rows are not used on desktop — visual separation
    comes from the row spacing and the per-group accordion border on
    tablet/mobile. */
-@media (min-width: 992px) {
+@media (min-width: 62rem) {
   .divider {
     display: none;
   }
@@ -142,7 +142,7 @@
   border-bottom: 1px solid var(--fds-neutral-80, #4a4b4c);
   cursor: pointer;
   font-family: inherit;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 500;
   color: var(--fds-neutral-40, #a0a1a2);
   padding: 1.5rem 0;
@@ -190,7 +190,7 @@
   padding-top: 1.5rem;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 61.9375rem) {
   .linkGroupToggler {
     display: flex;
   }
@@ -209,14 +209,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 1.5rem;
   flex-wrap: wrap;
 }
 
 .legalLinks {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
@@ -237,7 +237,7 @@
 .socialLinks {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 1.125rem;
 }
 
 .socialLink {
@@ -268,7 +268,7 @@
 .wordmark--text {
   font-family: 'Fynd Sans Compact', 'Fynd Sans Test', sans-serif;
   font-weight: 400;
-  font-size: clamp(200px, 40vw, 560px);
+  font-size: clamp(12.5rem, 40vw, 35rem);
   line-height: 0.9;
   letter-spacing: -0.04em;
   text-align: center;
@@ -288,37 +288,37 @@
 
 /* ── Responsive ─────────────────────────────────────────────────────────── */
 
-@media (max-width: 991px) {
+@media (max-width: 61.9375rem) {
   .root {
-    padding-top: 64px;
-    padding-bottom: 64px;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
   }
 
   .container {
-    gap: 48px;
+    gap: 3rem;
   }
 
   .linkRow {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 32px;
+    gap: 2rem;
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 47.9375rem) {
   .root {
-    padding-top: 48px;
-    padding-bottom: 48px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
 
   .container {
-    gap: 40px;
+    gap: 2.5rem;
   }
 
   .contentPairs {
     grid-template-columns: minmax(0, 1fr);
-    row-gap: 24px;
+    row-gap: 1.5rem;
   }
 
   .trailing {
@@ -327,12 +327,12 @@
 
   .linkRow {
     grid-template-columns: minmax(0, 1fr);
-    gap: 24px;
+    gap: 1.5rem;
   }
 
   .bottomRow {
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
+    gap: 1rem;
   }
 }

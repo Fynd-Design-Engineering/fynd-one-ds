@@ -40,22 +40,22 @@
 
 .clickable:hover {
   box-shadow: 1px 5px 10px 0px rgba(41, 41, 41, 0.05),
-              5px 18px 18px 0px rgba(41, 41, 41, 0.04),
-              10px 40px 24px 0px rgba(41, 41, 41, 0.03);
+              0.3125rem 1.125rem 1.125rem 0 rgba(41, 41, 41, 0.04),
+              0.625rem 2.5rem 1.5rem 0 rgba(41, 41, 41, 0.03);
 }
 
 /* ── Breakpoint size variants ─────────────────────────────────────────────── */
 
 .lg {
-  border-radius: 16px;
+  border-radius: 1rem;
 }
 
 .md {
-  border-radius: 12px;
+  border-radius: 0.75rem;
 }
 
 .sm {
-  border-radius: 8px;
+  border-radius: 0.5rem;
 }
 
 /* ── Image ────────────────────────────────────────────────────────────────── */
@@ -199,18 +199,18 @@
 }
 
 .text-overlay--lg {
-  gap: 40px;
-  padding: 24px;
+  gap: 2.5rem;
+  padding: 1.5rem;
 }
 
 .text-overlay--md {
-  gap: 20px;
-  padding: 20px;
+  gap: 1.25rem;
+  padding: 1.25rem;
 }
 
 .text-overlay--sm {
-  gap: 12px;
-  padding: 16px;
+  gap: 0.75rem;
+  padding: 1rem;
 }
 
 /* ── Content left ─────────────────────────────────────────────────────────── */
@@ -219,20 +219,20 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 1rem;
   min-width: 0;
 }
 
 .chip-wrapper {
-  margin-bottom: 4px;
+  margin-bottom: 0.25rem;
 }
 
 /* chipPosition="floating": badge sits at the top-left corner of the card,
-   24px from both edges, overlaying the image panel. */
+   1.5rem from both edges, overlaying the image panel. */
 .chip--floating {
   position: absolute;
-  top: 24px;
-  left: 24px;
+  top: 1.5rem;
+  left: 1.5rem;
   z-index: 10;
 }
 

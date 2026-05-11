@@ -6,7 +6,7 @@
   background: var(--fds-herosplit-bg);
 }
 
-@media (max-width: 767px) {
+@media (max-width: 47.9375rem) {
   .hasBg {
     background: transparent;
   }
@@ -19,14 +19,14 @@
 .root {
   display: grid;
   grid-template-columns: minmax(0, 40fr) minmax(0, 60fr);
-  gap: 60px;
+  gap: 3.75rem;
   align-items: center;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 61.9375rem) {
   .root {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 2.5rem;
   }
 }
 
@@ -53,7 +53,7 @@
 .actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 0.75rem;
 }
 
 /* ── Visual cell ──────────────────────────────────────────────────────────── */
@@ -62,18 +62,18 @@
   width: 100%;
   max-width: 45rem;
   margin-left: auto;
-  border-radius: 24px;
+  border-radius: 1.5rem;
   overflow: hidden;
   align-self: stretch;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 61.9375rem) {
   .visual {
     margin-left: 0;
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 47.9375rem) {
   .visual {
     aspect-ratio: 3 / 3.5;
     display: flex;

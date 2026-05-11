@@ -4,8 +4,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
-  padding: 24px 0;
+  gap: 1rem;
+  padding: 1.5rem 0;
 }
 
 /* ── Page number buttons ─────────────────────────────────────────────────── */
@@ -14,15 +14,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 56px;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 3.5rem;
   border: none;
   padding: 0;
   cursor: pointer;
   font-family: 'Inter Display', sans-serif;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.55;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
@@ -63,11 +63,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: 3rem;
+  height: 3rem;
   font-family: 'Inter Display', sans-serif;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 1rem;
   color: var(--fds-neutral-60, #5b5c5d);
   user-select: none;
 }
@@ -82,9 +82,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 56px;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 3.5rem;
   border: none;
   padding: 0;
   cursor: pointer;
@@ -115,21 +115,21 @@
   display: flex;
   align-items: center;
   /* Fixed width prevents layout shift when page numbers change */
-  min-width: calc(7 * 48px);
+  min-width: calc(7 * 3rem);
   justify-content: center;
 }
 
 .pages-mobile {
   display: none;
   align-items: center;
-  min-width: calc(4 * 48px);
+  min-width: calc(4 * 3rem);
   justify-content: center;
 }
 
 /* Mobile: show compact set, hide full set */
-@media (max-width: 767px) {
+@media (max-width: 47.9375rem) {
   .root {
-    gap: 8px;
+    gap: 0.5rem;
   }
 
   .pages-desktop {

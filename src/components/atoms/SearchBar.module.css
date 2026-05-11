@@ -3,11 +3,11 @@
 .root {
   display: flex;
   align-items: center;
-  gap: 8px;
-  height: 40px;
-  padding: 0 0.75rem 0 16px;
+  gap: 0.5rem;
+  height: 2.5rem;
+  padding: 0 0.75rem 0 1rem;
   border: 1px solid;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   box-sizing: border-box;
 }
 
@@ -40,7 +40,7 @@
   margin: 0;
   font-family: 'Inter Display', sans-serif;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.5;
   appearance: none;
 }
@@ -65,8 +65,8 @@
 
 .icon {
   flex-shrink: 0;
-  width: 20px;
-  height: 20px;
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 .icon--light {
@@ -79,12 +79,12 @@
 
 /* ── Responsive: Mobile ──────────────────────────────────────────────────── */
 
-@media (max-width: 767px) {
+@media (max-width: 47.9375rem) {
   .root {
-    padding: 0 12px;
+    padding: 0 0.75rem;
   }
 
   .input {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 }

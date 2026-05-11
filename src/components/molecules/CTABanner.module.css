@@ -3,7 +3,7 @@
 .root {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 1.5rem;
   padding: 8rem 0;
 }
 
@@ -21,7 +21,7 @@
 
 .subtext {
   font-family: 'Inter Display', sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 1.5;
   color: #5b5c5d;
   max-width: 480px;
@@ -36,5 +36,5 @@
 
 .actions {
   display: flex;
-  gap: 16px;
+  gap: 1rem;
 }

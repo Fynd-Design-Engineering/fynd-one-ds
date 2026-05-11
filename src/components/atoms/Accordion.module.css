@@ -10,7 +10,7 @@
 .item {
   display: flex;
   flex-direction: column;
-  padding: 24px 0;
+  padding: 1.5rem 0;
   border-bottom: 1px solid;
 }
 
@@ -28,7 +28,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 80px;
+  gap: 5rem;
   width: 100%;
   background: none;
   border: none;
@@ -46,8 +46,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
   transform: rotate(90deg);
   transition: transform 0.3s;
 }
@@ -76,35 +76,35 @@
 /* ── Panel inner ──────────────────────────────────────────────────────────── */
 
 .panelInner {
-  padding-top: 24px;
-  padding-right: 120px;
+  padding-top: 1.5rem;
+  padding-right: 7.5rem;
 }
 
 /* ── Responsive: Tablet (768–991px) ───────────────────────────────────────── */
 
-@media (max-width: 991px) {
+@media (max-width: 61.9375rem) {
   .item {
-    padding: 20px 0;
+    padding: 1.25rem 0;
   }
 
   .panelInner {
-    padding-top: 20px;
+    padding-top: 1.25rem;
   }
 }
 
 /* ── Responsive: Mobile (<768px) ─────────────────────────────────────────── */
 
-@media (max-width: 767px) {
+@media (max-width: 47.9375rem) {
   .item {
-    padding: 16px 0;
+    padding: 1rem 0;
   }
 
   .question {
-    gap: 40px;
+    gap: 2.5rem;
   }
 
   .panelInner {
-    padding-top: 16px;
-    padding-right: 40px;
+    padding-top: 1rem;
+    padding-right: 2.5rem;
   }
 }

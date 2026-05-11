@@ -2,18 +2,18 @@
 
 .root {
   background-color: var(--fds-neutral-10, #f8f8f9);
-  padding: 80px 48px;
+  padding: 5rem 3rem;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 64rem) {
   .root {
-    padding: 64px 40px;
+    padding: 4rem 2.5rem;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 40rem) {
   .root {
-    padding: 48px 20px;
+    padding: 3rem 1.25rem;
   }
 }
 
@@ -23,12 +23,12 @@
   max-width: 1280px;
   margin: 0 auto;
   display: flex;
-  border-radius: 16px;
+  border-radius: 1rem;
   overflow: hidden;
   background: var(--fds-neutral-0, #ffffff);
 }
 
-@media (max-width: 960px) {
+@media (max-width: 60rem) {
   .container {
     flex-direction: column;
   }
@@ -39,20 +39,20 @@
 .left {
   flex: 1 0 0;
   min-width: 0;
-  min-height: 520px;
+  min-height: 32.5rem;
   position: relative;
   overflow: hidden;
   background-color: var(--cta-bg-color, #1a3a2a);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 48px 32px;
+  padding: 3rem 2rem;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 40rem) {
   .left {
-    min-height: 400px;
-    padding: 40px 24px;
+    min-height: 25rem;
+    padding: 2.5rem 1.5rem;
   }
 }
 
@@ -74,13 +74,13 @@
   backdrop-filter: blur(50px);
   -webkit-backdrop-filter: blur(50px);
   border: 1px solid var(--fds-neutral-30, #e3e3e3);
-  border-radius: 16px;
-  padding: 24px;
+  border-radius: 1rem;
+  padding: 1.5rem;
   max-width: 436px;
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 1.5rem;
 }
 
 /* ── Card head (chip + heading) ───────────────────────────────────────────── */
@@ -88,7 +88,7 @@
 .cardHead {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 1.5rem;
   align-items: flex-start;
 }
 
@@ -100,12 +100,12 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 1.5rem;
 }
 
 .step {
   display: flex;
-  gap: 12px;
+  gap: 0.75rem;
   align-items: flex-start;
 }
 
@@ -113,15 +113,15 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
-  min-width: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
+  min-width: 1.5rem;
   flex-shrink: 0;
-  border-radius: 56px;
+  border-radius: 3.5rem;
   background: var(--fds-green-20, #e1ebe7);
   color: var(--fds-neutral-100, #101319);
   font-family: Inter, sans-serif;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 500;
   line-height: 1.3;
 }
@@ -129,7 +129,7 @@
 .stepText {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 0.125rem;
 }
 
 /* ── Right panel ──────────────────────────────────────────────────────────── */
@@ -140,17 +140,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 48px;
+  padding: 3rem;
   background: var(--fds-neutral-0, #ffffff);
 }
 
-@media (max-width: 960px) {
+@media (max-width: 60rem) {
   .right {
-    padding: 48px 40px;
+    padding: 3rem 2.5rem;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 40rem) {
   .right {
     padding: 0;
   }

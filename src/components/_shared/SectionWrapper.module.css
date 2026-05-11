@@ -34,7 +34,7 @@
 
 /* ── Responsive ────────────────────────────────────────────────────────────── */
 
-@media (max-width: 767px) {
+@media (max-width: 47.9375rem) {
   .root {
     padding-top: 2rem;
     padding-bottom: 2rem;

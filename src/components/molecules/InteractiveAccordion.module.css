@@ -12,10 +12,10 @@
 
 .outer--shadow {
   box-shadow:
-    1px 5px 10px #2929290a,
-    2px 19px 19px #2929290a,
-    5px 42px 26px #29292905,
-    8px 76px 30px #29292903;
+    1px 0.3125rem 0.625rem #2929290a,
+    0.125rem 1.1875rem 1.1875rem #2929290a,
+    0.3125rem 2.625rem 1.625rem #29292905,
+    0.5rem 4.75rem 1.875rem #29292903;
 }
 
 .root {
@@ -70,10 +70,10 @@
      No border-radius — outer rounded corners come from .root's clip-path. */
 }
 
-@media (min-width: 992px) {
+@media (min-width: 62rem) {
   .mediaPanel {
     position: sticky;
-    top: calc(var(--fds-nav-h, 0px) + 24px);
+    top: calc(var(--fds-nav-h, 0) + 1.5rem);
   }
 }
 
@@ -84,7 +84,7 @@
    come AFTER the bare .mediaPanel rule above so source-order wins —
    otherwise `display: flex` would beat `display: none` at equal
    specificity. */
-@media (max-width: 991px) {
+@media (max-width: 61.9375rem) {
   .root {
     grid-template-columns: 1fr;
   }
@@ -93,7 +93,7 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 47.9375rem) {
   .outer {
     border-radius: 0;
   }
@@ -117,13 +117,13 @@
   box-sizing: border-box;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 61.9375rem) {
   .list {
     padding: 1.5rem;
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 47.9375rem) {
   .list {
     padding: 0;
   }
@@ -157,8 +157,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  padding: 20px 0;
+  gap: 1.5rem;
+  padding: 1.25rem 0;
   background: none;
   border: none;
   cursor: pointer;
@@ -168,9 +168,9 @@
 }
 
 .trigger:focus-visible {
-  outline: 2px solid var(--fds-neutral-100, #101319);
-  outline-offset: 4px;
-  border-radius: 4px;
+  outline: 0.125rem solid var(--fds-neutral-100, #101319);
+  outline-offset: 0.25rem;
+  border-radius: 0.25rem;
 }
 
 .toggleIcon {
@@ -178,14 +178,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 .toggleIcon svg {
   display: block;
-  width: 20px;
-  height: 20px;
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 /* The IcAdd / IcMinus SVGs ship with a hardcoded fill="#141414" attribute
@@ -213,10 +213,10 @@
 }
 
 .panelInner {
-  padding-bottom: 20px;
+  padding-bottom: 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 1rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -235,7 +235,7 @@
   background-color: var(--fds-neutral-20, #f2f2f2);
 }
 
-@media (max-width: 991px) {
+@media (max-width: 61.9375rem) {
   .inlineMedia {
     display: block;
   }

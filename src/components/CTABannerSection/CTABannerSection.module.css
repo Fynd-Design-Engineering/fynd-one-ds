@@ -7,18 +7,18 @@
   align-items: center;
   overflow: hidden;
   background-color: var(--cta-bg, var(--fds-neutral-100, #101319));
-  padding: 8rem 120px;
+  padding: 8rem 7.5rem;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 61.9375rem) {
   .root {
-    padding: 8rem 56px;
+    padding: 8rem 3.5rem;
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 47.9375rem) {
   .root {
-    padding: 8rem 24px;
+    padding: 8rem 1.5rem;
   }
 }
 
@@ -41,18 +41,18 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 2rem;
   width: 100%;
   max-width: 626px;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 61.9375rem) {
   .inner {
     max-width: 508px;
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 47.9375rem) {
   .inner {
     max-width: 312px;
   }
@@ -83,19 +83,19 @@
 .textBlock {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 1rem;
   width: 100%;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 61.9375rem) {
   .textBlock {
-    gap: 12px;
+    gap: 0.75rem;
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 47.9375rem) {
   .textBlock {
-    gap: 8px;
+    gap: 0.5rem;
   }
 }
 
@@ -104,7 +104,7 @@
 .actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 0.75rem;
 }
 
 .center .actions {
@@ -115,7 +115,7 @@
   justify-content: flex-start;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 47.9375rem) {
   .actions {
     flex-direction: column;
     align-items: center;

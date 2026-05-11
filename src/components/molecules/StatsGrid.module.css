@@ -3,10 +3,10 @@
 .root {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px 32px;
+  gap: 1rem 2rem;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 47.9375rem) {
   .root {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -16,7 +16,7 @@
 .item {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 0.125rem;
 }
 
 .stat {
@@ -25,7 +25,7 @@
   font-size: 1.625rem;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 47.9375rem) {
   .stat {
     font-size: 1.25rem;
   }

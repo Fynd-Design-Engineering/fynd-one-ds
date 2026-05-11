@@ -5,16 +5,16 @@
   overflow: hidden;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
-  margin-top: var(--fds-hfb-pull, 0px);
+  margin-top: var(--fds-hfb-pull, 0);
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 64rem) {
   .root {
-    min-height: 640px;
+    min-height: 40rem;
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 61.9375rem) {
   .root {
     display: flex;
     flex-direction: column;
@@ -43,18 +43,18 @@
    Overrides gradient-blur's height and z-index, adds the bg-matched color fade. */
 .videoGradient {
   display: none;
-  height: 300px;
+  height: 18.75rem;
   z-index: 1;
   background-image: linear-gradient(var(--fds-herofullbleed-bg, transparent) 50%, transparent);
 }
 
 /* On mobile (<768px): wrap drops out of absolute flow, sits below content,
-   pulled up -200px so it peeks under the content area. */
-@media (max-width: 991px) {
+   pulled up -12.5rem so it peeks under the content area. */
+@media (max-width: 61.9375rem) {
   .videoWrap {
     position: relative;
     inset: auto;
-    margin-top: -200px;
+    margin-top: -12.5rem;
     margin-left: -2.5rem;
     margin-right: -2.5rem;
     width: calc(100% + 5rem);
@@ -71,7 +71,7 @@
 
   .videoGradient {
     display: block;
-    height: 500px;
+    height: 31.25rem;
   }
 }
 
@@ -84,30 +84,30 @@
   margin: 0 auto;
   width: 100%;
   box-sizing: border-box;
-  padding: 80px 0 6rem;
-  padding-top: calc(80px + var(--fds-hfb-top, 0px));
+  padding: 5rem 0 6rem;
+  padding-top: calc(5rem + var(--fds-hfb-top, 0));
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 63.9375rem) {
   .inner {
-    padding: 64px 0 6rem;
-    padding-top: calc(64px + var(--fds-hfb-top, 0px));
+    padding: 4rem 0 6rem;
+    padding-top: calc(4rem + var(--fds-hfb-top, 0));
   }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 48rem) and (max-width: 61.9375rem) {
   .inner {
-    padding: 64px 0 6rem;
-    padding-top: calc(64px + var(--fds-hfb-top, 0px));
+    padding: 4rem 0 6rem;
+    padding-top: calc(4rem + var(--fds-hfb-top, 0));
     order: 0;
   }
 
   .videoWrap {
-    margin-top: -500px;
+    margin-top: -31.25rem;
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 47.9375rem) {
   .root {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
@@ -121,13 +121,13 @@
 
   .inner {
     max-width: 100%;
-    padding: 48px 0 6rem;
-    padding-top: calc(48px + var(--fds-hfb-top, 0px));
+    padding: 3rem 0 6rem;
+    padding-top: calc(3rem + var(--fds-hfb-top, 0));
     order: 0;
   }
 
   .videoGradient {
-    height: 300px;
+    height: 18.75rem;
   }
 }
 
@@ -136,7 +136,7 @@
 .content {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 2.5rem;
   max-width: 552px;
 }
 
@@ -145,7 +145,7 @@
 .textGroup {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0.75rem;
 }
 
 /* ── Actions ──────────────────────────────────────────────────────────────── */
@@ -153,11 +153,11 @@
 .actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 0.75rem;
   align-items: center;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 47.9375rem) {
   .actions {
     flex-direction: column;
     align-items: stretch;
@@ -183,6 +183,6 @@
 .badges {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 1rem;
   align-items: center;
 }

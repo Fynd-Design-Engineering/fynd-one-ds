@@ -3,7 +3,7 @@
 .root {
   position: relative;
   width: 100%;
-  border-radius: 16px;
+  border-radius: 1rem;
   overflow: hidden;
   background-color: #e3e3e3;
 }
@@ -44,7 +44,7 @@
   align-items: center;
   justify-content: center;
   font-family: 'Inter', sans-serif;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 500;
   color: #5b5c5d;
 }

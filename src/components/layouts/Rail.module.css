@@ -2,7 +2,7 @@
 
 .root {
   display: flex;
-  gap: var(--rail-gap, 20px);
+  gap: var(--rail-gap, 1.25rem);
   overflow-x: auto;
   overflow-y: hidden;
   scroll-behavior: smooth;
@@ -15,10 +15,10 @@
   padding-left: calc(50vw - 50%);
 
   /* Breathing room for shadows on hover */
-  margin-top: -40px;
-  margin-bottom: -40px;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  margin-top: -2.5rem;
+  margin-bottom: -2.5rem;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
 
   /* No scrollbar */
   scrollbar-width: none;

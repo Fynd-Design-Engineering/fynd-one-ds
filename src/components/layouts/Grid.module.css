@@ -4,7 +4,7 @@
   display: grid;
   width: 100%;
   grid-template-columns: repeat(var(--grid-cols, 3), 1fr);
-  gap: var(--grid-gap, 20px);
+  gap: var(--grid-gap, 1.25rem);
 }
 
 .root > * {
@@ -12,14 +12,14 @@
 }
 
 /* Tablet: 768px – 991px */
-@media (max-width: 991px) {
+@media (max-width: 61.9375rem) {
   .root {
     grid-template-columns: repeat(var(--grid-cols-tablet, 2), 1fr);
   }
 }
 
 /* Mobile: < 768px */
-@media (max-width: 767px) {
+@media (max-width: 47.9375rem) {
   .root {
     grid-template-columns: repeat(var(--grid-cols-mobile, 1), 1fr);
   }

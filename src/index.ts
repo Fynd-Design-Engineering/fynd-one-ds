@@ -102,6 +102,9 @@ export type { HeroSplitProps, HeroSplitImage } from './components/molecules/Hero
 export { HeroFullBleed } from './components/molecules/HeroFullBleed';
 export type { HeroFullBleedProps } from './components/molecules/HeroFullBleed';
 
+export { HeroListing } from './components/molecules/HeroListing';
+export type { HeroListingProps } from './components/molecules/HeroListing';
+
 export { StatsGrid } from './components/molecules/StatsGrid';
 export type { StatsGridProps, StatItem } from './components/molecules/StatsGrid';
 

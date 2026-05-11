@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import { HeroListing } from './HeroListing';
-import { IcPodcasts } from '../../assets/icons/media';
 
 const meta: Meta<typeof HeroListing> = {
   title: 'Content/HeroListing',
@@ -19,9 +18,6 @@ export default meta;
 type Story = StoryObj<typeof HeroListing>;
 
 export const Default: Story = {
-  render: (args) => (
-    <HeroListing {...args} chipIcon={<IcPodcasts size={20} />} />
-  ),
   args: {
     chipLabel: 'Podcast',
     title: 'The Fynd Podcast by Ragini, CBO at Fynd',
@@ -65,9 +61,6 @@ export const TitleOnly: Story = {
 };
 
 export const OnDarkBackground: Story = {
-  render: (args) => (
-    <HeroListing {...args} chipIcon={<IcPodcasts size={20} />} />
-  ),
   args: {
     chipLabel: 'Podcast',
     title: 'The Fynd Podcast by Ragini, CBO at Fynd',

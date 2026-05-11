@@ -1,14 +1,19 @@
 import React, { CSSProperties, ReactNode } from 'react';
-import { Chip } from '../atoms/Chip';
+import { IcPodcasts } from '../../assets/icons/media';
+import { Chip, type ChipDotColor } from '../atoms/Chip';
 import { Text } from '../Typography/Text';
 import styles from './HeroListing.module.css';
 
 type HeroListingTag = 'header' | 'section' | 'div';
 
+const DEFAULT_CHIP_ICON = <IcPodcasts width={20} height={20} />;
+
 export interface HeroListingProps {
   chipLabel?: string;
+  /** Icon rendered inside the chip. Defaults to the podcast icon. */
   chipIcon?: ReactNode;
   showChip?: boolean;
+  chipDotColor?: ChipDotColor;
   /** Toggled/active state of the chip. */
   chipSelected?: boolean;
   /** Makes the chip interactive and fires on click. */
@@ -25,8 +30,9 @@ export interface HeroListingProps {
 
 export const HeroListing: React.FC<HeroListingProps> = ({
   chipLabel,
-  chipIcon,
+  chipIcon = DEFAULT_CHIP_ICON,
   showChip = true,
+  chipDotColor,
   chipSelected = false,
   onChipClick,
   title,
@@ -52,7 +58,8 @@ export const HeroListing: React.FC<HeroListingProps> = ({
             label={chipLabel}
             variant="outlined"
             icon={chipIcon}
-            showDot={false}
+            showDot={!chipIcon}
+            dotColor={chipDotColor}
             selected={chipSelected}
             onClick={onChipClick}
             onDarkBg={onDarkBg}

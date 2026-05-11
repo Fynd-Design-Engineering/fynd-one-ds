@@ -27,14 +27,13 @@
   backdrop-filter: none;
 }
 
-/* On hover (or when any descendant has keyboard focus), bring back
-   the solid bg even while at the top of the page so the nav reads
-   clearly when the user is interacting with it. */
-.root--transparent:hover,
-.root--transparent:focus-within {
-  background-color: rgba(255, 255, 255, 0.8);
-  -webkit-backdrop-filter: blur(50px);
-  backdrop-filter: blur(50px);
+/* On hover (or when any descendant has keyboard focus), snap to fully
+   opaque white so the nav reads clearly when the user is interacting. */
+.root:not(.root--dark):hover,
+.root:not(.root--dark):focus-within {
+  background-color: var(--fds-neutral-0, #ffffff);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 .root--transparent.root--dark:hover,

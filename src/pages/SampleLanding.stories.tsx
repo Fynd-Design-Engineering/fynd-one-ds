@@ -1,5 +1,68 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
+import { Navbar, type NavItem } from '../components/molecules/Navbar';
+import { FyndMarketingNavActions, FyndMarketingNavMobileActions } from '../presets/fyndMarketingNavActions';
+import fyndLogoDark from '../assets/brand-logos/fynd-horizontal-dark.svg';
+
+const sampleNavItems: NavItem[] = [
+  {
+    label: 'Products',
+    type: 'mega',
+    categories: [
+      {
+        key: 'online',
+        label: 'Online Commerce',
+        links: [
+          { title: 'D2C Storefront', description: 'Customizable storefronts with built-in SEO & payments' },
+          { title: 'B2B Portal', description: 'Digital wholesale with custom pricing & buyer workflows' },
+          { title: 'Quick Commerce', description: 'Storefronts + OMS optimised for 10–30 min delivery' },
+          { title: 'Marketplace Selling', description: 'Sync listings across Amazon, Flipkart, Myntra & more' },
+        ],
+      },
+      {
+        key: 'supply',
+        label: 'Supply Chain',
+        links: [
+          { title: 'Order Management', description: 'End-to-end order orchestration across all channels' },
+          { title: 'Warehouse Management', description: 'Inventory tracking, picking, packing & shipping' },
+          { title: 'Last Mile Delivery', description: 'Route optimisation & real-time delivery tracking' },
+        ],
+      },
+      {
+        key: 'instore',
+        label: 'In-Store Tech',
+        links: [
+          { title: 'Point of Sale', description: 'Modern POS with unified inventory & customer data' },
+          { title: 'Endless Aisle', description: 'Access full catalogue from any store, never lose a sale' },
+          { title: 'Clienteling', description: 'Personalised in-store experiences powered by data' },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'Solutions',
+    type: 'simple',
+    links: [
+      { title: 'Fashion & Apparel', description: 'Omnichannel tools built for fashion retail' },
+      { title: 'Electronics', description: 'High-SKU cataloguing & marketplace sync' },
+      { title: 'Grocery & FMCG', description: 'Quick commerce and dark store operations' },
+      { title: 'Beauty & Personal Care', description: 'D2C growth with subscriptions & bundles' },
+      { title: 'Enterprise Retail', description: '500+ store deployments with central OMS' },
+    ],
+  },
+  { label: 'Pricing', href: '#pricing' },
+  {
+    label: 'Resources',
+    type: 'simple',
+    links: [
+      { title: 'Documentation', description: 'API references, guides & SDK docs' },
+      { title: 'Blog', description: 'Commerce insights, trends & case studies' },
+      { title: 'Customer Stories', description: 'How leading brands scale with Fynd' },
+      { title: 'Changelog', description: "What's new in the platform" },
+    ],
+  },
+  { label: 'Contact', href: '#contact' },
+];
 import { SectionWrapper } from '../components/_shared/SectionWrapper';
 import { Section } from '../components/_shared/Section';
 import { Text } from '../components/Typography/Text';
@@ -28,6 +91,16 @@ const StarIcon = () => (
 
 const SampleLanding = () => (
   <div>
+    {/* ────── Navbar ────── */}
+    <Navbar
+      logo={<img src={fyndLogoDark} alt="Fynd" />}
+      logoHref="/"
+      navItems={sampleNavItems}
+      actions={<FyndMarketingNavActions />}
+      mobileActions={<FyndMarketingNavMobileActions />}
+      sticky
+    />
+
     {/* ────── 1. Hero ────── */}
     <SectionWrapper>
       <div className={s.hero}>

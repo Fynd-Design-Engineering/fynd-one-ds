@@ -10,6 +10,7 @@ const meta: Meta<typeof ContactCTASection> = {
   parameters: { layout: 'fullscreen' },
   argTypes: {
     bgColor: { control: 'color' },
+    sectionBg: { control: 'color' },
     bgImage: { control: 'text' },
   },
 };
@@ -43,6 +44,28 @@ export const NoSteps: Story = {
     title: "Ready to scale your commerce? Let's talk.",
     bgImage: SAMPLE_BG,
     formTitle: 'Get in Touch',
+  },
+};
+
+export const CustomSectionBg: Story = {
+  name: 'Custom section background',
+  args: {
+    title: "Discover how Fynd accelerates your business",
+    steps: [
+      {
+        n: 1,
+        title: 'Fill out the form',
+        body: 'Share your contact information to get started',
+      },
+      {
+        n: 2,
+        title: 'Speak to an expert',
+        body: 'A member of our sales team will get in touch with you',
+      },
+    ],
+    bgImage: SAMPLE_BG,
+    formTitle: 'Get in Touch',
+    sectionBg: '#eef4ff',
   },
 };
 

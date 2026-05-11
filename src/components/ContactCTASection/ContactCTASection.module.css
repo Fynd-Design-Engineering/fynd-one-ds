@@ -1,7 +1,7 @@
 /* ── ContactCTASection ────────────────────────────────────────────────────── */
 
 .root {
-  background-color: var(--fds-neutral-10, #f8f8f9);
+  background-color: var(--cta-section-bg, var(--fds-neutral-10, #f8f8f9));
   padding: 5rem 3rem;
 }
 

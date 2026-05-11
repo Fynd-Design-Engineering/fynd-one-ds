@@ -23,6 +23,8 @@ export interface ContactCTASectionProps {
   bgImage: string;
   /** Solid color rendered behind the bg image (fallback + tint). */
   bgColor?: string;
+  /** Background color for the full outer section (defaults to neutral-10). */
+  sectionBg?: string;
   /** Optional eyebrow chip above the heading. */
   chipLabel?: string;
   className?: string;
@@ -40,6 +42,7 @@ export const ContactCTASection: React.FC<ContactCTASectionProps> = ({
   steps,
   bgImage,
   bgColor,
+  sectionBg,
   chipLabel,
   className,
   formTitle = 'Get in Touch',
@@ -58,6 +61,7 @@ export const ContactCTASection: React.FC<ContactCTASectionProps> = ({
         {
           '--cta-bg-image': `url(${bgImage})`,
           '--cta-bg-color': bgColor ?? '#1a3a2a',
+          ...(sectionBg ? { '--cta-section-bg': sectionBg } : {}),
         } as React.CSSProperties
       }
     >

@@ -20,8 +20,10 @@ type Story = StoryObj<typeof HeroListing>;
 export const Default: Story = {
   args: {
     chipLabel: 'Podcast',
+    showChip: true,
     title: 'The Fynd Podcast by Ragini, CBO at Fynd',
     subtext: 'Meaningful weekly conversations with entrepreneurs and industry experts',
+    showSubtext: true,
   },
 };
 

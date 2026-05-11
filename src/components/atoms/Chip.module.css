@@ -86,6 +86,16 @@
   color: #ffffff;
 }
 
+/* ── Icon color inheritance ────────────────── */
+
+/* SVG icons often hardcode fill — override so they track the chip text color. */
+.root svg path,
+.root svg circle,
+.root svg polygon,
+.root svg rect:not([clip-path]) {
+  fill: currentColor;
+}
+
 /* ── Text ──────────────────────────────────── */
 
 .text {

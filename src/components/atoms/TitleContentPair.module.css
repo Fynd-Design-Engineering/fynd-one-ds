@@ -9,19 +9,19 @@
 /* ── Theme modifiers for title ─────────────── */
 
 .title {
-  color: #101319;
+  color: var(--fds-neutral-100, #101319);
 }
 
 .dark .title {
-  color: #ffffff;
+  color: var(--fds-neutral-0, #ffffff);
 }
 
 /* ── Theme modifiers for subtext ───────────── */
 
 .subtext {
-  color: #5b5c5d;
+  color: var(--fds-neutral-60, #5b5c5d);
 }
 
 .dark .subtext {
-  color: #a0a1a2;
+  color: var(--fds-neutral-40, #a0a1a2);
 }

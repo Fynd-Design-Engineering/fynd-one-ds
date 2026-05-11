@@ -23,7 +23,7 @@
   width: 0.875rem;
   height: 0.875rem;
   flex-shrink: 0;
-  color: #ffffff;
+  color: var(--fds-neutral-0, #ffffff);
 }
 
 .icon svg {
@@ -32,7 +32,7 @@
 }
 
 .icon svg path {
-  fill: #ffffff;
+  fill: var(--fds-neutral-0, #ffffff);
 }
 
 .tab-label {
@@ -40,13 +40,13 @@
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.4;
-  color: #ffffff;
+  color: var(--fds-neutral-0, #ffffff);
   white-space: nowrap;
 }
 
 .body {
   background:
-    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(var(--fds-neutral-0, #ffffff), #ffffff) padding-box,
     linear-gradient(88deg, #E0D0EE -14.85%, #9F80F8 21.47%, #1079E2 85.02%) border-box;
   border: 0.125rem solid transparent;
   border-radius: 0 1rem 1rem 1rem;

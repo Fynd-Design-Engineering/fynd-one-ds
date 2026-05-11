@@ -8,15 +8,15 @@
 }
 
 .dark {
-  background-color: #101319;
+  background-color: var(--fds-neutral-100, #101319);
 }
 
 .muted {
-  background-color: #f2f2f2;
+  background-color: var(--fds-neutral-20, #f2f2f2);
 }
 
 .subtle {
-  background-color: #f8f8f9;
+  background-color: var(--fds-neutral-10, #f8f8f9);
 }
 
 .no-padding-bottom {

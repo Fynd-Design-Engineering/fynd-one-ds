@@ -27,7 +27,7 @@
   font-size: 1.125rem;
   font-weight: 500;
   line-height: 1.5;
-  color: #5b5c5d;
+  color: var(--fds-neutral-60, #5b5c5d);
   background-color: transparent;
   border: none;
   border-radius: 0.5rem 0.5rem 0 0;
@@ -38,8 +38,8 @@
 }
 
 .button--active {
-  color: #101319;
-  background-color: #ffffff;
+  color: var(--fds-neutral-100, #101319);
+  background-color: var(--fds-neutral-0, #ffffff);
   border-radius: 0.75rem 0.75rem 0 0;
   box-shadow: none;
 }
@@ -59,8 +59,8 @@
 }
 
 .button--underline-active {
-  background-color: #e3e3e3;
-  color: #101319;
+  background-color: var(--fds-neutral-30, #e3e3e3);
+  color: var(--fds-neutral-100, #101319);
   border-bottom: 1.0.3125rem solid #000000;
   border-radius: 0.5rem 0.5rem 0 0;
   box-shadow: none;
@@ -69,7 +69,7 @@
 /* ── Panel ─────────────────────────────────── */
 
 .panel {
-  background-color: #ffffff;
+  background-color: var(--fds-neutral-0, #ffffff);
   width: 100%;
   box-sizing: border-box;
 }

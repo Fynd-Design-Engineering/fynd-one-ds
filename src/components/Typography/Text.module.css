@@ -245,7 +245,7 @@
 /* ─── Color variants ──────────────────────────────────────────────────────── */
 
 .color--secondary {
-  color: #5b5c5d;
+  color: var(--fds-neutral-60, #5b5c5d);
 }
 
 .color--muted {
@@ -253,11 +253,11 @@
 }
 
 .color--subtle {
-  color: #5b5c5d;
+  color: var(--fds-neutral-60, #5b5c5d);
 }
 
 .color--white {
-  color: #ffffff;
+  color: var(--fds-neutral-0, #ffffff);
 }
 
 /* ─── Caps modifier (for programmatic caps prop) ───────────────────────────── */

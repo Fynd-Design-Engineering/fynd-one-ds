@@ -7,7 +7,7 @@
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 1px 2px 15px 0px rgba(0, 0, 0, 0.02);
-  background-color: #ffffff;
+  background-color: var(--fds-neutral-0, #ffffff);
   transition: box-shadow 0.3s;
 }
 
@@ -117,7 +117,7 @@
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 1.4;
-  color: #101319;
+  color: var(--fds-neutral-100, #101319);
   margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -142,7 +142,7 @@
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #5b5c5d;
+  color: var(--fds-neutral-60, #5b5c5d);
   margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -173,12 +173,12 @@
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.4;
-  color: #5b5c5d;
+  color: var(--fds-neutral-60, #5b5c5d);
   margin: 0;
 }
 
 .meta-dot {
-  color: #5b5c5d;
+  color: var(--fds-neutral-60, #5b5c5d);
   line-height: 1;
   display: flex;
   align-items: center;

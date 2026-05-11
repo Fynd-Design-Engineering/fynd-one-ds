@@ -125,7 +125,7 @@
   position: relative;
   flex: 1;
   min-height: 0;
-  background-color: #e3e3e3;
+  background-color: var(--fds-neutral-30, #e3e3e3);
 }
 
 .image-container img {

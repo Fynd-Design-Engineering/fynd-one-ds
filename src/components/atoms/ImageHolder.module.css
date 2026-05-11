@@ -5,7 +5,7 @@
   width: 100%;
   border-radius: 1rem;
   overflow: hidden;
-  background-color: #e3e3e3;
+  background-color: var(--fds-neutral-30, #e3e3e3);
 }
 
 /* ── Aspect ratio modifiers ────────────────── */
@@ -46,5 +46,5 @@
   font-family: 'Inter', sans-serif;
   font-size: 0.875rem;
   font-weight: 500;
-  color: #5b5c5d;
+  color: var(--fds-neutral-60, #5b5c5d);
 }

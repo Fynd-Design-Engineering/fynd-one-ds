@@ -89,5 +89,5 @@
 
 .root--dark .item:not(.item--active):hover,
 .root--dark .item--active {
-  color: #ffffff;
+  color: var(--fds-neutral-0, #ffffff);
 }

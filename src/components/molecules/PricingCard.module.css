@@ -210,7 +210,7 @@
 }
 
 .root--dark .feature-icon {
-  color: #ffffff;
+  color: var(--fds-neutral-0, #ffffff);
 }
 
 /* ── Responsive: Mobile (<768px) ────────────────────────────────────────────── */

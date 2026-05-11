@@ -5,7 +5,7 @@
   padding: 0.25rem 1rem;
   min-height: 1.875rem;
   border-radius: 1.25rem;
-  background-color: #f8f8f9;
+  background-color: var(--fds-neutral-10, #f8f8f9);
   border: 1px solid transparent;
   color: var(--fds-neutral-60, #5b5c5d);
   font-family: 'Inter Display', sans-serif;
@@ -31,13 +31,13 @@
 
 .checked {
   background-color: var(--fds-neutral-100, #101319);
-  color: #ffffff;
+  color: var(--fds-neutral-0, #ffffff);
   border-color: var(--fds-neutral-100, #101319);
 }
 
 .checked:hover {
   background-color: var(--fds-neutral-100, #101319);
-  color: #ffffff;
+  color: var(--fds-neutral-0, #ffffff);
 }
 
 .icon {

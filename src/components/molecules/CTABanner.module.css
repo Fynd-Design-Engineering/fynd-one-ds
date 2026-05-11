@@ -23,13 +23,13 @@
   font-family: 'Inter Display', sans-serif;
   font-size: 1.125rem;
   line-height: 1.5;
-  color: #5b5c5d;
+  color: var(--fds-neutral-60, #5b5c5d);
   max-width: 480px;
   margin: 0;
 }
 
 .subtext--dark {
-  color: #a0a1a2;
+  color: var(--fds-neutral-40, #a0a1a2);
 }
 
 /* ── Actions row ──────────────────────────────────────────────────────────── */

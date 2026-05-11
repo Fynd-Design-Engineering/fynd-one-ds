@@ -39,6 +39,10 @@
   .root {
     padding: 3rem 2.5rem;
   }
+
+  .inner {
+    max-width: 32rem;
+  }
 }
 
 @media (max-width: 767px) {

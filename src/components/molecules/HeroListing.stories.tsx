@@ -19,9 +19,11 @@ export default meta;
 type Story = StoryObj<typeof HeroListing>;
 
 export const Default: Story = {
+  render: (args) => (
+    <HeroListing {...args} chipIcon={<IcPodcasts size={20} />} />
+  ),
   args: {
     chipLabel: 'Podcast',
-    chipIcon: <IcPodcasts size={20} />,
     title: 'The Fynd Podcast by Ragini, CBO at Fynd',
     subtext: 'Meaningful weekly conversations with entrepreneurs and industry experts',
   },
@@ -63,9 +65,11 @@ export const TitleOnly: Story = {
 };
 
 export const OnDarkBackground: Story = {
+  render: (args) => (
+    <HeroListing {...args} chipIcon={<IcPodcasts size={20} />} />
+  ),
   args: {
     chipLabel: 'Podcast',
-    chipIcon: <IcPodcasts size={20} />,
     title: 'The Fynd Podcast by Ragini, CBO at Fynd',
     subtext: 'Meaningful weekly conversations with entrepreneurs and industry experts',
     onDarkBg: true,

@@ -48,13 +48,13 @@
 
 .outlined.interactive {
   cursor: pointer;
-  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
-  background: none;
-  border: none;
+  -webkit-appearance: none;
+  appearance: none;
   font-family: inherit;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
 }
 
-.outlined.interactive:hover {
+.outlined.interactive:hover:not(.selected) {
   background-color: var(--fds-neutral-10, #f8f8f9);
 }
 

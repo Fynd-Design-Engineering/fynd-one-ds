@@ -5,6 +5,10 @@ export interface GridProps {
   children: React.ReactNode;
   /** Number of columns at desktop (≥992px). Auto-collapses at smaller breakpoints. */
   columns?: number;
+  /** Override auto-computed tablet column count (768–991px). */
+  tabletColumns?: number;
+  /** Override auto-computed mobile column count (<768px). Defaults to 1. */
+  mobileColumns?: number;
   gap?: number;
   className?: string;
   style?: CSSProperties;
@@ -19,18 +23,18 @@ function getTabletColumns(cols: number): number {
 export const Grid: React.FC<GridProps> = ({
   children,
   columns = 3,
+  tabletColumns,
+  mobileColumns,
   gap = 20,
   className,
   style,
 }) => {
   const cls = [styles.root, className].filter(Boolean).join(' ');
 
-  const tabletCols = getTabletColumns(columns);
-
   const gridStyle: CSSProperties = {
     '--grid-cols': columns,
-    '--grid-cols-tablet': tabletCols,
-    '--grid-cols-mobile': 1,
+    '--grid-cols-tablet': tabletColumns ?? getTabletColumns(columns),
+    '--grid-cols-mobile': mobileColumns ?? 1,
     '--grid-gap': `${gap}px`,
     ...style,
   } as CSSProperties;

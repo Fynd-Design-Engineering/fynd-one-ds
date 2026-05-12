@@ -13,12 +13,22 @@ export interface HeroSplitImage {
   height?: number;
 }
 
+export interface HeroSplitVideo {
+  src: string;
+  poster?: string;
+  autoPlay?: boolean;
+  loop?: boolean;
+  muted?: boolean;
+}
+
 export interface HeroSplitProps {
   title: ReactNode;
   description?: ReactNode;
   bullets?: PointerItem[];
   actions?: ReactNode;
-  image: HeroSplitImage;
+  /** Pass either image or video for the visual cell — video takes precedence if both are provided. */
+  image?: HeroSplitImage;
+  video?: HeroSplitVideo;
   imagePriority?: boolean;
   /**
    * Section background color. Any CSS color string (token var, hex, rgb,
@@ -61,6 +71,7 @@ export const HeroSplit: React.FC<HeroSplitProps> = ({
   bullets,
   actions,
   image,
+  video,
   imagePriority = true,
   bg,
   visualBg,
@@ -117,15 +128,27 @@ export const HeroSplit: React.FC<HeroSplitProps> = ({
           className={styles.visual}
           style={visualBg ? { background: visualBg } : undefined}
         >
-          <img
-            src={image.src}
-            alt={image.alt}
-            width={image.width}
-            height={image.height}
-            className={styles.image}
-            loading={imagePriority ? 'eager' : 'lazy'}
-            decoding={imagePriority ? 'sync' : 'async'}
-          />
+          {video ? (
+            <video
+              src={video.src}
+              poster={video.poster}
+              autoPlay={video.autoPlay ?? true}
+              loop={video.loop ?? true}
+              muted={video.muted ?? true}
+              playsInline
+              className={styles.image}
+            />
+          ) : image ? (
+            <img
+              src={image.src}
+              alt={image.alt}
+              width={image.width}
+              height={image.height}
+              className={styles.image}
+              loading={imagePriority ? 'eager' : 'lazy'}
+              decoding={imagePriority ? 'sync' : 'async'}
+            />
+          ) : null}
         </div>
       </div>
     </SectionWrapper>

@@ -158,6 +158,29 @@ export const OnDarkBackground: Story = {
   ],
 };
 
+export const WithVideo: Story = {
+  name: 'Video in visual cell',
+  args: {
+    title: 'Build powerful developer experiences with Konnect',
+    description: 'APIs, webhooks, and SDKs — everything you need to integrate at scale.',
+    bullets: [
+      { label: 'Unified API gateway' },
+      { label: 'Real-time webhooks' },
+      { label: 'OpenAPI-first design' },
+    ],
+    actions: (
+      <>
+        <Button label="Explore APIs" variant="primary" showChevron />
+        <Button label="Read the docs" variant="secondary" />
+      </>
+    ),
+    video: {
+      src: 'https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/original/webflow-team/konnect_dev_portal/_Hero-section-hevc-safari.mp4',
+    },
+    bg: 'var(--fds-blue-20, #e7eefe)',
+  },
+};
+
 export const RichBullets: Story = {
   name: 'Bullets with rich content (node field)',
   args: {

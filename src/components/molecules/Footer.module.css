@@ -126,7 +126,13 @@
 .linkGroups {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 4rem;
+}
+
+@media (max-width: 61.9375rem) {
+  .linkGroups {
+    gap: 0;
+  }
 }
 
 .linkGroup {

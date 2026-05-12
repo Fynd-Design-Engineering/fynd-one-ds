@@ -70,17 +70,37 @@
 .card {
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
   background: rgba(255, 255, 255, 0.77);
   backdrop-filter: blur(50px);
   -webkit-backdrop-filter: blur(50px);
   border: 1px solid var(--fds-neutral-30, #e3e3e3);
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   padding: 1.5rem;
-  max-width: 436px;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  max-width: 436px;
+  min-height: 320px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 61.9375rem) {
+  .card {
+    gap: 2rem;
+    min-height: auto;
+  }
+}
+
+@media (max-width: 29.9375rem) {
+  .card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background-color: transparent;
+    border-width: 0;
+    border-radius: 0;
+    padding: 0;
+  }
 }
 
 /* ── Card head (chip + heading) ───────────────────────────────────────────── */
@@ -88,7 +108,7 @@
 .cardHead {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2.5rem;
   align-items: flex-start;
 }
 

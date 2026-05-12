@@ -1,0 +1,66 @@
+/* ── VideoFrame ───────────────────────────────────────────────────────────── */
+
+.root {
+  box-sizing: border-box;
+  background-image: var(--vf-bg);
+  background-position: 50% 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 1.25rem;
+  padding: 3rem 3rem 0;
+  overflow: hidden;
+}
+
+/* ── Video wrapper (glass bezel) ─────────────────────────────────────────── */
+
+.videoWrap {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  padding: 6px 6px 0;
+  position: relative;
+  top: 6px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 22px 2px;
+}
+
+/* ── Video element ───────────────────────────────────────────────────────── */
+
+.video {
+  display: block;
+  width: 100%;
+  vertical-align: baseline;
+}
+
+/* ── Mobile video swap ───────────────────────────────────────────────────── */
+
+.hasMobileVideo .videoDesktop { display: block; }
+.hasMobileVideo .videoMobile  { display: none; }
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+
+@media (max-width: 61.9375rem) {
+  .root {
+    padding: 2rem 2rem 0;
+  }
+}
+
+@media (max-width: 47.9375rem) {
+  .root {
+    border-radius: 0.8rem;
+    padding: 1rem 1rem 0;
+    background-image: var(--vf-mobile-bg, var(--vf-bg));
+  }
+
+  .videoWrap {
+    border-radius: 4px;
+  }
+
+  .hasMobileVideo .videoDesktop { display: none; }
+  .hasMobileVideo .videoMobile  { display: block; }
+}
+
+@media (max-width: 29.9375rem) {
+  .root {
+    border-radius: 0.7rem;
+    padding: 0.75rem 0.75rem 0;
+  }
+}

@@ -97,7 +97,10 @@ export { ContentCard } from './components/molecules/ContentCard';
 export type { ContentCardProps } from './components/molecules/ContentCard';
 
 export { HeroSplit } from './components/molecules/HeroSplit';
-export type { HeroSplitProps, HeroSplitImage } from './components/molecules/HeroSplit';
+export type { HeroSplitProps, HeroSplitImage, HeroSplitVideo } from './components/molecules/HeroSplit';
+
+export { VideoFrame } from './components/molecules/VideoFrame';
+export type { VideoFrameProps } from './components/molecules/VideoFrame';
 
 export { HeroFullBleed } from './components/molecules/HeroFullBleed';
 export type { HeroFullBleedProps } from './components/molecules/HeroFullBleed';

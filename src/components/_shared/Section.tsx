@@ -35,6 +35,7 @@ export const Section: React.FC<SectionProps> = ({
   showChip,
   title,
   subtext,
+  narrowSubtext,
   titleSize,
   onDarkBg,
   align,
@@ -51,6 +52,7 @@ export const Section: React.FC<SectionProps> = ({
       showChip={showChip}
       title={title}
       subtext={subtext}
+      narrowSubtext={narrowSubtext}
       titleSize={titleSize}
       onDarkBg={resolvedDark}
       align={align}

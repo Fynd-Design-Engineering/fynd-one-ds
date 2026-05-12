@@ -25,8 +25,8 @@
   gap: 0.75rem;
 }
 
-.root--left .subtext {
-  max-width: 584px;
+.subtext--narrow {
+  max-width: 36.5rem;
 }
 
 /* ── Center alignment ────────────────────────────────────────────────────── */
@@ -140,10 +140,6 @@
 
   .root--center .text-stack {
     gap: 0.75rem;
-  }
-
-  .root--left .subtext {
-    max-width: 100%;
   }
 
   /* Center: actions sits inside .content (gap: 16px). Push it to 24px total. */

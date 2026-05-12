@@ -11,6 +11,8 @@ export interface SectionHeaderProps {
   showChip?: boolean;
   title: string;
   subtext?: string;
+  /** Constrains the subtext to ~584px (36.5rem). Off by default — subtext fills available width. */
+  narrowSubtext?: boolean;
   titleSize?: 'xxl' | 'xl' | 'l' | 'm';
   onDarkBg?: boolean;
   align?: 'left' | 'center';
@@ -34,6 +36,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
   showChip = true,
   title,
   subtext,
+  narrowSubtext = false,
   titleSize = 'xl',
   onDarkBg = false,
   align = 'left',
@@ -72,7 +75,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
             {title}
           </Text>
           {subtext && (
-            <div className={styles.subtext}>
+            <div className={[styles.subtext, narrowSubtext && styles['subtext--narrow']].filter(Boolean).join(' ')}>
               <Text
                 variant="body-l"
                 color={onDarkBg ? 'muted' : 'secondary'}

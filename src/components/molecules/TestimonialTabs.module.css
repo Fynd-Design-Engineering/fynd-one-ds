@@ -1,0 +1,252 @@
+/* ── TestimonialTabs ─────────────────────────────────────────────────────────── */
+
+@keyframes tt-fill {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* ── Tab row ─────────────────────────────────────────────────────────────────── */
+
+.tabRow {
+  display: grid;
+  grid-template-columns: repeat(var(--tt-tabs, 2), minmax(0, 1fr));
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 1.5rem 0;
+  background: none;
+  border: none;
+  border-top: 1px solid var(--fds-neutral-30, #e3e3e3);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.root--dark .tab {
+  border-top-color: rgba(255, 255, 255, 0.15);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--fds-blue-60, #2563eb);
+  outline-offset: -2px;
+}
+
+/* ── Logo ────────────────────────────────────────────────────────────────────── */
+
+.logoWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  flex: 1;
+}
+
+.logo {
+  display: block;
+  max-height: 2.5rem;
+  width: min(11rem, 80%);
+  object-fit: contain;
+  mix-blend-mode: luminosity;
+  opacity: 0.35;
+  transition: opacity 0.3s;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.tab--active .logo {
+  opacity: 1;
+}
+
+.root--dark .logo {
+  mix-blend-mode: normal;
+  filter: brightness(0) invert(1);
+}
+
+.root--dark .tab--active .logo {
+  opacity: 1;
+}
+
+.root--dark .tab:not(.tab--active) .logo {
+  opacity: 0.4;
+}
+
+/* ── Progress track ──────────────────────────────────────────────────────────── */
+
+.progressTrack {
+  width: 100%;
+  height: 2px;
+  background: var(--fds-neutral-20, #f2f2f2);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.root--dark .progressTrack {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--fds-neutral-100, #101319);
+  border-radius: 1px;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.root--dark .progressFill {
+  background: var(--fds-neutral-0, #ffffff);
+}
+
+.progressFill--animating {
+  animation: tt-fill var(--tt-interval, 6s) linear forwards;
+}
+
+.root--paused .progressFill--animating {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progressFill--animating {
+    animation: none;
+    transform: scaleX(1);
+  }
+}
+
+/* ── Panel ───────────────────────────────────────────────────────────────────── */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.quote {
+  margin: 0;
+  padding: 0;
+}
+
+.author {
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Mobile dots ─────────────────────────────────────────────────────────────── */
+
+.dots {
+  display: none;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 0.75rem;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--fds-neutral-30, #e3e3e3);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: background 0.25s, width 0.25s, border-radius 0.25s;
+}
+
+.dot--active {
+  background: var(--fds-neutral-100, #101319);
+  width: 16px;
+  border-radius: 3px;
+}
+
+.root--dark .dot {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.root--dark .dot--active {
+  background: var(--fds-neutral-0, #ffffff);
+}
+
+/* ── Mobile progress track ───────────────────────────────────────────────────── */
+
+.mobileProgressTrack {
+  display: none;
+  height: 2px;
+  background: var(--fds-neutral-20, #f2f2f2);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.root--dark .mobileProgressTrack {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.mobileProgressFill {
+  height: 100%;
+  width: 100%;
+  background: var(--fds-neutral-100, #101319);
+  border-radius: 1px;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: tt-fill var(--tt-interval, 6s) linear forwards;
+}
+
+.root--dark .mobileProgressFill {
+  background: var(--fds-neutral-0, #ffffff);
+}
+
+.root--paused .mobileProgressFill {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobileProgressFill {
+    animation: none;
+    transform: scaleX(1);
+  }
+}
+
+/* ── Responsive: Tablet (768–991px) ──────────────────────────────────────────── */
+
+@media (max-width: 61.9375rem) {
+  .root {
+    gap: 2rem;
+  }
+
+  .tab {
+    padding: 1.25rem 1rem 0;
+    gap: 1.25rem;
+  }
+}
+
+/* ── Responsive: Mobile (<768px) ─────────────────────────────────────────────── */
+
+@media (max-width: 47.9375rem) {
+  .root {
+    gap: 1.5rem;
+  }
+
+  /* Hide logo tab row on mobile — navigation via dots instead */
+  .tabRow {
+    display: none;
+  }
+
+  .panel {
+    gap: 0.5rem;
+  }
+
+  .dots {
+    display: flex;
+  }
+
+  .mobileProgressTrack {
+    display: block;
+  }
+}

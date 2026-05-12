@@ -127,6 +127,9 @@ export type { AISummaryProps } from './components/molecules/AISummary';
 export { Stepper } from './components/molecules/Stepper';
 export type { StepperProps, StepperItem, StepperVariant } from './components/molecules/Stepper';
 
+export { TestimonialTabs } from './components/molecules/TestimonialTabs';
+export type { TestimonialTabsProps, TestimonialTabsItem } from './components/molecules/TestimonialTabs';
+
 export { PricingCard } from './components/molecules/PricingCard';
 export type { PricingCardProps, PricingFeature } from './components/molecules/PricingCard';
 

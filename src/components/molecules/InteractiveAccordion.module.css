@@ -91,6 +91,10 @@
   .mediaPanel {
     display: none;
   }
+  .media-left .list,
+  .media-right .list {
+    grid-column: 1;
+  }
 }
 
 @media (max-width: 47.9375rem) {

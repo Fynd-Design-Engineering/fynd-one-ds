@@ -1,16 +1,15 @@
 'use client';
 
 import React, { CSSProperties, useCallback, useEffect, useId, useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
 import { Text } from '../Typography/Text';
 import styles from './TestimonialTabs.module.css';
 
 export interface TestimonialTabsItem {
-  /** Brand/company name — used for tab aria-label and dot aria-label */
+  /** Brand/company name — used for tab/panel aria-label */
   brand: string;
-  /** Logo image src */
-  logoSrc: string;
-  /** Alt text for the logo. Defaults to brand name. */
-  logoAlt?: string;
+  /** Logo slot — pass any ReactNode: <img>, <svg>, a component, etc. */
+  logo: React.ReactNode;
   /** Testimonial quote text */
   quote: string;
   /** Author attribution line, e.g. "Jane Doe, CEO at Acme" */
@@ -108,6 +107,18 @@ export const TestimonialTabs: React.FC<TestimonialTabsProps> = ({
     ...style,
   } as CSSProperties;
 
+  const renderFill = (key: string) => (
+    <div
+      key={key}
+      className={[
+        styles.progressFill,
+        autoAdvance && styles['progressFill--animating'],
+      ]
+        .filter(Boolean)
+        .join(' ')}
+    />
+  );
+
   return (
     <div
       className={rootClass}
@@ -115,7 +126,7 @@ export const TestimonialTabs: React.FC<TestimonialTabsProps> = ({
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Logo tab row — hidden on mobile, replaced by dots */}
+      {/* ── Desktop: horizontal tab row + single panel ── */}
       <div className={styles.tabRow} role="tablist" aria-label={tablistLabel}>
         {items.map((item, i) => {
           const isActive = i === activeIndex;
@@ -132,32 +143,15 @@ export const TestimonialTabs: React.FC<TestimonialTabsProps> = ({
               onClick={() => goTo(i)}
               onKeyDown={(e) => handleKeyDown(e, i)}
             >
-              <div className={styles.logoWrap}>
-                <img
-                  src={item.logoSrc}
-                  alt={item.logoAlt ?? item.brand}
-                  className={styles.logo}
-                  draggable={false}
-                />
-              </div>
+              <div className={styles.logoWrap}>{item.logo}</div>
               <div className={styles.progressTrack}>
-                {/* key change remounts the element, restarting the CSS animation */}
-                <div
-                  key={isActive ? `fill-${timerResetKey}` : 'fill-inactive'}
-                  className={[
-                    styles.progressFill,
-                    isActive && autoAdvance && styles['progressFill--animating'],
-                  ]
-                    .filter(Boolean)
-                    .join(' ')}
-                />
+                {isActive ? renderFill(`fill-${timerResetKey}`) : <div className={styles.progressFill} />}
               </div>
             </button>
           );
         })}
       </div>
 
-      {/* Testimonial panel */}
       <div
         id={panelId}
         role="tabpanel"
@@ -165,45 +159,65 @@ export const TestimonialTabs: React.FC<TestimonialTabsProps> = ({
         aria-label={activeItem.brand}
         className={styles.panel}
       >
-        <Text
-          variant="body-xl"
-          as="blockquote"
-          color={onDarkBg ? 'white' : 'default'}
-          className={styles.quote}
-        >
+        <Text variant="body-xl" as="blockquote" color={onDarkBg ? 'white' : 'default'} className={styles.quote}>
           {activeItem.quote}
         </Text>
-        <Text
-          variant="body-m"
-          as="p"
-          color={onDarkBg ? 'muted' : 'secondary'}
-          className={styles.author}
-        >
+        <Text variant="body-m" as="p" color={onDarkBg ? 'muted' : 'secondary'} className={styles.author}>
           {activeItem.author}
         </Text>
+      </div>
 
-        {/* Dot nav — mobile only */}
-        <div className={styles.dots} aria-hidden="true">
-          {items.map((item, i) => (
-            <button
-              key={i}
-              className={[styles.dot, i === activeIndex && styles['dot--active']].filter(Boolean).join(' ')}
-              onClick={() => goTo(i)}
-              tabIndex={-1}
-              aria-label={item.brand}
-            />
-          ))}
-        </div>
-
-        {/* Progress track — mobile only, shown when auto-advancing */}
-        {autoAdvance && (
-          <div className={styles.mobileProgressTrack}>
+      {/* ── Tablet/mobile: stacked accordion ── */}
+      <div className={styles.accordionList}>
+        {items.map((item, i) => {
+          const isActive = i === activeIndex;
+          return (
             <div
-              key={`mobile-fill-${timerResetKey}`}
-              className={styles.mobileProgressFill}
-            />
-          </div>
-        )}
+              key={i}
+              className={[styles.accordionItem, isActive && styles['accordionItem--active']].filter(Boolean).join(' ')}
+            >
+              <button
+                className={[styles.accordionTab, isActive && styles['accordionTab--active']].filter(Boolean).join(' ')}
+                onClick={() => goTo(i)}
+                aria-expanded={isActive}
+                aria-controls={`${uid}-acc-panel-${i}`}
+                id={`${uid}-acc-tab-${i}`}
+              >
+                <div className={styles.logoWrap}>{item.logo}</div>
+                <div className={styles.progressTrack}>
+                  {isActive ? renderFill(`acc-fill-${timerResetKey}`) : <div className={styles.progressFill} />}
+                </div>
+              </button>
+
+              <AnimatePresence initial={false}>
+                {isActive && (
+                  <motion.div
+                    key="panel"
+                    initial={{ height: 0 }}
+                    animate={{ height: 'auto' }}
+                    exit={{ height: 0 }}
+                    transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                    style={{ overflow: 'hidden' }}
+                  >
+                    <div
+                      id={`${uid}-acc-panel-${i}`}
+                      role="region"
+                      aria-labelledby={`${uid}-acc-tab-${i}`}
+                      className={styles.accordionPanel}
+                    >
+                      <Text variant="body-xl" as="blockquote" color={onDarkBg ? 'white' : 'default'} className={styles.quote}>
+                        {item.quote}
+                      </Text>
+                      <Text variant="body-m" as="p" color={onDarkBg ? 'muted' : 'secondary'} className={styles.author}>
+                        {item.author}
+                      </Text>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

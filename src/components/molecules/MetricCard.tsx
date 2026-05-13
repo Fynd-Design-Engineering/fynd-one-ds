@@ -63,7 +63,7 @@ export const MetricCard: React.FC<MetricCardProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <div className={cardClass} style={style} data-figma-id="1257:28959">
+    <div className={cardClass} style={style}>
       <div className={heroClass}>
         {isNumber ? (
           <p className={statClass}>{stat}</p>

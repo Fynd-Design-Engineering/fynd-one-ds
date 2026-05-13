@@ -78,7 +78,6 @@ export const Stepper: React.FC<StepperProps> = ({
     <div
       className={rootClass}
       style={{ '--fds-stepper-fill-duration': `${stepDuration}ms`, ...style } as CSSProperties}
-      data-figma-id="4192:9031"
     >
       {items.map((item, idx) => {
         const isMuted = idx > activeIdx;

@@ -93,7 +93,6 @@ export const VisualElement: React.FC<VisualElementProps> = ({
     <div
       className={classes}
       style={{ ...customSizeStyle, ...style }}
-      data-figma-id="3209:14987"
     >
       {children && (
         <div className={isHorizontal ? undefined : styles.content}>

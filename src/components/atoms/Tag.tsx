@@ -30,7 +30,7 @@ export const Tag: React.FC<TagProps> = ({
   };
 
   return (
-    <span className={className} style={tag} data-figma-id="3523:44654">
+    <span className={className} style={tag}>
       {label}
     </span>
   );

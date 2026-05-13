@@ -36,7 +36,7 @@ export const SectionIndicator: React.FC<SectionIndicatorProps> = ({
     ...style,
   };
 
-  return <span className={className} style={dot} data-figma-id="961:34518" />;
+  return <span className={className} style={dot} />;
 };
 
 SectionIndicator.displayName = 'SectionIndicator';

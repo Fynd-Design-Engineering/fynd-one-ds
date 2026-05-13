@@ -119,7 +119,6 @@ export const RichIconCard: React.FC<RichIconCardProps> = ({
     <div
       className={cardClass}
       style={style}
-      data-figma-id="879:3878"
     >
       {isClickable && (
         href ? (

@@ -31,7 +31,7 @@ export const ImageHolder: React.FC<ImageHolderProps> = ({
 
   if (src) {
     return (
-      <div className={classes} style={style} data-figma-id="3364:34221">
+      <div className={classes} style={style}>
         <img
           src={src}
           alt={alt}
@@ -42,7 +42,7 @@ export const ImageHolder: React.FC<ImageHolderProps> = ({
   }
 
   return (
-    <div className={classes} style={style} data-figma-id="3364:34221">
+    <div className={classes} style={style}>
       <div className={styles.placeholder}>{aspectRatio}</div>
     </div>
   );

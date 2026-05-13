@@ -23,7 +23,6 @@ export const AISummary: React.FC<AISummaryProps> = ({
       style={style}
       role="region"
       aria-label={label}
-      data-figma-id="1935:7567"
     >
       <div className={styles.tab}>
         <span className={styles.icon} aria-hidden="true">

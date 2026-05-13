@@ -33,7 +33,7 @@ export const TitleContentPair: React.FC<TitleContentPairProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <div className={classes} style={style} data-figma-id="3364:32550">
+    <div className={classes} style={style}>
       <Text
         variant={sizeToVariant[titleSize]}
         className={styles.title}

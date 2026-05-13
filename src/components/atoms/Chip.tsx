@@ -69,7 +69,6 @@ export const Chip: React.FC<ChipProps> = ({
         style={style}
         onClick={onClick}
         aria-pressed={selected}
-        data-figma-id="961:34535"
       >
         {content}
       </button>
@@ -77,7 +76,7 @@ export const Chip: React.FC<ChipProps> = ({
   }
 
   return (
-    <span className={classes} style={style} data-figma-id="961:34535">
+    <span className={classes} style={style}>
       {content}
     </span>
   );

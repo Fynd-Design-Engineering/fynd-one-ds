@@ -160,7 +160,6 @@ export const ContentCard: React.FC<ContentCardProps> = ({
       className={cardClass}
       style={style}
       onClick={onClick}
-      data-figma-id="3262:20928"
     >
       {isBehind && imageSrc && (
         <>

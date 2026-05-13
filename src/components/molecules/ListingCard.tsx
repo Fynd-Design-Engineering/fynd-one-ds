@@ -95,7 +95,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({
   const hasMeta = (showDate && date) || (showReadTime && readTime);
 
   return (
-    <div className={cardClass} style={style} onClick={onClick} data-figma-id="3204:14895">
+    <div className={cardClass} style={style} onClick={onClick}>
       <div className={styles['image-wrap']}>
         <ImageHolder
           aspectRatio={imageAspectRatio}

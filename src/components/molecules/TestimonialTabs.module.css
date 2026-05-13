@@ -176,6 +176,9 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: 1rem;
+}
+
+.panel .bottom {
   margin-top: auto;
 }
 
@@ -285,5 +288,10 @@
 @media (max-width: 29.9375rem) {
   .accordionPanel {
     padding: 1.5rem;
+  }
+
+  .bottom {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

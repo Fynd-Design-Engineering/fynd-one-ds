@@ -237,9 +237,24 @@ export const TestimonialTabs: React.FC<TestimonialTabsProps> = ({
                       <Text variant="body-xl" as="blockquote" color={onDarkBg ? 'white' : 'default'} className={styles.quote}>
                         {item.quote}
                       </Text>
-                      <Text variant="body-m" as="p" color={onDarkBg ? 'muted' : 'secondary'} className={styles.author}>
-                        {item.author}
-                      </Text>
+                      <div className={styles.bottom}>
+                        <div className={styles.authorWrap}>
+                          {item.authorImage && (
+                            <img src={item.authorImage} alt={item.authorName} className={styles.authorHeadshot} />
+                          )}
+                          <div className={styles.authorText}>
+                            <Text variant="body-m" weight="medium" color={onDarkBg ? 'white' : 'default'}>
+                              {item.authorName}
+                            </Text>
+                            {item.authorTitle && (
+                              <Text variant="body-s" color={onDarkBg ? 'muted' : 'secondary'}>
+                                {item.authorTitle}
+                              </Text>
+                            )}
+                          </div>
+                        </div>
+                        {item.action && <div className={styles.action}>{item.action}</div>}
+                      </div>
                     </div>
                   </motion.div>
                 )}

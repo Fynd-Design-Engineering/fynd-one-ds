@@ -12,8 +12,14 @@ export interface TestimonialTabsItem {
   logo: React.ReactNode;
   /** Testimonial quote text */
   quote: string;
-  /** Author attribution line, e.g. "Jane Doe, CEO at Acme" */
-  author: string;
+  /** Author's full name */
+  authorName: string;
+  /** Author's role / title line, e.g. "Head of Ops, Acme" */
+  authorTitle?: string;
+  /** Optional headshot URL */
+  authorImage?: string;
+  /** Optional action slot (e.g. a Button / link) rendered on the right of the author row */
+  action?: React.ReactNode;
 }
 
 export interface TestimonialTabsProps {
@@ -89,8 +95,6 @@ export const TestimonialTabs: React.FC<TestimonialTabsProps> = ({
     }
   };
 
-  const activeItem = items[activeIndex] ?? items[0];
-  const panelId = `${uid}-panel`;
 
   const rootClass = [
     styles.root,
@@ -136,7 +140,7 @@ export const TestimonialTabs: React.FC<TestimonialTabsProps> = ({
               ref={(el) => { tabRefs.current[i] = el; }}
               role="tab"
               aria-selected={isActive}
-              aria-controls={panelId}
+              aria-controls={`${uid}-panel-${i}`}
               id={`${uid}-tab-${i}`}
               tabIndex={isActive ? 0 : -1}
               className={[styles.tab, isActive && styles['tab--active']].filter(Boolean).join(' ')}
@@ -152,19 +156,44 @@ export const TestimonialTabs: React.FC<TestimonialTabsProps> = ({
         })}
       </div>
 
-      <div
-        id={panelId}
-        role="tabpanel"
-        aria-labelledby={`${uid}-tab-${activeIndex}`}
-        aria-label={activeItem.brand}
-        className={styles.panel}
-      >
-        <Text variant="body-xl" as="blockquote" color={onDarkBg ? 'white' : 'default'} className={styles.quote}>
-          {activeItem.quote}
-        </Text>
-        <Text variant="body-m" as="p" color={onDarkBg ? 'muted' : 'secondary'} className={styles.author}>
-          {activeItem.author}
-        </Text>
+      <div className={styles.panelStack}>
+        {items.map((item, i) => {
+          const isActive = i === activeIndex;
+          return (
+            <div
+              key={i}
+              id={`${uid}-panel-${i}`}
+              role="tabpanel"
+              aria-labelledby={`${uid}-tab-${i}`}
+              aria-label={item.brand}
+              aria-hidden={!isActive}
+              className={[styles.panel, !isActive && styles['panel--hidden']].filter(Boolean).join(' ')}
+            >
+              <Text variant="body-xl" as="blockquote" color={onDarkBg ? 'white' : 'default'} className={styles.quote}>
+                {item.quote}
+              </Text>
+              <div className={styles.bottom}>
+                <div className={styles.authorWrap}>
+                  {item.authorImage && (
+                    <img src={item.authorImage} alt={item.authorName} className={styles.authorHeadshot} />
+                  )}
+                  <div className={styles.authorText}>
+                    <Text variant="body-m" weight="medium" color={onDarkBg ? 'white' : 'default'}>
+                      {item.authorName}
+                    </Text>
+                    {item.authorTitle && (
+                      <Text variant="body-s" color={onDarkBg ? 'muted' : 'secondary'}>
+                        {item.authorTitle}
+                      </Text>
+                    )}
+                  </div>
+                </div>
+
+                {item.action && <div className={styles.action}>{item.action}</div>}
+              </div>
+            </div>
+          );
+        })}
       </div>
 
       {/* ── Tablet/mobile: stacked accordion ── */}

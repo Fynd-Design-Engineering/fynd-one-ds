@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { TestimonialTabs } from './TestimonialTabs';
+import { Button } from '../atoms/Button';
 import { Section } from '../_shared/Section';
 
 const meta: Meta<typeof TestimonialTabs> = {
@@ -29,14 +30,16 @@ const twoItems = [
     logo: <LogoImg text="Buildco" />,
     quote:
       '"Switching to this platform cut our deployment time from three weeks to under a day. Our entire team felt the difference immediately."',
-    author: 'Sarah Chen, CTO at Buildco',
+    authorName: 'Sarah Chen',
+    authorTitle: 'CTO at Buildco',
   },
   {
     brand: 'Nexova',
     logo: <LogoImg text="Nexova" />,
     quote:
       '"The composable architecture gave us the flexibility we had been chasing for years. We finally own our commerce stack end to end."',
-    author: 'Marcus Oliveira, Head of Engineering at Nexova',
+    authorName: 'Marcus Oliveira',
+    authorTitle: 'Head of Engineering at Nexova',
   },
 ];
 
@@ -46,28 +49,32 @@ const fourItems = [
     logo: <LogoImg text="Buildco" />,
     quote:
       '"Switching to this platform cut our deployment time from three weeks to under a day. Our entire team felt the difference immediately."',
-    author: 'Sarah Chen, CTO at Buildco',
+    authorName: 'Sarah Chen',
+    authorTitle: 'CTO at Buildco',
   },
   {
     brand: 'Nexova',
     logo: <LogoImg text="Nexova" />,
     quote:
       '"The composable architecture gave us the flexibility we had been chasing for years. We finally own our commerce stack end to end."',
-    author: 'Marcus Oliveira, Head of Engineering at Nexova',
+    authorName: 'Marcus Oliveira',
+    authorTitle: 'Head of Engineering at Nexova',
   },
   {
     brand: 'Cartly',
     logo: <LogoImg text="Cartly" />,
     quote:
       '"Our conversion rate jumped 28% within the first month of going live. The performance improvements alone justified the migration."',
-    author: 'Priya Nair, VP Growth at Cartly',
+    authorName: 'Priya Nair',
+    authorTitle: 'VP Growth at Cartly',
   },
   {
     brand: 'Lumio',
     logo: <LogoImg text="Lumio" />,
     quote:
       '"Onboarding was seamless and the support team was outstanding. We were live in production faster than any platform we have used before."',
-    author: 'James Whitfield, CEO at Lumio',
+    authorName: 'James Whitfield',
+    authorTitle: 'CEO at Lumio',
   },
 ];
 
@@ -93,6 +100,35 @@ export const ManualOnly: Story = {
     items: fourItems,
     interval: 0,
   },
+};
+
+export const WithImageAndAction: Story = {
+  name: 'With author image + action button',
+  render: () => (
+    <TestimonialTabs
+      items={[
+        {
+          brand: 'Buildco',
+          logo: <LogoImg text="Buildco" />,
+          quote: '"Switching to this platform cut our deployment time from three weeks to under a day. Our entire team felt the difference immediately."',
+          authorName: 'Sarah Chen',
+          authorTitle: 'CTO at Buildco',
+          authorImage: 'https://i.pravatar.cc/80?img=47',
+          action: <Button label="Read the full story" variant="secondary" showChevron />,
+        },
+        {
+          brand: 'Nexova',
+          logo: <LogoImg text="Nexova" />,
+          quote: '"The composable architecture gave us the flexibility we had been chasing for years. We finally own our commerce stack end to end."',
+          authorName: 'Marcus Oliveira',
+          authorTitle: 'Head of Engineering at Nexova',
+          authorImage: 'https://i.pravatar.cc/80?img=12',
+          action: <Button label="Read the full story" variant="secondary" showChevron />,
+        },
+      ]}
+      interval={6000}
+    />
+  ),
 };
 
 export const OnDarkBg: Story = {

@@ -66,11 +66,13 @@
   justify-content: center;
   position: relative;
   z-index: 2;
+  padding: 1.25rem 1.5rem;
+  height: 5rem;
 }
 
 .logo {
   display: block;
-  max-height: 2.5rem;
+  height: 100%;
   width: min(11rem, 80%);
   object-fit: contain;
   mix-blend-mode: luminosity;
@@ -144,7 +146,13 @@
 
 /* ── Panel ───────────────────────────────────────────────────────────────────── */
 
+.panelStack {
+  display: grid;
+  grid-template: 1fr / 1fr;
+}
+
 .panel {
+  grid-area: 1 / 1;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -152,14 +160,47 @@
   padding: 4rem 12rem;
 }
 
+.panel--hidden {
+  visibility: hidden;
+}
+
 .quote {
   margin: 0;
   padding: 0;
 }
 
-.author {
-  margin: 0;
-  padding: 0;
+/* ── Author bottom row ───────────────────────────────────────────────────────── */
+
+.bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.authorWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.authorHeadshot {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 0.5rem;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.authorText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.action {
+  flex-shrink: 0;
 }
 
 /* ── Accordion (tablet/mobile) ───────────────────────────────────────────────── */
@@ -225,7 +266,7 @@
 
   /* Hide desktop layout */
   .tabRow,
-  .panel {
+  .panelStack {
     display: none;
   }
 

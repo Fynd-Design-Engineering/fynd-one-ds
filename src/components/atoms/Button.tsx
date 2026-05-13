@@ -17,6 +17,8 @@ export interface ButtonProps
   showChevron?: boolean;
   /** Optional icon rendered before the label (e.g., a phone icon on a CTA). */
   iconLeft?: ReactNode;
+  /** Stretch to full width on mobile (≤767px). Desktop stays auto-width. Default: true. */
+  mobileFullWidth?: boolean;
   /** Renders the button as an `<a>` with this href. */
   href?: string;
   /** When `href` is set, adds `target="_blank" rel="noopener noreferrer"`. */
@@ -42,6 +44,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       variant = 'primary',
       size = 'lg',
       onDarkBg = false,
+      mobileFullWidth = true,
       showChevron,
       iconLeft,
       href,
@@ -56,7 +59,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const showChevronResolved = showChevron ?? variant === 'tertiary';
-    const classes = [styles.root, variantClass(variant, onDarkBg), size === 'md' ? styles['size-md'] : undefined, className]
+    const classes = [styles.root, variantClass(variant, onDarkBg), size === 'md' ? styles['size-md'] : undefined, mobileFullWidth ? styles['mobile-full-width'] : undefined, className]
       .filter(Boolean)
       .join(' ');
 

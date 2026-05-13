@@ -1,6 +1,7 @@
 import React, { CSSProperties } from 'react';
 import { SectionWrapper } from './SectionWrapper';
 import { SectionHeader, SectionHeaderProps } from './SectionHeader';
+import styles from './Section.module.css';
 
 export interface SectionProps extends SectionHeaderProps {
   children: React.ReactNode;
@@ -14,6 +15,12 @@ export interface SectionProps extends SectionHeaderProps {
   hideHeader?: boolean;
   /** Render children outside the inner container (full-width) */
   fullWidthContent?: boolean;
+  /**
+   * Trailing CTA slot — rendered below section content with 4rem top margin
+   * (2rem on mobile). Use for a Button or link that follows the main body.
+   * Distinct from the header-level `actions` prop.
+   */
+  trailingActions?: React.ReactNode;
   className?: string;
   style?: CSSProperties;
 }
@@ -25,6 +32,7 @@ export const Section: React.FC<SectionProps> = ({
   as,
   hideHeader = false,
   fullWidthContent = false,
+  trailingActions,
   className,
   style,
   // SectionHeader props
@@ -72,6 +80,9 @@ export const Section: React.FC<SectionProps> = ({
     >
       {header}
       {!fullWidthContent && children}
+      {trailingActions && (
+        <div className={styles.trailingActions}>{trailingActions}</div>
+      )}
     </SectionWrapper>
   );
 };

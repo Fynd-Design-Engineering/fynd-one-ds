@@ -126,3 +126,11 @@
 .size-md {
   height: 2.5rem;
 }
+
+/* ── Mobile full-width ──────────────────── */
+
+@media (max-width: 47.9375rem) {
+  .mobile-full-width {
+    width: 100%;
+  }
+}

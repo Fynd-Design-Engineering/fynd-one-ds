@@ -1,0 +1,11 @@
+/* ── Section ─────────────────────────────────────────────────────────────────── */
+
+.trailingActions {
+  margin-top: 4rem;
+}
+
+@media (max-width: 47.9375rem) {
+  .trailingActions {
+    margin-top: 2rem;
+  }
+}

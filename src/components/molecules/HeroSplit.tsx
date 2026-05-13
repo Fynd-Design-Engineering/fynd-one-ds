@@ -61,6 +61,7 @@ export interface HeroSplitProps {
   /** Cap the image/video height at 550px. Default: true. Pass false to let the visual fill the cell. */
   constrainImageHeight?: boolean;
   onDarkBg?: boolean;
+  id?: string;
   className?: string;
   style?: CSSProperties;
 }
@@ -80,6 +81,7 @@ export const HeroSplit: React.FC<HeroSplitProps> = ({
   visualBg,
   topOffset,
   onDarkBg = false,
+  id,
   className,
   style,
 }) => {
@@ -105,7 +107,7 @@ export const HeroSplit: React.FC<HeroSplitProps> = ({
     : style;
 
   return (
-    <SectionWrapper as="header" onDarkBg={onDarkBg} style={sectionStyle} className={bg ? styles.hasBg : undefined}>
+    <SectionWrapper as="header" id={id} onDarkBg={onDarkBg} style={sectionStyle} className={bg ? styles.hasBg : undefined}>
       <div className={rootClass} style={innerStyle}>
         <div className={styles.content}>
           <div className={styles.textGroup}>

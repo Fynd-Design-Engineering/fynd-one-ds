@@ -7,6 +7,7 @@ export interface GradientSurfaceProps {
   gradient: GradientKey;
   /** HTML element to render as */
   as?: keyof JSX.IntrinsicElements;
+  id?: string;
   className?: string;
   style?: CSSProperties;
   children?: React.ReactNode;
@@ -22,6 +23,7 @@ export interface GradientSurfaceProps {
 export const GradientSurface: React.FC<GradientSurfaceProps> = ({
   gradient,
   as: Component = 'div',
+  id,
   className,
   style,
   children,
@@ -36,7 +38,7 @@ export const GradientSurface: React.FC<GradientSurfaceProps> = ({
   };
 
   return (
-    <Tag className={cls} style={resolved}>
+    <Tag id={id} className={cls} style={resolved}>
       {children}
     </Tag>
   );

@@ -9,6 +9,7 @@ export interface CTABannerProps {
   children?: React.ReactNode;
   align?: 'left' | 'center';
   onDarkBg?: boolean;
+  id?: string;
   className?: string;
   style?: CSSProperties;
 }
@@ -19,6 +20,7 @@ export const CTABanner: React.FC<CTABannerProps> = ({
   children,
   align = 'center',
   onDarkBg = true,
+  id,
   className,
   style,
 }) => {
@@ -34,7 +36,7 @@ export const CTABanner: React.FC<CTABannerProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <div className={wrapperClass} style={style}>
+    <div id={id} className={wrapperClass} style={style}>
       <Text
         variant="heading-m"
         as="h2"

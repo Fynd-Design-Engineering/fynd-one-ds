@@ -8,6 +8,7 @@ export interface BentoGridProps {
   /** Aspect ratio for each card slot. Length determines card count. */
   ratios?: BentoRatio[];
   gap?: number;
+  id?: string;
   className?: string;
   style?: CSSProperties;
 }
@@ -33,6 +34,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
   children,
   ratios = defaultRatios,
   gap = 20,
+  id,
   className,
   style,
 }) => {
@@ -60,7 +62,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({
   const cellClass = (ratioClass: string) => [s.cell, s[ratioClass]].filter(Boolean).join(' ');
 
   return (
-    <div className={wrapperClass} style={{ '--bento-gap': `${gap}px`, ...style } as CSSProperties}>
+    <div id={id} className={wrapperClass} style={{ '--bento-gap': `${gap}px`, ...style } as CSSProperties}>
       {columnItems.length > 0 && (
         <div className={s.columns}>
           <div className={s.column}>

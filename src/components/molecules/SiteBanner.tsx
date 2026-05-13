@@ -11,18 +11,21 @@ export interface SiteBannerProps {
    * `<Button>` inside, pass `color="white"` / `onDarkBg` accordingly.
    */
   children: ReactNode;
+  id?: string;
   className?: string;
   style?: CSSProperties;
 }
 
 export const SiteBanner: React.FC<SiteBannerProps> = ({
   children,
+  id,
   className,
   style,
 }) => {
   const rootClass = [styles.root, className].filter(Boolean).join(' ');
   return (
     <div
+      id={id}
       className={rootClass}
       style={style}
       role="region"

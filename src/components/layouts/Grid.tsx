@@ -10,6 +10,7 @@ export interface GridProps {
   /** Override auto-computed mobile column count (<768px). Defaults to 1. */
   mobileColumns?: number;
   gap?: number;
+  id?: string;
   className?: string;
   style?: CSSProperties;
 }
@@ -26,6 +27,7 @@ export const Grid: React.FC<GridProps> = ({
   tabletColumns,
   mobileColumns,
   gap = 20,
+  id,
   className,
   style,
 }) => {
@@ -40,7 +42,7 @@ export const Grid: React.FC<GridProps> = ({
   } as CSSProperties;
 
   return (
-    <div className={cls} style={gridStyle}>
+    <div id={id} className={cls} style={gridStyle}>
       {children}
     </div>
   );

@@ -34,6 +34,7 @@ export interface HeroFullBleedProps {
    *  'auto' reads --fds-nav-h + --fds-banner-h set by <Navbar> / <SiteBanner>. */
   topOffset?: 'auto' | string | number;
   onDarkBg?: boolean;
+  id?: string;
   className?: string;
   style?: CSSProperties;
 }
@@ -54,6 +55,7 @@ export const HeroFullBleed: React.FC<HeroFullBleedProps> = ({
   bg,
   topOffset,
   onDarkBg = false,
+  id,
   className,
   style,
 }) => {
@@ -110,7 +112,7 @@ export const HeroFullBleed: React.FC<HeroFullBleedProps> = ({
   };
 
   return (
-    <section className={rootCls} style={rootStyle}>
+    <section id={id} className={rootCls} style={rootStyle}>
       {video && (
         <div className={styles.videoWrap} aria-hidden="true">
           <video

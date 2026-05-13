@@ -24,6 +24,7 @@ export interface HeroListingProps {
   showSubtext?: boolean;
   onDarkBg?: boolean;
   as?: HeroListingTag;
+  id?: string;
   className?: string;
   style?: CSSProperties;
 }
@@ -41,6 +42,7 @@ export const HeroListing: React.FC<HeroListingProps> = ({
   showSubtext = true,
   onDarkBg = false,
   as: Tag = 'header',
+  id,
   className,
   style,
 }) => {
@@ -51,7 +53,7 @@ export const HeroListing: React.FC<HeroListingProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <Tag className={rootClass} style={style}>
+    <Tag id={id} className={rootClass} style={style}>
       <div className={styles.inner}>
         {showChip && chipLabel && (
           <Chip

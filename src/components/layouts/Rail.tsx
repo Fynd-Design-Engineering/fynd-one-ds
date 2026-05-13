@@ -7,6 +7,7 @@ export interface RailProps {
   children: React.ReactNode;
   /** Gap between items in px */
   gap?: number;
+  id?: string;
   className?: string;
   style?: CSSProperties;
 }
@@ -14,6 +15,7 @@ export interface RailProps {
 export const Rail: React.FC<RailProps> = ({
   children,
   gap = 20,
+  id,
   className,
   style,
 }) => {
@@ -63,6 +65,7 @@ export const Rail: React.FC<RailProps> = ({
   return (
     <div
       ref={trackRef}
+      id={id}
       className={cls}
       style={trackStyle}
       onPointerDown={handlePointerDown}

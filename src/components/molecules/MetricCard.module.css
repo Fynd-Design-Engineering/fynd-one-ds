@@ -9,6 +9,9 @@
   box-shadow: 0px 1px 2px 0px rgba(48, 48, 48, 0.03),
               0 0.1875rem 0.1875rem 0 rgba(48, 48, 48, 0.02),
               0 0.4375rem 0.25rem 0 rgba(48, 48, 48, 0.01);
+  width: 100%;
+  height: var(--metric-card-h);
+  max-width: var(--metric-card-max-w);
 }
 
 .dark {
@@ -27,18 +30,18 @@
 /* ── Size variants ────────────────────────────────────────────────────────── */
 
 .lg {
-  width: 14.875rem;
-  height: 14.875rem;
+  --metric-card-max-w: 14.875rem;
+  --metric-card-h: 14.875rem;
 }
 
 .md {
-  width: 15.375rem;
-  height: 9.25rem;
+  --metric-card-max-w: 15.375rem;
+  --metric-card-h: 9.25rem;
 }
 
 .sm {
-  width: 9.25rem;
-  height: 9.25rem;
+  --metric-card-max-w: 9.25rem;
+  --metric-card-h: 9.25rem;
 }
 
 /* ── Hero area ────────────────────────────────────────────────────────────── */
@@ -128,4 +131,16 @@
 
 .title--dark {
   color: var(--fds-neutral-0, #ffffff);
+}
+
+/* ── Responsive: Tablet and below (≤991px) ───────────────────────────────── */
+
+@media (max-width: 61.9375rem) {
+  .stat {
+    font-size: 2rem;
+  }
+
+  .title {
+    font-size: 0.875rem;
+  }
 }

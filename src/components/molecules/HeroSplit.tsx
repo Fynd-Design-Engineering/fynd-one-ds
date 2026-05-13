@@ -58,6 +58,8 @@ export interface HeroSplitProps {
    *   sets a literal offset — useful when integrating with custom chrome.
    */
   topOffset?: 'auto' | string | number;
+  /** Cap the image/video height at 550px. Default: true. Pass false to let the visual fill the cell. */
+  constrainImageHeight?: boolean;
   onDarkBg?: boolean;
   className?: string;
   style?: CSSProperties;
@@ -73,6 +75,7 @@ export const HeroSplit: React.FC<HeroSplitProps> = ({
   image,
   video,
   imagePriority = true,
+  constrainImageHeight = true,
   bg,
   visualBg,
   topOffset,
@@ -136,7 +139,7 @@ export const HeroSplit: React.FC<HeroSplitProps> = ({
               loop={video.loop ?? true}
               muted={video.muted ?? true}
               playsInline
-              className={styles.image}
+              className={[styles.image, constrainImageHeight && styles['image--constrained']].filter(Boolean).join(' ')}
             />
           ) : image ? (
             <img
@@ -144,7 +147,7 @@ export const HeroSplit: React.FC<HeroSplitProps> = ({
               alt={image.alt}
               width={image.width}
               height={image.height}
-              className={styles.image}
+              className={[styles.image, constrainImageHeight && styles['image--constrained']].filter(Boolean).join(' ')}
               loading={imagePriority ? 'eager' : 'lazy'}
               decoding={imagePriority ? 'sync' : 'async'}
             />

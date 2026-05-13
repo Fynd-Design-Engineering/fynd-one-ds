@@ -10,7 +10,6 @@
 .item {
   display: flex;
   flex-direction: column;
-  padding: 1.5rem 0;
   border-bottom: 1px solid;
 }
 
@@ -32,7 +31,7 @@
   width: 100%;
   background: none;
   border: none;
-  padding: 0;
+  padding: 1.5rem 0;
   margin: 0;
   cursor: pointer;
   text-align: left;
@@ -83,7 +82,7 @@
 /* ── Responsive: Tablet (768–991px) ───────────────────────────────────────── */
 
 @media (max-width: 61.9375rem) {
-  .item {
+  .question {
     padding: 1.25rem 0;
   }
 
@@ -95,11 +94,8 @@
 /* ── Responsive: Mobile (<768px) ─────────────────────────────────────────── */
 
 @media (max-width: 47.9375rem) {
-  .item {
-    padding: 1rem 0;
-  }
-
   .question {
+    padding: 1rem 0;
     gap: 2.5rem;
   }
 

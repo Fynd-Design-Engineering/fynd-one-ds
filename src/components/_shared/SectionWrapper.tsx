@@ -11,6 +11,7 @@ export interface SectionWrapperProps {
   onDarkBg?: boolean;
   /** Remove bottom padding from the section */
   noPaddingBottom?: boolean;
+  id?: string;
   className?: string;
   style?: CSSProperties;
   /** Override default section element */
@@ -23,6 +24,7 @@ export const SectionWrapper: React.FC<SectionWrapperProps> = ({
   bg = 'default',
   onDarkBg = false,
   noPaddingBottom = false,
+  id,
   className,
   style,
   as: Tag = 'section',
@@ -37,7 +39,7 @@ export const SectionWrapper: React.FC<SectionWrapperProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <Tag className={outerClass} style={style}>
+    <Tag id={id} className={outerClass} style={style}>
       <div className={styles.inner}>
         {children}
       </div>

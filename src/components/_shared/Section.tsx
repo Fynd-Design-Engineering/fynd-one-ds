@@ -21,6 +21,7 @@ export interface SectionProps extends SectionHeaderProps {
    * Distinct from the header-level `actions` prop.
    */
   trailingActions?: React.ReactNode;
+  id?: string;
   className?: string;
   style?: CSSProperties;
 }
@@ -33,6 +34,7 @@ export const Section: React.FC<SectionProps> = ({
   hideHeader = false,
   fullWidthContent = false,
   trailingActions,
+  id,
   className,
   style,
   // SectionHeader props
@@ -76,6 +78,7 @@ export const Section: React.FC<SectionProps> = ({
       noPaddingBottom={noPaddingBottom}
       onDarkBg={resolvedDark}
       as={as}
+      id={id}
       className={className}
       style={style}
       outerChildren={fullWidthContent ? children : undefined}

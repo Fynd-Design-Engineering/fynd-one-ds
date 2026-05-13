@@ -75,7 +75,7 @@
 /* ── Panel inner ──────────────────────────────────────────────────────────── */
 
 .panelInner {
-  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
   padding-right: 7.5rem;
 }
 
@@ -87,7 +87,7 @@
   }
 
   .panelInner {
-    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
   }
 }
 
@@ -100,7 +100,7 @@
   }
 
   .panelInner {
-    padding-top: 1rem;
+    padding-bottom: 1rem;
     padding-right: 2.5rem;
   }
 }

@@ -18,6 +18,8 @@ export interface SectionHeaderProps {
   align?: 'left' | 'center';
   /** Optional action buttons. Left-aligned: rendered to the right. Center-aligned: rendered below. */
   actions?: React.ReactNode;
+  /** Remove the max-width cap from the header content block. Default: false. */
+  wideContent?: boolean;
   className?: string;
 }
 
@@ -41,6 +43,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
   onDarkBg = false,
   align = 'left',
   actions,
+  wideContent = false,
   className,
 }) => {
   const renderChip = showChip && chipLabel;
@@ -52,9 +55,11 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
     className,
   ].filter(Boolean).join(' ');
 
+  const contentClass = [styles.content, wideContent && styles['content--wide']].filter(Boolean).join(' ');
+
   return (
     <div className={rootClass}>
-      <div className={styles.content}>
+      <div className={contentClass}>
         {renderChip && (
           <div className={styles.chip}>
             <Chip

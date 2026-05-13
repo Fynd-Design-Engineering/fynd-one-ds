@@ -48,6 +48,7 @@ export const Section: React.FC<SectionProps> = ({
   onDarkBg,
   align,
   actions,
+  wideContent,
 }) => {
   const resolvedDark = bg === 'dark' || onDarkBg;
 
@@ -65,6 +66,7 @@ export const Section: React.FC<SectionProps> = ({
       onDarkBg={resolvedDark}
       align={align}
       actions={actions}
+      wideContent={wideContent}
     />
   ) : null;
 

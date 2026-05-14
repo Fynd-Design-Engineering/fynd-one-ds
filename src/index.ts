@@ -87,6 +87,9 @@ export type { RichIconCardProps } from './components/molecules/RichIconCard';
 export { ListingCard } from './components/molecules/ListingCard';
 export type { ListingCardProps } from './components/molecules/ListingCard';
 
+export { CustomerStoryCard } from './components/molecules/CustomerStoryCard';
+export type { CustomerStoryCardProps, CustomerStoryMetric } from './components/molecules/CustomerStoryCard';
+
 export { MetricCard } from './components/molecules/MetricCard';
 export type { MetricCardProps } from './components/molecules/MetricCard';
 

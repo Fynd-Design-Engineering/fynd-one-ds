@@ -1,0 +1,144 @@
+/* ── CustomerStoryCard ──────────────────────────────────────────────────────── */
+
+.root {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: var(--fds-neutral-0, #ffffff);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 1px 2px 15px 0px rgba(0, 0, 0, 0.02);
+  position: relative;
+}
+
+.root--no-image {
+  grid-template-columns: 1fr;
+}
+
+/* ── Image slot (left column) ─────────────────────────────────────────────── */
+
+.image-wrap {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  min-height: 16rem;
+}
+
+.image-wrap > * {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Content (right column) ───────────────────────────────────────────────── */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.content-top {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* ── Title ────────────────────────────────────────────────────────────────── */
+
+.title-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.title-link:hover .title {
+  text-decoration: none;
+}
+
+.title {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0;
+}
+
+/* ── Metrics row ──────────────────────────────────────────────────────────── */
+
+.metrics-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-auto-columns: 1fr;
+  place-items: start stretch;
+  gap: 5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.metric-value {
+  margin: 0;
+  font-family: 'Fynd Sans Compact', sans-serif !important;
+  font-size: 2.375rem !important;
+  line-height: 1.1 !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--fds-neutral-100, #101319) !important;
+  white-space: nowrap;
+}
+
+/* ── Button ───────────────────────────────────────────────────────────────── */
+
+.button-wrap {
+  display: flex;
+}
+
+.button-wrap > * {
+  width: auto;
+}
+
+/* ── Mobile ───────────────────────────────────────────────────────────────── */
+
+/* Large variant (with metrics): stack on tablet */
+@media (max-width: 61.9375rem) {
+  .root:not(.root--compact):not(.root--no-image) {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 47.9375rem) {
+  .root {
+    grid-template-columns: 1fr;
+  }
+
+  .button-wrap > * {
+    width: 100%;
+  }
+
+  .image-wrap {
+    min-height: 12rem;
+  }
+
+  .content {
+    gap: 1.5rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .metrics-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+}

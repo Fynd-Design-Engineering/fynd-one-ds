@@ -28,6 +28,19 @@ export interface HeroFullBleedProps {
     mobilePoster?: string;
     objectFit?: 'cover' | 'contain';
   };
+  /**
+   * Static image hero — same responsive layout as `video` but renders an `<img>`.
+   * Pass `video` OR `image`, not both; if both are set, `video` wins.
+   */
+  image?: {
+    src: string;
+    alt?: string;
+    /** Swapped in below the tablet breakpoint (≤991px). Falls back to `src`. */
+    mobileSrc?: string;
+    /** Alt for the mobile image. Falls back to `alt` if omitted. */
+    mobileAlt?: string;
+    objectFit?: 'cover' | 'contain';
+  };
   /** Section background — hex, var(--token), or any CSS color. */
   bg?: string;
   /** Adds top padding to the inner content equal to the sticky chrome height.
@@ -52,6 +65,7 @@ export const HeroFullBleed: React.FC<HeroFullBleedProps> = ({
   actions,
   extras,
   video,
+  image,
   bg,
   topOffset,
   onDarkBg = false,
@@ -60,33 +74,48 @@ export const HeroFullBleed: React.FC<HeroFullBleedProps> = ({
   style,
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
   const modeRef = useRef<'desktop' | 'mobile' | null>(null);
 
+  const activeMedia = video ?? image;
+
+  if (process.env.NODE_ENV !== 'production' && video && image) {
+    console.warn('[HeroFullBleed] Both `video` and `image` props are set — `video` wins. Remove one.');
+  }
+
   useEffect(() => {
-    const el = videoRef.current;
-    if (!el || !video) return;
+    if (!activeMedia) return;
+    const el = video ? videoRef.current : imgRef.current;
+    if (!el) return;
 
     const apply = () => {
       const isMobileVP = window.innerWidth <= MOBILE_BP;
       const mode: 'desktop' | 'mobile' =
-        isMobileVP && video.mobileSrc ? 'mobile' : 'desktop';
+        isMobileVP && activeMedia.mobileSrc ? 'mobile' : 'desktop';
       if (mode === modeRef.current) return;
       modeRef.current = mode;
 
-      el.src = mode === 'mobile' ? video.mobileSrc! : video.src;
-      const poster =
-        mode === 'mobile' && video.mobilePoster
-          ? video.mobilePoster
-          : video.poster ?? '';
-      if (poster) el.poster = poster;
-      el.load();
-      el.play().catch(() => {});
+      if (video) {
+        const videoEl = el as HTMLVideoElement;
+        videoEl.src = mode === 'mobile' ? video.mobileSrc! : video.src;
+        const poster =
+          mode === 'mobile' && video.mobilePoster
+            ? video.mobilePoster
+            : video.poster ?? '';
+        if (poster) videoEl.poster = poster;
+        videoEl.load();
+        videoEl.play().catch(() => {});
+      } else if (image) {
+        const imgEl = el as HTMLImageElement;
+        imgEl.src = mode === 'mobile' && image.mobileSrc ? image.mobileSrc : image.src;
+        imgEl.alt = (mode === 'mobile' && image.mobileAlt ? image.mobileAlt : image.alt) ?? '';
+      }
     };
 
     apply();
     window.addEventListener('resize', apply);
     return () => window.removeEventListener('resize', apply);
-  }, [video]);
+  }, [video, image]);
 
   const rootCls = [styles.root, className].filter(Boolean).join(' ');
 
@@ -113,17 +142,27 @@ export const HeroFullBleed: React.FC<HeroFullBleedProps> = ({
 
   return (
     <section id={id} className={rootCls} style={rootStyle}>
-      {video && (
-        <div className={styles.videoWrap} aria-hidden="true">
-          <video
-            ref={videoRef}
-            className={styles.video}
-            autoPlay
-            muted
-            loop
-            playsInline
-            style={{ objectFit: video.objectFit ?? 'cover' }}
-          />
+      {(video || image) && (
+        <div className={styles.videoWrap} aria-hidden={!image || !image.alt ? 'true' : undefined}>
+          {video ? (
+            <video
+              ref={videoRef}
+              className={styles.video}
+              autoPlay
+              muted
+              loop
+              playsInline
+              style={{ objectFit: video.objectFit ?? 'cover' }}
+            />
+          ) : (
+            <img
+              ref={imgRef}
+              className={styles.video}
+              src={image!.src}
+              alt={image!.alt ?? ''}
+              style={{ objectFit: image!.objectFit ?? 'cover' }}
+            />
+          )}
           {bg && (
             <div className={`gradient-blur ${styles.videoGradient}`}>
               <div/><div/><div/><div/><div/><div/>

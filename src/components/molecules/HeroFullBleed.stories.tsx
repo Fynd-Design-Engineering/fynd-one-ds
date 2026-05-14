@@ -24,6 +24,28 @@ const FYND_STATS = [
   { stat: '30', label: 'countries served' },
 ];
 
+export const ImageHero: Story = {
+  args: {
+    title: (
+      <>
+        Mall commerce,
+        <br />
+        reimagined for India
+      </>
+    ),
+    subtext: 'Unified inventory, in-store POS, and endless aisle — all on one platform.',
+    actions: <Button label="Book a demo" variant="primary" showChevron />,
+    image: {
+      src: 'https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/original/webflow-team/Fynd_One/solutions/mall_commerce_hero_desktop.avif',
+      mobileSrc: 'https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/original/webflow-team/Fynd_One/solutions/mall_commerce_hero_mobile.avif',
+      alt: 'Mall commerce — Fynd platform',
+      objectFit: 'cover',
+    },
+    bg: '#eeeeee',
+    onDarkBg: false,
+  },
+};
+
 export const Default: Story = {
   args: {
     title: (

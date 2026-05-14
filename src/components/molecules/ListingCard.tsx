@@ -33,6 +33,8 @@ export interface ListingCardProps {
   hoverImageSwap?: boolean;
   /** Elevating box-shadow on hover. Default `true`. */
   hoverShadow?: boolean;
+  /** Optional overlay rendered on top of the image (absolute, full inset, z-index 2). */
+  imageSlot?: React.ReactNode;
   onClick?: () => void;
   className?: string;
   style?: CSSProperties;
@@ -61,6 +63,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({
   bordered = false,
   hoverImageSwap = false,
   hoverShadow = true,
+  imageSlot,
   onClick,
   className,
   style,
@@ -111,6 +114,9 @@ export const ListingCard: React.FC<ListingCardProps> = ({
             aria-hidden="true"
             className={styles['image-hover']}
           />
+        )}
+        {imageSlot && (
+          <div className={styles['image-slot']}>{imageSlot}</div>
         )}
       </div>
       <div className={contentClass}>

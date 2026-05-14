@@ -12,6 +12,7 @@
 .bar {
   display: flex;
   align-items: flex-end;
+  justify-content: safe center;
   width: 100%;
   overflow-x: auto;
   scrollbar-width: none;

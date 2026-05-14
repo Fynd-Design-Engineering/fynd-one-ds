@@ -95,7 +95,7 @@ export const CustomerStoryCard: React.FC<CustomerStoryCardProps> = ({
             <Button
               label={buttonLabel}
               variant="secondary"
-              onClick={onClick ?? (href ? () => { window.location.href = href; } : undefined)}
+              {...(onClick ? { onClick } : href ? { href } : {})}
             />
           </div>
         )}

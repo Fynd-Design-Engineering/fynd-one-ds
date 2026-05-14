@@ -105,6 +105,9 @@ export type { VideoFrameProps } from './components/molecules/VideoFrame';
 export { HeroFullBleed } from './components/molecules/HeroFullBleed';
 export type { HeroFullBleedProps } from './components/molecules/HeroFullBleed';
 
+export { VideoFullBleed } from './components/molecules/VideoFullBleed';
+export type { VideoFullBleedProps } from './components/molecules/VideoFullBleed';
+
 export { HeroListing } from './components/molecules/HeroListing';
 export type { HeroListingProps } from './components/molecules/HeroListing';
 

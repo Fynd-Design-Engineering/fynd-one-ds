@@ -18,6 +18,8 @@ export interface TabsProps {
   /** Visual variant. 'card' = filled bg tabs, 'underline' = bottom border tabs */
   variant?: TabsVariant;
   defaultIndex?: number;
+  /** Activate tabs on hover in addition to click. Touch devices are unaffected. */
+  hoverToChange?: boolean;
   className?: string;
   style?: CSSProperties;
 }
@@ -26,6 +28,7 @@ export const Tabs: React.FC<TabsProps> = ({
   tabs,
   variant = 'card',
   defaultIndex = 0,
+  hoverToChange = false,
   className,
   style,
 }) => {
@@ -48,6 +51,7 @@ export const Tabs: React.FC<TabsProps> = ({
               key={i}
               className={btnClasses}
               onClick={() => setActiveIndex(i)}
+              onMouseEnter={hoverToChange ? () => setActiveIndex(i) : undefined}
             >
               {tab.dotColor && (
                 <svg className={styles.dot} width="18" height="10" viewBox="0 0 18 10" fill="none">

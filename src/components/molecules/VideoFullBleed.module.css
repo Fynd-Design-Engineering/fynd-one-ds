@@ -1,0 +1,121 @@
+/* ── VideoFullBleed ────────────────────────────────────────────────────────── */
+
+.root {
+  position: relative;
+  overflow: hidden;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+@media (max-width: 61.9375rem) {
+  .root {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* ── Video wrap (absolute behind on desktop) ──────────────────────────────── */
+
+.videoWrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Gradient fade at top of video (tablet/mobile only) ───────────────────── */
+
+.videoGradient {
+  display: none;
+  height: 18.75rem;
+  z-index: 1;
+  background-image: linear-gradient(var(--fds-vfb-bg, transparent) 50%, transparent);
+}
+
+/* ── Tablet and below: video drops out of abs flow, renders below content ─── */
+
+@media (max-width: 61.9375rem) {
+  .videoWrap {
+    position: relative;
+    inset: auto;
+    margin-top: -12.5rem;
+    margin-left: -2.5rem;
+    margin-right: -2.5rem;
+    width: calc(100% + 5rem);
+    order: 1;
+    pointer-events: auto;
+  }
+
+  .video {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+  }
+
+  .videoGradient {
+    display: block;
+    height: 31.25rem;
+  }
+}
+
+@media (min-width: 48rem) and (max-width: 61.9375rem) {
+  .videoWrap {
+    margin-top: -31.25rem;
+  }
+}
+
+@media (max-width: 47.9375rem) {
+  .root {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .videoWrap {
+    margin-left: -1.25rem;
+    margin-right: -1.25rem;
+    width: calc(100% + 2.5rem);
+  }
+
+  .videoGradient {
+    height: 18.75rem;
+  }
+}
+
+/* ── Inner container ──────────────────────────────────────────────────────── */
+
+.inner {
+  position: relative;
+  z-index: 2;
+  max-width: 80rem;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 3.5rem 0;
+}
+
+@media (max-width: 61.9375rem) {
+  .inner {
+    padding: 2rem 0;
+    order: 0;
+  }
+}
+
+@media (max-width: 47.9375rem) {
+  .inner {
+    max-width: 100%;
+  }
+}
+
+/* ── Content column (left-aligned, mirrors HeroFullBleed width) ───────────── */
+
+.content {
+  max-width: 34.5rem;
+}

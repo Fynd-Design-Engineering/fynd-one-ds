@@ -115,12 +115,19 @@
 
 .tags-row {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tags-row::-webkit-scrollbar {
+  display: none;
 }
 
 /* Inherited props — cascade to .fds-chip__text automatically */
 .tag-chip {
+  flex-shrink: 0;
   text-transform: uppercase;
   letter-spacing: 0.03em;
 }

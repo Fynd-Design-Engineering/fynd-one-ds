@@ -3,7 +3,7 @@ import styles from './SectionWrapper.module.css';
 
 export interface SectionWrapperProps {
   children: React.ReactNode;
-  /** Content rendered outside the inner container (full-width) */
+  /** Content rendered outside the inner container (full-width, still within page padding) */
   outerChildren?: React.ReactNode;
   /** Background colour preset */
   bg?: 'default' | 'muted' | 'subtle' | 'dark';
@@ -11,6 +11,15 @@ export interface SectionWrapperProps {
   onDarkBg?: boolean;
   /** Remove bottom padding from the section */
   noPaddingBottom?: boolean;
+  /**
+   * Make outerChildren span the full viewport width (edge-to-edge), bypassing
+   * horizontal page padding. Uses negative margin-inline equal to --fds-section-px
+   * so it tracks responsively with no vw math and no scrollbar risk.
+   *
+   * Use for tab strips, marquees, rails, full-bleed media bands inside a Section
+   * that still needs a bg color or vertical spacing.
+   */
+  fullBleedContent?: boolean;
   id?: string;
   className?: string;
   style?: CSSProperties;
@@ -24,6 +33,7 @@ export const SectionWrapper: React.FC<SectionWrapperProps> = ({
   bg = 'default',
   onDarkBg = false,
   noPaddingBottom = false,
+  fullBleedContent = false,
   id,
   className,
   style,
@@ -43,7 +53,11 @@ export const SectionWrapper: React.FC<SectionWrapperProps> = ({
       <div className={styles.inner}>
         {children}
       </div>
-      {outerChildren}
+      {outerChildren && (
+        fullBleedContent
+          ? <div className={styles.bleed}>{outerChildren}</div>
+          : outerChildren
+      )}
     </Tag>
   );
 };

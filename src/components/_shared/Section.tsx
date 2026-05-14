@@ -13,8 +13,19 @@ export interface SectionProps extends SectionHeaderProps {
   as?: 'section' | 'div' | 'footer' | 'nav';
   /** Hide the section header entirely */
   hideHeader?: boolean;
-  /** Render children outside the inner container (full-width) */
+  /** Render children outside the inner container (full-width, still within page padding) */
   fullWidthContent?: boolean;
+  /**
+   * Make the content slot span the full viewport width (edge-to-edge), bypassing
+   * horizontal page padding. The section header stays inside the container.
+   *
+   * Use for tab strips, marquees, rails, full-bleed media bands, etc. inside a
+   * normal Section that still needs a bg color or vertical spacing.
+   *
+   * When both `fullWidthContent` and `fullBleedContent` are set, `fullBleedContent`
+   * wins — there is nothing left to constrain.
+   */
+  fullBleedContent?: boolean;
   /**
    * Trailing CTA slot — rendered below section content with 4rem top margin
    * (2rem on mobile). Use for a Button or link that follows the main body.
@@ -33,6 +44,7 @@ export const Section: React.FC<SectionProps> = ({
   as,
   hideHeader = false,
   fullWidthContent = false,
+  fullBleedContent = false,
   trailingActions,
   id,
   className,
@@ -72,6 +84,8 @@ export const Section: React.FC<SectionProps> = ({
     />
   ) : null;
 
+  const isOuter = fullWidthContent || fullBleedContent;
+
   return (
     <SectionWrapper
       bg={bg}
@@ -81,10 +95,11 @@ export const Section: React.FC<SectionProps> = ({
       id={id}
       className={className}
       style={style}
-      outerChildren={fullWidthContent ? children : undefined}
+      outerChildren={isOuter ? children : undefined}
+      fullBleedContent={fullBleedContent}
     >
       {header}
-      {!fullWidthContent && children}
+      {!isOuter && children}
       {trailingActions && (
         <div className={styles.trailingActions}>{trailingActions}</div>
       )}

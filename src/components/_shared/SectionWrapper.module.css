@@ -5,6 +5,7 @@
   padding-bottom: 3.5rem;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
+  --fds-section-px: 2.5rem;
 }
 
 .dark {
@@ -40,9 +41,20 @@
     padding-bottom: 2rem;
     padding-left: 1.25rem;
     padding-right: 1.25rem;
+    --fds-section-px: 1.25rem;
   }
 
   .inner {
     max-width: 100%;
   }
+}
+
+/* ── Full-bleed content slot ────────────────────────────────────────────────── */
+
+/* Negates the section's horizontal padding so the slot reaches the viewport
+   edges. Uses the --fds-section-px token set on .root so it tracks
+   responsively with no vw math and no horizontal-scrollbar risk. */
+.bleed {
+  margin-left: calc(-1 * var(--fds-section-px));
+  margin-right: calc(-1 * var(--fds-section-px));
 }

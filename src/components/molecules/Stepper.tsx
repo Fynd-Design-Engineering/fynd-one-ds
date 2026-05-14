@@ -1,6 +1,7 @@
 'use client';
 
 import React, { CSSProperties, ReactNode, useEffect, useState } from 'react';
+import { Text } from '../Typography/Text';
 import styles from './Stepper.module.css';
 
 export type StepperVariant = 'DotTrail' | 'NodeLink' | 'NodeSolo' | 'CountFlow';
@@ -141,8 +142,14 @@ export const Stepper: React.FC<StepperProps> = ({
 
             {/* Text column */}
             <div className={styles.text}>
-              <TitleTag className={styles.title}>{item.title}</TitleTag>
-              {item.subtext && <p className={styles.subtext}>{item.subtext}</p>}
+              <Text variant="heading-s" as={TitleTag} weight="medium" className={styles.title}>
+                {item.title}
+              </Text>
+              {item.subtext && (
+                <Text variant="body-l" as="p" color={onDarkBg ? 'muted' : 'secondary'} className={styles.subtext}>
+                  {item.subtext}
+                </Text>
+              )}
             </div>
           </div>
         );

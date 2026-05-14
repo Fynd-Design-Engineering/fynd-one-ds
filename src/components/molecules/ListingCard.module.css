@@ -110,6 +110,27 @@
   gap: 0.5rem;
 }
 
+/* Inherited props — cascade to .fds-chip__text automatically */
+.tag-chip {
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* Root-level layout/paint — needs 2-class specificity to beat .fds-chip__filled */
+.tag-chip:global(.fds-chip__filled) {
+  justify-content: center;
+  padding: 0.25rem 0.75rem;
+  background-color: var(--fds-neutral-10, #f8f8f9);
+  border-radius: 100px;
+}
+
+/* Typography — .fds-chip__text sets these explicitly, so must override directly */
+.tag-chip :global(.fds-chip__text) {
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
 /* ── Title ────────────────────────────────────────────────────────────────── */
 
 .title {

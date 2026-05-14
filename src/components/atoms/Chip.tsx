@@ -12,6 +12,8 @@ export interface ChipProps {
   showDot?: boolean;
   dotColor?: ChipDotColor;
   icon?: React.ReactNode;
+  /** Hide the leading icon entirely (overrides the default star for non-anchor variants). */
+  showIcon?: boolean;
   breakpoint?: 'lg' | 'md' | 'sm';
   onDarkBg?: boolean;
   /** Toggled/active state. Only meaningful for `outlined` variant. */
@@ -28,6 +30,7 @@ export const Chip: React.FC<ChipProps> = ({
   showDot = true,
   dotColor = 'blue',
   icon,
+  showIcon = true,
   breakpoint = 'lg',
   onDarkBg = false,
   selected = false,
@@ -49,7 +52,7 @@ export const Chip: React.FC<ChipProps> = ({
     className,
   ].filter(Boolean).join(' ');
 
-  const resolvedIcon = icon ?? (!isAnchor ? <IconStar size={16} /> : null);
+  const resolvedIcon = showIcon ? (icon ?? (!isAnchor ? <IconStar size={16} /> : null)) : null;
 
   const content = (
     <>

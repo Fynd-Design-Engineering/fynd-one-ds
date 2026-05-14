@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
 import { ImageHolder, ImageHolderProps } from '../atoms/ImageHolder';
-import { Tag } from '../atoms/Tag';
+import { Chip } from '../atoms/Chip';
 import { Button } from '../atoms/Button';
 import styles from './ListingCard.module.css';
 
@@ -118,7 +118,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({
           {showTags && tags && tags.length > 0 && (
             <div className={styles['tags-row']}>
               {tags.map((t) => (
-                <Tag key={t} label={t} onDarkBg={onDarkBg} />
+                <Chip key={t} variant="filled" label={t} showIcon={false} showDot={false} onDarkBg={onDarkBg} className={styles['tag-chip']} />
               ))}
             </div>
           )}

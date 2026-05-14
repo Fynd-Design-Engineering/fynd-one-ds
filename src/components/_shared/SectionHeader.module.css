@@ -67,6 +67,11 @@
   max-width: none;
 }
 
+.root--left .content--compact,
+.root--center .content--compact {
+  max-width: 508px;
+}
+
 /* ── Chip ────────────────────────────────────────────────────────────────── */
 
 .chip {

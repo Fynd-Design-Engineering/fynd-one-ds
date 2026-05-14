@@ -20,6 +20,8 @@ export interface SectionHeaderProps {
   actions?: React.ReactNode;
   /** Remove the max-width cap from the header content block. Default: false. */
   wideContent?: boolean;
+  /** Constrain the header content block to 508px. Default: false. */
+  compactContent?: boolean;
   className?: string;
 }
 
@@ -44,6 +46,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
   align = 'left',
   actions,
   wideContent = false,
+  compactContent = false,
   className,
 }) => {
   const renderChip = showChip && chipLabel;
@@ -55,7 +58,11 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
     className,
   ].filter(Boolean).join(' ');
 
-  const contentClass = [styles.content, wideContent && styles['content--wide']].filter(Boolean).join(' ');
+  const contentClass = [
+    styles.content,
+    wideContent && styles['content--wide'],
+    compactContent && styles['content--compact'],
+  ].filter(Boolean).join(' ');
 
   return (
     <div className={rootClass}>

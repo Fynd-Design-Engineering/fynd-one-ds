@@ -1,6 +1,6 @@
 {
   "name": "@fynd-design-engineering/fynd-one-ds",
-  "version": "0.24.19",
+  "version": "0.24.20",
   "description": "Fynd One Design System — React + TypeScript component library",
   "license": "UNLICENSED",
   "repository": {
@@ -28,8 +28,8 @@
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
-    "./styles/tokens.css": "./src/styles/tokens.css",
-    "./styles/reset.css": "./src/styles/reset.css",
+    "./styles/tokens.css": "./dist/assets/styles/tokens.css",
+    "./styles/reset.css": "./dist/assets/styles/tokens.css",
     "./styles/fonts/*": "./dist/fonts/*",
     "./assets/brand-icons/*": "./src/assets/brand-icons/*",
     "./assets/brand-logos/*": "./src/assets/brand-logos/*",

@@ -36,8 +36,8 @@ export const ImageHero: Story = {
     subtext: 'Unified inventory, in-store POS, and endless aisle — all on one platform.',
     actions: <Button label="Book a demo" variant="primary" showChevron />,
     image: {
-      src: 'https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/original/webflow-team/Fynd_One/solutions/mall_commerce_hero_desktop.avif',
-      mobileSrc: 'https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/original/webflow-team/Fynd_One/solutions/mall_commerce_hero_mobile.avif',
+      src: 'https://cdn.prod.website-files.com/67a9c8e5f2c74ac8c2c9b88b/69f0875898f3908738e09f17_Hero%20copy.avif',
+      mobileSrc: 'https://cdn.prod.website-files.com/67a9c8e5f2c74ac8c2c9b88b/69f087af1bf1ddf0b683f818_Center%20copy.png',
       alt: 'Mall commerce — Fynd platform',
       objectFit: 'cover',
     },

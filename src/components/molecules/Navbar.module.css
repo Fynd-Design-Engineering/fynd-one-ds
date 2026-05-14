@@ -44,7 +44,7 @@
 }
 
 .root--sticky {
-  position: sticky;
+  position: var(--fds-navbar-position, sticky);
   top: 0;
 }
 

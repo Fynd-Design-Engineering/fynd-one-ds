@@ -5,12 +5,16 @@
   overflow: hidden;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
+  aspect-ratio: var(--fds-vfb-ratio, 2184 / 948);
+  display: flex;
+  align-items: center;
 }
 
 @media (max-width: 61.9375rem) {
   .root {
     display: flex;
     flex-direction: column;
+    aspect-ratio: unset;
   }
 }
 
@@ -30,25 +34,16 @@
   height: 100%;
 }
 
-/* ── Gradient fade at top of video (tablet/mobile only) ───────────────────── */
-
-.videoGradient {
-  display: none;
-  height: 18.75rem;
-  z-index: 1;
-  background-image: linear-gradient(var(--fds-vfb-bg, transparent) 50%, transparent);
-}
-
-/* ── Tablet and below: video drops out of abs flow, renders below content ─── */
+/* ── Tablet and below: video sits below content, no overlap ──────────────── */
 
 @media (max-width: 61.9375rem) {
   .videoWrap {
     position: relative;
     inset: auto;
-    margin-top: -12.5rem;
     margin-left: -2.5rem;
     margin-right: -2.5rem;
     width: calc(100% + 5rem);
+    aspect-ratio: var(--fds-vfb-ratio-mobile, 1508 / 1024);
     order: 1;
     pointer-events: auto;
   }
@@ -57,18 +52,8 @@
     position: relative;
     inset: auto;
     width: 100%;
-    height: auto;
-  }
-
-  .videoGradient {
-    display: block;
-    height: 31.25rem;
-  }
-}
-
-@media (min-width: 48rem) and (max-width: 61.9375rem) {
-  .videoWrap {
-    margin-top: -31.25rem;
+    height: 100%;
+    object-fit: cover;
   }
 }
 
@@ -83,10 +68,6 @@
     margin-right: -1.25rem;
     width: calc(100% + 2.5rem);
   }
-
-  .videoGradient {
-    height: 18.75rem;
-  }
 }
 
 /* ── Inner container ──────────────────────────────────────────────────────── */
@@ -98,13 +79,13 @@
   margin: 0 auto;
   width: 100%;
   box-sizing: border-box;
-  padding: 3.5rem 0;
 }
 
 @media (max-width: 61.9375rem) {
   .inner {
     padding: 2rem 0;
     order: 0;
+    flex-shrink: 0;
   }
 }
 
@@ -117,5 +98,5 @@
 /* ── Content column (left-aligned, mirrors HeroFullBleed width) ───────────── */
 
 .content {
-  max-width: 34.5rem;
+  max-width: 31.25rem;
 }

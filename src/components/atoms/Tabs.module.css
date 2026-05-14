@@ -79,6 +79,11 @@
   padding-bottom: 5rem;
 }
 
+.panel-content--fullbleed {
+  padding: 0;
+  width: 100%;
+}
+
 /* ── Tab dot indicator ────────────────────────── */
 
 .dot {

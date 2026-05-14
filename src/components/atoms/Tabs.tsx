@@ -20,6 +20,12 @@ export interface TabsProps {
   defaultIndex?: number;
   /** Activate tabs on hover in addition to click. Touch devices are unaffected. */
   hoverToChange?: boolean;
+  /**
+   * Remove the inner container (max-width + centering) and all padding from the
+   * panel content slot. Use when Tabs is placed inside a fullBleedContent Section
+   * so the panel content can reach the viewport edges.
+   */
+  fullBleedPanel?: boolean;
   className?: string;
   style?: CSSProperties;
 }
@@ -29,6 +35,7 @@ export const Tabs: React.FC<TabsProps> = ({
   variant = 'card',
   defaultIndex = 0,
   hoverToChange = false,
+  fullBleedPanel = false,
   className,
   style,
 }) => {
@@ -64,7 +71,10 @@ export const Tabs: React.FC<TabsProps> = ({
         })}
       </div>
       <div className={styles.panel}>
-        <div className={[styles['panel-content'], sectionStyles.inner].filter(Boolean).join(' ')}>
+        <div className={[
+          styles['panel-content'],
+          fullBleedPanel ? styles['panel-content--fullbleed'] : sectionStyles.inner,
+        ].filter(Boolean).join(' ')}>
           {tabs[activeIndex]?.content}
         </div>
       </div>

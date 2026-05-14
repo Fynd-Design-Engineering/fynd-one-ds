@@ -1,7 +1,6 @@
 'use client';
 
 import React, { CSSProperties, ReactNode, useEffect, useRef } from 'react';
-import '../../styles/gradient-blur.css';
 import styles from './VideoFullBleed.module.css';
 
 export interface VideoFullBleedProps {
@@ -16,6 +15,16 @@ export interface VideoFullBleedProps {
     mobilePoster?: string;
     objectFit?: 'cover' | 'contain';
   };
+  /**
+   * Aspect ratio for the video on desktop — controls section height.
+   * Pass as a CSS ratio string, e.g. `'16 / 9'`. Defaults to `'2184 / 948'`.
+   */
+  videoAspectRatio?: string;
+  /**
+   * Aspect ratio for the video container on tablet and mobile.
+   * Defaults to `'1508 / 1024'`.
+   */
+  mobileVideoAspectRatio?: string;
   /** Section background — hex, var(--token), or any CSS color. */
   bg?: string;
   onDarkBg?: boolean;
@@ -29,6 +38,8 @@ const MOBILE_BP = 991;
 export const VideoFullBleed: React.FC<VideoFullBleedProps> = ({
   children,
   video,
+  videoAspectRatio = '2184 / 948',
+  mobileVideoAspectRatio = '1508 / 1024',
   bg,
   onDarkBg: _onDarkBg = false,
   id,
@@ -67,9 +78,11 @@ export const VideoFullBleed: React.FC<VideoFullBleedProps> = ({
   const rootCls = [styles.root, className].filter(Boolean).join(' ');
 
   const rootStyle: CSSProperties = {
+    '--fds-vfb-ratio': videoAspectRatio,
+    '--fds-vfb-ratio-mobile': mobileVideoAspectRatio,
     ...(bg ? { background: bg, '--fds-vfb-bg': bg } as CSSProperties : null),
     ...style,
-  };
+  } as CSSProperties;
 
   return (
     <section id={id} className={rootCls} style={rootStyle}>
@@ -84,11 +97,6 @@ export const VideoFullBleed: React.FC<VideoFullBleedProps> = ({
             playsInline
             style={{ objectFit: video.objectFit ?? 'cover' }}
           />
-          {bg && (
-            <div className={`gradient-blur ${styles.videoGradient}`}>
-              <div/><div/><div/><div/><div/><div/>
-            </div>
-          )}
         </div>
       )}
 

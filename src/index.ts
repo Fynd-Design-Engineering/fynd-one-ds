@@ -49,8 +49,11 @@ export type { MediaHolderProps, MediaHolderLayer, MediaHolderAspectRatio } from 
 export { TitleContentPair } from './components/atoms/TitleContentPair';
 export type { TitleContentPairProps } from './components/atoms/TitleContentPair';
 
-export { LogoMarquee } from './components/atoms/LogoMarquee';
-export type { LogoMarqueeProps, LogoItem } from './components/atoms/LogoMarquee';
+export { LogoStrip } from './components/atoms/LogoStrip';
+export type { LogoStripProps, LogoItem } from './components/atoms/LogoStrip';
+// Backwards-compatible alias — existing `LogoMarquee` imports keep working
+export { LogoStrip as LogoMarquee } from './components/atoms/LogoStrip';
+export type { LogoStripProps as LogoMarqueeProps } from './components/atoms/LogoStrip';
 
 export { Accordion } from './components/atoms/Accordion';
 export type { AccordionProps, AccordionItem } from './components/atoms/Accordion';

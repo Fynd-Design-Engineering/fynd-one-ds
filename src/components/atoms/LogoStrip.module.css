@@ -1,0 +1,87 @@
+/* ── LogoStrip ───────────────────────────────────────────────────────────── */
+
+.root {
+  position: relative;
+  width: 100%;
+}
+
+/* ── Marquee variant ─────────────────────────────────────────────────────── */
+
+.root--marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+}
+
+.track--marquee {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: marquee-scroll var(--marquee-duration, 45s) linear infinite;
+}
+
+.track--marquee:hover {
+  animation-play-state: paused;
+}
+
+/* ── Static variant ──────────────────────────────────────────────────────── */
+
+.root--static {
+  overflow: visible;
+}
+
+.track--static {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 0;
+}
+
+/* ── Shared ──────────────────────────────────────────────────────────────── */
+
+.item {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.5rem;
+}
+
+.logo {
+  height: var(--marquee-logo-height, 3.125rem);
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 1;
+}
+
+.logo--hover {
+  transition: filter 0.3s, opacity 0.3s;
+}
+
+.logo--hover:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

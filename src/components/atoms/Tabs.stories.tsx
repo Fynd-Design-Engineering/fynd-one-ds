@@ -74,3 +74,61 @@ export const TwoTabs: Story = {
     ],
   },
 };
+
+export const HorizontalScroll: Story = {
+  decorators: [
+    (Story) => (
+      <div style={{ backgroundColor: '#f2f2f2', padding: 40, maxWidth: 480 }}>
+        <Story />
+      </div>
+    ),
+  ],
+  args: {
+    tabs: [
+      { label: 'Online commerce', content: <p style={{ fontFamily: "'Inter', sans-serif", color: '#5b5c5d' }}>Online commerce content</p> },
+      { label: 'Supply chain', content: <p style={{ fontFamily: "'Inter', sans-serif", color: '#5b5c5d' }}>Supply chain content</p> },
+      { label: 'In-store tech', content: <p style={{ fontFamily: "'Inter', sans-serif", color: '#5b5c5d' }}>In-store content</p> },
+      { label: 'Agentic AI', content: <p style={{ fontFamily: "'Inter', sans-serif", color: '#5b5c5d' }}>Agentic AI content</p> },
+      { label: 'Marketplaces', content: <p style={{ fontFamily: "'Inter', sans-serif", color: '#5b5c5d' }}>Marketplaces content</p> },
+      { label: 'Analytics', content: <p style={{ fontFamily: "'Inter', sans-serif", color: '#5b5c5d' }}>Analytics content</p> },
+    ],
+  },
+};
+
+export const FullBleedPanel: Story = {
+  decorators: [
+    (Story) => (
+      <div style={{ backgroundColor: '#f2f2f2' }}>
+        <Story />
+      </div>
+    ),
+  ],
+  args: {
+    fullBleedPanel: true,
+    tabs: [
+      {
+        label: 'Online commerce',
+        content: (
+          <div style={{ background: '#101319', padding: '3rem 2rem' }}>
+            <CardGrid items={[
+              { title: 'D2C website', subtext: 'Customized, high-performance storefronts' },
+              { title: 'B2B website', subtext: 'Digital wholesale selling with custom pricing' },
+              { title: 'Quick commerce', subtext: 'Optimized for 10–30 minute deliveries' },
+            ]} />
+          </div>
+        ),
+      },
+      {
+        label: 'Supply chain',
+        content: (
+          <div style={{ background: '#101319', padding: '3rem 2rem' }}>
+            <CardGrid items={[
+              { title: 'Order management', subtext: 'End-to-end order orchestration' },
+              { title: 'Warehouse management', subtext: 'Inventory tracking and shipping' },
+            ]} />
+          </div>
+        ),
+      },
+    ],
+  },
+};

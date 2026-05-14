@@ -3,7 +3,7 @@
 .root {
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(var(--grid-cols, 3), 1fr);
+  grid-template-columns: repeat(var(--grid-cols, 3), minmax(0, 1fr));
   gap: var(--grid-gap, 1.25rem);
 }
 
@@ -14,13 +14,13 @@
 /* Tablet: 768px – 991px */
 @media (max-width: 61.9375rem) {
   .root {
-    grid-template-columns: repeat(var(--grid-cols-tablet, 2), 1fr);
+    grid-template-columns: repeat(var(--grid-cols-tablet, 2), minmax(0, 1fr));
   }
 }
 
 /* Mobile: < 768px */
 @media (max-width: 47.9375rem) {
   .root {
-    grid-template-columns: repeat(var(--grid-cols-mobile, 1), 1fr);
+    grid-template-columns: repeat(var(--grid-cols-mobile, 1), minmax(0, 1fr));
   }
 }

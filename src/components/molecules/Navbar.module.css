@@ -171,7 +171,12 @@
 
 .root--dark .navLink:hover,
 .root--dark .navLink--active {
-  background-color: var(--fds-neutral-80, #4a4b4c);
+  background-color: var(--fds-neutral-10, #f8f8f9);
+}
+
+.root--dark .navLinks .navLink:hover,
+.root--dark .navLinks .navLink:hover > span {
+  color: var(--btn-secondary-text);
 }
 
 /* ── Desktop Actions ─────────────────────────────────────────────────────── */
@@ -399,7 +404,8 @@
 }
 
 .dropdownPanel--dark .megaCategory:hover {
-  background-color: var(--fds-neutral-80, #4a4b4c);
+  background-color: var(--fds-neutral-10, #f8f8f9);
+  color: var(--fds-neutral-100, #101319);
 }
 
 .megaCategory--active {
@@ -527,7 +533,8 @@
 
 .dropdownPanel--dark .dropdownLink:hover,
 .mobileOverlay--dark .dropdownLink:hover {
-  background-color: var(--fds-neutral-80, #4a4b4c);
+  background-color: var(--fds-neutral-10, #f8f8f9);
+  color: var(--fds-neutral-100, #101319);
 }
 
 .dropdownLinkIcon {
@@ -765,7 +772,8 @@
 
 .mobileOverlay--dark .mobileNavLink:hover,
 .mobileOverlay--dark .mobileNavLinkButton:hover {
-  background-color: var(--fds-neutral-80, #4a4b4c);
+  background-color: var(--fds-neutral-10, #f8f8f9);
+  color: var(--fds-neutral-100, #101319);
 }
 
 .mobileChevron {
@@ -800,7 +808,8 @@
 }
 
 .mobileOverlay--dark .mobileBack:hover {
-  background-color: var(--fds-neutral-80, #4a4b4c);
+  background-color: var(--fds-neutral-10, #f8f8f9);
+  color: var(--fds-neutral-100, #101319);
 }
 
 .mobileSubContent {
@@ -834,7 +843,8 @@
 }
 
 .mobileOverlay--dark .mobileCategoryHeader:hover {
-  background-color: var(--fds-neutral-80, #4a4b4c);
+  background-color: var(--fds-neutral-10, #f8f8f9);
+  color: var(--fds-neutral-100, #101319);
 }
 
 .mobileCategoryChevron {

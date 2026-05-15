@@ -77,7 +77,7 @@
   gap: 0.5rem;
   padding: 0.25rem 1rem;
   border-radius: 1.5rem;
-  background-color: #f8f8f9cc;
+  background-color: var(--fds-chip-bg, #f8f8f9cc);
   border: 1px solid transparent;
   color: var(--fds-neutral-60, #5b5c5d);
 }

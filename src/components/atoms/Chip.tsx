@@ -18,6 +18,8 @@ export interface ChipProps {
   onDarkBg?: boolean;
   /** Toggled/active state. Only meaningful for `outlined` variant. */
   selected?: boolean;
+  /** Custom background color for the `filled` variant. Accepts any CSS color value. */
+  bg?: string;
   /** Makes the chip interactive — renders as a `<button>`. */
   onClick?: () => void;
   className?: string;
@@ -34,6 +36,7 @@ export const Chip: React.FC<ChipProps> = ({
   breakpoint = 'lg',
   onDarkBg = false,
   selected = false,
+  bg,
   onClick,
   className,
   style,
@@ -64,12 +67,17 @@ export const Chip: React.FC<ChipProps> = ({
     </>
   );
 
+  const resolvedStyle: CSSProperties = {
+    ...(bg ? { '--fds-chip-bg': bg } as CSSProperties : null),
+    ...style,
+  };
+
   if (onClick) {
     return (
       <button
         type="button"
         className={classes}
-        style={style}
+        style={resolvedStyle}
         onClick={onClick}
         aria-pressed={selected}
       >
@@ -79,7 +87,7 @@ export const Chip: React.FC<ChipProps> = ({
   }
 
   return (
-    <span className={classes} style={style}>
+    <span className={classes} style={resolvedStyle}>
       {content}
     </span>
   );

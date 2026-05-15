@@ -51,6 +51,11 @@ export interface ContentCardProps {
    * Accepts any CSS color value (token, hex, rgb). Forwarded to `Chip.bg`.
    */
   chipBg?: string;
+  /**
+   * Hide the leading icon on the chip entirely (overrides the default
+   * star icon on non-anchor variants). Forwarded to `Chip.showIcon`.
+   */
+  chipShowIcon?: boolean;
   title: string;
   titleVariant?: TextVariant;
   /** Semantic heading level for the card title. Defaults to `'h3'`. */
@@ -125,6 +130,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
   chipBreakpoint,
   chipOnDarkBg = false,
   chipBg,
+  chipShowIcon,
   className,
   style,
 }) => {
@@ -222,6 +228,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
             breakpoint={chipBreakpoint}
             onDarkBg={chipOnDarkBg}
             bg={chipBg ?? neutrals[0]}
+            showIcon={chipShowIcon}
             style={{
               borderRadius: 1000,
               padding: '4px 16px',

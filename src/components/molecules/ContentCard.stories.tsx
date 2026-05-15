@@ -405,6 +405,24 @@ export const WithContentSlot: Story = {
   ),
 };
 
+export const WithChipOverlayNoIcon: Story = {
+  name: 'With chip overlay (no icon)',
+  args: {
+    chipLabel: 'Featured',
+    chipVariant: 'filled',
+    chipPosition: 'floating',
+    chipShowDot: false,
+    chipShowIcon: false,
+    title: 'No leading icon on chip',
+    subtext: 'chipShowIcon={false} hides the default star on the filled chip.',
+    imagePosition: 'above',
+    imageSrc: 'https://picsum.photos/seed/noicon/600/400',
+    imageAlt: 'Sample image',
+    showButton: false,
+  },
+  decorators: [(Story) => <div style={{ width: 420 }}><Story /></div>],
+};
+
 export const WithDarkChipOverlay: Story = {
   name: 'With dark chip overlay',
   args: {

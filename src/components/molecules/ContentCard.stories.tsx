@@ -405,6 +405,25 @@ export const WithContentSlot: Story = {
   ),
 };
 
+export const WithDarkChipOverlay: Story = {
+  name: 'With dark chip overlay',
+  args: {
+    chipLabel: 'New',
+    chipVariant: 'filled',
+    chipPosition: 'floating',
+    chipShowDot: false,
+    chipBg: 'var(--fds-neutral-100)',
+    chipOnDarkBg: true,
+    title: 'Dark chip over image',
+    subtext: 'chipBg="var(--fds-neutral-100)" with chipPosition="floating".',
+    imagePosition: 'above',
+    imageSrc: 'https://picsum.photos/seed/darkchip/600/400',
+    imageAlt: 'Sample image',
+    showButton: false,
+  },
+  decorators: [(Story) => <div style={{ width: 420 }}><Story /></div>],
+};
+
 export const FilledChipVariant: Story = {
   name: 'Chip — filled variant',
   args: {

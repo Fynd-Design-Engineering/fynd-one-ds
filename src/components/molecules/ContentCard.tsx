@@ -46,6 +46,11 @@ export interface ContentCardProps {
   chipBreakpoint?: 'lg' | 'md' | 'sm';
   /** Pass `true` to flip the chip to its dark variant. Independent from `onDarkBg`. */
   chipOnDarkBg?: boolean;
+  /**
+   * Custom background color for the chip when `chipVariant="filled"`.
+   * Accepts any CSS color value (token, hex, rgb). Forwarded to `Chip.bg`.
+   */
+  chipBg?: string;
   title: string;
   titleVariant?: TextVariant;
   /** Semantic heading level for the card title. Defaults to `'h3'`. */
@@ -119,6 +124,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
   imageBg,
   chipBreakpoint,
   chipOnDarkBg = false,
+  chipBg,
   className,
   style,
 }) => {
@@ -215,8 +221,8 @@ export const ContentCard: React.FC<ContentCardProps> = ({
             icon={chipIcon}
             breakpoint={chipBreakpoint}
             onDarkBg={chipOnDarkBg}
+            bg={chipBg ?? neutrals[0]}
             style={{
-              backgroundColor: neutrals[0],
               borderRadius: 1000,
               padding: '4px 16px',
             }}

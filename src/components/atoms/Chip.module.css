@@ -27,6 +27,15 @@
   color: var(--fds-neutral-0, #ffffff);
 }
 
+.anchor.interactive {
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.anchor.dark.interactive:hover {
+  background-color: var(--fds-neutral-0, #ffffff);
+  color: var(--fds-neutral-100, #101319);
+}
+
 /* ── Variant: outlined ─────────────────────── */
 
 .outlined {
@@ -70,6 +79,12 @@
   color: var(--fds-neutral-100, #101319);
 }
 
+.outlined.dark.interactive:hover:not(.selected) {
+  background-color: var(--fds-neutral-0, #ffffff);
+  border-color: var(--fds-neutral-0, #ffffff);
+  color: var(--fds-neutral-100, #101319);
+}
+
 /* ── Variant: filled ───────────────────────── */
 
 .filled {
@@ -84,6 +99,15 @@
 
 .filled.dark {
   color: var(--fds-neutral-0, #ffffff);
+}
+
+.filled.interactive {
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.filled.dark.interactive:hover {
+  background-color: var(--fds-neutral-0, #ffffff);
+  color: var(--fds-neutral-60, #5b5c5d);
 }
 
 /* ── Icon color inheritance ────────────────── */

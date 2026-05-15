@@ -156,6 +156,15 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [contentHeight, setContentHeight] = useState(0);
   const closeTimerRef = useRef<number | null>(null);
   const rootRef = useRef<HTMLElement | null>(null);
+
+  // Dark navbar: track hover + focus-within to drive Framer bg animation
+  // and the .root--light-active CSS class (toggled with matching 400ms delay).
+  const [isHovering, setIsHovering] = useState(false);
+  const [hasFocusWithin, setHasFocusWithin] = useState(false);
+  const [isLightActive, setIsLightActive] = useState(onDarkBg && !!defaultOpenDropdown);
+  const lightTimerRef = useRef<number | null>(null);
+  const isNavActive = isHovering || hasFocusWithin;
+  const prevNavActiveRef = useRef(false);
   const navItemRefs = useRef<Map<string, HTMLElement>>(new Map());
   const contentRef = useRef<HTMLDivElement | null>(null);
 
@@ -201,7 +210,35 @@ export const Navbar: React.FC<NavbarProps> = ({
     setActiveCategory(null);
   };
 
-  useEffect(() => () => clearCloseTimer(), []);
+  useEffect(() => () => {
+    clearCloseTimer();
+    if (lightTimerRef.current !== null) window.clearTimeout(lightTimerRef.current);
+  }, []);
+
+  // Sync .root--light-active class with isNavActive, but delay removal by 400ms
+  // (120ms JS close timer + 280ms Framer exit) so child element CSS transitions
+  // finish before the Framer bar animation starts darkening.
+  useEffect(() => {
+    if (!onDarkBg) return;
+    const wasActive = prevNavActiveRef.current;
+    prevNavActiveRef.current = isNavActive;
+    if (isNavActive && !wasActive) {
+      if (lightTimerRef.current !== null) { window.clearTimeout(lightTimerRef.current); lightTimerRef.current = null; }
+      setIsLightActive(true);
+    } else if (!isNavActive && wasActive) {
+      lightTimerRef.current = window.setTimeout(() => {
+        setIsLightActive(false);
+        lightTimerRef.current = null;
+      }, 400);
+    }
+  }, [isNavActive, onDarkBg]);
+
+  const handleNavMouseEnter = useCallback(() => setIsHovering(true), []);
+  const handleNavMouseLeave = useCallback(() => setIsHovering(false), []);
+  const handleNavFocus = useCallback(() => setHasFocusWithin(true), []);
+  const handleNavBlur = useCallback((e: React.FocusEvent) => {
+    if (!rootRef.current?.contains(e.relatedTarget as Node)) setHasFocusWithin(false);
+  }, []);
 
   // Close on Escape
   useEffect(() => {
@@ -275,15 +312,24 @@ export const Navbar: React.FC<NavbarProps> = ({
     return () => window.removeEventListener('scroll', update);
   }, [scrollAware, scrollThreshold]);
 
+  const isTransparent = scrollAware && !pastTopThreshold && !activeDropdown;
+
   const rootClasses = [
     styles.root,
     onDarkBg && styles['root--dark'],
+    onDarkBg && isLightActive && styles['root--light-active'],
     sticky && styles['root--sticky'],
-    scrollAware && !pastTopThreshold && !activeDropdown && styles['root--transparent'],
+    isTransparent && styles['root--transparent'],
     className,
   ]
     .filter(Boolean)
     .join(' ');
+
+  const darkTargetBg = isNavActive
+    ? '#ffffff'
+    : isTransparent
+      ? 'transparent'
+      : '#101319';
 
   const activeItem = navItems.find(
     (item) => isDropdown(item) && item.label === activeDropdown
@@ -464,11 +510,17 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <>
-    <nav
+    <motion.nav
       className={rootClasses}
       style={style}
       ref={rootRef}
       data-fds-component="navbar"
+      onMouseEnter={handleNavMouseEnter}
+      onMouseLeave={handleNavMouseLeave}
+      onFocus={handleNavFocus}
+      onBlur={handleNavBlur}
+      animate={onDarkBg ? { backgroundColor: darkTargetBg, backdropFilter: 'none' } : undefined}
+      transition={onDarkBg ? { duration: 0.25, delay: isNavActive ? 0 : 0.4, ease: 'easeInOut' } : undefined}
     >
       <div className={styles.container}>
         {logo && (
@@ -583,7 +635,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           );
         })()}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
 
       {/* Mobile menu — rendered as a sibling of <nav> so its
           position:fixed escapes the navbar root's containing block

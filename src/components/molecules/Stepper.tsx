@@ -118,7 +118,7 @@ export const Stepper: React.FC<StepperProps> = ({
 
               {(variant === 'NodeLink' || variant === 'NodeSolo') && (
                 <div
-                  className={[styles.node, isMuted && styles['node--muted']]
+                  className={[styles.node, shouldAnimate && isMuted && styles['node--muted']]
                     .filter(Boolean)
                     .join(' ')}
                 >

@@ -38,9 +38,113 @@
 
 .root--transparent.root--dark:hover,
 .root--transparent.root--dark:focus-within {
-  background-color: var(--fds-neutral-100, #101319);
+  background-color: var(--fds-neutral-0, #ffffff);
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
+}
+
+/* ── Dark navbar: snap to full light-mode appearance on hover ────────────── */
+
+.root--dark:hover,
+.root--dark:focus-within {
+  background-color: var(--fds-neutral-0, #ffffff);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+/* Nav link text → dark */
+.root--dark:hover .navLinks .navLink,
+.root--dark:hover .navLinks .navLink > span,
+.root--dark:focus-within .navLinks .navLink,
+.root--dark:focus-within .navLinks .navLink > span {
+  color: var(--btn-secondary-text);
+}
+
+/* Siblings dim to light-mode muted when any link is hovered */
+.root--dark:hover .navLinks:hover .navLink,
+.root--dark:hover .navLinks:hover .navLink > span,
+.root--dark:focus-within .navLinks:hover .navLink,
+.root--dark:focus-within .navLinks:hover .navLink > span {
+  color: var(--btn-tertiary-text);
+}
+
+/* Hovered link stays full-dark */
+.root--dark:hover .navLinks .navLink:hover,
+.root--dark:hover .navLinks .navLink:hover > span,
+.root--dark:focus-within .navLinks .navLink:hover,
+.root--dark:focus-within .navLinks .navLink:hover > span {
+  color: var(--btn-secondary-text);
+}
+
+/* Hover + active pills → light bg */
+.root--dark:hover .navLink:hover,
+.root--dark:hover .navLink--active,
+.root--dark:focus-within .navLink:hover,
+.root--dark:focus-within .navLink--active {
+  background-color: var(--fds-neutral-10, #f8f8f9);
+}
+
+/* Hamburger → dark icon */
+.root--dark:hover .hamburger,
+.root--dark:focus-within .hamburger {
+  color: var(--fds-neutral-100, #101319);
+}
+
+/* Dropdown panel → light bg + border */
+.root--dark:hover .dropdownPanel--dark,
+.root--dark:focus-within .dropdownPanel--dark {
+  background-color: var(--fds-neutral-0, #ffffff);
+  border-color: var(--fds-neutral-20, #f2f2f2);
+}
+
+.root--dark:hover .dropdownPanel--dark .megaInner,
+.root--dark:hover .dropdownPanel--dark .megaCategories,
+.root--dark:focus-within .dropdownPanel--dark .megaInner,
+.root--dark:focus-within .dropdownPanel--dark .megaCategories {
+  background-color: var(--fds-neutral-0, #ffffff);
+}
+
+/* Mega category + dropdown link text → dark */
+.root--dark:hover .dropdownPanel--dark .megaCategory,
+.root--dark:hover .dropdownPanel--dark .dropdownLink,
+.root--dark:focus-within .dropdownPanel--dark .megaCategory,
+.root--dark:focus-within .dropdownPanel--dark .dropdownLink {
+  color: var(--fds-neutral-100, #101319);
+}
+
+.root--dark:hover .dropdownPanel--dark .megaCategory:hover,
+.root--dark:focus-within .dropdownPanel--dark .megaCategory:hover {
+  background-color: var(--fds-neutral-10, #f8f8f9);
+  color: var(--fds-neutral-100, #101319);
+}
+
+.root--dark:hover .dropdownPanel--dark .megaCategory--active,
+.root--dark:focus-within .dropdownPanel--dark .megaCategory--active {
+  background-color: var(--fds-neutral-10, #f8f8f9);
+  border-right-color: var(--fds-neutral-100, #101319);
+}
+
+.root--dark:hover .dropdownPanel--dark .megaCategoryIcon,
+.root--dark:hover .dropdownPanel--dark .dropdownLinkIcon,
+.root--dark:focus-within .dropdownPanel--dark .megaCategoryIcon,
+.root--dark:focus-within .dropdownPanel--dark .dropdownLinkIcon {
+  color: var(--fds-neutral-60, #5b5c5d);
+}
+
+.root--dark:hover .dropdownPanel--dark .megaBottom,
+.root--dark:focus-within .dropdownPanel--dark .megaBottom {
+  background-color: var(--fds-neutral-10, #f8f8f9);
+  border-top-color: var(--fds-neutral-20, #f2f2f2);
+}
+
+.root--dark:hover .dropdownPanel--dark .dropdownLink:hover,
+.root--dark:focus-within .dropdownPanel--dark .dropdownLink:hover {
+  background-color: var(--fds-neutral-10, #f8f8f9);
+}
+
+.root--dark:hover .dropdownPanel--dark .dropdownLinkArrow,
+.root--dark:focus-within .dropdownPanel--dark .dropdownLinkArrow {
+  color: var(--fds-neutral-100, #101319);
 }
 
 .root--sticky {

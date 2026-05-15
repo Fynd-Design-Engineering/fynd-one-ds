@@ -116,6 +116,22 @@ export const CenterWithActions: Story = {
   ),
 };
 
+export const LeftWithActionsBelow: Story = {
+  name: 'Left-aligned with actions below',
+  render: () => (
+    <div style={{ maxWidth: 480, padding: 32, background: '#f2f2f2' }}>
+      <SectionHeader
+        chipLabel="Platform"
+        chipDotColor="blue"
+        title="Left-aligned header"
+        subtext="Actions sit below the subtext instead of inline — useful in narrow columns."
+        actionsPlacement="below"
+        actions={<Button label="Get started" variant="primary" showChevron />}
+      />
+    </div>
+  ),
+};
+
 export const OnDarkBackground: Story = {
   render: () => (
     <div style={{ background: '#101319', padding: 32 }}>

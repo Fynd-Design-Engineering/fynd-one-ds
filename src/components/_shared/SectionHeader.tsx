@@ -18,6 +18,14 @@ export interface SectionHeaderProps {
   align?: 'left' | 'center';
   /** Optional action buttons. Left-aligned: rendered to the right. Center-aligned: rendered below. */
   actions?: React.ReactNode;
+  /**
+   * Where to render `actions` relative to the title block.
+   * - `'inline'` — to the right of the title (default for `align="left"`).
+   * - `'below'` — on a new row beneath the subtext (default for `align="center"`).
+   * Use to render `actions` below the subtext while keeping the title
+   * left-aligned, e.g. inside a narrow column of a split layout.
+   */
+  actionsPlacement?: 'inline' | 'below';
   /** Remove the max-width cap from the header content block. Default: false. */
   wideContent?: boolean;
   /** Constrain the header content block to 508px. Default: false. */
@@ -45,16 +53,19 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
   onDarkBg = false,
   align = 'left',
   actions,
+  actionsPlacement,
   wideContent = false,
   compactContent = false,
   className,
 }) => {
   const renderChip = showChip && chipLabel;
   const isCenter = align === 'center';
+  const effectivePlacement = actionsPlacement ?? (isCenter ? 'below' : 'inline');
 
   const rootClass = [
     styles.root,
     isCenter ? styles['root--center'] : styles['root--left'],
+    isCenter && effectivePlacement === 'inline' && styles['root--center-inline'],
     className,
   ].filter(Boolean).join(' ');
 
@@ -97,13 +108,13 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
             </div>
           )}
         </div>
-        {isCenter && actions && (
-          <div className={[styles.actions, styles['actions--center']].join(' ')}>
+        {effectivePlacement === 'below' && actions && (
+          <div className={[styles.actions, isCenter && styles['actions--center']].filter(Boolean).join(' ')}>
             {actions}
           </div>
         )}
       </div>
-      {!isCenter && actions && (
+      {effectivePlacement === 'inline' && actions && (
         <div className={styles.actions}>
           {actions}
         </div>

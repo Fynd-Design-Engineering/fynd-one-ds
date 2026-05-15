@@ -54,6 +54,24 @@
   gap: 0.5rem;
 }
 
+/* ── Center + inline actions ─────────────────────────────────────────────── */
+
+.root--center-inline {
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.root--center-inline .content {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.root--center-inline .text-stack {
+  align-items: flex-start;
+}
+
 /* ── Content ─────────────────────────────────────────────────────────────── */
 
 .content {
@@ -122,8 +140,9 @@
     margin-bottom: 1.5rem;
   }
 
-  /* Left: stack content above actions with 24px gap. */
-  .root--left {
+  /* Left + center-inline: stack content above actions with 24px gap. */
+  .root--left,
+  .root--center-inline {
     flex-direction: column;
     align-items: flex-start;
     gap: 1.5rem;

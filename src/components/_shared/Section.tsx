@@ -62,6 +62,7 @@ export const Section: React.FC<SectionProps> = ({
   onDarkBg,
   align,
   actions,
+  actionsPlacement,
   wideContent,
   compactContent,
 }) => {
@@ -83,6 +84,7 @@ export const Section: React.FC<SectionProps> = ({
       actions={actions}
       wideContent={wideContent}
       compactContent={compactContent}
+      actionsPlacement={actionsPlacement}
     />
   ) : null;
 

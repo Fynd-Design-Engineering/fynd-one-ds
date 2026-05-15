@@ -186,6 +186,18 @@
   }
 }
 
+/* Force-show hover video on mobile (touch has no :hover) */
+@media (max-width: 767px) {
+  .autoplay-mobile .image-default { opacity: 0; }
+  .autoplay-mobile .image-hover { opacity: 1; }
+}
+
+/* Force-show hover video on desktop always (skip hover gate) */
+@media (min-width: 768px) {
+  .autoplay-desktop .image-default { opacity: 0; }
+  .autoplay-desktop .image-hover { opacity: 1; }
+}
+
 /* ── Text overlay ─────────────────────────────────────────────────────────── */
 
 .text-overlay {

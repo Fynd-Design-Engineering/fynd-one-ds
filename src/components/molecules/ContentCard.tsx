@@ -77,6 +77,16 @@ export interface ContentCardProps {
    * when using `videoSrc` or images without intrinsic dimensions.
    */
   mediaAspectRatio?: string;
+  /**
+   * On mobile (≤767px), auto-show the hover video without requiring a hover
+   * interaction (touch devices have no hover). Use with `videoHoverSrc`.
+   */
+  videoAutoplayMobile?: boolean;
+  /**
+   * On desktop (≥768px), always show the hover video without requiring hover.
+   * Useful when you want the video to play on both mobile and desktop.
+   */
+  videoAutoplayDesktop?: boolean;
   chipLabel?: string;
   showChip?: boolean;
   /**
@@ -189,6 +199,8 @@ export const ContentCard: React.FC<ContentCardProps> = ({
   videoHoverMobileSrc,
   videoObjectFit = 'cover',
   mediaAspectRatio,
+  videoAutoplayMobile = false,
+  videoAutoplayDesktop = false,
   className,
   style,
 }) => {
@@ -210,6 +222,8 @@ export const ContentCard: React.FC<ContentCardProps> = ({
     onDarkBg && styles['root--dark'],
     bordered && styles['root--bordered'],
     hasHover && styles.hoverable,
+    videoAutoplayMobile && styles['autoplay-mobile'],
+    videoAutoplayDesktop && styles['autoplay-desktop'],
     className,
   ].filter(Boolean).join(' ');
 

@@ -15,6 +15,8 @@
 
 .root--dark {
   background-color: var(--fds-neutral-100, #101319);
+  /* Delay hover-out so the dropdown has time to close before the bar darkens */
+  transition-delay: 0.2s;
 }
 
 /* Scroll-aware transparent variant — applied while the page is at the
@@ -50,6 +52,7 @@
   background-color: var(--fds-neutral-0, #ffffff);
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
+  transition-delay: 0s; /* hover-in: immediate, no wait */
 
   /* Remap -light button tokens → light-mode values so all buttons flip */
   --btn-primary-light-bg: var(--btn-primary-bg);

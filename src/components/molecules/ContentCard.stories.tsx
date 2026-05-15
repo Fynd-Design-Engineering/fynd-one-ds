@@ -408,7 +408,8 @@ export const WithContentSlot: Story = {
 export const VideoSlot: Story = {
   name: 'Video in slot',
   args: {
-    videoSrc: 'https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/original/webflow-team/Fynd_One/uk/hero_uk_full_desktop_fullscale.mp4',
+    videoSrc: 'https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/original/webflow-team/Fynd_One/Snap/new1.3.mp4',
+    videoMobileSrc: 'https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/original/webflow-team/Fynd_One/Snap/new1.3.mp4',
     imagePosition: 'above',
     chipLabel: 'Platform',
     chipVariant: 'filled',
@@ -426,7 +427,8 @@ export const VideoOnHover: Story = {
   args: {
     imageSrc: 'https://picsum.photos/seed/videohover/600/400',
     imageAlt: 'Static poster',
-    videoHoverSrc: 'https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/original/webflow-team/Fynd_One/uk/hero_uk_full_desktop_fullscale.mp4',
+    videoHoverSrc: 'https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/original/webflow-team/Fynd_One/Snap/new1.3.mp4',
+    videoHoverMobileSrc: 'https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/original/webflow-team/Fynd_One/Snap/new1.3.mp4',
     imagePosition: 'above',
     title: 'Video on hover',
     subtext: 'Image shown by default — video cross-fades in on hover.',

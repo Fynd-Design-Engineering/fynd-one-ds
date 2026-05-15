@@ -16,6 +16,35 @@ const GradientBlur: React.FC<{ dark?: boolean }> = ({ dark }) => (
   </div>
 );
 
+const VideoEl: React.FC<{
+  src: string;
+  mobileSrc?: string;
+  poster?: string;
+  objectFit?: 'cover' | 'contain';
+  className?: string;
+  ariaHidden?: boolean;
+}> = ({ src, mobileSrc, poster, objectFit = 'cover', className, ariaHidden }) => (
+  <video
+    autoPlay
+    muted
+    loop
+    playsInline
+    poster={poster}
+    className={className}
+    aria-hidden={ariaHidden ? 'true' : undefined}
+    style={{ objectFit, width: '100%', height: '100%' }}
+  >
+    {mobileSrc ? (
+      <>
+        <source media="(min-width: 768px)" type="video/mp4" src={src} />
+        <source media="(max-width: 767px)" type="video/mp4" src={mobileSrc} />
+      </>
+    ) : (
+      <source type="video/mp4" src={src} />
+    )}
+  </video>
+);
+
 export interface ContentCardProps {
   imageSrc?: string;
   /** Image shown on hover/focus-within. Cross-fades from imageSrc. */
@@ -28,6 +57,8 @@ export interface ContentCardProps {
   imagePosition?: 'above' | 'below' | 'behind' | 'bottom-right';
   /** Video source — renders a `<video>` in the image slot instead of an `<img>`. */
   videoSrc?: string;
+  /** Mobile video shown below 768px. Falls back to `videoSrc` if omitted. */
+  videoMobileSrc?: string;
   /** Poster image shown while `videoSrc` loads. */
   videoPoster?: string;
   /**
@@ -36,6 +67,8 @@ export interface ContentCardProps {
    * the hover state should be animated.
    */
   videoHoverSrc?: string;
+  /** Mobile hover video shown below 768px. Falls back to `videoHoverSrc` if omitted. */
+  videoHoverMobileSrc?: string;
   /** Object-fit for video. Defaults to `'cover'`. */
   videoObjectFit?: 'cover' | 'contain';
   chipLabel?: string;
@@ -144,8 +177,10 @@ export const ContentCard: React.FC<ContentCardProps> = ({
   chipBg,
   chipShowIcon,
   videoSrc,
+  videoMobileSrc,
   videoPoster,
   videoHoverSrc,
+  videoHoverMobileSrc,
   videoObjectFit = 'cover',
   className,
   style,
@@ -192,36 +227,15 @@ export const ContentCard: React.FC<ContentCardProps> = ({
       {isBehind && (videoSrc || imageSrc) && (
         <>
           {videoSrc ? (
-            <video
-              autoPlay muted loop playsInline
-              src={videoSrc}
-              poster={videoPoster}
-              className={styles['image--behind']}
-              style={{ objectFit: videoObjectFit }}
-            />
+            <VideoEl src={videoSrc} mobileSrc={videoMobileSrc} poster={videoPoster} objectFit={videoObjectFit} className={styles['image--behind']} />
           ) : (
-            <img
-              src={imageSrc}
-              alt={imageAlt}
-              className={[styles['image--behind'], styles['image-default']].join(' ')}
-            />
+            <img src={imageSrc} alt={imageAlt} className={[styles['image--behind'], styles['image-default']].join(' ')} />
           )}
           {!videoSrc && videoHoverSrc && (
-            <video
-              autoPlay muted loop playsInline
-              src={videoHoverSrc}
-              aria-hidden="true"
-              className={[styles['image--behind'], styles['image-hover']].join(' ')}
-              style={{ objectFit: videoObjectFit }}
-            />
+            <VideoEl src={videoHoverSrc} mobileSrc={videoHoverMobileSrc} objectFit={videoObjectFit} className={[styles['image--behind'], styles['image-hover']].join(' ')} ariaHidden />
           )}
           {!videoSrc && !videoHoverSrc && resolvedHoverSrc && (
-            <img
-              src={resolvedHoverSrc}
-              alt={resolvedHoverAlt}
-              aria-hidden="true"
-              className={[styles['image--behind'], styles['image-hover']].join(' ')}
-            />
+            <img src={resolvedHoverSrc} alt={resolvedHoverAlt} aria-hidden="true" className={[styles['image--behind'], styles['image-hover']].join(' ')} />
           )}
         </>
       )}
@@ -229,36 +243,15 @@ export const ContentCard: React.FC<ContentCardProps> = ({
       {isBottomRight && (videoSrc || imageSrc) && (
         <div className={styles['image--bottom-right']}>
           {videoSrc ? (
-            <video
-              autoPlay muted loop playsInline
-              src={videoSrc}
-              poster={videoPoster}
-              className={styles['image--bottom-right-default']}
-              style={{ objectFit: videoObjectFit }}
-            />
+            <VideoEl src={videoSrc} mobileSrc={videoMobileSrc} poster={videoPoster} objectFit={videoObjectFit} className={styles['image--bottom-right-default']} />
           ) : (
-            <img
-              src={imageSrc}
-              alt={imageAlt}
-              className={[styles['image--bottom-right-default'], styles['image-default']].join(' ')}
-            />
+            <img src={imageSrc} alt={imageAlt} className={[styles['image--bottom-right-default'], styles['image-default']].join(' ')} />
           )}
           {!videoSrc && videoHoverSrc && (
-            <video
-              autoPlay muted loop playsInline
-              src={videoHoverSrc}
-              aria-hidden="true"
-              className={[styles['image--bottom-right-hover'], styles['image-hover']].join(' ')}
-              style={{ objectFit: videoObjectFit }}
-            />
+            <VideoEl src={videoHoverSrc} mobileSrc={videoHoverMobileSrc} objectFit={videoObjectFit} className={[styles['image--bottom-right-hover'], styles['image-hover']].join(' ')} ariaHidden />
           )}
           {!videoSrc && !videoHoverSrc && resolvedHoverSrc && (
-            <img
-              src={resolvedHoverSrc}
-              alt={resolvedHoverAlt}
-              aria-hidden="true"
-              className={[styles['image--bottom-right-hover'], styles['image-hover']].join(' ')}
-            />
+            <img src={resolvedHoverSrc} alt={resolvedHoverAlt} aria-hidden="true" className={[styles['image--bottom-right-hover'], styles['image-hover']].join(' ')} />
           )}
         </div>
       )}
@@ -338,36 +331,15 @@ export const ContentCard: React.FC<ContentCardProps> = ({
           style={imageBg ? { backgroundColor: imageBg } : undefined}
         >
           {videoSrc ? (
-            <video
-              autoPlay muted loop playsInline
-              src={videoSrc}
-              poster={videoPoster}
-              className={styles['image--below']}
-              style={{ objectFit: videoObjectFit }}
-            />
+            <VideoEl src={videoSrc} mobileSrc={videoMobileSrc} poster={videoPoster} objectFit={videoObjectFit} className={styles['image--below']} />
           ) : imageSrc ? (
-            <img
-              src={imageSrc}
-              alt={imageAlt}
-              className={[styles['image--below'], styles['image-default']].join(' ')}
-            />
+            <img src={imageSrc} alt={imageAlt} className={[styles['image--below'], styles['image-default']].join(' ')} />
           ) : null}
           {!videoSrc && imageSrc && videoHoverSrc && (
-            <video
-              autoPlay muted loop playsInline
-              src={videoHoverSrc}
-              aria-hidden="true"
-              className={[styles['image--below'], styles['image-hover']].join(' ')}
-              style={{ objectFit: videoObjectFit }}
-            />
+            <VideoEl src={videoHoverSrc} mobileSrc={videoHoverMobileSrc} objectFit={videoObjectFit} className={[styles['image--below'], styles['image-hover']].join(' ')} ariaHidden />
           )}
           {!videoSrc && imageSrc && !videoHoverSrc && resolvedHoverSrc && (
-            <img
-              src={resolvedHoverSrc}
-              alt={resolvedHoverAlt}
-              aria-hidden="true"
-              className={[styles['image--below'], styles['image-hover']].join(' ')}
-            />
+            <img src={resolvedHoverSrc} alt={resolvedHoverAlt} aria-hidden="true" className={[styles['image--below'], styles['image-hover']].join(' ')} />
           )}
         </div>
       )}

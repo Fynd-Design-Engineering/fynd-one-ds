@@ -32,7 +32,7 @@ const VideoEl: React.FC<{
     poster={poster}
     className={className}
     aria-hidden={ariaHidden ? 'true' : undefined}
-    style={{ objectFit, width: '100%', height: '100%' }}
+    style={{ objectFit }}
   >
     {mobileSrc ? (
       <>
@@ -71,6 +71,12 @@ export interface ContentCardProps {
   videoHoverMobileSrc?: string;
   /** Object-fit for video. Defaults to `'cover'`. */
   videoObjectFit?: 'cover' | 'contain';
+  /**
+   * CSS `aspect-ratio` for the media container (below/above positions).
+   * E.g. `'16/9'`, `'4/3'`, `'1/1'`. Useful to enforce a consistent height
+   * when using `videoSrc` or images without intrinsic dimensions.
+   */
+  mediaAspectRatio?: string;
   chipLabel?: string;
   showChip?: boolean;
   /**
@@ -182,6 +188,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
   videoHoverSrc,
   videoHoverMobileSrc,
   videoObjectFit = 'cover',
+  mediaAspectRatio,
   className,
   style,
 }) => {
@@ -328,7 +335,10 @@ export const ContentCard: React.FC<ContentCardProps> = ({
             styles['image-container'],
             isAbove && styles['image-container--above'],
           ].filter(Boolean).join(' ')}
-          style={imageBg ? { backgroundColor: imageBg } : undefined}
+          style={{
+            ...(imageBg ? { backgroundColor: imageBg } : null),
+            ...(mediaAspectRatio ? { '--fds-cc-media-ratio': mediaAspectRatio } as CSSProperties : null),
+          }}
         >
           {videoSrc ? (
             <VideoEl src={videoSrc} mobileSrc={videoMobileSrc} poster={videoPoster} objectFit={videoObjectFit} className={styles['image--below']} />

@@ -405,6 +405,36 @@ export const WithContentSlot: Story = {
   ),
 };
 
+export const VideoSlot: Story = {
+  name: 'Video in slot',
+  args: {
+    videoSrc: 'https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/original/webflow-team/Fynd_One/uk/hero_uk_full_desktop_fullscale.mp4',
+    imagePosition: 'above',
+    chipLabel: 'Platform',
+    chipVariant: 'filled',
+    chipShowDot: false,
+    chipShowIcon: false,
+    title: 'Video replaces image slot',
+    subtext: 'Pass videoSrc to render a looping video instead of an image.',
+    showButton: false,
+  },
+  decorators: [(Story) => <div style={{ width: 420 }}><Story /></div>],
+};
+
+export const VideoOnHover: Story = {
+  name: 'Video on hover',
+  args: {
+    imageSrc: 'https://picsum.photos/seed/videohover/600/400',
+    imageAlt: 'Static poster',
+    videoHoverSrc: 'https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/original/webflow-team/Fynd_One/uk/hero_uk_full_desktop_fullscale.mp4',
+    imagePosition: 'above',
+    title: 'Video on hover',
+    subtext: 'Image shown by default — video cross-fades in on hover.',
+    showButton: false,
+  },
+  decorators: [(Story) => <div style={{ width: 420 }}><Story /></div>],
+};
+
 export const WithChipOverlayNoIcon: Story = {
   name: 'With chip overlay (no icon)',
   args: {

@@ -420,6 +420,7 @@
   overflow: hidden;
   z-index: 1001;
   max-width: calc(100vw - 3rem);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .dropdownContent {
@@ -454,6 +455,7 @@
   row-gap: 0;
   background-color: var(--fds-neutral-0, #ffffff);
   min-height: 22.5rem;
+  transition: background-color 0.25s ease;
 }
 
 .dropdownPanel--dark .megaInner {
@@ -469,6 +471,7 @@
   width: 17.9375rem;
   padding: 0.5rem 0 0.5rem 0.5rem;
   background-color: var(--fds-neutral-0, #ffffff);
+  transition: background-color 0.25s ease;
 }
 
 .megaCategories::after {
@@ -548,6 +551,7 @@
   width: 1.5rem;
   height: 1.5rem;
   color: var(--fds-neutral-60, #5b5c5d);
+  transition: color 0.25s ease;
 }
 
 .dropdownPanel--dark .megaCategoryIcon {
@@ -584,6 +588,7 @@
   padding: 1rem 1.25rem;
   background-color: var(--fds-neutral-10, #f8f8f9);
   border-top: 1px solid var(--fds-neutral-20, #f2f2f2);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .dropdownPanel--dark .megaBottom {
@@ -668,6 +673,7 @@
   flex-shrink: 0;
   color: var(--fds-neutral-60, #5b5c5d);
   margin-top: 0.125rem;
+  transition: color 0.25s ease;
 }
 
 .dropdownPanel--dark .dropdownLinkIcon,

@@ -60,9 +60,13 @@ const IcWhatsApp = () => (
 
 const ContactDropdownTrigger = forwardRef<
   HTMLButtonElement,
-  Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'style'>
->(({ className, ...props }, ref) => (
-  <button ref={ref} {...props} className={[styles.trigger, className].filter(Boolean).join(' ')}>
+  Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'style'> & { dark?: boolean }
+>(({ className, dark, ...props }, ref) => (
+  <button
+    ref={ref}
+    {...props}
+    className={[styles.trigger, dark && styles['trigger--dark'], className].filter(Boolean).join(' ')}
+  >
     <span className={styles.triggerIcon}>
       <IcCall />
     </span>
@@ -186,6 +190,8 @@ export interface FyndMarketingNavActionsProps {
   onContactSubmit?: (values: ContactFormValues) => void | Promise<void>;
   /** ContactForm product-interested options. */
   productOptions?: string[];
+  /** Pass true when inside a dark-background Navbar — flips trigger icon and buttons to light-mode colours. */
+  onDarkBg?: boolean;
 }
 
 // ── FyndMarketingNavActions ───────────────────────────────────────────────────
@@ -201,6 +207,7 @@ export const FyndMarketingNavActions = ({
   contactFormTitle,
   onContactSubmit,
   productOptions = [...fyndMarketingProductOptions],
+  onDarkBg = false,
 }: FyndMarketingNavActionsProps) => {
   const [contactOpen, setContactOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -220,6 +227,7 @@ export const FyndMarketingNavActions = ({
         onOpenChange={setContactOpen}
         trigger={
           <ContactDropdownTrigger
+            dark={onDarkBg}
             onMouseEnter={openContact}
             onMouseLeave={scheduleClose}
           />
@@ -245,6 +253,7 @@ export const FyndMarketingNavActions = ({
             label={bookDemoLabel}
             variant="secondary"
             size="md"
+            onDarkBg={onDarkBg}
           />
         }
         formTitle={contactFormTitle}
@@ -256,6 +265,7 @@ export const FyndMarketingNavActions = ({
         label={signInLabel}
         variant="primary"
         size="md"
+        onDarkBg={onDarkBg}
         onClick={() => {
           if (typeof window !== 'undefined') window.location.href = signInHref;
         }}
@@ -271,6 +281,8 @@ export interface FyndMarketingNavMobileActionsProps {
   contactFormTitle?: string;
   onContactSubmit?: (values: ContactFormValues) => void | Promise<void>;
   productOptions?: string[];
+  /** Pass true when inside a dark-background Navbar — flips button to light-mode colours. */
+  onDarkBg?: boolean;
 }
 
 export const FyndMarketingNavMobileActions = ({
@@ -278,6 +290,7 @@ export const FyndMarketingNavMobileActions = ({
   contactFormTitle,
   onContactSubmit,
   productOptions = [...fyndMarketingProductOptions],
+  onDarkBg = false,
 }: FyndMarketingNavMobileActionsProps) => (
   <ContactModal
     trigger={
@@ -286,6 +299,7 @@ export const FyndMarketingNavMobileActions = ({
         variant="primary"
         showChevron={false}
         className={styles.mobileBookDemoBtn}
+        onDarkBg={onDarkBg}
       />
     }
     formTitle={contactFormTitle}

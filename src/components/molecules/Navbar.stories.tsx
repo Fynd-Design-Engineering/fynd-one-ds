@@ -80,12 +80,8 @@ export const DarkBackground: Story = {
     logo: <img src={fyndLogoLight} alt="Fynd" />,
     navItems: fyndMarketingNavItems,
     onDarkBg: true,
-    actions: (
-      <>
-        <Button label="Book a demo" variant="secondary" size="md" onDarkBg onClick={() => {}} />
-        <Button label="Sign in" variant="primary" size="md" onDarkBg onClick={() => {}} />
-      </>
-    ),
+    actions: <FyndMarketingNavActions onDarkBg />,
+    mobileActions: <FyndMarketingNavMobileActions onDarkBg />,
   },
 };
 

@@ -134,6 +134,8 @@ export interface ContentCardProps {
   size?: 'lg' | 'md' | 'sm';
   /** Dark background variant */
   onDarkBg?: boolean;
+  /** Background color for the card. Accepts any CSS color value (token, hex, rgb). */
+  bg?: string;
   /** Adds a 1px #e3e3e3 border around the card. Default `false`. */
   bordered?: boolean;
   /**
@@ -180,6 +182,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
   onClick,
   size = 'lg',
   onDarkBg = false,
+  bg,
   chipShowDot = false,
   chipDotColor,
   chipIcon,
@@ -242,7 +245,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
   return (
     <div
       className={cardClass}
-      style={style}
+      style={{ ...(bg ? { backgroundColor: bg } : null), ...style }}
       onClick={onClick}
     >
       {isBehind && (videoSrc || imageSrc) && (

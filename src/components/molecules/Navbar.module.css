@@ -50,6 +50,24 @@
   background-color: var(--fds-neutral-0, #ffffff);
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
+
+  /* Remap -light button tokens → light-mode values so all buttons flip */
+  --btn-primary-light-bg: var(--btn-primary-bg);
+  --btn-primary-light-text: var(--btn-primary-text);
+  --btn-primary-light-bg-hover: var(--btn-primary-bg-hover);
+  --btn-secondary-light-bg: var(--btn-secondary-bg);
+  --btn-secondary-light-text: var(--btn-secondary-text);
+  --btn-secondary-light-border: var(--btn-secondary-border);
+  --btn-secondary-light-bg-hover: var(--btn-secondary-bg-hover);
+  --btn-secondary-light-border-hover: var(--btn-secondary-border-hover);
+  --btn-secondary-light-text-hover: var(--btn-secondary-text-hover);
+  --btn-tertiary-text-light: var(--btn-tertiary-text);
+}
+
+/* Logo: invert light (white) logo to dark (black) when bar turns white */
+.root--dark:hover .logo img,
+.root--dark:focus-within .logo img {
+  filter: brightness(0);
 }
 
 /* Nav link text → dark */

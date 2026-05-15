@@ -15,8 +15,8 @@
 
 .root--dark {
   background-color: var(--fds-neutral-100, #101319);
-  /* Delay hover-out so the dropdown has time to close before the bar darkens */
-  transition-delay: 0.2s;
+  /* Delay hover-out: 120ms JS close timer + 280ms Framer exit = 400ms total */
+  transition-delay: 0.4s;
 }
 
 /* Scroll-aware transparent variant — applied while the page is at the

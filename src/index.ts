@@ -193,6 +193,9 @@ export type {
   FilterOption,
 } from './components/molecules/FilterPanel';
 
+export { Dropdown } from './components/molecules/Dropdown';
+export type { DropdownProps, DropdownOption } from './components/molecules/Dropdown';
+
 export { ContactCTASection } from './components/ContactCTASection';
 export type { ContactCTASectionProps, Step } from './components/ContactCTASection';
 

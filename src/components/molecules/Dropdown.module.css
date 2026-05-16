@@ -1,0 +1,126 @@
+/* ── Trigger ─────────────────────────────────────────────────────────────── */
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--fds-neutral-30, #e3e3e3);
+  background-color: var(--fds-neutral-0, #ffffff);
+  color: var(--fds-neutral-100, #101319);
+  font-family: 'Inter Display', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.trigger:hover:not(:disabled) {
+  border-color: var(--fds-neutral-60, #5b5c5d);
+}
+
+.trigger--open,
+.trigger--has-value {
+  border-color: var(--fds-neutral-100, #101319);
+}
+
+.trigger:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Dark variant */
+.trigger--dark {
+  background-color: transparent;
+  border-color: var(--fds-neutral-60, #5b5c5d);
+  color: var(--fds-neutral-0, #ffffff);
+}
+
+.trigger--dark:hover:not(:disabled) {
+  border-color: var(--fds-neutral-40, #a0a1a2);
+}
+
+.trigger--dark.trigger--open,
+.trigger--dark.trigger--has-value {
+  border-color: var(--fds-neutral-0, #ffffff);
+}
+
+/* Label */
+.triggerLabel {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Chevron — rotates 180° when open */
+.triggerChevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.trigger--open .triggerChevron {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .triggerChevron {
+    transition: none;
+  }
+}
+
+/* ── Option list ─────────────────────────────────────────────────────────── */
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem;
+}
+
+/* color: inherit — Popover panel sets correct text color for light/dark mode */
+.option {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  font-family: 'Inter Display', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: inherit;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  outline: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.option:hover:not(.option--disabled),
+.option:focus:not(.option--disabled) {
+  background-color: var(--fds-neutral-10, #f8f8f9);
+}
+
+.option--selected {
+  font-weight: 500;
+}
+
+.option--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Dark panel hover — Popover already inverts text; only override hover bg */
+.option--dark:hover:not(.option--disabled),
+.option--dark:focus:not(.option--disabled) {
+  background-color: var(--fds-neutral-80, #4a4b4c);
+}

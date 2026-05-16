@@ -139,6 +139,9 @@ export type { StepperProps, StepperItem, StepperVariant } from './components/mol
 export { TestimonialTabs } from './components/molecules/TestimonialTabs';
 export type { TestimonialTabsProps, TestimonialTabsItem } from './components/molecules/TestimonialTabs';
 
+export { SectionTabs } from './components/molecules/SectionTabs';
+export type { SectionTabsProps, SectionTabsItem } from './components/molecules/SectionTabs';
+
 export { PricingCard } from './components/molecules/PricingCard';
 export type { PricingCardProps, PricingFeature } from './components/molecules/PricingCard';
 

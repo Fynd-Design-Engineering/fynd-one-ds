@@ -1,0 +1,149 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── Tab bar outer — full-width band with section-matching horizontal padding ── */
+
+.tabBarOuter {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  background-color: var(--fds-neutral-0, #ffffff);
+  border-bottom: 1px solid var(--fds-neutral-20, #f2f2f2);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.tabBarOuter--sticky {
+  position: sticky;
+  top: calc(var(--fds-banner-h, 0px) + var(--fds-nav-h, 0px));
+  z-index: 10;
+}
+
+.root--dark .tabBarOuter {
+  background-color: transparent;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Tab bar inner — max-width container matching Section's inner ────────────── */
+
+.tabBar {
+  max-width: 80rem;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(var(--st-tabs, 2), minmax(0, 1fr));
+}
+
+/* ── Individual tab ──────────────────────────────────────────────────────────── */
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 4rem;
+  padding: 0 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+}
+
+/* Filled background on hover / active */
+.tab::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--fds-neutral-10, #f8f8f9);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.tab:hover::before,
+.tab--active::before {
+  opacity: 1;
+}
+
+/* Bottom indicator on active tab */
+.tab::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--fds-neutral-100, #101319);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.tab--active::after {
+  opacity: 1;
+}
+
+.root--dark .tab::before {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.root--dark .tab--active::after {
+  background-color: var(--fds-neutral-0, #ffffff);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--fds-blue-60, #2563eb);
+  outline-offset: -2px;
+  border-radius: 2px;
+}
+
+/* Keep label text above the ::before overlay */
+.tabLabel {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Panels ──────────────────────────────────────────────────────────────────── */
+
+.panel {
+  /* Consumer controls all section content — no constraints imposed */
+}
+
+.panel--hidden {
+  display: none;
+}
+
+/* ── Mobile: horizontal scroll ───────────────────────────────────────────────── */
+
+@media (max-width: 47.9375rem) {
+  .tabBarOuter {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .tabBar {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tabBar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab {
+    flex: 1 0 auto;
+    min-width: 7rem;
+    padding: 0 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab::before,
+  .tab::after {
+    transition: none;
+  }
+}

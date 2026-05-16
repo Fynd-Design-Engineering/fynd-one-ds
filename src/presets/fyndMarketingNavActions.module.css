@@ -9,12 +9,8 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  color: var(--fds-neutral-100, #101319);
+  color: var(--fds-nav-fg, var(--fds-neutral-100, #101319));
   transition: color 0.2s;
-}
-
-.trigger--dark {
-  color: var(--fds-neutral-0, #ffffff);
 }
 
 .triggerIcon {

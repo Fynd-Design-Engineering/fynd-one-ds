@@ -601,9 +601,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           return (
             <motion.div
               key="dropdown-panel"
-              className={[styles.dropdownPanel, onDarkBg && styles['dropdownPanel--dark']]
-                .filter(Boolean)
-                .join(' ')}
+              className={styles.dropdownPanel}
               initial={{ opacity: 0, height: 0, width: targetWidth, x: dropdownX }}
               animate={{
                 opacity: 1,

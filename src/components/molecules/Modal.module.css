@@ -57,22 +57,22 @@
   position: absolute;
   top: 1rem;
   right: 1rem;
-  width: 2rem;
-  height: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
-  background-color: rgba(16, 19, 25, 0.6);
-  color: var(--fds-neutral-0, #ffffff);
+  background-color: transparent;
+  color: var(--fds-neutral-60, #5b5c5d);
   border: none;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.2s ease, transform 0.15s ease;
+  transition: color 0.2s ease, transform 0.15s ease;
   z-index: 2;
 }
 
 .close:hover {
-  background-color: rgba(16, 19, 25, 0.85);
+  color: var(--fds-neutral-100, #101319);
 }
 
 .close:active {

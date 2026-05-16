@@ -89,6 +89,40 @@ export const TitleOnly: Story = {
   },
 };
 
+export const MetaAligned: Story = {
+  render: () => (
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, maxWidth: 1272 }}>
+      <ListingCard
+        title="Men's Polo Shirts — Autumn / Winter Category Intelligence Report"
+        date="MAY 2026"
+        showTags={false}
+        showReadTime={false}
+        showButton={false}
+        bordered
+        metaAtBottom
+      />
+      <ListingCard
+        title="Women's Denim"
+        date="MAY 2026"
+        showTags={false}
+        showReadTime={false}
+        showButton={false}
+        bordered
+        metaAtBottom
+      />
+      <ListingCard
+        title="Footwear Trends"
+        date="MAY 2026"
+        showTags={false}
+        showReadTime={false}
+        showButton={false}
+        bordered
+        metaAtBottom
+      />
+    </div>
+  ),
+};
+
 export const BlogGrid: Story = {
   render: () => (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, maxWidth: 1272 }}>

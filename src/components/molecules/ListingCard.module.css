@@ -237,3 +237,26 @@
 .meta-text--dark {
   color: var(--fds-neutral-40, #a0a1a2);
 }
+
+/* ── metaAtBottom modifier ────────────────────────────────────────────────── */
+
+.root--meta-bottom {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.root--meta-bottom .content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.root--meta-bottom .meta-row {
+  margin-top: auto;
+}
+
+/* Prevent button-wrap's own auto margin from competing with meta-row */
+.root--meta-bottom .button-wrap {
+  margin-top: 0;
+}

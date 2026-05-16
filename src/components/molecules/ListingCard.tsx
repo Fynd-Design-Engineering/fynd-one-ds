@@ -35,6 +35,14 @@ export interface ListingCardProps {
   hoverShadow?: boolean;
   /** Optional overlay rendered on top of the image (absolute, full inset, z-index 2). */
   imageSlot?: React.ReactNode;
+  /**
+   * Pins the meta row (date / readTime / dot) to the bottom of the card's
+   * content area so dates align across cards in a grid row, even when one
+   * card's title wraps to more lines than its siblings. Requires the card
+   * to stretch to its parent height (typical in a CSS grid row with
+   * `align-items: stretch`). Default `false`.
+   */
+  metaAtBottom?: boolean;
   onClick?: () => void;
   className?: string;
   style?: CSSProperties;
@@ -64,6 +72,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({
   hoverImageSwap = false,
   hoverShadow = true,
   imageSlot,
+  metaAtBottom = false,
   onClick,
   className,
   style,
@@ -77,6 +86,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({
     bordered && styles['root--bordered'],
     hoverImageSwap && imageHoverSrc && styles['root--image-swap'],
     hoverShadow && styles['root--hover-shadow'],
+    metaAtBottom && styles['root--meta-bottom'],
     className,
   ].filter(Boolean).join(' ');
 

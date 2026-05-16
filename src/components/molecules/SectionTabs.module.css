@@ -58,6 +58,7 @@
   position: absolute;
   inset: 0;
   background-color: var(--fds-neutral-10, #f8f8f9);
+  border-radius: 0.5rem 0.5rem 0 0;
   opacity: 0;
   transition: opacity 0.2s ease;
   pointer-events: none;

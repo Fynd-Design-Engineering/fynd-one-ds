@@ -215,6 +215,18 @@ export const Navbar: React.FC<NavbarProps> = ({
     if (lightTimerRef.current !== null) window.clearTimeout(lightTimerRef.current);
   }, []);
 
+  // Scroll-aware transparent variant. Hoisted above the light-active effect
+  // so pastTopThreshold is in scope when that effect reads it.
+  const scrollAware = !alwaysSolidBg;
+  const [pastTopThreshold, setPastTopThreshold] = useState(false);
+  useEffect(() => {
+    if (!scrollAware || typeof window === 'undefined') return;
+    const update = () => setPastTopThreshold(window.scrollY > scrollThreshold);
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    return () => window.removeEventListener('scroll', update);
+  }, [scrollAware, scrollThreshold]);
+
   // Sync .root--light-active class with isNavActive + pastTopThreshold, but
   // delay removal by 400ms (120ms JS close timer + 280ms Framer exit) so child
   // element CSS transitions finish before the Framer bar animation darkens.
@@ -298,20 +310,6 @@ export const Navbar: React.FC<NavbarProps> = ({
       document.body.style.overflow = '';
     };
   }, [mobileOpen]);
-
-  // Scroll-aware transparent variant. By default the nav reads as
-  // transparent until the page scrolls past the threshold, then fades
-  // back to its solid fill. Pass `alwaysSolidBg` to opt out. Listener
-  // is passive + cleaned up on unmount.
-  const scrollAware = !alwaysSolidBg;
-  const [pastTopThreshold, setPastTopThreshold] = useState(false);
-  useEffect(() => {
-    if (!scrollAware || typeof window === 'undefined') return;
-    const update = () => setPastTopThreshold(window.scrollY > scrollThreshold);
-    update();
-    window.addEventListener('scroll', update, { passive: true });
-    return () => window.removeEventListener('scroll', update);
-  }, [scrollAware, scrollThreshold]);
 
   const isTransparent = scrollAware && !pastTopThreshold && !activeDropdown;
   // On dark navbar, scrolling past threshold flips to light mode just like hover.

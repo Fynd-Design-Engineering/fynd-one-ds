@@ -242,7 +242,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       lightTimerRef.current = window.setTimeout(() => {
         setIsLightActive(false);
         lightTimerRef.current = null;
-      }, 400);
+      }, 250);
     }
   }, [isNavActive, pastTopThreshold, onDarkBg]);
 
@@ -521,7 +521,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       onFocus={handleNavFocus}
       onBlur={handleNavBlur}
       animate={onDarkBg ? { backgroundColor: darkTargetBg, backdropFilter: 'none' } : undefined}
-      transition={onDarkBg ? { duration: isDarkBarActive ? 0.25 : 0.15, delay: isDarkBarActive ? 0 : 0.25, ease: 'easeInOut' } : undefined}
+      transition={onDarkBg ? { duration: isDarkBarActive ? 0.25 : 0.15, delay: isDarkBarActive ? 0 : 0.1, ease: 'easeInOut' } : undefined}
     >
       <div className={styles.container}>
         {logo && (

@@ -61,7 +61,7 @@
   height: 2.5rem;
   border-radius: 50%;
   background-color: transparent;
-  color: var(--fds-neutral-60, #5b5c5d);
+  color: var(--fds-neutral-40, #a0a1a2);
   border: none;
   cursor: pointer;
   display: inline-flex;

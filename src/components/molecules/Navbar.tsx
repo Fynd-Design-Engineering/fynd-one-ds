@@ -215,23 +215,24 @@ export const Navbar: React.FC<NavbarProps> = ({
     if (lightTimerRef.current !== null) window.clearTimeout(lightTimerRef.current);
   }, []);
 
-  // Sync .root--light-active class with isNavActive, but delay removal by 400ms
-  // (120ms JS close timer + 280ms Framer exit) so child element CSS transitions
-  // finish before the Framer bar animation starts darkening.
+  // Sync .root--light-active class with isNavActive + pastTopThreshold, but
+  // delay removal by 400ms (120ms JS close timer + 280ms Framer exit) so child
+  // element CSS transitions finish before the Framer bar animation darkens.
   useEffect(() => {
     if (!onDarkBg) return;
+    const active = isNavActive || pastTopThreshold;
     const wasActive = prevNavActiveRef.current;
-    prevNavActiveRef.current = isNavActive;
-    if (isNavActive && !wasActive) {
+    prevNavActiveRef.current = active;
+    if (active && !wasActive) {
       if (lightTimerRef.current !== null) { window.clearTimeout(lightTimerRef.current); lightTimerRef.current = null; }
       setIsLightActive(true);
-    } else if (!isNavActive && wasActive) {
+    } else if (!active && wasActive) {
       lightTimerRef.current = window.setTimeout(() => {
         setIsLightActive(false);
         lightTimerRef.current = null;
       }, 400);
     }
-  }, [isNavActive, onDarkBg]);
+  }, [isNavActive, pastTopThreshold, onDarkBg]);
 
   const handleNavMouseEnter = useCallback(() => setIsHovering(true), []);
   const handleNavMouseLeave = useCallback(() => setIsHovering(false), []);
@@ -313,6 +314,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, [scrollAware, scrollThreshold]);
 
   const isTransparent = scrollAware && !pastTopThreshold && !activeDropdown;
+  // On dark navbar, scrolling past threshold flips to light mode just like hover.
+  const isDarkBarActive = isNavActive || pastTopThreshold;
 
   const rootClasses = [
     styles.root,
@@ -325,7 +328,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     .filter(Boolean)
     .join(' ');
 
-  const darkTargetBg = isNavActive
+  const darkTargetBg = isDarkBarActive
     ? '#ffffff'
     : isTransparent
       ? 'transparent'
@@ -520,7 +523,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       onFocus={handleNavFocus}
       onBlur={handleNavBlur}
       animate={onDarkBg ? { backgroundColor: darkTargetBg, backdropFilter: 'none' } : undefined}
-      transition={onDarkBg ? { duration: 0.25, delay: isNavActive ? 0 : 0.4, ease: 'easeInOut' } : undefined}
+      transition={onDarkBg ? { duration: 0.25, delay: isDarkBarActive ? 0 : 0.4, ease: 'easeInOut' } : undefined}
     >
       <div className={styles.container}>
         {logo && (

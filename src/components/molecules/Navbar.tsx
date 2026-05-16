@@ -521,7 +521,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       onFocus={handleNavFocus}
       onBlur={handleNavBlur}
       animate={onDarkBg ? { backgroundColor: darkTargetBg, backdropFilter: 'none' } : undefined}
-      transition={onDarkBg ? { duration: 0.25, delay: isDarkBarActive ? 0 : 0.4, ease: 'easeInOut' } : undefined}
+      transition={onDarkBg ? { duration: isDarkBarActive ? 0.25 : 0.15, delay: isDarkBarActive ? 0 : 0.4, ease: 'easeInOut' } : undefined}
     >
       <div className={styles.container}>
         {logo && (

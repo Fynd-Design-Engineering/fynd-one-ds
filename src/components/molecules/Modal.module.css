@@ -25,6 +25,7 @@
   overflow: hidden;
   max-width: 100%;
   max-height: calc(100vh - 3rem);
+  padding-top: 1.5rem;
 }
 
 .scroll {

@@ -91,11 +91,17 @@
   transform: scale(0.95);
 }
 
-/* Mobile: float above the top-right of the bottom sheet */
+/* Mobile: centered above the bottom sheet */
 @media (max-width: 47.9375rem) {
   .close {
-    right: 1rem;
+    right: unset;
+    left: 50%;
+    transform: translateX(-50%);
     top: calc(-2.5rem - 0.5rem);
+  }
+
+  .close:active {
+    transform: translateX(-50%) scale(0.95);
   }
 }
 

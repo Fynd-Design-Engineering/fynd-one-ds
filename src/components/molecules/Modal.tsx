@@ -176,39 +176,36 @@ export const Modal: React.FC<ModalProps> = ({
                 if (e.target === e.currentTarget) setOpen(false);
               }}
             >
-              <motion.div
-                ref={cardRef}
-                role="dialog"
-                aria-modal="true"
-                aria-label={ariaLabelledBy ? undefined : ariaLabel}
-                aria-labelledby={ariaLabelledBy}
-                tabIndex={-1}
-                className={[styles.card, className].filter(Boolean).join(' ')}
-                style={{ width: isMobile ? undefined : widthValue, ...style }}
-                initial={cardInitial}
-                animate={cardAnimate}
-                exit={cardExit}
-                transition={SPRING}
-              >
-                {/* Scrollable region — children render first so the natural
-                    tab order starts at the first focusable inside the user's
-                    content (e.g. the first form field). The close button
-                    lives INSIDE the scroll region (top-right of the content)
-                    so it scrolls along with the form content. */}
-                <div className={styles.scroll}>
-                  {children}
-                  {showClose && (
-                    <button
-                      type="button"
-                      onClick={() => setOpen(false)}
-                      className={styles.close}
-                      aria-label="Close"
-                    >
-                      <CloseGlyph />
-                    </button>
-                  )}
-                </div>
-              </motion.div>
+              <div className={styles.cardWrapper}>
+                <motion.div
+                  ref={cardRef}
+                  role="dialog"
+                  aria-modal="true"
+                  aria-label={ariaLabelledBy ? undefined : ariaLabel}
+                  aria-labelledby={ariaLabelledBy}
+                  tabIndex={-1}
+                  className={[styles.card, className].filter(Boolean).join(' ')}
+                  style={{ width: isMobile ? undefined : widthValue, ...style }}
+                  initial={cardInitial}
+                  animate={cardAnimate}
+                  exit={cardExit}
+                  transition={SPRING}
+                >
+                  <div className={styles.scroll}>
+                    {children}
+                  </div>
+                </motion.div>
+                {showClose && (
+                  <button
+                    type="button"
+                    onClick={() => setOpen(false)}
+                    className={styles.close}
+                    aria-label="Close"
+                  >
+                    <CloseGlyph />
+                  </button>
+                )}
+              </div>
             </motion.div>
           </FloatingPortal>
         )}

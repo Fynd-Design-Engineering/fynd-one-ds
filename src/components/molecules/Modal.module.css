@@ -35,11 +35,21 @@
   overflow-x: hidden;
 }
 
+/* ── Card wrapper — positioning context for the external close button ── */
+
+.cardWrapper {
+  position: relative;
+}
+
 /* ── Mobile: render as a bottom sheet ───────────────────────────────── */
 @media (max-width: 47.9375rem) {
   .overlay {
     align-items: flex-end;
     padding: 0;
+  }
+
+  .cardWrapper {
+    width: 100%;
   }
 
   .card {
@@ -50,33 +60,43 @@
     max-height: calc(100vh - 3.5rem);
     border-radius: 1rem 1rem 0 0;
   }
-
 }
+
+/* ── Close button — sits outside the card to the right, never scrolls ─ */
 
 .close {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 0;
+  /* 0.75rem gap between card right edge and button left edge */
+  right: calc(-2.5rem - 0.75rem);
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
-  background-color: transparent;
-  color: var(--fds-neutral-40, #a0a1a2);
+  background-color: rgba(16, 19, 25, 0.6);
+  color: var(--fds-neutral-0, #ffffff);
   border: none;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: color 0.2s ease, transform 0.15s ease;
+  transition: background-color 0.2s ease, transform 0.15s ease;
   z-index: 2;
 }
 
 .close:hover {
-  color: var(--fds-neutral-100, #101319);
+  background-color: rgba(16, 19, 25, 0.85);
 }
 
 .close:active {
   transform: scale(0.95);
+}
+
+/* Mobile: float above the top-right of the bottom sheet */
+@media (max-width: 47.9375rem) {
+  .close {
+    right: 1rem;
+    top: calc(-2.5rem - 0.5rem);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

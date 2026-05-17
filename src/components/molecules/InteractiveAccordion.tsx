@@ -51,6 +51,12 @@ export interface InteractiveAccordionProps {
    * Removes border-radius and shadow. Desktop only — mobile is unaffected.
    */
   edgeBleed?: boolean;
+  /**
+   * CSS `aspect-ratio` value applied to the media panel when `edgeBleed` is true.
+   * Defaults to `'3 / 4'`. Has no effect when `edgeBleed` is false.
+   * Examples: `'4 / 3'`, `'1 / 1'`, `'16 / 9'`.
+   */
+  mediaRatio?: string;
   /** Inverted on dark sections — flips text/icon colors and dividers. */
   onDarkBg?: boolean;
   /** Semantic heading level for each accordion question. Default `'h3'`. */
@@ -70,11 +76,14 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
   mediaObjectFit = 'contain',
   shadow = true,
   edgeBleed = false,
+  mediaRatio,
   onDarkBg = false,
   questionAs: QuestionTag = 'h3',
   className,
   style,
 }) => {
+  const resolvedMediaRatio = edgeBleed ? (mediaRatio ?? '3 / 4') : undefined;
+
   const isControlled = controlledOpenIndex !== undefined;
   const [internalOpenIndex, setInternalOpenIndex] = useState(defaultOpenIndex);
   const openIndex = isControlled ? controlledOpenIndex : internalOpenIndex;
@@ -166,7 +175,10 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
       <div className={rootCls}>
         <div
           className={styles.mediaPanel}
-          style={mediaBg ? { background: mediaBg } : undefined}
+          style={{
+            ...(mediaBg ? { background: mediaBg } : {}),
+            ...(resolvedMediaRatio ? { aspectRatio: resolvedMediaRatio } : {}),
+          }}
         >
           <MediaHolder
             aspectRatio={aspectRatio}

@@ -170,7 +170,7 @@ export const OnDarkBackground: Story = {
 };
 
 export const EdgeBleed: Story = {
-  name: 'Edge bleed (media touches viewport)',
+  name: 'Edge bleed — media right',
   render: (args) => (
     /* Simulates being inside a SectionWrapper — sets --fds-section-px so the
        negative-margin bleed has the right amount to negate. */
@@ -188,6 +188,8 @@ export const EdgeBleed: Story = {
     items: SAMPLE_ITEMS,
     mediaSide: 'right',
     mediaBg: 'var(--fds-blue-20, #e7eefe)',
+    mediaObjectFit: 'contain',
+    mediaRatio: '3 / 4',
     edgeBleed: true,
     shadow: false,
   },
@@ -210,6 +212,38 @@ export const EdgeBleedMediaLeft: Story = {
     items: SAMPLE_ITEMS,
     mediaSide: 'left',
     mediaBg: 'var(--fds-peach-20, #fde7d8)',
+    mediaObjectFit: 'contain',
+    mediaRatio: '3 / 4',
+    edgeBleed: true,
+    shadow: false,
+  },
+};
+
+export const EdgeBleedCover: Story = {
+  name: 'Edge bleed — image cover (4/3)',
+  render: (args) => (
+    <div
+      style={{
+        background: '#ffffff',
+        padding: '4rem 2.5rem',
+        '--fds-section-px': '2.5rem',
+      } as React.CSSProperties}
+    >
+      <InteractiveAccordion {...args} />
+    </div>
+  ),
+  args: {
+    items: SAMPLE_ITEMS.map((item) => ({
+      ...item,
+      media: {
+        type: 'image' as const,
+        src: SAMPLE_MEDIA_IMG,
+        alt: item.media.alt,
+      },
+    })),
+    mediaSide: 'right',
+    mediaObjectFit: 'cover',
+    mediaRatio: '4 / 3',
     edgeBleed: true,
     shadow: false,
   },

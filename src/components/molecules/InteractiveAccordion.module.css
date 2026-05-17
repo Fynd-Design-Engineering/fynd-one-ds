@@ -245,7 +245,17 @@
   clip-path: none;
 }
 
-/* Restore outer-edge padding on the list column so text aligns with page content */
+/* Media panel: natural height from aspect-ratio so sticky sizing works correctly */
+.outer--edgeBleed .mediaPanel {
+  align-self: start;
+}
+
+/* List: restore outer-edge padding + increase vertical breathing room */
+.outer--edgeBleed .list {
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+
 .outer--edgeBleed .media-right .list {
   padding-left: var(--fds-section-px, 2.5rem);
 }

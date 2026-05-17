@@ -9,6 +9,8 @@ export interface SectionProps extends SectionHeaderProps {
   bg?: 'default' | 'muted' | 'subtle' | 'dark';
   /** Remove bottom padding from the section */
   noPaddingBottom?: boolean;
+  /** Vertical padding size. Default: 4rem desktop / 2rem mobile. lg: 6rem / 3rem. xl: 8rem / 4rem. */
+  verticalPadding?: 'default' | 'lg' | 'xl';
   /** Override default section element */
   as?: 'section' | 'div' | 'footer' | 'nav';
   /** Hide the section header entirely */
@@ -41,6 +43,7 @@ export const Section: React.FC<SectionProps> = ({
   children,
   bg = 'default',
   noPaddingBottom = false,
+  verticalPadding = 'default',
   as,
   hideHeader = false,
   fullWidthContent = false,
@@ -94,6 +97,7 @@ export const Section: React.FC<SectionProps> = ({
     <SectionWrapper
       bg={bg}
       noPaddingBottom={noPaddingBottom}
+      verticalPadding={verticalPadding}
       onDarkBg={resolvedDark}
       as={as}
       id={id}

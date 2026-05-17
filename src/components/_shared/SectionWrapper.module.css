@@ -1,11 +1,21 @@
 /* ── Section ───────────────────────────────────────────────────────────────── */
 
 .root {
-  padding-top: 3.5rem;
-  padding-bottom: 3.5rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
   --fds-section-px: 2.5rem;
+}
+
+.padding-lg {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.padding-xl {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
 }
 
 .dark {
@@ -42,6 +52,16 @@
     padding-left: 1.25rem;
     padding-right: 1.25rem;
     --fds-section-px: 1.25rem;
+  }
+
+  .padding-lg {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .padding-xl {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
   }
 
   .inner {

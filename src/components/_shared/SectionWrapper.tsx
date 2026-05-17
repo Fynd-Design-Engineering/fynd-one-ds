@@ -11,6 +11,8 @@ export interface SectionWrapperProps {
   onDarkBg?: boolean;
   /** Remove bottom padding from the section */
   noPaddingBottom?: boolean;
+  /** Vertical padding size. Default: 4rem desktop / 2rem mobile. lg: 6rem / 3rem. xl: 8rem / 4rem. */
+  verticalPadding?: 'default' | 'lg' | 'xl';
   /**
    * Make outerChildren span the full viewport width (edge-to-edge), bypassing
    * horizontal page padding. Uses negative margin-inline equal to --fds-section-px
@@ -33,6 +35,7 @@ export const SectionWrapper: React.FC<SectionWrapperProps> = ({
   bg = 'default',
   onDarkBg = false,
   noPaddingBottom = false,
+  verticalPadding = 'default',
   fullBleedContent = false,
   id,
   className,
@@ -44,6 +47,7 @@ export const SectionWrapper: React.FC<SectionWrapperProps> = ({
   const outerClass = [
     styles.root,
     resolvedBg !== 'default' && styles[resolvedBg],
+    verticalPadding !== 'default' && styles[`padding-${verticalPadding}`],
     noPaddingBottom && styles['no-padding-bottom'],
     className,
   ].filter(Boolean).join(' ');

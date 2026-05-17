@@ -6,6 +6,8 @@ import styles from './CTABanner.module.css';
 export interface CTABannerProps {
   title: string;
   subtext?: string;
+  /** Max-width of the subtext paragraph. Any CSS value, e.g. '42.75rem', '684px'. */
+  subtextMaxWidth?: string;
   children?: React.ReactNode;
   align?: 'left' | 'center';
   onDarkBg?: boolean;
@@ -17,6 +19,7 @@ export interface CTABannerProps {
 export const CTABanner: React.FC<CTABannerProps> = ({
   title,
   subtext,
+  subtextMaxWidth,
   children,
   align = 'center',
   onDarkBg = true,
@@ -44,7 +47,7 @@ export const CTABanner: React.FC<CTABannerProps> = ({
       >
         {title}
       </Text>
-      {subtext && <p className={subtextClass}>{subtext}</p>}
+      {subtext && <p className={subtextClass} style={subtextMaxWidth ? { maxWidth: subtextMaxWidth } : undefined}>{subtext}</p>}
       {children && (
         <div className={styles.actions}>
           {children}

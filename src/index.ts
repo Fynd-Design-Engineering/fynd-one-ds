@@ -189,6 +189,12 @@ export type {
   ContactFormValues,
 } from './components/molecules/ContactForm';
 
+export { GatedForm } from './components/molecules/GatedForm';
+export type {
+  GatedFormProps,
+  GatedFormValues,
+} from './components/molecules/GatedForm';
+
 export { FilterPanel } from './components/molecules/FilterPanel';
 export type {
   FilterPanelProps,

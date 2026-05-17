@@ -52,11 +52,6 @@
 
 /* ── Responsive ───────────────────────────────────────────────────────────── */
 
-@media (max-width: 64rem) {
-  .cell {
-    border-radius: 0.75rem;
-  }
-}
 
 @media (max-width: 48rem) {
   .columns {
@@ -69,7 +64,6 @@
   }
 
   .cell {
-    border-radius: 0.5rem;
     width: 100%;
   }
 

@@ -199,6 +199,7 @@ export { FeatureSplit } from './components/molecules/FeatureSplit';
 export type {
   FeatureSplitProps,
   FeatureSplitItem,
+  FeatureSplitRow,
 } from './components/molecules/FeatureSplit';
 
 export { FilterPanel } from './components/molecules/FilterPanel';

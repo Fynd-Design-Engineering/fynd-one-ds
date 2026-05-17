@@ -1,5 +1,6 @@
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, ReactNode } from 'react';
 import { Text } from '../Typography/Text';
+import { SectionHeader, type SectionHeaderProps } from '../_shared/SectionHeader';
 import styles from './FeatureSplit.module.css';
 
 export interface FeatureSplitItem {
@@ -7,15 +8,33 @@ export interface FeatureSplitItem {
   description: string;
 }
 
-export interface FeatureSplitProps {
+export interface FeatureSplitRow {
   items: FeatureSplitItem[];
   image: { src: string; alt?: string };
   /** Which side the image bleeds from. Default: 'left'. */
   imageSide?: 'left' | 'right';
+  /** CSS color behind this row's image cell. */
+  visualBg?: string;
+}
+
+export interface FeatureSplitProps
+  extends Pick<
+    SectionHeaderProps,
+    | 'chipLabel'
+    | 'chipVariant'
+    | 'chipDotColor'
+    | 'chipIcon'
+    | 'showChip'
+    | 'subtext'
+    | 'titleSize'
+    | 'align'
+    | 'actions'
+  > {
+  /** Optional section header title. When omitted the header is not rendered. */
+  title?: string;
+  rows: FeatureSplitRow[];
   /** CSS color for the full section background. */
   bg?: string;
-  /** CSS color for the image cell background (useful for transparent images). */
-  visualBg?: string;
   onDarkBg?: boolean;
   as?: 'section' | 'div' | 'article';
   id?: string;
@@ -24,36 +43,89 @@ export interface FeatureSplitProps {
 }
 
 export const FeatureSplit: React.FC<FeatureSplitProps> = ({
-  items,
-  image,
-  imageSide = 'left',
+  title,
+  chipLabel,
+  chipVariant,
+  chipDotColor,
+  chipIcon,
+  showChip,
+  subtext,
+  titleSize,
+  align,
+  actions,
+  rows,
   bg,
-  visualBg,
   onDarkBg = false,
   as: Tag = 'section',
   id,
   className,
   style,
 }) => {
-  const rootClass = [
-    styles.root,
-    imageSide === 'right' && styles['root--imageRight'],
-    onDarkBg && styles['root--dark'],
-    className,
-  ]
-    .filter(Boolean)
-    .join(' ');
-
-  const rootStyle: CSSProperties = {
-    ...(bg ? { background: bg } : undefined),
-    ...style,
-  };
+  const hasHeader = Boolean(title);
 
   return (
-    <Tag id={id} className={rootClass} style={rootStyle}>
+    <Tag
+      id={id}
+      className={[styles.root, onDarkBg && styles['root--dark'], className]
+        .filter(Boolean)
+        .join(' ')}
+      style={{ ...(bg ? { background: bg } : undefined), ...style }}
+    >
+      {hasHeader && (
+        <div className={styles.header}>
+          <SectionHeader
+            title={title!}
+            chipLabel={chipLabel}
+            chipVariant={chipVariant}
+            chipDotColor={chipDotColor}
+            chipIcon={chipIcon}
+            showChip={showChip}
+            subtext={subtext}
+            titleSize={titleSize}
+            align={align}
+            actions={actions}
+            onDarkBg={onDarkBg}
+          />
+        </div>
+      )}
+
+      <div className={[styles.rows, hasHeader && styles['rows--belowHeader']].filter(Boolean).join(' ')}>
+        {rows.map((row, i) => (
+          <SplitRow key={i} row={row} onDarkBg={onDarkBg} />
+        ))}
+      </div>
+    </Tag>
+  );
+};
+
+FeatureSplit.displayName = 'FeatureSplit';
+
+// ── Internal row ─────────────────────────────────────────────────────────────
+
+interface SplitRowProps {
+  row: FeatureSplitRow;
+  onDarkBg: boolean;
+}
+
+const SplitRow: React.FC<SplitRowProps> = ({ row, onDarkBg }) => {
+  const { items, image, imageSide = 'left', visualBg } = row;
+
+  return (
+    <div
+      className={[
+        styles.row,
+        imageSide === 'right' && styles['row--imageRight'],
+      ]
+        .filter(Boolean)
+        .join(' ')}
+    >
       <div
         className={styles.visual}
-        style={visualBg ? ({ '--fds-featuresplit-visual-bg': visualBg } as CSSProperties) : undefined}
+        style={
+          visualBg
+            ? ({ '--fds-featuresplit-visual-bg': visualBg } as CSSProperties)
+            : undefined
+        }
       >
         <img
           src={image.src}
@@ -86,10 +158,8 @@ export const FeatureSplit: React.FC<FeatureSplitProps> = ({
           ))}
         </ul>
       </div>
-    </Tag>
+    </div>
   );
 };
-
-FeatureSplit.displayName = 'FeatureSplit';
 
 export default FeatureSplit;

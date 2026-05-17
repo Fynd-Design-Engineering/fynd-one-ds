@@ -26,9 +26,13 @@ export interface FeatureSplitProps
     | 'chipIcon'
     | 'showChip'
     | 'subtext'
+    | 'narrowSubtext'
     | 'titleSize'
     | 'align'
     | 'actions'
+    | 'actionsPlacement'
+    | 'wideContent'
+    | 'compactContent'
   > {
   /** Optional section header title. When omitted the header is not rendered. */
   title?: string;
@@ -50,9 +54,13 @@ export const FeatureSplit: React.FC<FeatureSplitProps> = ({
   chipIcon,
   showChip,
   subtext,
+  narrowSubtext,
   titleSize,
   align,
   actions,
+  actionsPlacement,
+  wideContent,
+  compactContent,
   rows,
   bg,
   onDarkBg = false,
@@ -82,9 +90,13 @@ export const FeatureSplit: React.FC<FeatureSplitProps> = ({
             chipIcon={chipIcon}
             showChip={showChip}
             subtext={subtext}
+            narrowSubtext={narrowSubtext}
             titleSize={titleSize}
             align={align}
             actions={actions}
+            actionsPlacement={actionsPlacement}
+            wideContent={wideContent}
+            compactContent={compactContent}
             onDarkBg={onDarkBg}
           />
           </div>

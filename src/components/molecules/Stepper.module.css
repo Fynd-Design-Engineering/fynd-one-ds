@@ -12,8 +12,8 @@
   gap: 1.5rem;
 }
 
-.step--center {
-  align-items: center;
+.step--center .text {
+  justify-content: center;
 }
 
 /* ── Indicator column ─────────────────────────────────────────────────────── */
@@ -35,6 +35,7 @@
   position: relative;
 }
 
+
 /* Both the track SVG and the fill SVG are stacked absolutely inside .connector */
 .connectorSvg,
 .connector__fill {
@@ -46,6 +47,7 @@
   display: block;
   overflow: visible;
 }
+
 
 .connectorTrack {
   stroke: var(--fds-neutral-40, #a0a1a2);

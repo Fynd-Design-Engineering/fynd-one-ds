@@ -64,7 +64,7 @@
 
 .visual {
   overflow: hidden;
-  background: var(--fds-featuresplit-visual-bg, var(--fds-neutral-10, #f8f8f9));
+  background: var(--fds-neutral-10, #f8f8f9);
 }
 
 .image {
@@ -133,7 +133,12 @@
   }
 
   .visual {
-    aspect-ratio: 16 / 9;
+    padding: 2rem;
+  }
+
+  .image {
+    height: auto;
+    border-radius: 1rem;
   }
 
   .content {
@@ -148,13 +153,12 @@
     padding: 2rem 1.25rem 0;
   }
 
-
   .rows--belowHeader {
     margin-top: 1.5rem;
   }
 
   .visual {
-    aspect-ratio: 4 / 3;
+    padding: 1.5rem;
   }
 
   .content {

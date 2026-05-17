@@ -135,11 +135,7 @@ const SplitRow: React.FC<SplitRowProps> = ({ row, onDarkBg }) => {
     >
       <div
         className={styles.visual}
-        style={
-          visualBg
-            ? ({ '--fds-featuresplit-visual-bg': visualBg } as CSSProperties)
-            : undefined
-        }
+        style={visualBg ? { background: visualBg } : undefined}
       >
         <img
           src={image.src}

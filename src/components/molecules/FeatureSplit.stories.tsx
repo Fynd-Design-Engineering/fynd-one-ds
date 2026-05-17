@@ -10,7 +10,7 @@ const meta: Meta<FeatureSplitProps> = {
 export default meta;
 type Story = StoryObj<FeatureSplitProps>;
 
-const PLACEHOLDER = 'https://placehold.co/800x600/e8eaf6/a0a1a2?text=Feature+Image';
+const PLACEHOLDER = 'http://localhost:3000/webflow-images/GoogleLIA-features-illustration_1.avif';
 
 const ITEMS_A = [
   {

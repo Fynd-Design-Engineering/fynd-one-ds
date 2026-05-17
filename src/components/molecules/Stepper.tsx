@@ -76,12 +76,13 @@ export const Stepper: React.FC<StepperProps> = ({
     return () => clearTimeout(fillTimer);
   }, [internalActiveIndex, shouldAnimate, stepDuration, items.length]);
 
+  const nodeHeightRem = variant === 'CountFlow' ? '3.25rem' : (variant === 'NodeLink' || variant === 'NodeSolo') ? '2.5rem' : '2rem';
   const rootClass = [styles.root, onDarkBg && styles.dark, className].filter(Boolean).join(' ');
 
   return (
     <div
       className={rootClass}
-      style={{ '--fds-stepper-fill-duration': `${stepDuration}ms`, ...style } as CSSProperties}
+      style={{ '--fds-stepper-fill-duration': `${stepDuration}ms`, '--fds-stepper-node-h': nodeHeightRem, ...style } as CSSProperties}
     >
       {items.map((item, idx) => {
         const isMuted = idx > activeIdx;

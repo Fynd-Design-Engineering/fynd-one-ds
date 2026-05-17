@@ -12,8 +12,10 @@
   gap: 1.5rem;
 }
 
+/* Shift title down so it visually centers against the node.
+   --fds-stepper-node-h is set per-variant by the component. */
 .step--center .text {
-  justify-content: center;
+  padding-top: max(0px, calc((var(--fds-stepper-node-h, 2rem) - 2.1rem) / 2));
 }
 
 /* ── Indicator column ─────────────────────────────────────────────────────── */

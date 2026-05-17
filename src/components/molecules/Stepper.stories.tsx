@@ -92,6 +92,52 @@ export const AnimatedCountFlow: Story = {
   },
 };
 
+export const ContentAlignCenter: Story = {
+  name: 'ContentAlign — center (DotTrail)',
+  args: {
+    items: steps.map(({ title }) => ({ title })),
+    variant: 'DotTrail',
+    activeIndex: 1,
+    contentAlign: 'center',
+  },
+};
+
+export const GoogleShoppingSteps: Story = {
+  name: 'ContentAlign — center (CountFlow, title-only, real content)',
+  args: {
+    variant: 'CountFlow',
+    contentAlign: 'center',
+    activeIndex: 4,
+    items: [
+      { title: 'Set up your Google Merchant Center (GMC) and Google Business Profile (GBP) accounts' },
+      { title: 'Set up your Fynd Commerce Platform account' },
+      { title: 'Add your store locations and product catalogs with barcodes' },
+      { title: 'Enable the Google Shopping extension on your Fynd Commerce Platform account' },
+      { title: 'Your inventory and product feed is now live!' },
+    ],
+  },
+};
+
+export const ContentAlignCenterCountFlow: Story = {
+  name: 'ContentAlign — center (CountFlow)',
+  args: {
+    items: steps,
+    variant: 'CountFlow',
+    activeIndex: 1,
+    contentAlign: 'center',
+  },
+};
+
+export const ContentAlignCenterNodeLink: Story = {
+  name: 'ContentAlign — center (NodeLink)',
+  args: {
+    items: nodeSteps,
+    variant: 'NodeLink',
+    activeIndex: 1,
+    contentAlign: 'center',
+  },
+};
+
 export const OnDarkBackground: Story = {
   args: {
     items: steps,

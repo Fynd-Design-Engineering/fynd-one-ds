@@ -39,6 +39,12 @@ export interface CTABannerSectionProps {
   primaryButton?: BannerButton;
   /** Secondary CTA button. Omit to hide. */
   secondaryButton?: BannerButton;
+  /**
+   * ReactNode action slot. When provided, replaces primaryButton / secondaryButton entirely.
+   * Use for Modal triggers, custom-styled buttons, or any non-href interaction.
+   * Caller is responsible for passing `onDarkBg` to nested buttons when variant="dark".
+   */
+  actions?: React.ReactNode;
   className?: string;
 }
 
@@ -55,11 +61,17 @@ export const CTABannerSection: React.FC<CTABannerSectionProps> = ({
   bgRepeat,
   primaryButton,
   secondaryButton,
+  actions,
   className,
 }) => {
   const isCenter = align === 'center';
   const isDark = variant === 'dark';
-  const hasButtons = primaryButton || secondaryButton;
+
+  if (process.env.NODE_ENV !== 'production' && actions && (primaryButton || secondaryButton)) {
+    console.warn('CTABannerSection: `actions` was provided — `primaryButton` / `secondaryButton` are ignored.');
+  }
+
+  const hasButtons = actions || primaryButton || secondaryButton;
 
   const defaultBg = isDark ? '#101319' : 'var(--fds-neutral-10, #f8f8f9)';
 
@@ -108,25 +120,29 @@ export const CTABannerSection: React.FC<CTABannerSectionProps> = ({
 
         {hasButtons && (
           <div className={styles.actions}>
-            {primaryButton && (
-              <Button
-                label={primaryButton.label}
-                variant="primary"
-                onDarkBg={isDark}
-                href={primaryButton.href}
-                external={primaryButton.external}
-                onClick={primaryButton.onClick}
-              />
-            )}
-            {secondaryButton && (
-              <Button
-                label={secondaryButton.label}
-                variant="secondary"
-                onDarkBg={isDark}
-                href={secondaryButton.href}
-                external={secondaryButton.external}
-                onClick={secondaryButton.onClick}
-              />
+            {actions ?? (
+              <>
+                {primaryButton && (
+                  <Button
+                    label={primaryButton.label}
+                    variant="primary"
+                    onDarkBg={isDark}
+                    href={primaryButton.href}
+                    external={primaryButton.external}
+                    onClick={primaryButton.onClick}
+                  />
+                )}
+                {secondaryButton && (
+                  <Button
+                    label={secondaryButton.label}
+                    variant="secondary"
+                    onDarkBg={isDark}
+                    href={secondaryButton.href}
+                    external={secondaryButton.external}
+                    onClick={secondaryButton.onClick}
+                  />
+                )}
+              </>
             )}
           </div>
         )}

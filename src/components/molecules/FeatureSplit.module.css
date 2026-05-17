@@ -82,6 +82,16 @@
   padding: 3.5rem 2.5rem;
 }
 
+/* Content on left (imageSide right) — align left edge with inner container */
+.row--imageRight .content {
+  padding-left: max(2.5rem, calc((100vw - 80rem) / 2));
+}
+
+/* Content on right (imageSide left / default) — align right edge with inner container */
+.row:not(.row--imageRight) .content {
+  padding-right: max(2.5rem, calc((100vw - 80rem) / 2));
+}
+
 /* ── Feature list ─────────────────────────────────────────────────────────── */
 
 .items {

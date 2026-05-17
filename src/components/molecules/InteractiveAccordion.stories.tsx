@@ -168,3 +168,49 @@ export const OnDarkBackground: Story = {
     mediaBg: '#1f2530',
   },
 };
+
+export const EdgeBleed: Story = {
+  name: 'Edge bleed (media touches viewport)',
+  render: (args) => (
+    /* Simulates being inside a SectionWrapper — sets --fds-section-px so the
+       negative-margin bleed has the right amount to negate. */
+    <div
+      style={{
+        background: 'var(--fds-neutral-10, #f8f8f9)',
+        padding: '4rem 2.5rem',
+        '--fds-section-px': '2.5rem',
+      } as React.CSSProperties}
+    >
+      <InteractiveAccordion {...args} />
+    </div>
+  ),
+  args: {
+    items: SAMPLE_ITEMS,
+    mediaSide: 'right',
+    mediaBg: 'var(--fds-blue-20, #e7eefe)',
+    edgeBleed: true,
+    shadow: false,
+  },
+};
+
+export const EdgeBleedMediaLeft: Story = {
+  name: 'Edge bleed — media left',
+  render: (args) => (
+    <div
+      style={{
+        background: 'var(--fds-neutral-10, #f8f8f9)',
+        padding: '4rem 2.5rem',
+        '--fds-section-px': '2.5rem',
+      } as React.CSSProperties}
+    >
+      <InteractiveAccordion {...args} />
+    </div>
+  ),
+  args: {
+    items: SAMPLE_ITEMS,
+    mediaSide: 'left',
+    mediaBg: 'var(--fds-peach-20, #fde7d8)',
+    edgeBleed: true,
+    shadow: false,
+  },
+};

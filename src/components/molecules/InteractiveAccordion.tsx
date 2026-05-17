@@ -45,6 +45,12 @@ export interface InteractiveAccordionProps {
    * Ignored on dark — uses bg-color contrast instead.
    */
   shadow?: boolean;
+  /**
+   * Stretch the component to the viewport edges by negating the parent
+   * SectionWrapper's horizontal padding (via `--fds-section-px`).
+   * Removes border-radius and shadow. Desktop only — mobile is unaffected.
+   */
+  edgeBleed?: boolean;
   /** Inverted on dark sections — flips text/icon colors and dividers. */
   onDarkBg?: boolean;
   /** Semantic heading level for each accordion question. Default `'h3'`. */
@@ -63,6 +69,7 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
   mediaBg,
   mediaObjectFit = 'contain',
   shadow = true,
+  edgeBleed = false,
   onDarkBg = false,
   questionAs: QuestionTag = 'h3',
   className,
@@ -140,6 +147,7 @@ export const InteractiveAccordion: React.FC<InteractiveAccordionProps> = ({
   const outerCls = [
     styles.outer,
     !onDarkBg && shadow && styles['outer--shadow'],
+    edgeBleed && styles['outer--edgeBleed'],
     className,
   ]
     .filter(Boolean)

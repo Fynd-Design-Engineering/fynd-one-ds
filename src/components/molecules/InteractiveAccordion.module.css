@@ -229,6 +229,31 @@
   }
 }
 
+/* ── Edge-bleed variant ───────────────────────────────────────────────────── */
+/* Negates the parent SectionWrapper's horizontal padding so the component
+   stretches to the viewport edges. --fds-section-px is published by SectionWrapper. */
+
+.outer--edgeBleed {
+  margin-left: calc(-1 * var(--fds-section-px, 2.5rem));
+  margin-right: calc(-1 * var(--fds-section-px, 2.5rem));
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.outer--edgeBleed .root {
+  border-radius: 0;
+  clip-path: none;
+}
+
+/* Restore outer-edge padding on the list column so text aligns with page content */
+.outer--edgeBleed .media-right .list {
+  padding-left: var(--fds-section-px, 2.5rem);
+}
+
+.outer--edgeBleed .media-left .list {
+  padding-right: var(--fds-section-px, 2.5rem);
+}
+
 /* ── Inline media (mobile only) ───────────────────────────────────────────── */
 
 .inlineMedia {

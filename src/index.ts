@@ -195,6 +195,12 @@ export type {
   GatedFormValues,
 } from './components/molecules/GatedForm';
 
+export { FeatureSplit } from './components/molecules/FeatureSplit';
+export type {
+  FeatureSplitProps,
+  FeatureSplitItem,
+} from './components/molecules/FeatureSplit';
+
 export { FilterPanel } from './components/molecules/FilterPanel';
 export type {
   FilterPanelProps,

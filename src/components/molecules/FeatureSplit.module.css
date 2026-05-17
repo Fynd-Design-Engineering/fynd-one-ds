@@ -64,7 +64,6 @@
 
 .visual {
   overflow: hidden;
-  background: var(--fds-neutral-10, #f8f8f9);
 }
 
 .image {

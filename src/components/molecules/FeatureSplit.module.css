@@ -18,10 +18,13 @@
 /* ── Section header (constrained to inner container) ─────────────────────── */
 
 .header {
-  max-width: 82.5rem; /* 1320px */
-  width: 100%;
+  padding: 3.5rem 2.5rem 0;
+}
+
+.headerInner {
+  max-width: 80rem;
   margin: 0 auto;
-  padding: 3.5rem 7.5rem 0;
+  width: 100%;
   box-sizing: border-box;
 }
 
@@ -77,13 +80,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* Right padding matches DS page padding (7.5rem = 120px).
-     Left padding is half (3.75rem = 60px) — breathing room from centre. */
-  padding: 3.5rem 7.5rem 3.5rem 3.75rem;
-}
-
-.row--imageRight .content {
-  padding: 3.5rem 3.75rem 3.5rem 7.5rem;
+  padding: 3.5rem 2.5rem;
 }
 
 /* ── Feature list ─────────────────────────────────────────────────────────── */
@@ -114,6 +111,7 @@
     gap: 4rem;
   }
 
+
   .rows--belowHeader {
     margin-top: 2rem;
   }
@@ -141,10 +139,6 @@
   .content {
     padding: 2rem 2.5rem;
   }
-
-  .row--imageRight .content {
-    padding: 2rem 2.5rem;
-  }
 }
 
 /* ── Mobile (<768px) ──────────────────────────────────────────────────────── */
@@ -153,6 +147,7 @@
   .header {
     padding: 2rem 1.25rem 0;
   }
+
 
   .rows--belowHeader {
     margin-top: 1.5rem;
@@ -163,10 +158,6 @@
   }
 
   .content {
-    padding: 2rem 1.25rem;
-  }
-
-  .row--imageRight .content {
     padding: 2rem 1.25rem;
   }
 

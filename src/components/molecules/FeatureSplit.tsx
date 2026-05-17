@@ -73,6 +73,7 @@ export const FeatureSplit: React.FC<FeatureSplitProps> = ({
     >
       {hasHeader && (
         <div className={styles.header}>
+          <div className={styles.headerInner}>
           <SectionHeader
             title={title!}
             chipLabel={chipLabel}
@@ -86,6 +87,7 @@ export const FeatureSplit: React.FC<FeatureSplitProps> = ({
             actions={actions}
             onDarkBg={onDarkBg}
           />
+          </div>
         </div>
       )}
 

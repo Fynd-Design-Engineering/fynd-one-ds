@@ -12,6 +12,10 @@
   gap: 1.5rem;
 }
 
+.step--center {
+  align-items: center;
+}
+
 /* ── Indicator column ─────────────────────────────────────────────────────── */
 
 .indicator {

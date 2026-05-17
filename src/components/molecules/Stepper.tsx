@@ -35,6 +35,8 @@ export interface StepperProps {
   stepDuration?: number;
   /** Semantic heading level for each step title. Default: 'h3'. */
   titleAs?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  /** Vertical alignment of the text column relative to the node. Default: 'top'. */
+  contentAlign?: 'top' | 'center';
   onDarkBg?: boolean;
   className?: string;
   style?: CSSProperties;
@@ -47,6 +49,7 @@ export const Stepper: React.FC<StepperProps> = ({
   animated = false,
   stepDuration = 2500,
   titleAs: TitleTag = 'h3',
+  contentAlign = 'top',
   onDarkBg = false,
   className,
   style,
@@ -95,7 +98,7 @@ export const Stepper: React.FC<StepperProps> = ({
 
 
         return (
-          <div key={idx} className={styles.step}>
+          <div key={idx} className={[styles.step, contentAlign === 'center' && styles['step--center']].filter(Boolean).join(' ')}>
             {/* Indicator column */}
             <div className={styles.indicator}>
               {variant === 'DotTrail' && (

@@ -69,3 +69,45 @@ export const NoImage: Story = {
     buttonLabel: 'Read case study',
   },
 };
+
+/** Regression story: cards in an equal-height grid row.
+ *  Card 1 has a 3-line title; cards 2–3 are single-line.
+ *  All three cards should stretch to the same height and all buttons should
+ *  align at the same vertical position. */
+export const GridEqualHeight: Story = {
+  name: 'Grid — equal height (button pinned to bottom)',
+  parameters: { layout: 'padded' },
+  render: () => (
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '20px', alignItems: 'stretch' }}>
+      <CustomerStoryCard
+        title="How a large fashion retailer eliminated manual catalogue work and cut photoshoot costs by 80% using Fynd AI Photoshoot"
+        buttonLabel="Read case study"
+      />
+      <CustomerStoryCard
+        title="Brooks Brothers: airport retail"
+        buttonLabel="Read case study"
+      />
+      <CustomerStoryCard
+        title="White Cut Diamonds AR try-on"
+        buttonLabel="Read case study"
+      />
+    </div>
+  ),
+};
+
+export const GridEqualHeightMobile: Story = {
+  name: 'Grid — mobile (1 col, no regression)',
+  parameters: { layout: 'padded', viewport: { defaultViewport: 'mobile1' } },
+  render: () => (
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '16px' }}>
+      <CustomerStoryCard
+        title="How a large fashion retailer eliminated manual catalogue work and cut photoshoot costs by 80% using Fynd AI Photoshoot"
+        buttonLabel="Read case study"
+      />
+      <CustomerStoryCard
+        title="Brooks Brothers: airport retail"
+        buttonLabel="Read case study"
+      />
+    </div>
+  ),
+};

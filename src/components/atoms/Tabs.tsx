@@ -11,7 +11,7 @@ export interface TabItem {
   dotColor?: string;
 }
 
-export type TabsVariant = 'card' | 'underline';
+export type TabsVariant = 'card' | 'underline' | 'pill';
 
 export interface TabsProps {
   tabs: TabItem[];
@@ -43,10 +43,17 @@ export const Tabs: React.FC<TabsProps> = ({
 
   const classes = [styles.root, className].filter(Boolean).join(' ');
   const isUnderline = variant === 'underline';
+  const isPill = variant === 'pill';
+
+  const barCls = [
+    styles.bar,
+    isUnderline && styles['bar--underline'],
+    isPill && styles['bar--pill'],
+  ].filter(Boolean).join(' ');
 
   return (
     <div className={classes} style={style}>
-      <div className={[styles.bar, isUnderline && styles['bar--underline']].filter(Boolean).join(' ')}>
+      <div className={barCls}>
         {tabs.map((tab, i) => {
           const btnClasses = [
             styles.button,
@@ -70,7 +77,7 @@ export const Tabs: React.FC<TabsProps> = ({
           );
         })}
       </div>
-      <div className={styles.panel}>
+      <div className={[styles.panel, isPill && styles['panel--pill']].filter(Boolean).join(' ')}>
         <div className={[
           styles['panel-content'],
           fullBleedPanel ? styles['panel-content--fullbleed'] : sectionStyles.inner,

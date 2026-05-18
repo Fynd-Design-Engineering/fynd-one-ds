@@ -95,6 +95,121 @@ export const HorizontalScroll: Story = {
   },
 };
 
+/* ── Pill variant stories ─────────────────────────────────────────────────── */
+
+const SimpleContent = ({ label }: { label: string }) => (
+  <p style={{ fontFamily: "'Inter', sans-serif", color: '#5b5c5d', margin: 0 }}>{label} content</p>
+);
+
+export const Pill3Tabs: Story = {
+  name: 'Pill — 3 tabs',
+  decorators: [(Story) => <div style={{ backgroundColor: '#f8f8f9', padding: 40 }}><Story /></div>],
+  args: {
+    variant: 'pill',
+    tabs: [
+      { label: 'Online commerce', content: <SimpleContent label="Online commerce" /> },
+      { label: 'Supply chain', content: <SimpleContent label="Supply chain" /> },
+      { label: 'In-store tech', content: <SimpleContent label="In-store tech" /> },
+    ],
+  },
+};
+
+export const Pill5Tabs: Story = {
+  name: 'Pill — 5 tabs',
+  decorators: [(Story) => <div style={{ backgroundColor: '#f8f8f9', padding: 40 }}><Story /></div>],
+  args: {
+    variant: 'pill',
+    tabs: [
+      { label: 'Online commerce', content: <SimpleContent label="Online commerce" /> },
+      { label: 'Supply chain', content: <SimpleContent label="Supply chain" /> },
+      { label: 'In-store tech', content: <SimpleContent label="In-store tech" /> },
+      { label: 'Agentic AI', content: <SimpleContent label="Agentic AI" /> },
+      { label: 'Marketplaces', content: <SimpleContent label="Marketplaces" /> },
+    ],
+  },
+};
+
+export const Pill7Tabs: Story = {
+  name: 'Pill — 7 tabs (horizontal scroll on mobile)',
+  decorators: [(Story) => <div style={{ backgroundColor: '#f8f8f9', padding: 40 }}><Story /></div>],
+  args: {
+    variant: 'pill',
+    tabs: [
+      { label: 'Online commerce', content: <SimpleContent label="Online commerce" /> },
+      { label: 'Supply chain', content: <SimpleContent label="Supply chain" /> },
+      { label: 'In-store tech', content: <SimpleContent label="In-store tech" /> },
+      { label: 'Agentic AI', content: <SimpleContent label="Agentic AI" /> },
+      { label: 'Marketplaces', content: <SimpleContent label="Marketplaces" /> },
+      { label: 'Analytics', content: <SimpleContent label="Analytics" /> },
+      { label: 'Payments', content: <SimpleContent label="Payments" /> },
+    ],
+  },
+};
+
+/** Demo: override item width via CSS custom property for fixed-width segments. */
+export const PillFixedWidth: Story = {
+  name: 'Pill — fixed item width (CSS var override)',
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          backgroundColor: '#f8f8f9',
+          padding: 40,
+          /* Set --fds-tabs-pill-item-width on any ancestor */
+          '--fds-tabs-pill-item-width': '13rem',
+        } as React.CSSProperties}
+      >
+        <Story />
+      </div>
+    ),
+  ],
+  args: {
+    variant: 'pill',
+    tabs: [
+      { label: 'Online commerce', content: <SimpleContent label="Online commerce" /> },
+      { label: 'Supply chain', content: <SimpleContent label="Supply chain" /> },
+      { label: 'In-store tech', content: <SimpleContent label="In-store tech" /> },
+    ],
+  },
+};
+
+/**
+ * The pill variant assumes a light surface background.
+ * It does NOT support `onDarkBg` — the white active pill and #f2f2f2 track
+ * are designed for neutral-10 / white page sections only.
+ * For dark sections use the `card` or `underline` variant instead.
+ */
+export const PillVsDefault: Story = {
+  name: 'Pill vs Default — side by side',
+  parameters: { layout: 'padded' },
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 48, backgroundColor: '#f8f8f9', padding: 40 }}>
+      <div>
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: '#797a7c', marginBottom: 16, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Default (card)</p>
+        <Tabs
+          variant="card"
+          tabs={[
+            { label: 'Online commerce', content: <SimpleContent label="Online commerce" /> },
+            { label: 'Supply chain', content: <SimpleContent label="Supply chain" /> },
+            { label: 'In-store tech', content: <SimpleContent label="In-store tech" /> },
+          ]}
+        />
+      </div>
+      <div>
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: '#797a7c', marginBottom: 16, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Pill</p>
+        <Tabs
+          variant="pill"
+          tabs={[
+            { label: 'Online commerce', content: <SimpleContent label="Online commerce" /> },
+            { label: 'Supply chain', content: <SimpleContent label="Supply chain" /> },
+            { label: 'In-store tech', content: <SimpleContent label="In-store tech" /> },
+          ]}
+        />
+      </div>
+    </div>
+  ),
+};
+
 export const FullBleedPanel: Story = {
   decorators: [
     (Story) => (

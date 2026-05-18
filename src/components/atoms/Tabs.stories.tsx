@@ -174,11 +174,35 @@ export const PillFixedWidth: Story = {
 };
 
 /**
- * The pill variant assumes a light surface background.
- * It does NOT support `onDarkBg` — the white active pill and #f2f2f2 track
- * are designed for neutral-10 / white page sections only.
- * For dark sections use the `card` or `underline` variant instead.
+ * The pill variant uses a light-surface palette (#f2f2f2 track, white active pill).
+ * It does not invert for dark backgrounds. If your section bg is dark, wrap the
+ * Tabs in a light container or use the `card` / `underline` variant instead.
  */
+export const PillOnDark: Story = {
+  name: 'Pill — on dark bg (light container)',
+  decorators: [
+    (Story) => (
+      <div style={{ backgroundColor: '#101319', padding: 40 }}>
+        {/* Pill sits in a centred light-surface container so the track is visible */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 32 }}>
+          <Story />
+        </div>
+        <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: '#5b5c5d', textAlign: 'center', margin: 0 }}>
+          Note: pill variant assumes a light page surface. The tab bar floats on its own #f2f2f2 track — no extra wrapper needed if the section bg is neutral-10 or white.
+        </p>
+      </div>
+    ),
+  ],
+  args: {
+    variant: 'pill',
+    tabs: [
+      { label: 'Online commerce', content: <SimpleContent label="Online commerce" /> },
+      { label: 'Supply chain', content: <SimpleContent label="Supply chain" /> },
+      { label: 'In-store tech', content: <SimpleContent label="In-store tech" /> },
+    ],
+  },
+};
+
 export const PillVsDefault: Story = {
   name: 'Pill vs Default — side by side',
   parameters: { layout: 'padded' },

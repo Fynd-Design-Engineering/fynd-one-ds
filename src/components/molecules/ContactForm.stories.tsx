@@ -90,3 +90,59 @@ export const CustomAgreement: Story = {
     onSubmit: logSubmit,
   },
 };
+
+/**
+ * Default success view shipped with the DS. Fill the fields and click
+ * Submit — once `onSubmit` resolves, the form swaps to the built-in
+ * thank-you panel automatically.
+ */
+export const SuccessState: Story = {
+  name: 'Success — default thank-you view',
+  args: {
+    formTitle: 'Fill the fields and click Submit to preview the success view',
+    productOptions: PRODUCT_OPTIONS,
+    onSubmit: logSubmit,
+  },
+};
+
+/**
+ * Consumer override via the `successContent` prop. Same flow — fill,
+ * submit — but the success panel is replaced with custom markup
+ * (e.g. richer copy, secondary CTA, embedded calendar).
+ */
+export const CustomSuccessContent: Story = {
+  name: 'Success — custom successContent override',
+  args: {
+    formTitle: 'Fill the fields and click Submit to preview the override',
+    productOptions: PRODUCT_OPTIONS,
+    onSubmit: logSubmit,
+    successContent: (
+      <div style={{ padding: 40, textAlign: 'center' }}>
+        <div style={{ fontSize: 48, lineHeight: 1, marginBottom: 16 }} aria-hidden>
+          🎉
+        </div>
+        <p style={{ font: '500 24px/1.3 system-ui, sans-serif', margin: '0 0 8px', color: '#101319' }}>
+          You&apos;re on the list!
+        </p>
+        <p style={{ font: '400 16px/1.5 system-ui, sans-serif', margin: '0 0 24px', color: '#797a7c' }}>
+          A specialist will reach out within one business day. Meanwhile,
+          you can explore our customer stories.
+        </p>
+        <a
+          href="#"
+          style={{
+            display: 'inline-block',
+            padding: '10px 20px',
+            borderRadius: 250,
+            background: '#101319',
+            color: '#ffffff',
+            textDecoration: 'none',
+            font: '500 14px/1 system-ui, sans-serif',
+          }}
+        >
+          Read customer stories →
+        </a>
+      </div>
+    ),
+  },
+};

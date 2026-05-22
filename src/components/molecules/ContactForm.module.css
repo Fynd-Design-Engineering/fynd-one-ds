@@ -147,6 +147,13 @@
   padding: 3rem 2rem;
 }
 
+.successIcon {
+  width: 6rem;
+  height: 6rem;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
 @media (max-width: 47.9375rem) {
   .form {
     padding: 1.5rem 1.5rem 0;

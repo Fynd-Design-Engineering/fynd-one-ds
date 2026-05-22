@@ -202,6 +202,14 @@ export const ContactForm: React.FC<ContactFormProps> = ({
       {submitted ? (
         successContent ?? (
           <div className={styles.success}>
+            <img
+              className={styles.successIcon}
+              src="https://cdn.pixelbin.io/v2/nameless-waterfall-bf6e98/original/fynd-web/ebooks/_slug_/_components/check-3d.avif"
+              alt=""
+              width={96}
+              height={96}
+              decoding="async"
+            />
             <Text variant="heading-m" as="p">
               Thank you!
             </Text>

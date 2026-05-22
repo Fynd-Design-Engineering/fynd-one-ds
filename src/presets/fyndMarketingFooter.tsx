@@ -41,19 +41,19 @@ export type { FyndFooterLottieWordmarkProps } from './FyndFooterLottieWordmark';
 export const FyndFooterTrailingBadges = () => (
   <>
     <img
-      src="https://cdn.prod.website-files.com/67a9c8e5f2c74ac8c2c9b88b/6825ec9415021b2716434ab9_009c7f35fce44cf51691d436f8d5e365880aa097.png"
+      src="https://cdn.pixelbin.io/v2/nameless-waterfall-bf6e98/original/fynd-web/ds-shared/009c7f35fce44cf51691d436f8d5e365880aa097.png"
       alt="AICPA SOC"
       height={64}
       style={{ height: 64, width: 'auto', objectFit: 'contain' }}
     />
     <img
-      src="https://cdn.prod.website-files.com/67a9c8e5f2c74ac8c2c9b88b/6823275f8cde687f82022461_8fb14412db7cad359ce4c4a00c7c6d17_fb2b10a26add41e7add654b0317df382ef05a909.webp"
+      src="https://cdn.pixelbin.io/v2/nameless-waterfall-bf6e98/original/fynd-web/ds-shared/8fb14412db7cad359ce4c4a00c7c6d17-fb2b10a26add41e7add654b0317df382ef05a909.webp"
       alt="GDPR compliant"
       height={64}
       style={{ height: 64, width: 'auto', objectFit: 'contain' }}
     />
     <img
-      src="https://cdn.prod.website-files.com/67a9c8e5f2c74ac8c2c9b88b/6998315730ac5419f5f66fce_image.avif"
+      src="https://cdn.pixelbin.io/v2/nameless-waterfall-bf6e98/original/fynd-web/ds-shared/image.avif"
       alt="BSI ISO certification"
       height={64}
       style={{ height: 64, width: 'auto', objectFit: 'contain' }}

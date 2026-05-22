@@ -22,21 +22,21 @@ export interface LogoMarqueeProps {
 }
 
 const DEFAULT_LOGOS: LogoItem[] = [
-  { src: 'https://cdn.prod.website-files.com/67c68c93736617d0ce4e4f7b/69ba84bb9c80b8ed8aa4cffb_being.jpg', alt: 'Being Human' },
-  { src: 'https://cdn.prod.website-files.com/67c68c93736617d0ce4e4f7b/693fd2d55979edbc335f69a0_image%203.avif', alt: 'Brand' },
-  { src: 'https://cdn.prod.website-files.com/67c68c93736617d0ce4e4f7b/693fd282133db7a2e7d38377_Brands-Logo.avif', alt: 'Brand Logo' },
-  { src: 'https://cdn.prod.website-files.com/67c68c93736617d0ce4e4f7b/6901b43ab68ed5013aa17f64_Mask%20group.avif', alt: 'Brand' },
-  { src: 'https://cdn.prod.website-files.com/67c68c93736617d0ce4e4f7b/68c3c2e8edbbfc8af8d41592_West%20elm.avif', alt: 'West Elm' },
-  { src: 'https://cdn.prod.website-files.com/67c68c93736617d0ce4e4f7b/68c3c2b68929ecf61d530ce7_Low%20Cost%20Glasses.avif', alt: 'Low Cost Glasses' },
-  { src: 'https://cdn.prod.website-files.com/67c68c93736617d0ce4e4f7b/68c3c2a06b5ed9574b52fe43_Kalyan%20Silks.avif', alt: 'Kalyan Silks' },
-  { src: 'https://cdn.prod.website-files.com/67c68c93736617d0ce4e4f7b/68c3bb321a90eb555fd1bc1b_JioMart.avif', alt: 'JioMart' },
-  { src: 'https://cdn.prod.website-files.com/67c68c93736617d0ce4e4f7b/68c3bb3da81f0b7c275a6cb5_mi%20arcus.avif', alt: 'Mi Arcus' },
-  { src: 'https://cdn.prod.website-files.com/67c68c93736617d0ce4e4f7b/68c3c15fb702c6b3f8c49548_asos.avif', alt: 'ASOS' },
-  { src: 'https://cdn.prod.website-files.com/67c68c93736617d0ce4e4f7b/69ba87beb1140a9a1d25fd3f_superdry.jpg', alt: 'Superdry' },
-  { src: 'https://cdn.prod.website-files.com/67c68c93736617d0ce4e4f7b/69ba8e2d4926924b220b5a3e_the_pant_project_g5eshn.jpg', alt: 'The Pant Project' },
-  { src: 'https://cdn.prod.website-files.com/67c68c93736617d0ce4e4f7b/686bab00405fd774ebb3aa55_image%20342787.avif', alt: 'Brand' },
-  { src: 'https://cdn.prod.website-files.com/67c68c93736617d0ce4e4f7b/686b9dcf7e881278bf78241a_The%20sleep%20company.avif', alt: 'The Sleep Company' },
-  { src: 'https://cdn.prod.website-files.com/67c68c93736617d0ce4e4f7b/68c3c25900c333acb1b15a08_Puma.avif', alt: 'Puma' },
+  { src: 'https://cdn.pixelbin.io/v2/nameless-waterfall-bf6e98/original/fynd-web/ds-shared/being.jpg', alt: 'Being Human' },
+  { src: 'https://cdn.pixelbin.io/v2/nameless-waterfall-bf6e98/original/fynd-web/ds-shared/image-3.avif', alt: 'Brand' },
+  { src: 'https://cdn.pixelbin.io/v2/nameless-waterfall-bf6e98/original/fynd-web/ds-shared/brands-logo.avif', alt: 'Brand Logo' },
+  { src: 'https://cdn.pixelbin.io/v2/nameless-waterfall-bf6e98/original/fynd-web/ds-shared/mask-group.avif', alt: 'Brand' },
+  { src: 'https://cdn.pixelbin.io/v2/nameless-waterfall-bf6e98/original/fynd-web/ds-shared/west-elm.avif', alt: 'West Elm' },
+  { src: 'https://cdn.pixelbin.io/v2/nameless-waterfall-bf6e98/original/fynd-web/ds-shared/low-cost-glasses.avif', alt: 'Low Cost Glasses' },
+  { src: 'https://cdn.pixelbin.io/v2/nameless-waterfall-bf6e98/original/fynd-web/ds-shared/kalyan-silks.avif', alt: 'Kalyan Silks' },
+  { src: 'https://cdn.pixelbin.io/v2/nameless-waterfall-bf6e98/original/fynd-web/ds-shared/jiomart.avif', alt: 'JioMart' },
+  { src: 'https://cdn.pixelbin.io/v2/nameless-waterfall-bf6e98/original/fynd-web/ds-shared/mi-arcus.avif', alt: 'Mi Arcus' },
+  { src: 'https://cdn.pixelbin.io/v2/nameless-waterfall-bf6e98/original/fynd-web/ds-shared/asos.avif', alt: 'ASOS' },
+  { src: 'https://cdn.pixelbin.io/v2/nameless-waterfall-bf6e98/original/fynd-web/ds-shared/superdry.jpg', alt: 'Superdry' },
+  { src: 'https://cdn.pixelbin.io/v2/nameless-waterfall-bf6e98/original/fynd-web/ds-shared/the-pant-project-g5eshn.jpg', alt: 'The Pant Project' },
+  { src: 'https://cdn.pixelbin.io/v2/nameless-waterfall-bf6e98/original/fynd-web/ds-shared/image-342787.avif', alt: 'Brand' },
+  { src: 'https://cdn.pixelbin.io/v2/nameless-waterfall-bf6e98/original/fynd-web/ds-shared/the-sleep-company.avif', alt: 'The Sleep Company' },
+  { src: 'https://cdn.pixelbin.io/v2/nameless-waterfall-bf6e98/original/fynd-web/ds-shared/puma.avif', alt: 'Puma' },
 ];
 
 export const LogoMarquee: React.FC<LogoMarqueeProps> = ({

@@ -164,7 +164,7 @@ const ContactModal = ({
 const DEFAULT_PHONE_NUMBER = '+91 74001 56169';
 const DEFAULT_PHONE_HREF = 'tel:+917400156169';
 const DEFAULT_WHATSAPP_HREF = 'https://api.whatsapp.com/send/?phone=917400156169&text&type=phone_number&app_absent=0';
-const DEFAULT_WHATSAPP_QR_SRC = 'https://cdn.prod.website-files.com/67a9c8e5f2c74ac8c2c9b88b/69fc6027963847a4f0b71672_whatsapp-qr%20(1).svg';
+const DEFAULT_WHATSAPP_QR_SRC = 'https://cdn.pixelbin.io/v2/nameless-waterfall-bf6e98/original/fynd-web/ds-shared/whatsapp-qr-1.svg';
 const DEFAULT_SIGN_IN_HREF = '/sign-in';
 
 // ── Props ─────────────────────────────────────────────────────────────────────

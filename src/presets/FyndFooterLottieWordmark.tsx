@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react';
 import Lottie from 'lottie-react';
 
 const FYND_LOTTIE_URL =
-  'https://cdn.prod.website-files.com/679bafa26833d70c32fc1199/67ac285f22ce0e236bb2084d_Fynd%20Logo%20Bottom.json';
+  'https://cdn.pixelbin.io/v2/nameless-waterfall-bf6e98/original/fynd-web/ds-shared/fynd-logo-bottom.json';
 
 export interface FyndFooterLottieWordmarkProps {
   /** Override the Lottie JSON source. Defaults to the Fynd marketing wordmark. */

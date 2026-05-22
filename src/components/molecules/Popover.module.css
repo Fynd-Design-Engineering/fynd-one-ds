@@ -1,7 +1,8 @@
-/* Wrapper holds both the trigger and the panel so the panel is absolutely
-   positioned relative to the trigger rather than injected into <body>. */
+/* Wrapper holds the trigger only — the panel is portaled to <body> via
+   FloatingPortal so it escapes ancestor `overflow: hidden` and stacking
+   contexts. Floating UI positions the portaled panel relative to the
+   trigger via the reference element. */
 .wrapper {
-  position: relative;
   display: inline-block;
 }
 

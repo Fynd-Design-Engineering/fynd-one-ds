@@ -185,3 +185,112 @@ export const MatchTriggerWidth: Story = {
     children: <RegionMenuItems />,
   },
 };
+
+/**
+ * Demonstrates the off-screen-clipping fix: triggers placed in each viewport
+ * corner with a long option list. The panel should auto-flip, shift back into
+ * view, cap its height (with internal scroll), and never get clipped by the
+ * viewport edge. Open each one — every option must remain reachable.
+ */
+const LongRegionList = ({ onPick }: { onPick?: (label: string) => void }) => {
+  const items = [
+    'Argentina', 'Australia', 'Austria', 'Belgium', 'Brazil', 'Canada',
+    'Chile', 'China', 'Colombia', 'Czech Republic', 'Denmark', 'Egypt',
+    'Finland', 'France', 'Germany', 'Greece', 'Hong Kong', 'India',
+    'Indonesia', 'Ireland', 'Israel', 'Italy', 'Japan', 'Kenya',
+    'Malaysia', 'Mexico', 'Netherlands', 'New Zealand', 'Nigeria', 'Norway',
+    'Pakistan', 'Peru', 'Philippines', 'Poland', 'Portugal', 'Qatar',
+    'Saudi Arabia', 'Singapore', 'South Africa', 'South Korea', 'Spain',
+    'Sweden', 'Switzerland', 'Thailand', 'Turkey', 'UAE', 'United Kingdom',
+    'United States', 'Vietnam',
+  ];
+  return (
+    <ul style={{ listStyle: 'none', margin: 0, padding: 8, minWidth: 220 }}>
+      {items.map((label) => (
+        <li key={label}>
+          <button
+            role="menuitem"
+            onClick={() => onPick?.(label)}
+            style={{
+              display: 'block',
+              width: '100%',
+              background: 'transparent',
+              border: 0,
+              padding: '10px 12px',
+              borderRadius: 8,
+              textAlign: 'left',
+              font: 'inherit',
+              color: 'inherit',
+              cursor: 'pointer',
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = 'var(--fds-neutral-10, #f8f8f9)')}
+            onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
+            onFocus={(e) => (e.currentTarget.style.background = 'var(--fds-neutral-10, #f8f8f9)')}
+            onBlur={(e) => (e.currentTarget.style.background = 'transparent')}
+          >
+            {label}
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+export const ViewportEdgesLongList: Story = {
+  parameters: { layout: 'fullscreen' },
+  render: () => (
+    <div
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        padding: 16,
+        boxSizing: 'border-box',
+        gap: 16,
+      }}
+    >
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Popover
+          role="menu"
+          placement="bottom-start"
+          trigger={<Button label="Top-left ▾" variant="secondary" />}
+        >
+          <LongRegionList />
+        </Popover>
+        <Popover
+          role="menu"
+          placement="bottom-end"
+          trigger={<Button label="Top-right ▾" variant="secondary" />}
+        >
+          <LongRegionList />
+        </Popover>
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <Popover
+          role="menu"
+          placement="bottom"
+          trigger={<Button label="Middle ▾" variant="secondary" />}
+        >
+          <LongRegionList />
+        </Popover>
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Popover
+          role="menu"
+          placement="top-start"
+          trigger={<Button label="Bottom-left ▴" variant="secondary" />}
+        >
+          <LongRegionList />
+        </Popover>
+        <Popover
+          role="menu"
+          placement="top-end"
+          trigger={<Button label="Bottom-right ▴" variant="secondary" />}
+        >
+          <LongRegionList />
+        </Popover>
+      </div>
+    </div>
+  ),
+};

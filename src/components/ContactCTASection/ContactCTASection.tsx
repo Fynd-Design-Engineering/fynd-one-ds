@@ -35,6 +35,7 @@ export interface ContactCTASectionProps {
   onSubmit?: (values: ContactFormValues) => void | Promise<void>;
   agreement?: ReactNode;
   successContent?: ReactNode;
+  initialValues?: Partial<ContactFormValues>;
 }
 
 export const ContactCTASection: React.FC<ContactCTASectionProps> = ({
@@ -51,6 +52,7 @@ export const ContactCTASection: React.FC<ContactCTASectionProps> = ({
   onSubmit,
   agreement,
   successContent,
+  initialValues,
 }) => {
   const rootClass = [styles.root, className].filter(Boolean).join(' ');
 
@@ -108,6 +110,7 @@ export const ContactCTASection: React.FC<ContactCTASectionProps> = ({
               onSubmit={onSubmit}
               agreement={agreement}
               successContent={successContent}
+              initialValues={initialValues}
               style={{ padding: 0 }}
             />
           </div>

@@ -52,6 +52,12 @@ export interface ContactFormProps {
   successContent?: ReactNode;
   className?: string;
   style?: CSSProperties;
+  /** Pre-fill fields at mount. Read once — not a controlled API. */
+  initialValues?: Partial<ContactFormValues>;
+  /** Extra attributes spread onto the underlying `<form>` element.
+   *  Use for integration hooks like `data-hs-do-not-collect`. The
+   *  component's own className/onSubmit always win. */
+  formProps?: React.FormHTMLAttributes<HTMLFormElement>;
 }
 
 const FIELD_DEFAULTS: ContactFormValues = {
@@ -100,8 +106,19 @@ export const ContactForm: React.FC<ContactFormProps> = ({
   successContent,
   className,
   style,
+  initialValues,
+  formProps,
 }) => {
-  const [values, setValues] = useState<ContactFormValues>(FIELD_DEFAULTS);
+  const [values, setValues] = useState<ContactFormValues>({
+    firstName: initialValues?.firstName ?? '',
+    lastName: initialValues?.lastName ?? '',
+    email: initialValues?.email ?? '',
+    phone: initialValues?.phone ?? '',
+    phoneCountry: initialValues?.phoneCountry ?? 'IN',
+    company: initialValues?.company ?? '',
+    productInterested: initialValues?.productInterested ?? '',
+    message: initialValues?.message ?? '',
+  });
   const [phoneNumber, setPhoneNumber] = useState('');
   const [errors, setErrors] = useState<FieldErrors>({});
   const [touched, setTouched] = useState<FieldTouched>({});
@@ -219,7 +236,12 @@ export const ContactForm: React.FC<ContactFormProps> = ({
           </div>
         )
       ) : (
-        <form className={styles.form} onSubmit={handleSubmit} noValidate>
+        <form
+          {...formProps}
+          className={[styles.form, formProps?.className].filter(Boolean).join(' ')}
+          onSubmit={handleSubmit}
+          noValidate
+        >
           {formTitle && (
             <Text variant="heading-s" as="h3">
               {formTitle}

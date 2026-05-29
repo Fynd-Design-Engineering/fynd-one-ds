@@ -106,6 +106,35 @@ export const SuccessState: Story = {
 };
 
 /**
+ * `initialValues.productInterested` is set at mount — the dropdown
+ * shows "AI solutions" without any interaction. The user can change it freely.
+ */
+export const PreselectedProduct: Story = {
+  name: 'initialValues — preselected productInterested',
+  args: {
+    productOptions: PRODUCT_OPTIONS,
+    initialValues: { productInterested: 'AI solutions' },
+    onSubmit: logSubmit,
+  },
+};
+
+/**
+ * Forward arbitrary attributes onto the rendered `<form>` via `formProps`.
+ * Here we set `data-hs-do-not-collect="true"` so HubSpot's Collected Forms
+ * listener skips the form (consumers using explicit Forms API submission).
+ * Inspect the `<form>` element to confirm the attribute is present; the
+ * internal submit handler and `fds-contactform__form` class still apply.
+ */
+export const WithFormProps: Story = {
+  name: 'formProps — data-hs-do-not-collect',
+  args: {
+    productOptions: PRODUCT_OPTIONS,
+    onSubmit: logSubmit,
+    formProps: { 'data-hs-do-not-collect': 'true' },
+  },
+};
+
+/**
  * Consumer override via the `successContent` prop. Same flow — fill,
  * submit — but the success panel is replaced with custom markup
  * (e.g. richer copy, secondary CTA, embedded calendar).

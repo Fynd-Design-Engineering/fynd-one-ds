@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.32.0] — 2026-05-29
+
+### Added
+
+- `ContactForm` + `GatedForm`: `formProps` prop — extra attributes (`React.FormHTMLAttributes`) spread onto the underlying `<form>` element. Useful for integration hooks like `data-hs-do-not-collect="true"` (skips HubSpot's Collected Forms listener). The component's own `className` (merged, not overwritten) and `onSubmit` always win, so internal behavior can't be clobbered.
+
+## [0.31.0] — 2026-05-27
+
+### Added
+
+- `ContactForm` + `ContactCTASection`: `initialValues` prop to preselect any field on mount.
+
 ## [0.29.47] — 2026-05-18
 
 ### Fixed

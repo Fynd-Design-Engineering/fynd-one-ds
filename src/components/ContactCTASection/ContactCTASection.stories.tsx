@@ -69,6 +69,31 @@ export const CustomSectionBg: Story = {
   },
 };
 
+const PRODUCT_OPTIONS = [
+  'Building a website',
+  'Supply chain solutions',
+  'Retail store solutions',
+  'Sell on Marketplaces',
+  'AI solutions',
+  'Fashion manufacturing solution',
+];
+
+/** `initialValues.productInterested` is threaded through to the inner form — dropdown opens pre-selected. */
+export const PreselectedProduct: Story = {
+  name: 'initialValues — preselected productInterested',
+  args: {
+    title: "Discover how Fynd accelerates your business",
+    steps: [
+      { n: 1, title: 'Fill out the form', body: 'Share your contact information to get started' },
+      { n: 2, title: 'Speak to an expert', body: 'A member of our sales team will get in touch with you' },
+    ],
+    bgImage: SAMPLE_BG,
+    formTitle: 'Get in Touch',
+    productOptions: PRODUCT_OPTIONS,
+    initialValues: { productInterested: 'AI solutions' },
+  },
+};
+
 export const WithChip: Story = {
   name: 'With eyebrow chip',
   args: {

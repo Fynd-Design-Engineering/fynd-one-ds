@@ -45,6 +45,10 @@ export interface GatedFormProps {
   successContent?: ReactNode;
   className?: string;
   style?: CSSProperties;
+  /** Extra attributes spread onto the underlying `<form>` element.
+   *  Use for integration hooks like `data-hs-do-not-collect`. The
+   *  component's own className/onSubmit always win. */
+  formProps?: React.FormHTMLAttributes<HTMLFormElement>;
 }
 
 const FIELD_DEFAULTS: GatedFormValues = {
@@ -84,6 +88,7 @@ export const GatedForm: React.FC<GatedFormProps> = ({
   successContent,
   className,
   style,
+  formProps,
 }) => {
   const [values, setValues] = useState<GatedFormValues>(FIELD_DEFAULTS);
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -173,7 +178,12 @@ export const GatedForm: React.FC<GatedFormProps> = ({
           </div>
         )
       ) : (
-        <form className={styles.form} onSubmit={handleSubmit} noValidate>
+        <form
+          {...formProps}
+          className={[styles.form, formProps?.className].filter(Boolean).join(' ')}
+          onSubmit={handleSubmit}
+          noValidate
+        >
           <div className={styles.fields}>
             <div className={styles.fieldRow}>
               <Field

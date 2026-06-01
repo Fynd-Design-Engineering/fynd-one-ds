@@ -36,6 +36,10 @@ export interface ContactCTASectionProps {
   agreement?: ReactNode;
   successContent?: ReactNode;
   initialValues?: Partial<ContactFormValues>;
+  /** Extra attributes spread onto the contact form's underlying `<form>`.
+   *  Forwarded verbatim to `ContactForm` — use for integration hooks like
+   *  `data-hs-do-not-collect`. */
+  formProps?: React.FormHTMLAttributes<HTMLFormElement>;
 }
 
 export const ContactCTASection: React.FC<ContactCTASectionProps> = ({
@@ -53,6 +57,7 @@ export const ContactCTASection: React.FC<ContactCTASectionProps> = ({
   agreement,
   successContent,
   initialValues,
+  formProps,
 }) => {
   const rootClass = [styles.root, className].filter(Boolean).join(' ');
 
@@ -111,6 +116,7 @@ export const ContactCTASection: React.FC<ContactCTASectionProps> = ({
               agreement={agreement}
               successContent={successContent}
               initialValues={initialValues}
+              formProps={formProps}
               style={{ padding: 0 }}
             />
           </div>

@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.33.0] — 2026-06-01
+
+### Added
+
+- `FyndMarketingNavActions`, `FyndMarketingNavMobileActions`, and `ContactCTASection`: `formProps` prop — forwarded verbatim to the internal `ContactForm` so consumers can set attributes on the rendered `<form>` (e.g. `data-hs-do-not-collect="true"` to opt the preset nav/CTA modals out of HubSpot's Collected Forms listener) without DOM workarounds. Completes the `formProps` passthrough started in 0.32.0. Optional and non-breaking — existing call sites are unaffected.
+
 ## [0.32.1] — 2026-06-01
 
 ### Added

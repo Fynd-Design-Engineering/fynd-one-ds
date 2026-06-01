@@ -144,17 +144,20 @@ const ContactModal = ({
   formTitle,
   productOptions,
   onSubmit,
+  formProps,
 }: {
   trigger: ReactNode;
   formTitle?: string;
   productOptions?: string[];
   onSubmit?: (values: ContactFormValues) => void | Promise<void>;
+  formProps?: React.FormHTMLAttributes<HTMLFormElement>;
 }) => (
   <Modal trigger={trigger as React.ReactElement} width={550}>
     <ContactForm
       formTitle={formTitle}
       productOptions={productOptions}
       onSubmit={onSubmit}
+      formProps={formProps}
     />
   </Modal>
 );
@@ -190,6 +193,10 @@ export interface FyndMarketingNavActionsProps {
   onContactSubmit?: (values: ContactFormValues) => void | Promise<void>;
   /** ContactForm product-interested options. */
   productOptions?: string[];
+  /** Extra attributes spread onto the contact form's underlying `<form>`.
+   *  Forwarded verbatim to `ContactForm` — use for integration hooks like
+   *  `data-hs-do-not-collect`. */
+  formProps?: React.FormHTMLAttributes<HTMLFormElement>;
   /** Pass true when inside a dark-background Navbar — flips trigger icon and buttons to light-mode colours. */
   onDarkBg?: boolean;
 }
@@ -207,6 +214,7 @@ export const FyndMarketingNavActions = ({
   contactFormTitle,
   onContactSubmit,
   productOptions = [...fyndMarketingProductOptions],
+  formProps,
   onDarkBg = false,
 }: FyndMarketingNavActionsProps) => {
   const [contactOpen, setContactOpen] = useState(false);
@@ -259,6 +267,7 @@ export const FyndMarketingNavActions = ({
         formTitle={contactFormTitle}
         productOptions={productOptions}
         onSubmit={onContactSubmit}
+        formProps={formProps}
       />
 
       <Button
@@ -281,6 +290,10 @@ export interface FyndMarketingNavMobileActionsProps {
   contactFormTitle?: string;
   onContactSubmit?: (values: ContactFormValues) => void | Promise<void>;
   productOptions?: string[];
+  /** Extra attributes spread onto the contact form's underlying `<form>`.
+   *  Forwarded verbatim to `ContactForm` — use for integration hooks like
+   *  `data-hs-do-not-collect`. */
+  formProps?: React.FormHTMLAttributes<HTMLFormElement>;
   /** Pass true when inside a dark-background Navbar — flips button to light-mode colours. */
   onDarkBg?: boolean;
 }
@@ -290,6 +303,7 @@ export const FyndMarketingNavMobileActions = ({
   contactFormTitle,
   onContactSubmit,
   productOptions = [...fyndMarketingProductOptions],
+  formProps,
   onDarkBg = false,
 }: FyndMarketingNavMobileActionsProps) => (
   <ContactModal
@@ -305,5 +319,6 @@ export const FyndMarketingNavMobileActions = ({
     formTitle={contactFormTitle}
     productOptions={productOptions}
     onSubmit={onContactSubmit}
+    formProps={formProps}
   />
 );

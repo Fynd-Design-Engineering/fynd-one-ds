@@ -162,3 +162,57 @@
     width: max-content;
   }
 }
+
+/* ── Overflow edge-fade (card + pill) ──────────────────────────── */
+/* When the tab bar scrolls horizontally (typically on mobile), fade
+   whichever edge still has hidden content so the overflow is
+   discoverable. A scroll-progress timeline drives the fade, so it
+   self-disables when the bar fits (no scroll range → both fades stay
+   at their 0px initial value → fully opaque mask). Excludes the
+   underline variant. Falls back to no fade where scroll-driven
+   animations are unsupported. */
+
+@property --fds-tabs-fade-l {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --fds-tabs-fade-r {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+
+@keyframes fds-tabs-overflow-fade {
+  from {
+    --fds-tabs-fade-l: 0px;
+    --fds-tabs-fade-r: 2rem;
+  }
+
+  to {
+    --fds-tabs-fade-l: 2rem;
+    --fds-tabs-fade-r: 0px;
+  }
+}
+
+@supports (animation-timeline: scroll()) {
+  .bar:not(.bar--underline) {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 var(--fds-tabs-fade-l),
+      #000 calc(100% - var(--fds-tabs-fade-r)),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 var(--fds-tabs-fade-l),
+      #000 calc(100% - var(--fds-tabs-fade-r)),
+      transparent 100%
+    );
+    animation: fds-tabs-overflow-fade linear both;
+    animation-timeline: scroll(self inline);
+  }
+}

@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.32.1] — 2026-06-01
+
+### Added
+
+- `Tabs` (`card` + `pill` variants): horizontally overflowing tab bars now show a gradient edge-fade indicating hidden content. Driven by a scroll-progress timeline, so it appears only when the bar actually overflows (typically mobile) and fades whichever side(s) still have off-screen tabs. The `underline` variant is unaffected. Degrades to no fade where scroll-driven animations are unsupported.
+
 ## [0.32.0] — 2026-05-29
 
 ### Added

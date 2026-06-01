@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.33.1] — 2026-06-01
+
+### Fixed
+
+- `Navbar`: desktop dropdown triggers no longer close on click. Because dropdowns open on hover, clicking an already-open trigger was toggling it shut. Click now always opens; closing remains available via Escape, click-outside, mouse-leave, or selecting a link.
+
 ## [0.33.0] — 2026-06-01
 
 ### Added

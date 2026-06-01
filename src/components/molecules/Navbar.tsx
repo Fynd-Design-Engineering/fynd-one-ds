@@ -495,7 +495,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             .join(' ')}
           aria-expanded={isActive}
           aria-haspopup="true"
-          onClick={() => (isActive ? closeDropdownNow() : openDropdown(item))}
+          onClick={() => openDropdown(item)}
         >
           <Text variant="body-m" color={onDarkBg ? 'white' : 'secondary'} as="span">
             {item.label}

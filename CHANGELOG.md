@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.33.2] — 2026-06-02
+
+### Added
+
+- feat(navbar): `FyndMarketingNavActions` accepts `signedInUser` for avatar pill.
+
 ## [0.33.1] — 2026-06-01
 
 ### Fixed

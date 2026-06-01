@@ -133,3 +133,43 @@
 .mobileBookDemoBtn {
   margin-top: 1.5rem;
 }
+
+/* ── Signed-in user pill ─────────────────────────────────────────────────────
+   The leading 24px avatar needs less inline-start space than the default
+   button padding, so tighten the left padding. `!important` overrides
+   Button's own `.root` padding across the stylesheet boundary (same pattern
+   as `.bookDemoBtn` above). */
+.signedInPill {
+  padding-left: 0.5rem !important;
+}
+
+/* ── Signed-in user pill avatar ──────────────────────────────────────────────
+   Rendered inside the Sign-in Button's iconLeft slot. Wrapped in a span so
+   Button's `.icon-left > img { width: 1.5em }` rule (direct-child only) can't
+   shrink the avatar below 24px. Neutral-40 circle + neutral-100 initial read
+   on both the dark production pill and a standalone light pill. */
+.signedInAvatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--fds-neutral-40, #a0a1a2);
+  border-radius: 50%;
+}
+
+.signedInAvatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.signedInAvatarInitial {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--fds-neutral-100, #101319);
+}

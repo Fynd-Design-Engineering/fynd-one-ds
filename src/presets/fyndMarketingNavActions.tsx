@@ -197,9 +197,52 @@ export interface FyndMarketingNavActionsProps {
    *  Forwarded verbatim to `ContactForm` — use for integration hooks like
    *  `data-hs-do-not-collect`. */
   formProps?: React.FormHTMLAttributes<HTMLFormElement>;
+  /**
+   * Optional signed-in-user data. When present (and `firstName` is set),
+   * the preset swaps the Sign-in button for an avatar+name pill that
+   * still links to `signedInHref` (defaults to `signInHref`).
+   * `null`/undefined → render the standard Sign-in button.
+   */
+  signedInUser?: {
+    firstName: string;
+    profilePicUrl?: string | null;
+  } | null;
+  /**
+   * Where the signed-in pill links to. Defaults to `signInHref` (so
+   * clicking the avatar takes the user to their console session).
+   */
+  signedInHref?: string;
+  /** Aria-label for the signed-in pill. Default "Open Fynd Console". */
+  signedInAriaLabel?: string;
   /** Pass true when inside a dark-background Navbar — flips trigger icon and buttons to light-mode colours. */
   onDarkBg?: boolean;
 }
+
+// ── SignedInAvatar ────────────────────────────────────────────────────────────
+
+const SignedInAvatar = ({
+  firstName,
+  profilePicUrl,
+}: {
+  firstName: string;
+  profilePicUrl?: string | null;
+}) => (
+  <span className={styles.signedInAvatar}>
+    {profilePicUrl ? (
+      <img
+        className={styles.signedInAvatarImg}
+        src={profilePicUrl}
+        alt=""
+        width={24}
+        height={24}
+      />
+    ) : (
+      <span className={styles.signedInAvatarInitial} aria-hidden="true">
+        {firstName.charAt(0).toUpperCase()}
+      </span>
+    )}
+  </span>
+);
 
 // ── FyndMarketingNavActions ───────────────────────────────────────────────────
 
@@ -215,6 +258,9 @@ export const FyndMarketingNavActions = ({
   onContactSubmit,
   productOptions = [...fyndMarketingProductOptions],
   formProps,
+  signedInUser,
+  signedInHref,
+  signedInAriaLabel = 'Open Fynd Console',
   onDarkBg = false,
 }: FyndMarketingNavActionsProps) => {
   const [contactOpen, setContactOpen] = useState(false);
@@ -270,15 +316,33 @@ export const FyndMarketingNavActions = ({
         formProps={formProps}
       />
 
-      <Button
-        label={signInLabel}
-        variant="primary"
-        size="md"
-        onDarkBg={onDarkBg}
-        onClick={() => {
-          if (typeof window !== 'undefined') window.location.href = signInHref;
-        }}
-      />
+      {signedInUser?.firstName ? (
+        <Button
+          href={signedInHref ?? signInHref}
+          variant="primary"
+          size="md"
+          onDarkBg={onDarkBg}
+          aria-label={signedInAriaLabel}
+          className={styles.signedInPill}
+          iconLeft={
+            <SignedInAvatar
+              firstName={signedInUser.firstName}
+              profilePicUrl={signedInUser.profilePicUrl}
+            />
+          }
+          label={signedInUser.firstName}
+        />
+      ) : (
+        <Button
+          label={signInLabel}
+          variant="primary"
+          size="md"
+          onDarkBg={onDarkBg}
+          onClick={() => {
+            if (typeof window !== 'undefined') window.location.href = signInHref;
+          }}
+        />
+      )}
     </>
   );
 };

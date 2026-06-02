@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.33.3] — 2026-06-02
+
+### Changed
+
+- perf: default `<img loading="lazy">` on below-fold components; add `imageLoading` + `videoPreload` overrides.
+  - `ImageHolder`, `MediaHolder`, `LogoMarquee`, `ContentCard`, `ListingCard`, `TestimonialTabs` now render their `<img>` with `loading="lazy"` by default and accept an `imageLoading?: "lazy" | "eager"` opt-out. `MediaHolder` keeps its first-image-eager default when `imageLoading` is omitted.
+  - `HeroFullBleed` keeps its image eager by default (above-the-fold) via a new `imageLoading` prop, and adds `videoPreload?: "auto" | "metadata" | "none"` (default `"auto"`) on its `<video>`.
+  - `fyndMarketingFooter` certification badges and the `ContactForm` success icon are now `loading="lazy"`.
+  - `HeroSplit` and `Navbar` are unchanged (above-the-fold). `FeatureSplit` and `LogoStrip` already lazy-loaded.
+
 ## [0.33.2] — 2026-06-02
 
 ### Added

@@ -5,6 +5,9 @@ export interface ImageHolderProps {
   aspectRatio: '5:4' | '1:1' | '16:9' | 'portrait';
   src?: string;
   alt?: string;
+  /** Image loading priority. Defaults to "lazy" (browser-native lazy
+   *  loading). Pass "eager" for above-the-fold instances. */
+  imageLoading?: 'lazy' | 'eager';
   className?: string;
   style?: CSSProperties;
 }
@@ -20,6 +23,7 @@ export const ImageHolder: React.FC<ImageHolderProps> = ({
   aspectRatio,
   src,
   alt = '',
+  imageLoading,
   className,
   style,
 }) => {
@@ -36,6 +40,7 @@ export const ImageHolder: React.FC<ImageHolderProps> = ({
           src={src}
           alt={alt}
           className={styles.img}
+          loading={imageLoading ?? 'lazy'}
         />
       </div>
     );

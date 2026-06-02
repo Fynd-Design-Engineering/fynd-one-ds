@@ -54,6 +54,9 @@ export interface ContentCardProps {
   /** @deprecated Use imageHoverSrc instead. */
   hoverImageSrc?: string;
   imageAlt?: string;
+  /** Image loading priority. Defaults to "lazy" (browser-native lazy
+   *  loading). Pass "eager" for above-the-fold instances. */
+  imageLoading?: 'lazy' | 'eager';
   imagePosition?: 'above' | 'below' | 'behind' | 'bottom-right';
   /** Video source — renders a `<video>` in the image slot instead of an `<img>`. */
   videoSrc?: string;
@@ -164,6 +167,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
   imageHoverAlt,
   hoverImageSrc,
   imageAlt = '',
+  imageLoading,
   imagePosition = 'below',
   chipLabel,
   showChip = true,
@@ -253,13 +257,13 @@ export const ContentCard: React.FC<ContentCardProps> = ({
           {videoSrc ? (
             <VideoEl src={videoSrc} mobileSrc={videoMobileSrc} poster={videoPoster} objectFit={videoObjectFit} className={styles['image--behind']} />
           ) : (
-            <img src={imageSrc} alt={imageAlt} className={[styles['image--behind'], styles['image-default']].join(' ')} />
+            <img src={imageSrc} alt={imageAlt} loading={imageLoading ?? 'lazy'} className={[styles['image--behind'], styles['image-default']].join(' ')} />
           )}
           {!videoSrc && videoHoverSrc && (
             <VideoEl src={videoHoverSrc} mobileSrc={videoHoverMobileSrc} objectFit={videoObjectFit} className={[styles['image--behind'], styles['image-hover']].join(' ')} ariaHidden />
           )}
           {!videoSrc && !videoHoverSrc && resolvedHoverSrc && (
-            <img src={resolvedHoverSrc} alt={resolvedHoverAlt} aria-hidden="true" className={[styles['image--behind'], styles['image-hover']].join(' ')} />
+            <img src={resolvedHoverSrc} alt={resolvedHoverAlt} aria-hidden="true" loading={imageLoading ?? 'lazy'} className={[styles['image--behind'], styles['image-hover']].join(' ')} />
           )}
         </>
       )}
@@ -269,13 +273,13 @@ export const ContentCard: React.FC<ContentCardProps> = ({
           {videoSrc ? (
             <VideoEl src={videoSrc} mobileSrc={videoMobileSrc} poster={videoPoster} objectFit={videoObjectFit} className={styles['image--bottom-right-default']} />
           ) : (
-            <img src={imageSrc} alt={imageAlt} className={[styles['image--bottom-right-default'], styles['image-default']].join(' ')} />
+            <img src={imageSrc} alt={imageAlt} loading={imageLoading ?? 'lazy'} className={[styles['image--bottom-right-default'], styles['image-default']].join(' ')} />
           )}
           {!videoSrc && videoHoverSrc && (
             <VideoEl src={videoHoverSrc} mobileSrc={videoHoverMobileSrc} objectFit={videoObjectFit} className={[styles['image--bottom-right-hover'], styles['image-hover']].join(' ')} ariaHidden />
           )}
           {!videoSrc && !videoHoverSrc && resolvedHoverSrc && (
-            <img src={resolvedHoverSrc} alt={resolvedHoverAlt} aria-hidden="true" className={[styles['image--bottom-right-hover'], styles['image-hover']].join(' ')} />
+            <img src={resolvedHoverSrc} alt={resolvedHoverAlt} aria-hidden="true" loading={imageLoading ?? 'lazy'} className={[styles['image--bottom-right-hover'], styles['image-hover']].join(' ')} />
           )}
         </div>
       )}
@@ -360,13 +364,13 @@ export const ContentCard: React.FC<ContentCardProps> = ({
           {videoSrc ? (
             <VideoEl src={videoSrc} mobileSrc={videoMobileSrc} poster={videoPoster} objectFit={videoObjectFit} className={styles['image--below']} />
           ) : imageSrc ? (
-            <img src={imageSrc} alt={imageAlt} className={[styles['image--below'], styles['image-default']].join(' ')} />
+            <img src={imageSrc} alt={imageAlt} loading={imageLoading ?? 'lazy'} className={[styles['image--below'], styles['image-default']].join(' ')} />
           ) : null}
           {!videoSrc && imageSrc && videoHoverSrc && (
             <VideoEl src={videoHoverSrc} mobileSrc={videoHoverMobileSrc} objectFit={videoObjectFit} className={[styles['image--below'], styles['image-hover']].join(' ')} ariaHidden />
           )}
           {!videoSrc && imageSrc && !videoHoverSrc && resolvedHoverSrc && (
-            <img src={resolvedHoverSrc} alt={resolvedHoverAlt} aria-hidden="true" className={[styles['image--below'], styles['image-hover']].join(' ')} />
+            <img src={resolvedHoverSrc} alt={resolvedHoverAlt} aria-hidden="true" loading={imageLoading ?? 'lazy'} className={[styles['image--below'], styles['image-hover']].join(' ')} />
           )}
         </div>
       )}

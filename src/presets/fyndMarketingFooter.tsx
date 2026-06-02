@@ -43,18 +43,21 @@ export const FyndFooterTrailingBadges = () => (
     <img
       src="https://cdn.pixelbin.io/v2/nameless-waterfall-bf6e98/original/fynd-web/ds-shared/009c7f35fce44cf51691d436f8d5e365880aa097.png"
       alt="AICPA SOC"
+      loading="lazy"
       height={64}
       style={{ height: 64, width: 'auto', objectFit: 'contain' }}
     />
     <img
       src="https://cdn.pixelbin.io/v2/nameless-waterfall-bf6e98/original/fynd-web/ds-shared/8fb14412db7cad359ce4c4a00c7c6d17-fb2b10a26add41e7add654b0317df382ef05a909.webp"
       alt="GDPR compliant"
+      loading="lazy"
       height={64}
       style={{ height: 64, width: 'auto', objectFit: 'contain' }}
     />
     <img
       src="https://cdn.pixelbin.io/v2/nameless-waterfall-bf6e98/original/fynd-web/ds-shared/image.avif"
       alt="BSI ISO certification"
+      loading="lazy"
       height={64}
       style={{ height: 64, width: 'auto', objectFit: 'contain' }}
     />

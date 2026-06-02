@@ -139,3 +139,35 @@ export const OnDarkBg: Story = {
     </div>
   ),
 };
+
+const lazyItems = [
+  {
+    brand: 'Buildco',
+    logo: <LogoImg text="Buildco" />,
+    quote:
+      '"Switching to this platform cut our deployment time from three weeks to under a day. Our entire team felt the difference immediately."',
+    authorName: 'Sarah Chen',
+    authorTitle: 'CTO at Buildco',
+    authorImage: 'https://i.pravatar.cc/80?img=47',
+  },
+  {
+    brand: 'Nexova',
+    logo: <LogoImg text="Nexova" />,
+    quote:
+      '"The composable architecture gave us the flexibility we had been chasing for years. We finally own our commerce stack end to end."',
+    authorName: 'Marcus Oliveira',
+    authorTitle: 'Head of Engineering at Nexova',
+    authorImage: 'https://i.pravatar.cc/80?img=12',
+  },
+];
+
+export const LazyGrid: Story = {
+  name: 'Lazy-loaded grid of 20 items',
+  render: () => (
+    <div style={{ display: 'grid', gap: 24 }}>
+      {Array.from({ length: 20 }).map((_, i) => (
+        <TestimonialTabs key={i} items={lazyItems} interval={6000} />
+      ))}
+    </div>
+  ),
+};

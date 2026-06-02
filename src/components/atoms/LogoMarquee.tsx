@@ -17,6 +17,9 @@ export interface LogoMarqueeProps {
   logoHeight?: number;
   /** Show grayscale-to-color hover effect on logos (default true). */
   hoverEffect?: boolean;
+  /** Image loading priority. Defaults to "lazy" (browser-native lazy
+   *  loading). Pass "eager" for above-the-fold instances. */
+  imageLoading?: 'lazy' | 'eager';
   className?: string;
   style?: CSSProperties;
 }
@@ -45,6 +48,7 @@ export const LogoMarquee: React.FC<LogoMarqueeProps> = ({
   repeat = 4,
   logoHeight = 50,
   hoverEffect = true,
+  imageLoading,
   className,
   style,
 }) => {
@@ -61,7 +65,7 @@ export const LogoMarquee: React.FC<LogoMarqueeProps> = ({
             <img
               src={logo.src}
               alt={logo.alt || ''}
-              loading="lazy"
+              loading={imageLoading ?? 'lazy'}
               className={[styles.logo, hoverEffect && styles['logo--hover']].filter(Boolean).join(' ')}
             />
           </div>

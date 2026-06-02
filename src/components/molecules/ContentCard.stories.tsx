@@ -489,3 +489,23 @@ export const FilledChipVariant: Story = {
   },
   decorators: [(Story) => <div style={{ width: 420 }}><Story /></div>],
 };
+
+export const LazyGrid: Story = {
+  name: 'Lazy-loaded grid of 20 items',
+  render: () => (
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 24 }}>
+      {Array.from({ length: 20 }).map((_, i) => (
+        <ContentCard
+          key={i}
+          chipLabel="Label Text"
+          title="Text goes here"
+          subtext="Subtext goes here"
+          buttonLabel="Button"
+          imagePosition="below"
+          imageSrc="https://picsum.photos/seed/card1/626/400"
+          imageAlt="Sample image"
+        />
+      ))}
+    </div>
+  ),
+};

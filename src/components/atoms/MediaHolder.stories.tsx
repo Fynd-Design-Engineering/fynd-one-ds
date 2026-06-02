@@ -32,6 +32,21 @@ export const SingleImage: Story = {
   decorators: [(Story) => <div style={{ width: 360 }}><Story /></div>],
 };
 
+export const LazyGrid: Story = {
+  name: 'Lazy-loaded grid of 20 items',
+  render: () => (
+    <div style={{ display: 'grid', gap: 24 }}>
+      {Array.from({ length: 20 }).map((_, i) => (
+        <MediaHolder
+          key={i}
+          aspectRatio="16:9"
+          layers={[{ type: 'image', src: SAMPLE_IMAGE, alt: `Item ${i + 1}` }]}
+        />
+      ))}
+    </div>
+  ),
+};
+
 export const AllRatios: Story = {
   name: 'Aspect ratio presets',
   render: () => (

@@ -32,6 +32,9 @@ export interface MediaHolderProps {
   background?: string;
   /** How the media fills its container. Default `'cover'`. */
   objectFit?: 'cover' | 'contain';
+  /** Image loading priority. Defaults to "lazy" (browser-native lazy
+   *  loading). Pass "eager" for above-the-fold instances. */
+  imageLoading?: 'lazy' | 'eager';
   className?: string;
   style?: CSSProperties;
 }
@@ -59,6 +62,7 @@ export const MediaHolder: React.FC<MediaHolderProps> = ({
   videoRef,
   background,
   objectFit = 'cover',
+  imageLoading,
   className,
   style,
 }) => {
@@ -105,7 +109,7 @@ export const MediaHolder: React.FC<MediaHolderProps> = ({
             <img
               src={layer.src}
               alt={layer.alt ?? ''}
-              loading={idx === 0 ? 'eager' : 'lazy'}
+              loading={imageLoading ?? (idx === 0 ? 'eager' : 'lazy')}
               decoding="async"
               aria-hidden={!isActive}
               style={{ objectFit }}

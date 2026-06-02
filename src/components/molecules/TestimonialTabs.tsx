@@ -34,6 +34,9 @@ export interface TestimonialTabsProps {
   onActiveIndexChange?: (index: number) => void;
   /** aria-label for the tablist. Default: 'Testimonials'. */
   tablistLabel?: string;
+  /** Image loading priority. Defaults to "lazy" (browser-native lazy
+   *  loading). Pass "eager" for above-the-fold instances. */
+  imageLoading?: 'lazy' | 'eager';
   onDarkBg?: boolean;
   className?: string;
   style?: CSSProperties;
@@ -46,6 +49,7 @@ export const TestimonialTabs: React.FC<TestimonialTabsProps> = ({
   defaultActiveIndex = 0,
   onActiveIndexChange,
   tablistLabel = 'Testimonials',
+  imageLoading,
   onDarkBg = false,
   className,
   style,
@@ -175,7 +179,7 @@ export const TestimonialTabs: React.FC<TestimonialTabsProps> = ({
               <div className={styles.bottom}>
                 <div className={styles.authorWrap}>
                   {item.authorImage && (
-                    <img src={item.authorImage} alt={item.authorName} className={styles.authorHeadshot} />
+                    <img src={item.authorImage} alt={item.authorName} loading={imageLoading ?? 'lazy'} className={styles.authorHeadshot} />
                   )}
                   <div className={styles.authorText}>
                     <Text variant="body-m" weight="medium" color={onDarkBg ? 'white' : 'default'}>
@@ -240,7 +244,7 @@ export const TestimonialTabs: React.FC<TestimonialTabsProps> = ({
                       <div className={styles.bottom}>
                         <div className={styles.authorWrap}>
                           {item.authorImage && (
-                            <img src={item.authorImage} alt={item.authorName} className={styles.authorHeadshot} />
+                            <img src={item.authorImage} alt={item.authorName} loading={imageLoading ?? 'lazy'} className={styles.authorHeadshot} />
                           )}
                           <div className={styles.authorText}>
                             <Text variant="body-m" weight="medium" color={onDarkBg ? 'white' : 'default'}>

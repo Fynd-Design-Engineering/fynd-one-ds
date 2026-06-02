@@ -28,6 +28,10 @@ export interface HeroFullBleedProps {
     mobilePoster?: string;
     objectFit?: 'cover' | 'contain';
   };
+  /** Preload strategy for the hero `<video>`. Defaults to "auto" since
+   *  this is a hero. Pass "metadata" or "none" if the consumer is using
+   *  HeroFullBleed below the fold (rare). */
+  videoPreload?: 'auto' | 'metadata' | 'none';
   /**
    * Static image hero — same responsive layout as `video` but renders an `<img>`.
    * Pass `video` OR `image`, not both; if both are set, `video` wins.
@@ -41,6 +45,9 @@ export interface HeroFullBleedProps {
     mobileAlt?: string;
     objectFit?: 'cover' | 'contain';
   };
+  /** Image loading priority for the static `image` hero. Defaults to
+   *  "eager" (above-the-fold hero). Pass "lazy" if rendering below the fold. */
+  imageLoading?: 'lazy' | 'eager';
   /** Section background — hex, var(--token), or any CSS color. */
   bg?: string;
   /** Adds top padding to the inner content equal to the sticky chrome height.
@@ -65,7 +72,9 @@ export const HeroFullBleed: React.FC<HeroFullBleedProps> = ({
   actions,
   extras,
   video,
+  videoPreload,
   image,
+  imageLoading,
   bg,
   topOffset,
   onDarkBg = false,
@@ -152,6 +161,7 @@ export const HeroFullBleed: React.FC<HeroFullBleedProps> = ({
               muted
               loop
               playsInline
+              preload={videoPreload ?? 'auto'}
               style={{ objectFit: video.objectFit ?? 'cover' }}
             />
           ) : (
@@ -160,6 +170,7 @@ export const HeroFullBleed: React.FC<HeroFullBleedProps> = ({
               className={styles.video}
               src={image!.src}
               alt={image!.alt ?? ''}
+              loading={imageLoading ?? 'eager'}
               style={{ objectFit: image!.objectFit ?? 'cover' }}
             />
           )}

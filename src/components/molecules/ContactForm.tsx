@@ -225,6 +225,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               alt=""
               width={96}
               height={96}
+              loading="lazy"
               decoding="async"
             />
             <Text variant="heading-m" as="p">

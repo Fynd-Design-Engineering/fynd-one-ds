@@ -11,6 +11,9 @@ export interface ListingCardProps {
   /** Alt text for the hover image. Falls back to imageAlt. */
   imageHoverAlt?: string;
   imageAlt?: string;
+  /** Image loading priority. Defaults to "lazy" (browser-native lazy
+   *  loading). Pass "eager" for above-the-fold instances. */
+  imageLoading?: 'lazy' | 'eager';
   imageAspectRatio?: ImageHolderProps['aspectRatio'];
   tags?: string[];
   showTags?: boolean;
@@ -53,6 +56,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({
   imageHoverSrc,
   imageHoverAlt,
   imageAlt = '',
+  imageLoading,
   imageAspectRatio = '16:9',
   tags,
   showTags = true,
@@ -114,6 +118,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({
           aspectRatio={imageAspectRatio}
           src={imageSrc}
           alt={imageAlt}
+          imageLoading={imageLoading}
           style={{ borderRadius: 0 }}
           className={styles['image-default']}
         />
@@ -122,6 +127,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({
             src={imageHoverSrc}
             alt={imageHoverAlt ?? imageAlt}
             aria-hidden="true"
+            loading={imageLoading ?? 'lazy'}
             className={styles['image-hover']}
           />
         )}

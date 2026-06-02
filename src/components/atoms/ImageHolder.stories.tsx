@@ -39,3 +39,24 @@ export const WithImage: Story = {
   },
   decorators: [(Story) => <div style={{ maxWidth: 600 }}><Story /></div>],
 };
+
+/**
+ * 20 stacked images. With the default `loading="lazy"`, only the images near
+ * the viewport request immediately — scroll and watch the rest load in the
+ * Network panel. Pass `imageLoading="eager"` to opt an instance out.
+ */
+export const LazyGrid: Story = {
+  name: 'Lazy-loaded grid of 20 items',
+  render: () => (
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 24, maxWidth: 600 }}>
+      {Array.from({ length: 20 }, (_, i) => (
+        <ImageHolder
+          key={i}
+          aspectRatio="16:9"
+          src={`https://picsum.photos/seed/fds-lazy-${i}/800/450`}
+          alt={`Lazy image ${i + 1}`}
+        />
+      ))}
+    </div>
+  ),
+};

@@ -150,3 +150,24 @@ export const BlogGrid: Story = {
     </div>
   ),
 };
+
+export const LazyGrid: Story = {
+  name: 'Lazy-loaded grid of 20 items',
+  render: () => (
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 24 }}>
+      {Array.from({ length: 20 }).map((_, i) => (
+        <ListingCard
+          key={i}
+          tags={['Label text']}
+          title={`Lazy-loaded card ${i + 1} — most of these load below the fold`}
+          subtext="Loper ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero."
+          imageSrc="https://placehold.co/411x200/e3e3e3/5b5c5d?text=Blog+Cover"
+          imageAlt="Blog cover"
+          date="4 FEB, 2025"
+          readTime="5 min read"
+          buttonLabel="Read story"
+        />
+      ))}
+    </div>
+  ),
+};

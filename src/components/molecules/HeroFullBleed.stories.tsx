@@ -67,3 +67,31 @@ export const Default: Story = {
     bg: '#eeeeee',
   },
 };
+
+/**
+ * HeroFullBleed defaults its image to `loading="eager"` (it's above the fold).
+ * For the rare below-fold placement, pass `imageLoading="lazy"`. This stacks
+ * 20 image heroes with the lazy override so only those near the viewport
+ * request immediately — scroll and watch the rest load in the Network panel.
+ */
+export const LazyGrid: Story = {
+  name: 'Lazy-loaded grid of 20 items',
+  render: () => (
+    <div style={{ display: 'grid', gap: 24 }}>
+      {Array.from({ length: 20 }, (_, i) => (
+        <HeroFullBleed
+          key={i}
+          title={<>Lazy hero {i + 1}</>}
+          subtext="Rendered below the fold with the lazy image override."
+          imageLoading="lazy"
+          image={{
+            src: `https://picsum.photos/seed/fds-hero-${i}/1200/600`,
+            alt: `Lazy hero ${i + 1}`,
+            objectFit: 'cover',
+          }}
+          bg="#eeeeee"
+        />
+      ))}
+    </div>
+  ),
+};

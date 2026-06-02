@@ -157,10 +157,11 @@ export const HeroFullBleed: React.FC<HeroFullBleedProps> = ({
     ...style,
   };
 
-  // `fetchpriority` isn't in React's VideoHTMLAttributes types yet; spread a
-  // named object (non-fresh, so no excess-property error) so the lowercase
-  // attribute lands on the rendered <video>. <img> uses the typed prop below.
-  const videoFetchPriorityAttr = { fetchpriority: videoFetchPriority ?? 'high' };
+  // React's VideoHTMLAttributes type lacks `fetchPriority`, so spread a named
+  // object (non-fresh → no excess-property error). Use the React camelCase
+  // key — React maps it to the lowercase `fetchpriority` DOM attribute and
+  // avoids the "Invalid DOM property" dev warning. <img> uses the prop directly.
+  const videoFetchPriorityAttr = { fetchPriority: videoFetchPriority ?? 'high' };
 
   return (
     <section id={id} className={rootCls} style={rootStyle}>

@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.33.5] — 2026-06-02
+
+### Fixed
+
+- fix(hero): use React-camelCase `fetchPriority` on hero `<video>` to silence dev warning. 0.33.4 spread a lowercase `fetchpriority` key onto the `<video>`, which React rejected (`Invalid DOM property 'fetchpriority'` — a console error overlay in Next.js dev). React maps the camelCase prop to the correct lowercase `fetchpriority` DOM attribute. No runtime change to the rendered attribute.
+
 ## [0.33.4] — 2026-06-02
 
 ### Changed

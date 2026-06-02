@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.33.6] — 2026-06-02
+
+### Fixed
+
+- fix(navbar): inline the mobile footer wordmark via SVGR (`fynd-horizontal-dark.svg?react`) instead of a URL import. The plain `import …svg` resolved to a local asset path (`/src/assets/brand-logos/…`) that wasn't shipped with the package, so the logo broke in consumers. Inlining bundles the SVG into the JS output (same pattern as the footer brandmark) so it always ships. No API change.
+
 ## [0.33.5] — 2026-06-02
 
 ### Fixed

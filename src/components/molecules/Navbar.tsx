@@ -12,12 +12,12 @@ import React, {
 import { AnimatePresence, motion } from 'motion/react';
 import { Text } from '../Typography/Text';
 import { IcArrowForward, IcChevronLeft, IcChevronRight, IcChevronDown } from '../../assets/icons/navigation';
-import fyndHorizontalDark from '../../assets/brand-logos/fynd-horizontal-dark.svg';
+import FyndHorizontalDark from '../../assets/brand-logos/fynd-horizontal-dark.svg?react';
 import styles from './Navbar.module.css';
 
-const NavFootLogo: React.FC = () => (
-  <img src={fyndHorizontalDark} alt="" />
-);
+// Inline (SVGR) so the wordmark ships in the bundle rather than resolving to a
+// local asset path that consumers don't receive. Matches the footer brandmark.
+const NavFootLogo: React.FC = () => <FyndHorizontalDark aria-hidden="true" />;
 
 // Local 32×32 menu / close icons drawn inside a circle ring (Fynd marketing
 // site mobile-nav style). Inline so they don't pollute the icons barrel.

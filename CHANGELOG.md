@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.33.4] — 2026-06-02
+
+### Changed
+
+- perf+a11y: `HeroFullBleed` defaults `fetchpriority="high"` on video+image; `FyndMarketingNavActions` trigger gets accessible name via `triggerAriaLabel`; `LogoMarquee`/`LogoStrip` images carry intrinsic width/height to eliminate CLS.
+  - `HeroFullBleed`: new `videoFetchPriority` / `imageFetchPriority` props (default `"high"`), applied as the lowercase `fetchpriority` attribute on the rendered `<video>` / `<img>`. Siblings to `imageLoading` / `videoPreload` from 0.33.3.
+  - `FyndMarketingNavActions`: new `triggerAriaLabel` (default `"Open menu"`) sets `aria-label` on the icon-only contact dropdown trigger, flipping to `"Close menu"` while open — fixes the axe/Lighthouse `button-name` audit. No visible change.
+  - `LogoMarquee` / `LogoStrip`: `LogoItem` gains optional `width` / `height`; the rendered `<img>` now carries intrinsic dimensions (per-item → `logoHeight` → built-in 150 × 50) so the browser reserves space before paint. CSS still owns the displayed size.
+
 ## [0.33.3] — 2026-06-02
 
 ### Changed

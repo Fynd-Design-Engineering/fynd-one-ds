@@ -4,6 +4,12 @@ import styles from './LogoStrip.module.css';
 export interface LogoItem {
   src: string;
   alt?: string;
+  /** Intrinsic width hint on the rendered `<img>` (reserves space to
+   *  avoid CLS). Default 150. CSS still owns the displayed size. */
+  width?: number;
+  /** Intrinsic height hint on the rendered `<img>`. Defaults to the
+   *  component's `logoHeight` (50). */
+  height?: number;
 }
 
 export interface LogoStripProps {
@@ -79,6 +85,8 @@ export const LogoStrip: React.FC<LogoStripProps> = ({
             <img
               src={logo.src}
               alt={logo.alt || ''}
+              width={logo.width ?? 150}
+              height={logo.height ?? logoHeight}
               loading="lazy"
               className={[styles.logo, hoverEffect && styles['logo--hover']].filter(Boolean).join(' ')}
             />

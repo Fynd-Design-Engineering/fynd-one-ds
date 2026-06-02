@@ -32,6 +32,9 @@ export interface HeroFullBleedProps {
    *  this is a hero. Pass "metadata" or "none" if the consumer is using
    *  HeroFullBleed below the fold (rare). */
   videoPreload?: 'auto' | 'metadata' | 'none';
+  /** Browser scheduler priority for the hero `<video>`. Defaults to
+   *  "high" since HeroFullBleed is above-the-fold by definition. */
+  videoFetchPriority?: 'high' | 'low' | 'auto';
   /**
    * Static image hero — same responsive layout as `video` but renders an `<img>`.
    * Pass `video` OR `image`, not both; if both are set, `video` wins.
@@ -48,6 +51,9 @@ export interface HeroFullBleedProps {
   /** Image loading priority for the static `image` hero. Defaults to
    *  "eager" (above-the-fold hero). Pass "lazy" if rendering below the fold. */
   imageLoading?: 'lazy' | 'eager';
+  /** Browser scheduler priority for the hero `<img>` (image-only mode
+   *  and the video poster). Defaults to "high". */
+  imageFetchPriority?: 'high' | 'low' | 'auto';
   /** Section background — hex, var(--token), or any CSS color. */
   bg?: string;
   /** Adds top padding to the inner content equal to the sticky chrome height.
@@ -73,8 +79,10 @@ export const HeroFullBleed: React.FC<HeroFullBleedProps> = ({
   extras,
   video,
   videoPreload,
+  videoFetchPriority,
   image,
   imageLoading,
+  imageFetchPriority,
   bg,
   topOffset,
   onDarkBg = false,
@@ -149,6 +157,11 @@ export const HeroFullBleed: React.FC<HeroFullBleedProps> = ({
     ...style,
   };
 
+  // `fetchpriority` isn't in React's VideoHTMLAttributes types yet; spread a
+  // named object (non-fresh, so no excess-property error) so the lowercase
+  // attribute lands on the rendered <video>. <img> uses the typed prop below.
+  const videoFetchPriorityAttr = { fetchpriority: videoFetchPriority ?? 'high' };
+
   return (
     <section id={id} className={rootCls} style={rootStyle}>
       {(video || image) && (
@@ -162,6 +175,7 @@ export const HeroFullBleed: React.FC<HeroFullBleedProps> = ({
               loop
               playsInline
               preload={videoPreload ?? 'auto'}
+              {...videoFetchPriorityAttr}
               style={{ objectFit: video.objectFit ?? 'cover' }}
             />
           ) : (
@@ -171,6 +185,7 @@ export const HeroFullBleed: React.FC<HeroFullBleedProps> = ({
               src={image!.src}
               alt={image!.alt ?? ''}
               loading={imageLoading ?? 'eager'}
+              fetchPriority={imageFetchPriority ?? 'high'}
               style={{ objectFit: image!.objectFit ?? 'cover' }}
             />
           )}

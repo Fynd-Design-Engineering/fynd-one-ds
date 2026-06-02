@@ -95,3 +95,28 @@ export const LazyGrid: Story = {
     </div>
   ),
 };
+
+/**
+ * Image hero. By default the `<img>` renders `fetchpriority="high"` (LCP
+ * boost above the fold) — inspect the element to confirm. Override via
+ * `imageFetchPriority` / `videoFetchPriority`.
+ */
+export const ImageHeroFetchPriority: Story = {
+  args: {
+    title: (
+      <>
+        High-priority
+        <br />
+        image hero
+      </>
+    ),
+    subtext: 'The rendered <img> carries fetchpriority="high" by default.',
+    imageFetchPriority: 'high',
+    image: {
+      src: 'https://picsum.photos/seed/fds-hero-fp/1600/800',
+      alt: 'High priority hero',
+      objectFit: 'cover',
+    },
+    bg: '#eeeeee',
+  },
+};

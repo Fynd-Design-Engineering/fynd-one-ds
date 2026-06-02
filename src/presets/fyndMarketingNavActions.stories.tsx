@@ -71,3 +71,16 @@ export const SignedInInitialOnly: Story = {
     signedInHref: 'https://console.fynd.com',
   },
 };
+
+/**
+ * The icon-only contact dropdown trigger carries an accessible name via
+ * `aria-label` (default "Open menu", flips to "Close menu" while open).
+ * Override the closed-state label with `triggerAriaLabel` — inspect the
+ * button to confirm the `aria-label` attribute.
+ */
+export const CustomTriggerLabel: Story = {
+  name: 'Trigger aria-label override',
+  args: {
+    triggerAriaLabel: 'Contact Fynd',
+  },
+};

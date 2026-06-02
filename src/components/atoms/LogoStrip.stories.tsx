@@ -54,3 +54,16 @@ export const CustomLogos: Story = {
     duration: 15,
   },
 };
+
+/** Per-item intrinsic `width`/`height` hints reserve space and prevent CLS.
+ *  Default 150 × 50 when omitted. */
+export const WithIntrinsicDimensions: Story = {
+  args: {
+    variant: 'static',
+    logos: [
+      { src: 'https://placehold.co/200x60/e3e3e3/5b5c5d?text=Wide', alt: 'Wide brand', width: 200, height: 60 },
+      { src: 'https://placehold.co/100x50/e3e3e3/5b5c5d?text=Square', alt: 'Square brand', width: 100, height: 50 },
+      { src: 'https://placehold.co/150x50/e3e3e3/5b5c5d?text=Default', alt: 'Default brand' },
+    ],
+  },
+};

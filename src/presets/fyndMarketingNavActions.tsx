@@ -214,6 +214,10 @@ export interface FyndMarketingNavActionsProps {
   signedInHref?: string;
   /** Aria-label for the signed-in pill. Default "Open Fynd Console". */
   signedInAriaLabel?: string;
+  /** Accessible name for the icon-only contact dropdown trigger.
+   *  Default "Open menu". Powers `aria-label` on the trigger button
+   *  (flips to "Close menu" while open). */
+  triggerAriaLabel?: string;
   /** Pass true when inside a dark-background Navbar — flips trigger icon and buttons to light-mode colours. */
   onDarkBg?: boolean;
 }
@@ -261,6 +265,7 @@ export const FyndMarketingNavActions = ({
   signedInUser,
   signedInHref,
   signedInAriaLabel = 'Open Fynd Console',
+  triggerAriaLabel,
   onDarkBg = false,
 }: FyndMarketingNavActionsProps) => {
   const [contactOpen, setContactOpen] = useState(false);
@@ -282,6 +287,7 @@ export const FyndMarketingNavActions = ({
         trigger={
           <ContactDropdownTrigger
             dark={onDarkBg}
+            aria-label={contactOpen ? 'Close menu' : (triggerAriaLabel ?? 'Open menu')}
             onMouseEnter={openContact}
             onMouseLeave={scheduleClose}
           />

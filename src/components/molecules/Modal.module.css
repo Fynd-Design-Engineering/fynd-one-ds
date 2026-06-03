@@ -24,7 +24,10 @@
   outline: none;
   overflow: hidden;
   max-width: 100%;
-  max-height: calc(100vh - 3rem);
+  /* dvh (dynamic viewport) so the card never exceeds the actually-visible
+     height — 100vh is the large/device viewport (incl. area behind the
+     browser UI + notch), which pushes a bottom-anchored card off-screen. */
+  max-height: calc(100dvh - 3rem);
 }
 
 .scroll {
@@ -56,8 +59,10 @@
     width: 100% !important;
     max-width: 100%;
     /* Leave a small inset above the sheet so a sliver of the page
-       behind it stays visible. */
-    max-height: calc(100vh - 3.5rem);
+       behind it stays visible. dvh matches the .overlay height so the
+       bottom-anchored sheet (and the close button above it) can't be
+       pushed above the visible viewport on mobile browsers. */
+    max-height: calc(100dvh - 3.5rem);
     border-radius: 1rem 1rem 0 0;
   }
 }

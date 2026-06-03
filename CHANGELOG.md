@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.33.8] — 2026-06-03
+
+### Fixed
+
+- fix(modal): card `max-height` now uses `100dvh` instead of `100vh`. The `.overlay` is `100dvh` (visible viewport) but the bottom-anchored card was sized with `100vh` (large/device viewport, including the area behind the browser UI and notch). On mobile browsers `100vh > 100dvh`, so the card grew taller than the visible area and its top — along with the external close button above it — was pushed off-screen and became completely untappable. Matching the card to `100dvh` keeps it (and the close button) within the visible viewport. Complements the safe-area-inset notch clamp from 0.33.7.
+
 ## [0.33.7] — 2026-06-03
 
 ### Fixed

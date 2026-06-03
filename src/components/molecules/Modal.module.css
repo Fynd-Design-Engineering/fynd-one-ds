@@ -97,7 +97,10 @@
     right: unset;
     left: 50%;
     transform: translateX(-50%);
-    top: calc(-2.5rem - 0.5rem);
+    /* Clamp below the notch / Dynamic Island: notch-less stays at -3rem,
+       notched devices push the button down by safe-area-inset-top so it
+       clears the cutout and stays tappable. */
+    top: max(-3rem, calc(-3rem + env(safe-area-inset-top, 0px)));
   }
 
   .close:active {

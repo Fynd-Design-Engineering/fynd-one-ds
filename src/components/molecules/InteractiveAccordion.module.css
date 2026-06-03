@@ -157,7 +157,7 @@
 /* ── Trigger ──────────────────────────────────────────────────────────────── */
 
 .trigger {
-  width: stretch;
+  width: 100%; /* was: stretch — CSS Sizing L4, unsupported in iOS Safari (collapses to content width) */
   display: flex;
   align-items: center;
   justify-content: space-between;

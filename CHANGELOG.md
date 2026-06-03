@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.33.7] — 2026-06-03
+
+### Fixed
+
+- fix(ios): `InteractiveAccordion` trigger uses `width: 100%` instead of unsupported `width: stretch` (CSS Sizing L4); on iOS Safari `stretch` fell back to content width, shrinking trigger rows to ~50% of the container. `Modal` close button clamped below `safe-area-inset-top` via `max()` so it isn't hidden by the iPhone notch / Dynamic Island — notch-less devices keep the original -3rem position; notched devices push the button down to stay tappable.
+
 ## [0.33.6] — 2026-06-02
 
 ### Fixed

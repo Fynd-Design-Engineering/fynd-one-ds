@@ -19,6 +19,18 @@ import styles from './Navbar.module.css';
 // local asset path that consumers don't receive. Matches the footer brandmark.
 const NavFootLogo: React.FC = () => <FyndHorizontalDark aria-hidden="true" />;
 
+// In-flow watermark at the end of each mobile panel: sits at the bottom when
+// content is short (margin-top: auto) and flows below the content when it's
+// long, so list items never scroll underneath it.
+const MobileFoot: React.FC = () => (
+  <div className={styles.mobileFoot} aria-hidden="true">
+    <span className={styles.mobileFootLogo}>
+      <NavFootLogo />
+    </span>
+    <span className={styles.mobileFootVersion}>v1.0</span>
+  </div>
+);
+
 // Local 32×32 menu / close icons drawn inside a circle ring (Fynd marketing
 // site mobile-nav style). Inline so they don't pollute the icons barrel.
 const NavMenuIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
@@ -691,12 +703,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </>
               )}
             </div>
-            <div className={styles.mobileFoot} aria-hidden="true">
-              <span className={styles.mobileFootLogo}>
-                <NavFootLogo />
-              </span>
-              <span className={styles.mobileFootVersion}>v1.0</span>
-            </div>
             <div className={styles.mobilePanels}>
               {/* Level 0: primary nav */}
               <motion.div
@@ -787,6 +793,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     {mobileActions || actions}
                   </motion.div>
                 )}
+                <MobileFoot />
               </motion.div>
 
               {/* Level 1: sub-menu */}
@@ -868,6 +875,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       </div>
                     )} */}
                 </div>
+                <MobileFoot />
               </motion.div>
             </div>
           </motion.div>

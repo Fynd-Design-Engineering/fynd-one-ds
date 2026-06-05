@@ -677,16 +677,16 @@
 }
 
 .mobileFoot {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 1.5rem;
+  /* In scroll flow: margin-top auto pins it to the bottom on short content;
+     long content (open accordion) pushes it down so nothing overlaps. */
+  margin-top: auto;
+  padding-top: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.375rem;
+  flex-shrink: 0;
   pointer-events: none;
-  z-index: 1;
 }
 
 .mobileFootLogo {
@@ -694,8 +694,9 @@
   opacity: 0.35;
 }
 
-.mobileFootLogo > img {
-  height: 1.5rem;
+.mobileFootLogo > img,
+.mobileFootLogo > svg {
+  height: 1.25rem;
   width: auto;
   display: block;
 }
